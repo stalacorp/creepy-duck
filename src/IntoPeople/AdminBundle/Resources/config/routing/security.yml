@@ -1,0 +1,13 @@
+
+into_people_admin_security_login:
+    path: /login
+    defaults: { _controller: "FOSUserBundle:Security:login" }
+
+into_people_admin_security_check:
+    path: /login_check
+    defaults: { _controller: "FOSUserBundle:Security:check" }
+    methods: "POST"
+
+into_people_admin_security_logout:
+    path: /logout
+    defaults: { _controller: "FOSUserBundle:Security:logout" }

@@ -1,0 +1,9 @@
+
+into_people_database_profile_show:
+    path: /
+    defaults: { _controller: "FOSUserBundle:Profile:show" }
+    methods: "GET"
+
+into_people_database_profile_edit:
+    path: /edit
+    defaults: { _controller: "FOSUserBundle:Profile:edit" }

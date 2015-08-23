@@ -1,0 +1,23 @@
+
+into_people_database_group_list:
+    path: /list
+    defaults: { _controller: "FOSUserBundle:Group:list" }
+    methods: "GET"
+
+into_people_database_group_new:
+    path: /new
+    defaults: { _controller: "FOSUserBundle:Group:new" }
+
+into_people_database_group_show:
+    path: /{groupName}
+    defaults: { _controller: "FOSUserBundle:Group:show" }
+    methods: "GET"
+
+into_people_database_group_edit:
+    path: /{groupName}/edit
+    defaults: { _controller: "FOSUserBundle:Group:edit" }
+
+into_people_database_group_delete:
+    path: /{groupName}/delete
+    defaults: { _controller: "FOSUserBundle:Group:delete" }
+    methods: "GET"

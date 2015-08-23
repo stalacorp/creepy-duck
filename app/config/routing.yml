@@ -1,0 +1,48 @@
+home:
+    path:     /
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Default:index" }
+
+#user
+into_people_database_security:
+    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/security.yml"
+    prefix: /user
+
+into_people_database_profile:
+    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/profile.yml"
+    prefix: /user/profile
+
+into_people_database_register:
+    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/registration.yml"
+    prefix: /user/register
+
+into_people_database_resetting:
+    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/resetting.yml"
+    prefix: /user/resetting
+
+into_people_database_change_password:
+    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/change_password.yml"
+    prefix: /user/profile
+
+#admin
+into_people_admin_security:
+    resource: "@IntoPeopleAdminBundle/Resources/config/routing/security.yml"
+    prefix: /admin
+
+into_people_admin_profile:
+    resource: "@IntoPeopleAdminBundle/Resources/config/routing/profile.yml"
+    prefix: /admin/profile
+
+into_people_admin_register:
+    resource: "@IntoPeopleAdminBundle/Resources/config/routing/registration.yml"
+    prefix: /admin/register
+
+into_people_admin_resetting:
+    resource: "@IntoPeopleAdminBundle/Resources/config/routing/resetting.yml"
+    prefix: /admin/resetting
+
+into_people_admin_change_password:
+    resource: "@IntoPeopleAdminBundle/Resources/config/routing/change_password.yml"
+    prefix: /admin/profile
+
+
+

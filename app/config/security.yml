@@ -1,0 +1,54 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    providers:
+        intopeople_user_bundle:
+            id: into_people_database.user_provider.username
+        intopeople_admin_bundle:
+            id: into_people_admin.user_provider.username
+
+
+    firewalls:
+        main:
+            # Pattern should equal the pattern you configured for the bundle
+            pattern: ^/user
+            # Or if you use a custom request_matcher configure that one instead
+            #request_matcher: some.service.id
+
+            form_login:
+                provider: intopeople_user_bundle
+                csrf_provider: form.csrf_provider
+                login_path: /user/login
+                check_path: /user/login_check
+            logout:
+                path:   /user/logout
+                target: /
+            anonymous:    true
+
+        admin:
+            # Pattern should equal the pattern you configured for the bundle
+            pattern: ^/admin
+            # Or if you use a custom request_matcher configure that one instead
+            #request_matcher: some.service.id
+
+            form_login:
+                provider: intopeople_admin_bundle
+                csrf_provider: form.csrf_provider
+                check_path: /admin/login_check
+            logout:       true
+            anonymous:    true
+
+    access_control:
+        - { path: ^/user/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/user/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/user/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }

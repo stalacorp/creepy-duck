@@ -1,0 +1,12 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+    cc.database_switcher:
+        class:      IntoPeople\DatabaseBundle\EventListener\DatabaseSwitcherEventListener
+        arguments:  [@request, @doctrine.dbal.default_connection, @logger, @security.context]
+        scope:      request
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }

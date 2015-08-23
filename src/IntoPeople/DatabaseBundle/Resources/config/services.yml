@@ -1,0 +1,4 @@
+services:
+#    into_people_database.example:
+#        class: IntoPeople\DatabaseBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
