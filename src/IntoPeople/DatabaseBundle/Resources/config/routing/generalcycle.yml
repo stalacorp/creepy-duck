@@ -1,0 +1,30 @@
+generalcycle:
+    path:     /
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Generalcycle:index" }
+
+generalcycle_show:
+    path:     /{id}/show
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Generalcycle:show" }
+
+generalcycle_new:
+    path:     /new
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Generalcycle:new" }
+
+generalcycle_create:
+    path:     /create
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Generalcycle:create" }
+    methods:  POST
+
+generalcycle_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Generalcycle:edit" }
+
+generalcycle_update:
+    path:     /{id}/update
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Generalcycle:update" }
+    methods:  [POST, PUT]
+
+generalcycle_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Generalcycle:delete" }
+    methods:  [POST, DELETE]

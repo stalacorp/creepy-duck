@@ -64,7 +64,7 @@ class IntoPeopleAdminExtension extends Extension
                 'routes_prefix' => 'into_people_admin',
 
                 'db_driver' => 'orm', // can be either: orm, mongodb, couchdb or custom (Propel is not supported)
-                'model_manager_name' => 'customer',
+                'model_manager_name' => 'admin',
                 'use_listener' => true,
 
                 'user_class' => 'IntoPeople\AdminBundle\Entity\User',

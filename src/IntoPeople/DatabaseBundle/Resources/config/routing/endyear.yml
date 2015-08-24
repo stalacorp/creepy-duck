@@ -1,0 +1,12 @@
+endyear_update:
+    path:     /{id}/update
+    defaults: { _controller: "IntoPeopleDatabaseBundle:MyEndyear:update" }
+    methods:  [POST, PUT]
+    
+endyear_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "IntoPeopleDatabaseBundle:MyEndyear:edit" }
+    
+endyear_show:
+    path:     /{id}/show
+    defaults: { _controller: "IntoPeopleDatabaseBundle:MyEndyear:show" }

@@ -1,0 +1,30 @@
+organization:
+    path:     /
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Organization:index" }
+
+organization_show:
+    path:     /{id}/show
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Organization:show" }
+
+organization_new:
+    path:     /new
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Organization:new" }
+
+organization_create:
+    path:     /create
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Organization:create" }
+    methods:  POST
+
+organization_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Organization:edit" }
+
+organization_update:
+    path:     /{id}/update
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Organization:update" }
+    methods:  [POST, PUT]
+
+organization_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Organization:delete" }
+    methods:  [POST, DELETE]

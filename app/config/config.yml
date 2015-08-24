@@ -61,7 +61,7 @@ doctrine:
                     user:     "%database_user%"
                     password: "%database_password%"
                     charset:  UTF8
-                customer:
+                admin:
                     host:     "%database_host2%"
                     port:     "%database_port2%"
                     dbname:   "%database_name2%"
@@ -77,8 +77,8 @@ doctrine:
                     mappings:
                         IntoPeopleDatabaseBundle: ~
                         FOSUserBundle: ~
-                customer:
-                    connection: customer
+                admin:
+                    connection: admin
                     mappings:
                         IntoPeopleAdminBundle: ~
                         FOSUserBundle: ~
@@ -95,3 +95,6 @@ rollerworks_multi_user:
     from_email:
         address: webmaster@example.com
         sender_name: webmaster
+
+vich_uploader:
+    db_driver: orm # or mongodb or propel or phpcr

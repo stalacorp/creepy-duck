@@ -1,0 +1,91 @@
+{% extends '::base.html.twig' %} {% block body -%}
+<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+<div id="portlet-config" class="modal hide">
+	<div class="modal-header">
+		<button data-dismiss="modal" class="close" type="button"></button>
+		<h3>Widget Settings</h3>
+	</div>
+	<div class="modal-body">Widget settings form goes here</div>
+</div>
+<div class="clearfix"></div>
+<div class="container">
+	<div class="content">
+
+		<div class="page-title">
+			<i class="icon-custom-left"></i>
+			<h3>
+				Horizontal - <span class="semi-bold">Menu</span>
+			</h3>
+		</div>
+
+		<div class="row">
+			<div class="col-md-8">
+				
+
+
+						<h3>
+							{{ entity.firstname }} <span class="semi-bold">{{ entity.lastname
+								}}</span>
+						</h3>
+
+
+                        {{ form_start(edit_form) }}
+
+
+                        {{ form_row(edit_form.title) }}
+                        
+                        {{ form_row(edit_form.firstname) }}
+                        
+                        {{ form_row(edit_form.lastname) }}
+                        
+                        {{ form_row(edit_form.photo) }}
+                        
+                        
+                        <!-- HIDDEN FIELDS FOR CHROME WRONG AUTOFILL -->
+                        <input style="display:none" type="text" name="fakeusernameremembered"/>
+                        <input style="display:none" type="password" name="fakepasswordremembered"/>
+                        
+                        {{ form_row(edit_form.email) }}                                               
+                        
+                        {{ form_label(edit_form.hiredate) }}
+                        {{ form_widget(edit_form.hiredate) }}
+                        
+                        {{ form_label(edit_form.datelastpromotion) }}
+                        {{ form_widget(edit_form.datelastpromotion) }}
+                        
+                        {{ form_row(edit_form.supervisor) }}
+                        
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                        
+                        {{ form_row(edit_form.organization) }}
+                                             
+                        
+                        {% endif %}
+                        
+                        {{ form_row(edit_form.language) }}
+                        
+                        {{ form_row(edit_form.roles) }}
+                                               						
+						
+						<p>	
+						
+						{{ form_widget(edit_form.submit) }}	
+							
+					    <a href="{{ path('person') }}" class="btn btn-default btn-cons" type="button"> Back </a>
+							
+							</p>
+							
+				
+						{{ form_end(edit_form) }}{{ form(delete_form) }}	
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
+
+
+

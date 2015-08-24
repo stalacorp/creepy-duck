@@ -1,0 +1,30 @@
+supervisor:
+    path:     /
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:index" }
+    
+supervisor_addComment:
+    path:     /{id}/addComment
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:addComment" }
+    
+supervisor_update:
+    path:     /{id}/update
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:update" }
+    methods:  [POST, PUT]
+
+supervisor_addMidyearComment:
+    path:     /{id}/addMidyearComment
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:addMidyearComment" }
+
+supervisor_updateMidyear:
+    path:     /{id}/updateMidyear
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:updateMidyear" }
+    methods:  [POST, PUT]
+    
+supervisor_addEndyearComment:
+    path:     /{id}/addEndyearComment
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:addEndyearComment" }
+
+supervisor_updateEndyear:
+    path:     /{id}/updateEndyear
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:updateEndyear" }
+    methods:  [POST, PUT]

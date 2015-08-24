@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Rollerworks\Bundle\MultiUserBundle\RollerworksMultiUserBundle(),
             new IntoPeople\AdminBundle\IntoPeopleAdminBundle(),
             new IntoPeople\DatabaseBundle\IntoPeopleDatabaseBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,0 +1,83 @@
+{% extends '::base.html.twig' %} {% block body -%}
+<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+<div id="portlet-config" class="modal hide">
+	<div class="modal-header">
+		<button data-dismiss="modal" class="close" type="button"></button>
+		<h3>Widget Settings</h3>
+	</div>
+	<div class="modal-body">Widget settings form goes here</div>
+</div>
+<div class="clearfix"></div>
+<div class="container">
+	<div class="content">
+
+		<div class="page-title">
+			<i class="icon-custom-left"></i>
+			<h3>
+				<span class="semi-bold">Users</span>
+			</h3>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+
+
+
+						<h3>
+							 {{ entity.firstname }} <span class="semi-bold">{{ entity.lastname }}</span>
+						</h3>
+
+						<p>Progress bars comes with customized colors and transparent
+							background that would fit any colored widget or portlet</p>
+                       
+
+						<table class="table">
+							<tbody>
+								<tr>
+									<th>Title</th>
+									<td>{{ entity.title }}</td>
+								</tr>
+								<tr>
+									<th>Firstname</th>
+									<td>{{ entity.firstname }}</td>
+								</tr>
+								<tr>
+									<th>Lastname</th>
+									<td>{{ entity.lastname }}</td>
+								</tr>
+								<tr>
+								    <th>Email</th>
+								    <td>{{ entity.email }}</td>
+								</tr>
+								<tr>
+									<th>Hiredate</th>
+									<td>{{ entity.hiredate|date('Y-m-d H:i:s') }}</td>
+								</tr>
+								<tr>
+									<th>Datelastpromotion</th>
+									<td>{{ entity.datelastpromotion|date('Y-m-d H:i:s') }}</td>
+								</tr>
+								<tr>
+									<th>Photo</th>
+									<td><img src="{{ app.request.basePath }}{{ vich_uploader_asset(entity, 'photo') }}" alt="{{ entity.photoname }}" /></td>
+								</tr>
+							</tbody>
+						</table>
+
+						
+							<a href="{{ path('person') }}" type="button" class="btn btn-default btn-cons"> Back to the list </a>
+							<a href="{{ path('person_edit', { 'id': entity.id }) }}" type="button" class="btn btn-default btn-cons">
+									Edit </a>
+							 {{ form(delete_form) }}
+						
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
+
+

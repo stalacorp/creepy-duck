@@ -55,7 +55,7 @@ class IntoPeopleDatabaseExtension extends Extension
                  * A request-matcher must always implement the `Symfony\Component\HttpFoundation\RequestMatcherInterface`.
                  */
 
-                'path' => '^/user', // path-regex, must match the firewall pattern
+                'path' => '^/', // path-regex, must match the firewall pattern
                 'host' => null,
                 'request_matcher' => null,
 

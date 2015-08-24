@@ -1,0 +1,12 @@
+midyear_update:
+    path:     /{id}/update
+    defaults: { _controller: "IntoPeopleDatabaseBundle:MyMidyear:update" }
+    methods:  [POST, PUT]
+    
+midyear_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "IntoPeopleDatabaseBundle:MyMidyear:edit" }
+    
+midyear_show:
+    path:     /{id}/show
+    defaults: { _controller: "IntoPeopleDatabaseBundle:MyMidyear:show" }
