@@ -24,6 +24,11 @@ into_people_database_change_password:
     prefix: /user/profile
 
 #admin
+into_people_admin:
+    resource: "@IntoPeopleAdminBundle/Controller"
+    type: annotation
+    prefix: /admin
+
 into_people_admin_security:
     resource: "@IntoPeopleAdminBundle/Resources/config/routing/security.yml"
     prefix: /admin
