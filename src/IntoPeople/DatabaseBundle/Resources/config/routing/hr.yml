@@ -1,0 +1,30 @@
+hr_update:
+    path:     /{id}/update
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:update" }
+    methods:  [POST, PUT]
+    
+hr_addFeedback:
+    path:     /{id}/addFeedback
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:addFeedback" }
+    
+hr_show:
+    path:     /{id}/show
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:show" }
+    
+hr_updateMidyear:
+    path:     /{id}/updateMidyear
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:updateMidyear" }
+    methods:  [POST, PUT]
+    
+hr_addMidyearFeedback:
+    path:     /{id}/addMidyearFeedback
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:addMidyearFeedback" }
+    
+hr_updateEndyear:
+    path:     /{id}/updateEndyear
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:updateEndyear" }
+    methods:  [POST, PUT]
+    
+hr_addEndyearFeedback:
+    path:     /{id}/addEndyearFeedback
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:addEndyearFeedback" }

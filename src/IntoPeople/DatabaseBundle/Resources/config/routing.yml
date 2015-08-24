@@ -1,0 +1,3 @@
+into_people_database_user:
+    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/user.yml"
+    prefix:   /user

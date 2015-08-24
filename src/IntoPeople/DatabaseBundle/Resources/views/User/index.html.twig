@@ -1,0 +1,85 @@
+{% extends '::base.html.twig' %} 
+
+{% block body -%}
+    <!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+    <div id="portlet-config" class="modal hide">
+        <div class="modal-header">
+            <button data-dismiss="modal" class="close" type="button"></button>
+            <h3>Widget Settings</h3>
+        </div>
+        <div class="modal-body">Widget settings form goes here</div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="container">
+        <div class="content">
+
+            <div class="page-title">
+                <i class="fa fa-user"></i>
+
+                <h3>
+                    <span class="semi-bold">Users</span>
+                </h3>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+
+
+                    <table class="table" id="table">
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Organization</th>
+                            <th>Actions</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for entity in entities %}
+
+                            {% if entities == null %}
+                                <p>There are no users!</p>
+                            {% endif %}
+
+                            <tr>
+                                <td>{{ entity.firstname }}</td>
+                                <td>{{ entity.lastname }}</td>
+                                <td>{{ entity.organization }}</td>
+
+                                <td>
+                                    <a href="{{ path('user_show', { 'id': entity.id }) }}" type="button"
+                                       class="btn btn-default btn-sm btn-small">show</a>
+                                </td>
+                                <td>
+                                    <a href="{{ path('user_edit', { 'id': entity.id }) }}" type="button"
+                                       class="btn btn-default btn-sm btn-small">edit</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+
+                    <a href="{{ path('user_new') }}" type="button" class="btn btn-primary btn-cons"> Create a new
+                        entry </a>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block documentReady %}
+
+
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,30 @@
+language:
+    path:     /
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Language:index" }
+
+language_show:
+    path:     /{id}/show
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Language:show" }
+
+language_new:
+    path:     /new
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Language:new" }
+
+language_create:
+    path:     /create
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Language:create" }
+    methods:  POST
+
+language_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Language:edit" }
+
+language_update:
+    path:     /{id}/update
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Language:update" }
+    methods:  [POST, PUT]
+
+language_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Language:delete" }
+    methods:  [POST, DELETE]

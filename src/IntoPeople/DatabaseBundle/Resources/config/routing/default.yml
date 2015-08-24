@@ -1,0 +1,8 @@
+homepage:
+    path:     /home
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Default:index" }
+    
+frontend:
+    path:     /
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Default:frontendindex" }
+    

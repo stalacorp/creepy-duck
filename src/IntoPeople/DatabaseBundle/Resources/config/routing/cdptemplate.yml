@@ -1,0 +1,30 @@
+cdptemplate:
+    path:     /
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Cdptemplate:index" }
+
+cdptemplate_show:
+    path:     /{id}/show
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Cdptemplate:show" }
+
+cdptemplate_new:
+    path:     /new
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Cdptemplate:new" }
+
+cdptemplate_create:
+    path:     /create
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Cdptemplate:create" }
+    methods:  POST
+
+cdptemplate_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Cdptemplate:edit" }
+
+cdptemplate_update:
+    path:     /{id}/update
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Cdptemplate:update" }
+    methods:  [POST, PUT]
+
+cdptemplate_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Cdptemplate:delete" }
+    methods:  [POST, DELETE]
