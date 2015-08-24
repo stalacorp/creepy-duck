@@ -1,0 +1,244 @@
+{% extends '::base.html.twig' %} 
+{% block body -%}
+
+<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+<div id="portlet-config" class="modal hide">
+	<div class="modal-header">
+		<button data-dismiss="modal" class="close" type="button"></button>
+		<h3>Widget Settings</h3>
+	</div>
+	<div class="modal-body">Widget settings form goes here</div>
+</div>
+<div class="clearfix"></div>
+<div class="container">
+	<div class="content">
+
+		<div class="page-title">
+			<i class="icon-custom-left"></i>
+			<h3>
+				Mid <span class="semi-bold">Year</span>
+			</h3>
+		</div>
+		
+		{% set template = entity.midyeartemplate %}
+		{% set devneeds = entity.developmentneeds %}
+
+		<div class="row">
+			<div class="col-md-12">
+
+
+											 						  
+			              <h3>{{ template.title1 }}</h3>
+						
+						  <p>Read your job description carefully. </p>
+						  
+						  <table class="table table-bordered no-more-tables">
+						  
+						  <thead>
+						  <tr>
+						      <th style="width:40%" colspan="2">{{ template.whatWhy }}</th>
+						      <th style="width:60%">{{ template.progress }}</th>
+
+						  </tr>
+						  </thead>
+						  
+						  <tbody>
+						  
+						  <tr>
+						      <td colspan="2">{{ template.whatWhyDescription }}</td>
+						      <td>{{ template.progressDescription }}</td>
+						  </tr>
+
+						  <tr>
+						      <td colspan="5"><h5 class="text-center">{{ template.smallTitle1 }}</h5></td>
+						  </tr>
+						  
+						  
+						  <tr>
+						      <td colspan="2">{{ devneeds.task1 }}</td>
+						      <td>{{ entity.progresstask1 }}</td>
+
+						  </tr>
+						  
+						  <tr>
+						      <td colspan="2">{{ devneeds.task2 }}</td>
+						      <td>{{ entity.progresstask2 }}</td>
+
+						  </tr>
+						  
+						  <tr>
+						      <td colspan="2">{{ devneeds.task3 }}</td>
+						      <td>{{ entity.progresstask3 }}</td>
+
+						  </tr>
+						  
+						  <tr>
+						      <td colspan="2">{{ devneeds.task4 }}</td>
+						      <td>{{ entity.progresstask4 }}</td>
+
+						  </tr>
+						  
+						  <tr>
+						      <td colspan="2">{{ devneeds.task5 }}</td>
+						      <td>{{ entity.progresstask5 }}</td>
+
+						  </tr>
+						  
+						  <tr>
+						      <td colspan="5"><h5 class="text-center">{{ template.smallTitle2 }}</h5></td>
+						  </tr>
+						  
+						  <tr>
+						      <th style="width:40%" colspan="2">{{ template.whatWhy }}</th>
+						      <th style="width:60%">{{ template.progress }}</th>
+
+						  </tr>
+						  
+						  
+						  <tr>
+						      <td colspan="2">{{ devneeds.skill1 }}</td>
+						      <td>{{ entity.progressskill1}}</td>
+
+						  </tr>
+						  
+						  <tr>
+						      <td colspan="2">{{ devneeds.skill2 }}</td>
+						      <td>{{ entity.progressskill2 }}</td>
+
+						  </tr>
+						  
+						  <tr>
+						      <td colspan="2">{{ devneeds.skill3 }}</td>
+						      <td>{{ entity.progressskill3 }}</td>
+
+						  </tr>
+						  
+						  <tr>
+						      <td colspan="2">{{ devneeds.skill4 }}</td>
+						      <td>{{ entity.progressskill4 }}</td>
+
+						  </tr>
+						  
+						  <tr>
+						      <td colspan="2">{{ devneeds.skill5 }}</td>
+						      <td>{{ entity.progressskill5 }}</td>
+
+						  </tr>
+						  
+						  
+						  <tr>
+						      <td colspan="5"><h5 class="text-center">{{ template.smallTitle3 }}</h5></td>
+						  </tr>
+						  
+						  <tr>
+						      <th style="width:40%" colspan="2">{{ template.whatWhy }}</th>
+						      <th style="width:60%">{{ template.progress }}</th>
+
+						  </tr>
+						  
+						  
+						  <tr>
+						      <td>{{ devneeds.OrganizationCompetence1 }}</td>
+						      <td>{{ devneeds.OrganizationDescription1 }}</td>
+
+						      <td>{{ entity.progressorganization1 }}</td>
+
+						  </tr>
+						  
+						  <tr>
+						      <td>{{ devneeds.OrganizationCompetence2 }}</td>
+						      <td>{{ devneeds.OrganizationDescription2 }}</td>
+
+						      <td>{{ entity.progressorganization2 }}</td>
+
+						  </tr>
+						  
+						  <tr>
+						      <td>{{ devneeds.OrganizationCompetence3 }}</td>
+						      <td>{{ devneeds.OrganizationDescription3 }}</td>
+
+						      <td>{{ entity.progressorganization3 }}</td>
+
+						  </tr>
+						  
+						  <tr>
+						      <td>{{ devneeds.OrganizationCompetence4 }}</td>
+						      <td>{{ devneeds.OrganizationDescription4 }}</td>
+						      
+						      <td>{{ entity.progressorganization4 }}</td>
+
+						  </tr>
+						  
+						  <tr>
+						      <td>{{ devneeds.OrganizationCompetence5 }}</td>
+						      <td>{{ devneeds.OrganizationDescription5 }}</td>
+
+						      <td>{{ entity.progressorganization5 }}</td>
+
+						  </tr>
+						  
+						  
+						  </tbody>
+						  
+						  
+						  </table>
+						  
+						  
+						  <h3>{{ template.feedbackSup }}</h3>
+						
+						  <p>{{ template.feedbackSupDescription }}</p>
+						
+						  {{ entity.feedbacksupervisor }} 
+						  
+						  
+						  
+						  <h3>{{ template.feedbackOrganization }}</h3>
+						
+						  <p>{{ template.feedbackOrganizationDescription }}</p>
+						
+						  {{ entity.feedbackorganization }} 
+						  
+																
+
+			</div>
+		</div>
+		
+		{% if entity.formstatus.id > 3 %}
+						
+						<div class="row margin-top-50">
+			             <div class="col-md-6">
+						
+						<h3>Comments supervisor</h3>
+						
+						{{ entity.commentSup }}
+						
+						</div>
+						</div>
+						
+						{% endif %}
+						
+						{% if entity.formstatus.id > 5 %}
+						
+						<div class="row margin-top-50">
+			             <div class="col-md-6">
+						
+						<h3>Feedback HR</h3>
+						
+						{{ entity.feedbackHR }}
+						
+						</div>
+						</div>
+						
+						{% endif %}
+		
+            {% block comment %}
+            {% endblock %}
+		
+		
+		<a href="{{ path('feedbackcycle') }}" class="btn btn-default btn-cons" type="button"> Back to the list </a>
+		
+	</div>
+</div>
+
+{% endblock %}
+

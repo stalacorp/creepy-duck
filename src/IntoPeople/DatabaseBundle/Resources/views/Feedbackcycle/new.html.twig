@@ -1,0 +1,62 @@
+ {% extends '::base.html.twig' %} {% block body -%}
+<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+<div id="portlet-config" class="modal hide">
+	<div class="modal-header">
+		<button data-dismiss="modal" class="close" type="button"></button>
+		<h3>Widget Settings</h3>
+	</div>
+	<div class="modal-body">Widget settings form goes here</div>
+</div>
+<div class="clearfix"></div>
+<div class="container">
+	<div class="content">
+		<div class="page-title">
+			<i class="icon-custom-left"></i>
+			<h3>
+				New<span class="semi-bold"> Feedbackcycle</span>
+			</h3>
+		</div>
+
+		<div class="row margin-top-30">
+			<div class="col-md-6">
+			
+			
+			     {{ form_start(form) }}
+			     
+			         {{ form_row(form.generalcycle) }}
+			         
+			         {{ form_row(form.person) }}
+			         
+			         {{ form_row(form.cdp) }}
+			         
+			         {{ form_row(form.midyear) }}
+			         
+			         {{ form_row(form.endyear) }}
+			         
+			         <div class="margin-top-40">
+			         {{ form_widget(form.submit) }} <a href="{{ path('feedbackcycle') }}" class="btn btn-default btn-cons" type="button"> Back to the list </a>
+			         </div>
+			     
+			     {{ form_end(form) }}
+
+
+						
+
+
+
+
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+

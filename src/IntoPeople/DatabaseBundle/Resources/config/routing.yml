@@ -9,3 +9,23 @@ into_people_database_generalcycle:
 into_people_database_default:
     resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/default.yml"
     prefix:   /
+
+into_people_database_myfeedbackcycle:
+    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/myfeedbackcycle.yml"
+    prefix:   /myfeedbackcycle
+
+into_people_database_cdp:
+    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/cdp.yml"
+    prefix:   /cdp
+
+into_people_database_midyear:
+    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/midyear.yml"
+    prefix:   /midyear
+
+into_people_database_endyear:
+    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/endyear.yml"
+    prefix:   /endyear
+
+into_people_database_feedbackcycle:
+    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/feedbackcycle.yml"
+    prefix:   /feedbackcycle

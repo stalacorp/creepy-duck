@@ -1,0 +1,105 @@
+{% extends '::base.html.twig' %} 
+{% block body -%}
+<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+<div id="portlet-config" class="modal hide">
+	<div class="modal-header">
+		<button data-dismiss="modal" class="close" type="button"></button>
+		<h3>Widget Settings</h3>
+	</div>
+	<div class="modal-body">Widget settings form goes here</div>
+</div>
+<div class="clearfix"></div>
+<div class="container">
+	<div class="content">
+		<div class="page-title">
+			<i class="icon-custom-left"></i>
+			<h3>
+				  Feedback<span class="semi-bold">cycles</span>
+			</h3>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+			
+			             {% for flashMessage in app.session.flashbag.get('success') %}
+						                      
+		                  <div class="alert alert-success">
+                            <button class="close" data-dismiss="alert"></button>
+                            {{ flashMessage }}
+                        </div>	
+                        
+		                {% endfor %}
+			             
+
+						<table class="table no-more-tables">
+							<thead>
+								<tr>
+									<th>Firstname</th>
+									<th>Lastname</th>
+									<th>CDP</th>
+									<th>Mid Year</th>
+									<th>End Year</th>
+									<th>Edit</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for entity in entities %}
+								<tr>
+									<td>{{ entity.user.firstname }}</td>
+									<td>{{ entity.user.lastname }}</td>
+									
+									{% if (entity.cdp.formstatus.id == 5 or entity.cdp.formstatus.id == 6) %}
+									<td><a href="{{ path('hr_addFeedback',{'id' : entity.cdp.id}) }}">{{ entity.cdp.formstatus.name }}</a></td>
+									{% elseif entity.cdp.formstatus.id == 8 %}
+									<td><a href="{{ path('cdp_show',{'id' : entity.cdp.id}) }}">{{ entity.cdp.formstatus.name }}</a></td>
+									{% else %}
+									<td>{{ entity.cdp.formstatus.name }}</td>
+									{% endif %}
+									
+									{% if entity.midyear.formstatus.id == 5 or entity.midyear.formstatus.id == 6 %}
+									<td><a href="{{ path('hr_addMidyearFeedback',{'id' : entity.midyear.id}) }}">{{ entity.midyear.formstatus.name }}</a></td>
+									{% elseif entity.midyear.formstatus.id == 8 %}
+									<td><a href="{{ path('midyear_show',{'id' : entity.midyear.id}) }}">{{ entity.midyear.formstatus.name }}</a></td>
+									{% else %}
+									<td>{{ entity.midyear.formstatus.name }}</td>
+									{% endif %}
+									
+									
+									{% if entity.endyear.formstatus.id == 5 or entity.endyear.formstatus.id == 6 %}
+									<td><a href="{{ path('hr_addEndyearFeedback',{'id' : entity.endyear.id}) }}">{{ entity.endyear.formstatus.name }}</a></td>
+									{% elseif entity.endyear.formstatus.id == 8 %}
+									<td><a href="{{ path('endyear_show',{'id' : entity.endyear.id}) }}">{{ entity.endyear.formstatus.name }}</a></td>
+									{% else %}
+									<td>{{ entity.endyear.formstatus.name }}</td>
+									{% endif %}
+									
+									
+									
+									<td> 
+											<!-- <a href="{{ path('feedbackcycle_show', { 'id': entity.id }) }}">show</a> -->
+											
+											<a href="{{ path('feedbackcycle_edit', { 'id': entity.id }) }}" class="btn btn-warning btn-sm btn-small"><i class="fa fa-pencil-square-o"></i> Edit</a>
+											
+									</td>
+									
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+
+						<a href="{{ path('feedbackcycle_new') }}" class="btn btn-primary btn-cons"> Create a new entry
+							</a>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+
