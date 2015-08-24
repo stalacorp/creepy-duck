@@ -7,13 +7,13 @@ use IntoPeople\DatabaseBundle\Entity\User;
 use IntoPeople\DatabaseBundle\Form\PersonType;
 
 /**
- * Person controller.
+ * User controller.
  */
 class UserController extends Controller
 {
 
     /**
-     * Lists all Person entities.
+     * Lists all User entities.
      */
     public function indexAction()
     {
@@ -53,31 +53,31 @@ class UserController extends Controller
             $em->persist($entity);
             $em->flush();
             
-            return $this->redirect($this->generateUrl('person_show', array(
+            return $this->redirect($this->generateUrl('user_show', array(
                 'id' => $entity->getId()
             )));
         }
         
-        return $this->render('IntoPeopleDatabaseBundle:Person:new.html.twig', array(
+        return $this->render('IntoPeopleDatabaseBundle:User:new.html.twig', array(
             'entity' => $entity,
             'form' => $form->createView()
         ));
     }
 
     /**
-     * Creates a form to create a Person entity.
+     * Creates a form to create a User entity.
      *
-     * @param Person $entity
+     * @param User $entity
      *            The entity
      *            
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Person $entity)
+    private function createCreateForm(User $entity)
     {
         $tokenStorage = $this->container->get('security.token_storage');
         
         $form = $this->createForm(new PersonType($tokenStorage), $entity, array(
-            'action' => $this->generateUrl('person_create'),
+            'action' => $this->generateUrl('user_create'),
             'method' => 'POST'
         ));
         
@@ -89,57 +89,57 @@ class UserController extends Controller
     }
 
     /**
-     * Displays a form to create a new Person entity.
+     * Displays a form to create a new User entity.
      */
     public function newAction()
     {
-        $entity = new Person();
+        $entity = new User();
         $form = $this->createCreateForm($entity);
         
-        return $this->render('IntoPeopleDatabaseBundle:Person:new.html.twig', array(
+        return $this->render('IntoPeopleDatabaseBundle:User:new.html.twig', array(
             'entity' => $entity,
             'form' => $form->createView()
         ));
     }
 
     /**
-     * Finds and displays a Person entity.
+     * Finds and displays a User entity.
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         
-        $entity = $em->getRepository('IntoPeopleDatabaseBundle:Person')->find($id);
+        $entity = $em->getRepository('IntoPeopleDatabaseBundle:User')->find($id);
         
         if (! $entity) {
-            throw $this->createNotFoundException('Unable to find Person entity.');
+            throw $this->createNotFoundException('Unable to find User entity.');
         }
         
         $deleteForm = $this->createDeleteForm($id);
         
-        return $this->render('IntoPeopleDatabaseBundle:Person:show.html.twig', array(
+        return $this->render('IntoPeopleDatabaseBundle:User:show.html.twig', array(
             'entity' => $entity,
             'delete_form' => $deleteForm->createView()
         ));
     }
 
     /**
-     * Displays a form to edit an existing Person entity.
+     * Displays a form to edit an existing User entity.
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         
-        $entity = $em->getRepository('IntoPeopleDatabaseBundle:Person')->find($id);
+        $entity = $em->getRepository('IntoPeopleDatabaseBundle:User')->find($id);
         
         if (! $entity) {
-            throw $this->createNotFoundException('Unable to find Person entity.');
+            throw $this->createNotFoundException('Unable to find User entity.');
         }
         
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
         
-        return $this->render('IntoPeopleDatabaseBundle:Person:edit.html.twig', array(
+        return $this->render('IntoPeopleDatabaseBundle:User:edit.html.twig', array(
             'entity' => $entity,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView()
@@ -147,19 +147,19 @@ class UserController extends Controller
     }
 
     /**
-     * Creates a form to edit a Person entity.
+     * Creates a form to edit a User entity.
      *
-     * @param Person $entity
+     * @param User $entity
      *            The entity
      *            
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createEditForm(Person $entity)
+    private function createEditForm(User $entity)
     {
         $tokenStorage = $this->container->get('security.token_storage');
         
         $form = $this->createForm(new PersonType($tokenStorage), $entity, array(
-            'action' => $this->generateUrl('person_update', array(
+            'action' => $this->generateUrl('user_update', array(
                 'id' => $entity->getId()
             )),
             'method' => 'PUT'
@@ -173,16 +173,16 @@ class UserController extends Controller
     }
 
     /**
-     * Edits an existing Person entity.
+     * Edits an existing User entity.
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
         
-        $entity = $em->getRepository('IntoPeopleDatabaseBundle:Person')->find($id);
+        $entity = $em->getRepository('IntoPeopleDatabaseBundle:User')->find($id);
         
         if (! $entity) {
-            throw $this->createNotFoundException('Unable to find Person entity.');
+            throw $this->createNotFoundException('Unable to find User entity.');
         }
         
         $deleteForm = $this->createDeleteForm($id);
@@ -192,12 +192,12 @@ class UserController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
             
-            return $this->redirect($this->generateUrl('person_edit', array(
+            return $this->redirect($this->generateUrl('user_edit', array(
                 'id' => $id
             )));
         }
         
-        return $this->render('IntoPeopleDatabaseBundle:Person:edit.html.twig', array(
+        return $this->render('IntoPeopleDatabaseBundle:User:edit.html.twig', array(
             'entity' => $entity,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView()
@@ -205,7 +205,7 @@ class UserController extends Controller
     }
 
     /**
-     * Deletes a Person entity.
+     * Deletes a User entity.
      */
     public function deleteAction(Request $request, $id)
     {
@@ -214,21 +214,21 @@ class UserController extends Controller
         
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('IntoPeopleDatabaseBundle:Person')->find($id);
+            $entity = $em->getRepository('IntoPeopleDatabaseBundle:User')->find($id);
             
             if (! $entity) {
-                throw $this->createNotFoundException('Unable to find Person entity.');
+                throw $this->createNotFoundException('Unable to find User entity.');
             }
             
             $em->remove($entity);
             $em->flush();
         }
         
-        return $this->redirect($this->generateUrl('person'));
+        return $this->redirect($this->generateUrl('user'));
     }
 
     /**
-     * Creates a form to delete a Person entity by id.
+     * Creates a form to delete a User entity by id.
      *
      * @param mixed $id
      *            The entity id
@@ -238,7 +238,7 @@ class UserController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('person_delete', array(
+            ->setAction($this->generateUrl('user_delete', array(
             'id' => $id
         )))
             ->setMethod('DELETE')

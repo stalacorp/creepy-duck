@@ -4,14 +4,13 @@ namespace IntoPeople\DatabaseBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use FOS\UserBundle\Model\User;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Doctrine\ORM\EntityRepository;
 
 
-class PersonType extends AbstractType
+class UserType extends AbstractType
 {
 
     private $tokenStorage;
@@ -105,7 +104,7 @@ class PersonType extends AbstractType
                         $form->add('plainpassword', 'password', array('label' => 'Password'));
                     
                      $formOptions = array(
-                        'class' => 'IntoPeople\DatabaseBundle\Entity\Person',
+                        'class' => 'IntoPeople\DatabaseBundle\Entity\User',
                         'query_builder' => function (EntityRepository $er) use ($user) {
 
                             return $er->createQueryBuilder('p')->where('p.organization = :organization')->setParameter('organization',$user->getOrganization());
@@ -122,7 +121,7 @@ class PersonType extends AbstractType
                 if ($entity->getId() != null) {
                     
                     $formOptions = array(
-                        'class' => 'IntoPeople\DatabaseBundle\Entity\Person',
+                        'class' => 'IntoPeople\DatabaseBundle\Entity\User',
                         'query_builder' => function (EntityRepository $er) use ($entity) {
 
                             return $er->createQueryBuilder('p')->where('p.organization = :organization')->setParameter('organization',$entity->getOrganization());
@@ -146,7 +145,7 @@ class PersonType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'IntoPeople\DatabaseBundle\Entity\Person'
+            'data_class' => 'IntoPeople\DatabaseBundle\Entity\User'
         ));
     }
 
@@ -156,6 +155,6 @@ class PersonType extends AbstractType
      */
     public function getName()
     {
-        return 'intopeople_databasebundle_person';
+        return 'intopeople_databasebundle_user';
     }
 }
