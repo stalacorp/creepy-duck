@@ -6,6 +6,7 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -136,14 +137,6 @@ class User extends BaseUser
     public function __toString()
     {
         return $this->getFirstname() . " " . $this->getLastname();
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->feedbackcycles = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
