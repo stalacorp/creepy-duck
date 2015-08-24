@@ -45,7 +45,7 @@ class OrganizationController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine('customer')->getManager();
+        $em = $this->getDoctrine('admin')->getManager();
 
         $entities = $em->getRepository('IntoPeopleAdminBundle:Organization')->findAll();
 
@@ -67,7 +67,7 @@ class OrganizationController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $em = $this->getDoctrine('admin')->getManager();
             $em->persist($entity);
             $em->flush();
 
@@ -145,7 +145,7 @@ class OrganizationController extends Controller
      */
     public function showAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine('admin')->getManager();
 
         $entity = $em->getRepository('IntoPeopleAdminBundle:Organization')->find($id);
 
@@ -170,7 +170,7 @@ class OrganizationController extends Controller
      */
     public function editAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine('admin')->getManager();
 
         $entity = $em->getRepository('IntoPeopleAdminBundle:Organization')->find($id);
 
@@ -215,7 +215,7 @@ class OrganizationController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine('admin')->getManager();
 
         $entity = $em->getRepository('IntoPeopleAdminBundle:Organization')->find($id);
 
@@ -251,7 +251,7 @@ class OrganizationController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $em = $this->getDoctrine('admin')->getManager();
             $entity = $em->getRepository('IntoPeopleAdminBundle:Organization')->find($id);
 
             if (!$entity) {
