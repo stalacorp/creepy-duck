@@ -71,27 +71,57 @@ class OrganizationController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager('admin');
-            // $em->persist($entity);
-            // $em->flush();
+            $em->persist($entity);
+            $em->flush();
 
             // generate database
-            //
-            $sql = "create database br_" . $entity->getName();
-            $stmt = $this->getDoctrine()->getManager('admin')->getConnection()->prepare($sql);
-            $stmt->execute();
-
             $kernel = $this->get('kernel');
             $application = new Application($kernel);
             $application->setAutoExit(false);
-            $this->switchConnection($entity->getName());
+            $sql = "create database br_" . $entity->getName();
+            $stmt = $this->getDoctrine()->getManager('admin')->getConnection()->prepare($sql);
+            $stmt->execute();
+            $connection = $this->getDoctrine()->getManager('default')->getConnection();
+            $params['dbname'] = 'br_' . $entity->getName();
+            $params['user'] = 'root';
+            if ($connection->isConnected()) {
+                $connection->close();
+            }
+            $connection->__construct(
+                $params, $connection->getDriver(), $connection->getConfiguration(),
+                $connection->getEventManager()
+            );
+            $input = new ArrayInput(array(
+                'command' => 'doctrine:database:create',
+                '--connection' => 'default',
+            ));
+            // You can use NullOutput() if you don't need the output
+            $output = new BufferedOutput();
+            $application->run($input, $output);
+
+            // return the output, don't use if you used NullOutput()
+            $content = $output->fetch();
+
+            try {
+                $connection->connect();
+            } catch (Exception $e) {
+                // log and handle exception
+            }
+
             $input = new ArrayInput(array(
                 'command' => 'doctrine:schema:update',
                 '--em' => 'default',
                 '--force' => true,
             ));
             // You can use NullOutput() if you don't need the output
-            $output = new BufferedOutput();
             $application->run($input, $output);
+            $input = new ArrayInput(array(
+                'command' => 'doctrine:fixtures:load',
+                '--em' => 'default',
+                '--no-interaction' => true,
+            ));
+            $application->run($input, $output);
+
 
             // return the output, don't use if you used NullOutput()
             $content = $output->fetch();
@@ -161,11 +191,8 @@ class OrganizationController extends Controller
             throw $this->createNotFoundException('Unable to find Organization entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-
         return array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
         );
     }
 
@@ -187,12 +214,10 @@ class OrganizationController extends Controller
         }
 
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         return array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         );
     }
 
@@ -231,7 +256,6 @@ class OrganizationController extends Controller
             throw $this->createNotFoundException('Unable to find Organization entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
@@ -244,49 +268,7 @@ class OrganizationController extends Controller
         return array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         );
     }
-    /**
-     * Deletes a Organization entity.
-     *
-     * @Route("/{id}", name="_delete")
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, $id)
-    {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager('admin');
-            $entity = $em->getRepository('IntoPeopleAdminBundle:Organization', 'admin')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Organization entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
-        }
-
-        return $this->redirect($this->generateUrl(''));
-    }
-
-    /**
-     * Creates a form to delete a Organization entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
-    }
 }
