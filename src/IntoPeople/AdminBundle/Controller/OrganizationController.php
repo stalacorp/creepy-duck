@@ -45,7 +45,7 @@ class OrganizationController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine('admin')->getManager();
+        $em = $this->getDoctrine()->getManager('admin');
 
         $entities = $em->getRepository('IntoPeopleAdminBundle:Organization')->findAll();
 
@@ -147,7 +147,7 @@ class OrganizationController extends Controller
     {
         $em = $this->getDoctrine('admin')->getManager();
 
-        $entity = $em->getRepository('IntoPeopleAdminBundle:Organization')->find($id);
+        $entity = $em->getRepository('IntoPeopleAdminBundle:Organization', 'admin')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Organization entity.');
@@ -172,7 +172,7 @@ class OrganizationController extends Controller
     {
         $em = $this->getDoctrine('admin')->getManager();
 
-        $entity = $em->getRepository('IntoPeopleAdminBundle:Organization')->find($id);
+        $entity = $em->getRepository('IntoPeopleAdminBundle:Organization', 'admin')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Organization entity.');
@@ -217,7 +217,7 @@ class OrganizationController extends Controller
     {
         $em = $this->getDoctrine('admin')->getManager();
 
-        $entity = $em->getRepository('IntoPeopleAdminBundle:Organization')->find($id);
+        $entity = $em->getRepository('IntoPeopleAdminBundle:Organization', 'admin')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Organization entity.');
@@ -252,7 +252,7 @@ class OrganizationController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine('admin')->getManager();
-            $entity = $em->getRepository('IntoPeopleAdminBundle:Organization')->find($id);
+            $entity = $em->getRepository('IntoPeopleAdminBundle:Organization', 'admin')->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Organization entity.');
