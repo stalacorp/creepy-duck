@@ -47,6 +47,7 @@ into_people_admin_resetting:
 into_people_admin_change_password:
     resource: "@IntoPeopleAdminBundle/Resources/config/routing/change_password.yml"
     prefix: /admin/profile
+
 into_people_admintest:
     resource: "@IntoPeopleAdminBundle/Controller"
     type: annotation

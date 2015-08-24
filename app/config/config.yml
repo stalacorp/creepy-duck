@@ -77,7 +77,6 @@ doctrine:
                     mappings:
                         IntoPeopleDatabaseBundle: ~
                         FOSUserBundle: ~
-                        IntoPeopleAdminBundle: ~
                 admin:
                     connection: admin
                     mappings:

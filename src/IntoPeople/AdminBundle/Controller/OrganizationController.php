@@ -10,6 +10,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use IntoPeople\AdminBundle\Entity\Organization;
 use IntoPeople\AdminBundle\Form\OrganizationType;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\BufferedOutput;
 
 /**
  * Organization controller.
@@ -18,9 +20,10 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
  */
 class OrganizationController extends Controller
 {
-    protected function switchConnection($name){
-        $connection = $this->getEntityManager('default')->getConnection();
+    private function switchConnection($name){
+        $connection = $this->getDoctrine()->getManager('default')->getConnection();
         $params['dbname'] = 'br_' . $name;
+        $params['user'] = 'root';
         if ($connection->isConnected()) {
             $connection->close();
         }
@@ -67,19 +70,24 @@ class OrganizationController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine('admin')->getManager();
-            $em->persist($entity);
-            $em->flush();
+            $em = $this->getDoctrine()->getManager('admin');
+            // $em->persist($entity);
+            // $em->flush();
 
             // generate database
-            switchConnection($entity->getName());
+            //
+            $sql = "create database br_" . $entity->getName();
+            $stmt = $this->getDoctrine()->getManager('admin')->getConnection()->prepare($sql);
+            $stmt->execute();
+
             $kernel = $this->get('kernel');
             $application = new Application($kernel);
             $application->setAutoExit(false);
-
+            $this->switchConnection($entity->getName());
             $input = new ArrayInput(array(
-                'command' => 'doctrine:database:create',
-                '--connection' => 'default',
+                'command' => 'doctrine:schema:update',
+                '--em' => 'default',
+                '--force' => true,
             ));
             // You can use NullOutput() if you don't need the output
             $output = new BufferedOutput();
@@ -145,7 +153,7 @@ class OrganizationController extends Controller
      */
     public function showAction($id)
     {
-        $em = $this->getDoctrine('admin')->getManager();
+        $em = $this->getDoctrine()->getManager('admin');
 
         $entity = $em->getRepository('IntoPeopleAdminBundle:Organization', 'admin')->find($id);
 
@@ -170,7 +178,7 @@ class OrganizationController extends Controller
      */
     public function editAction($id)
     {
-        $em = $this->getDoctrine('admin')->getManager();
+        $em = $this->getDoctrine()->getManager('admin');
 
         $entity = $em->getRepository('IntoPeopleAdminBundle:Organization', 'admin')->find($id);
 
@@ -215,7 +223,7 @@ class OrganizationController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
-        $em = $this->getDoctrine('admin')->getManager();
+        $em = $this->getDoctrine()->getManager('admin');
 
         $entity = $em->getRepository('IntoPeopleAdminBundle:Organization', 'admin')->find($id);
 
@@ -251,7 +259,7 @@ class OrganizationController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine('admin')->getManager();
+            $em = $this->getDoctrine()->getManager('admin');
             $entity = $em->getRepository('IntoPeopleAdminBundle:Organization', 'admin')->find($id);
 
             if (!$entity) {
