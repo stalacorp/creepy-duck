@@ -4,7 +4,7 @@ namespace IntoPeople\DatabaseBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use IntoPeople\DatabaseBundle\Entity\User;
-use IntoPeople\DatabaseBundle\Form\PersonType;
+use IntoPeople\DatabaseBundle\Form\UserType;
 
 /**
  * User controller.
@@ -76,7 +76,7 @@ class UserController extends Controller
     {
         $tokenStorage = $this->container->get('security.token_storage');
         
-        $form = $this->createForm(new PersonType($tokenStorage), $entity, array(
+        $form = $this->createForm(new UserType($tokenStorage), $entity, array(
             'action' => $this->generateUrl('user_create'),
             'method' => 'POST'
         ));
@@ -158,7 +158,7 @@ class UserController extends Controller
     {
         $tokenStorage = $this->container->get('security.token_storage');
         
-        $form = $this->createForm(new PersonType($tokenStorage), $entity, array(
+        $form = $this->createForm(new UserType($tokenStorage), $entity, array(
             'action' => $this->generateUrl('user_update', array(
                 'id' => $entity->getId()
             )),
