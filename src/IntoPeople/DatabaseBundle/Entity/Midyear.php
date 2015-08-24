@@ -802,53 +802,6 @@ class Midyear
         return $this->id;
     }
 
-    /**
-     * Set formstatus
-     *
-     * @param \IntoPeople\DatabaseBundle\Entity\Formstatus $formstatus
-     *
-     * @return Midyear
-     */
-    public function setFormstatus(\IntoPeople\DatabaseBundle\Entity\Formstatus $formstatus = null)
-    {
-        $this->formstatus = $formstatus;
-               
-        $history = new Midyearhistory();
-        $history->setMidyear($this);
-        $history->setFormstatus($formstatus);
-        
-        $dt = new \DateTime();
-        
-        $history->setDate($dt);
-        
-        $this->addMidyearhistory($history);
-             
-        return $this;
-    }
-
-    /**
-     * Get formstatus
-     *
-     * @return \IntoPeople\DatabaseBundle\Entity\Formstatus
-     */
-    public function getFormstatus()
-    {
-        return $this->formstatus;
-    }
-
-    /**
-     * Set developmentneeds
-     *
-     * @param \IntoPeople\DatabaseBundle\Entity\Developmentneeds $developmentneeds
-     *
-     * @return Midyear
-     */
-    public function setDevelopmentneeds(\IntoPeople\DatabaseBundle\Entity\Developmentneeds $developmentneeds = null)
-    {
-        $this->developmentneeds = $developmentneeds;
-
-        return $this;
-    }
 
     /**
      * Get developmentneeds
@@ -971,5 +924,41 @@ class Midyear
     public function getSupervisor()
     {
         return $this->supervisor;
+    }
+
+    /**
+     * Set formstatus
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Formstatus $formstatus
+     * @return Midyear
+     */
+    public function setFormstatus(\IntoPeople\DatabaseBundle\Entity\Formstatus $formstatus = null)
+    {
+        $this->formstatus = $formstatus;
+
+        return $this;
+    }
+
+    /**
+     * Get formstatus
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Formstatus 
+     */
+    public function getFormstatus()
+    {
+        return $this->formstatus;
+    }
+
+    /**
+     * Set developmentneeds
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Developmentneeds $developmentneeds
+     * @return Midyear
+     */
+    public function setDevelopmentneeds(\IntoPeople\DatabaseBundle\Entity\Developmentneeds $developmentneeds = null)
+    {
+        $this->developmentneeds = $developmentneeds;
+
+        return $this;
     }
 }

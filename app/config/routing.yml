@@ -9,23 +9,23 @@ into_people_database:
 #user
 into_people_database_security:
     resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/security.yml"
-    prefix: /
+    prefix: /user
 
 into_people_database_profile:
     resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/profile.yml"
-    prefix: /profile
+    prefix: /user/profile
 
 into_people_database_register:
     resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/registration.yml"
-    prefix: /register
+    prefix: /user/register
 
 into_people_database_resetting:
     resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/resetting.yml"
-    prefix: /resetting
+    prefix: /user/resetting
 
 into_people_database_change_password:
     resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/change_password.yml"
-    prefix: /profile
+    prefix: /user/profile
 
 #admin
 into_people_admin_security:
