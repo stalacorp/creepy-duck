@@ -802,32 +802,6 @@ class Midyear
         return $this->id;
     }
 
-
-
-    /**
-     * Set supervisor
-     *
-     * @param \IntoPeople\DatabaseBundle\Entity\Person $supervisor
-     *
-     * @return Midyear
-     */
-    public function setSupervisor(\IntoPeople\DatabaseBundle\Entity\Person $supervisor = null)
-    {
-        $this->supervisor = $supervisor;
-
-        return $this;
-    }
-
-    /**
-     * Get supervisor
-     *
-     * @return \IntoPeople\DatabaseBundle\Entity\Person
-     */
-    public function getSupervisor()
-    {
-        return $this->supervisor;
-    }
-
     /**
      * Set formstatus
      *
@@ -974,5 +948,28 @@ class Midyear
     public function getMidyearhistories()
     {
         return $this->midyearhistories;
+    }
+
+    /**
+     * Set supervisor
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\User $supervisor
+     * @return Midyear
+     */
+    public function setSupervisor(\IntoPeople\DatabaseBundle\Entity\User $supervisor = null)
+    {
+        $this->supervisor = $supervisor;
+
+        return $this;
+    }
+
+    /**
+     * Get supervisor
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\User 
+     */
+    public function getSupervisor()
+    {
+        return $this->supervisor;
     }
 }
