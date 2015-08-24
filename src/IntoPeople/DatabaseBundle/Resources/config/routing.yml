@@ -5,3 +5,7 @@ into_people_database_user:
 into_people_database_generalcycle:
     resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/generalcycle.yml"
     prefix:   /generalcycle
+
+into_people_database_default:
+    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/default.yml"
+    prefix:   /

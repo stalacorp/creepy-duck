@@ -6,29 +6,44 @@ namespace IntoPeople\DatabaseBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use IntoPeople\DatabaseBundle\Entity\Person;
+use IntoPeople\DatabaseBundle\Entity\User;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 
-class LoadUserData implements FixtureInterface
+class LoadUserData implements FixtureInterface, ContainerAwareInterface
 {
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
     /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
-        $userAdmin = new User();
+        $userManager = $this->container->get('into_people_database.user_manager');
 
-        $userAdmin->setUsername('queenie');
-        $userAdmin->setEmail('queenie.dirkx@intopeople.be');
-        $userAdmin->setPlainPassword('admin');
-        # $userAdmin->setTitle('Mrs');
-        $userAdmin->setFirstname('Queenie');
-        $userAdmin->setLastname('Dirkx');
-        $userAdmin->addRole('ROLE_SUPER_ADMIN');
-        $userAdmin->addRole('ROLE_ADMIN');
-        $userAdmin->setEnabled(true);
+        // Create user and set details
+        $user = $userManager->createUser();
+        $user->setUsername('admin');
+        $user->setEmail('admin@test.com');
+        $user->setPlainPassword('admin');
+        $user->setEnabled(true);
+        //$user->setRoles(array('ROLE_ADMIN'));
 
-        $manager->persist($userAdmin);
-        $manager->flush();
+        // Update the user
+        $userManager->updateUser($user, true);
+
+
     }
 }

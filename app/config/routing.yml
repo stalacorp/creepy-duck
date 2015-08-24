@@ -1,7 +1,3 @@
-home:
-    path:     /
-    defaults: { _controller: "IntoPeopleDatabaseBundle:Default:index" }
-
 into_people_database:
     resource: "@IntoPeopleDatabaseBundle/Resources/config/routing.yml"
     prefix:   /user
