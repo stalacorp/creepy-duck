@@ -42,6 +42,7 @@ security:
                 provider: intopeople_admin_bundle
                 csrf_provider: form.csrf_provider
                 check_path: /admin/login_check
+                login_path: /admin/login
             logout:       true
             anonymous:    true
 
@@ -52,3 +53,4 @@ security:
         - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/\W*, role: IS_AUTHENTICATED_FULLY }

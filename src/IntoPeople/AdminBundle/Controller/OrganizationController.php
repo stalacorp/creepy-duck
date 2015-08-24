@@ -2,6 +2,7 @@
 
 namespace IntoPeople\AdminBundle\Controller;
 
+use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -95,12 +96,10 @@ class OrganizationController extends Controller
                 'command' => 'doctrine:database:create',
                 '--connection' => 'default',
             ));
-            // You can use NullOutput() if you don't need the output
-            $output = new BufferedOutput();
+            // You can use BufferedOutput
+            $output = new NullOutput();
             $application->run($input, $output);
 
-            // return the output, don't use if you used NullOutput()
-            $content = $output->fetch();
 
             try {
                 $connection->connect();
@@ -113,7 +112,7 @@ class OrganizationController extends Controller
                 '--em' => 'default',
                 '--force' => true,
             ));
-            // You can use NullOutput() if you don't need the output
+
             $application->run($input, $output);
             $input = new ArrayInput(array(
                 'command' => 'doctrine:fixtures:load',
@@ -124,9 +123,7 @@ class OrganizationController extends Controller
 
 
             // return the output, don't use if you used NullOutput()
-            $content = $output->fetch();
-
-            dump($content);die();
+            // $content = $output->fetch();
 
             return $this->redirect($this->generateUrl('_show', array('id' => $entity->getId())));
         }

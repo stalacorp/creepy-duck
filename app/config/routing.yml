@@ -31,11 +31,6 @@ into_people_admin_security:
 into_people_admin_profile:
     resource: "@IntoPeopleAdminBundle/Resources/config/routing/profile.yml"
     prefix: /admin/profile
-
-into_people_admin_register:
-    resource: "@IntoPeopleAdminBundle/Resources/config/routing/registration.yml"
-    prefix: /admin/register
-
 into_people_admin_resetting:
     resource: "@IntoPeopleAdminBundle/Resources/config/routing/resetting.yml"
     prefix: /admin/resetting
@@ -44,7 +39,7 @@ into_people_admin_change_password:
     resource: "@IntoPeopleAdminBundle/Resources/config/routing/change_password.yml"
     prefix: /admin/profile
 
-into_people_admintest:
+into_people_adminmain:
     resource: "@IntoPeopleAdminBundle/Controller"
     type: annotation
     prefix: /admin
