@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ffa20809-ee1b-4efe-b10c-cdd44237fa18" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/views/adminbase.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/EventListener/DatabaseSwitcherEventListener.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/EventListener/DatabaseSwitcherEventListener.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/test.iml" afterPath="$PROJECT_DIR$/.idea/test.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+    <list default="true" id="ffa20809-ee1b-4efe-b10c-cdd44237fa18" name="Default" comment="Admin">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="test.iws" />
@@ -121,7 +114,7 @@
       <file leaf-file-name="OrganizationController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/IntoPeople/AdminBundle/Controller/OrganizationController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5520717" vertical-offset="306" max-vertical-offset="4930">
+            <state vertical-scroll-proportion="0.8947368" vertical-offset="0" max-vertical-offset="4930">
               <caret line="47" column="42" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
               <folding>
                 <element signature="e#53#98#0#PHP" expanded="true" />
@@ -567,7 +560,13 @@
       <option name="project" value="LOCAL" />
       <updated>1440410738790</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Admin">
+      <created>1440415866338</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1440415866338</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -613,7 +612,8 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="AdminRoute" />
-    <option name="LAST_COMMIT_MESSAGE" value="AdminRoute" />
+    <MESSAGE value="Admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="Admin" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -928,7 +928,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/IntoPeople/AdminBundle/Controller/OrganizationController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5520717" vertical-offset="306" max-vertical-offset="4930">
+        <state vertical-scroll-proportion="0.8947368" vertical-offset="0" max-vertical-offset="4930">
           <caret line="47" column="42" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
           <folding>
             <element signature="e#53#98#0#PHP" expanded="true" />
