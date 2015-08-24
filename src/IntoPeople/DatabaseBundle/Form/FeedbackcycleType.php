@@ -16,7 +16,7 @@ class FeedbackcycleType extends AbstractType
     {
         $builder
             ->add('generalcycle')
-            ->add('person')
+            ->add('user')
             ->add('cdp', new CdpFormstatusType())
             ->add('midyear', new MidyearFormstatusType())
             ->add('endyear', new EndyearFormstatusType())
