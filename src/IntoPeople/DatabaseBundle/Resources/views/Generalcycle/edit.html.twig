@@ -1,0 +1,101 @@
+{% extends '::base.html.twig' %} 
+{% block body -%}
+<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+<div id="portlet-config" class="modal hide">
+	<div class="modal-header">
+		<button data-dismiss="modal" class="close" type="button"></button>
+		<h3>Widget Settings</h3>
+	</div>
+	<div class="modal-body">Widget settings form goes here</div>
+</div>
+<div class="clearfix"></div>
+<div class="container">
+	<div class="content">
+
+		<div class="page-title">
+			<i class="icon-custom-left"></i>
+			<h3>
+				 Edit <span class="semi-bold">Generalcycle</span>
+			</h3>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+
+					   {{ form_start(edit_form) }}
+
+					    {{ form_label(edit_form.year) }}
+                        {{ form_widget(edit_form.year) }}
+                        
+                        <h4 class="margin-top-20">Career development plan</h4>
+                        
+                        <div class="row form-row margin-top-20">                     
+                        
+                        <div class="col-md-6">
+                        {{ form_row(edit_form.startdatecdp) }}
+                        </div>
+                        
+                        <div class="col-md-6">
+                        {{ form_row(edit_form.enddatecdp) }}
+                        </div>
+                        
+                        </div>
+                        
+                        <h4 class="margin-top-20">Mid year</h4>
+                        
+                        <div class="row form-row margin-top-20">
+                        
+                        <div class="col-md-6">
+                        {{ form_row(edit_form.startdatemidyear) }}
+                        </div>
+                        
+                        <div class="col-md-6">
+                        {{ form_row(edit_form.enddatemidyear) }}
+                        </div>
+                        
+                        </div>
+                        
+                        <h4 class="margin-top-20">Year end</h4>
+                        
+                        <div class="row form-row margin-top-20">
+                        
+                        <div class="col-md-6">
+                        {{ form_row(edit_form.startdateyearend) }}
+                        </div>
+                                             
+                        <div class="col-md-6">
+                        {{ form_row(edit_form.enddateyearend) }}
+                        </div>
+                        
+                        </div>
+                        
+                        
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                        
+                        {{ form_row(edit_form.organization) }}
+                        
+                        {% endif %}
+                        
+                        <div class="margin-top-30">{{ form_widget(edit_form.submit) }} <a href="{{ path('generalcycle') }}" class="btn btn-default btn-cons" type="button">Back</a></div>
+                        
+                        {{ form_end(edit_form) }} 
+
+                        {{ form(delete_form) }}
+
+							
+
+
+
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
+
+
+
+

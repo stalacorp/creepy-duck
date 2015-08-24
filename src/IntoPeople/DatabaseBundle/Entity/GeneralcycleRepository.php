@@ -11,41 +11,35 @@ namespace IntoPeople\DatabaseBundle\Entity;
 class GeneralcycleRepository extends \Doctrine\ORM\EntityRepository
 {
     
-    public function getAmountCdpsByFormstatus($formstatus, $organization) {
+    public function getAmountCdpsByFormstatus($formstatus) {
     
         $query = $this->createQueryBuilder('g')
         ->select('count(f)')
         ->leftjoin('g.feedbackcycles','f')
         ->leftjoin('f.cdp','c')
         ->where('c.formstatus = :formstatus')
-        ->andWhere('g.organization = :organization')
         ->andWhere('g.generalcyclestatus = :active')
         ->setParameter('formstatus', $formstatus)
-        ->setParameter('organization', $organization)
         ->setParameter('active', 1);
     
         return $query->getQuery()->getSingleScalarResult();
     }
     
     
-    public function getActiveCycleByOrganization($organization) {
+    public function getActiveCycleByOrganization() {
                
         $qb = $this->createQueryBuilder('g')
         ->where('g.generalcyclestatus = 1')
-        ->where('g.organization = :organization')
-        ->setParameter('organization', $organization)
         ->getQuery();
         
         return $qb->setMaxResults(1)->getOneOrNullResult();
         
     }
     
-    public function getFinishedCyclesByOrganization($organization) { 
+    public function getFinishedCyclesByOrganization() {
                
         $qb = $this->createQueryBuilder('g')
         ->where('g.generalcyclestatus = :generalcyclestatus')
-        ->andWhere('g.organization = :organization')
-        ->setParameter('organization', $organization)
         ->setParameter('generalcyclestatus', $this->_em->getReference('IntoPeopleDatabaseBundle:Generalcyclestatus', 2))
         ->getQuery();
         
@@ -53,12 +47,10 @@ class GeneralcycleRepository extends \Doctrine\ORM\EntityRepository
         
     }
     
-    public function getInactiveCyclesByOrganization($organization) {
+    public function getInactiveCyclesByOrganization() {
          
         $qb = $this->createQueryBuilder('g')
         ->where('g.generalcyclestatus = :generalcyclestatus')
-        ->andWhere('g.organization = :organization')
-        ->setParameter('organization', $organization)
         ->setParameter('generalcyclestatus', $this->_em->getReference('IntoPeopleDatabaseBundle:Generalcyclestatus', 3))
         ->getQuery();
     
@@ -66,12 +58,10 @@ class GeneralcycleRepository extends \Doctrine\ORM\EntityRepository
     
     }
     
-    public function checkYearByOrganization($organization, $year) {
+    public function checkYearByOrganization($year) {
          
         $qb = $this->createQueryBuilder('g')
-        ->where('g.organization = :organization')
         ->andWhere('g.year = :year')
-        ->setParameter('organization', $organization)
         ->setParameter('year', $year)
         ->getQuery();
     

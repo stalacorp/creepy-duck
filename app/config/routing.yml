@@ -4,7 +4,7 @@ home:
 
 into_people_database:
     resource: "@IntoPeopleDatabaseBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /user
 
 #user
 into_people_database_security:
