@@ -1,0 +1,68 @@
+{% extends '::base.html.twig' %} {% block body -%}
+<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+<div id="portlet-config" class="modal hide">
+	<div class="modal-header">
+		<button data-dismiss="modal" class="close" type="button"></button>
+		<h3>Widget Settings</h3>
+	</div>
+	<div class="modal-body">Widget settings form goes here</div>
+</div>
+<div class="clearfix"></div>
+<div class="container">
+	<div class="content">
+
+		<div class="page-title">
+			<i class="fa fa-files-o"></i>
+			<h3>
+				<span class="semi-bold">Year End Template</span>
+			</h3>
+		</div>
+
+
+		<div class="row">
+			<div class="col-md-12">
+
+				<table class="table no-more-tables">
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Organization</th>
+							<th>Language</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for entity in entities %}
+
+						<tr>
+							<td>{{ entity.date | date('Y-m-d') }}</td>
+							<td>{{ entity.organization }}</td>
+                            <td>{{ entity.language }}</td>
+							<td>
+								<ul>
+									<li><a
+										href="{{ path('endyeartemplate_show', { 'id': entity.id }) }}">show</a>
+									</li>
+									<li><a
+										href="{{ path('endyeartemplate_edit', { 'id': entity.id }) }}">edit</a>
+									</li>
+								</ul>
+							</td>
+						</tr>
+
+						{% endfor %}
+					</tbody>
+				</table>
+
+				
+					<a href="{{ path('endyeartemplate_new') }}" type="button" class="btn btn-default btn-cons"> Create a new entry</a>
+			
+			
+			</div>
+		</div>
+		
+		
+	</div>
+</div>
+{% endblock %}
+
