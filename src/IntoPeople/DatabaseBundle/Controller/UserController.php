@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use IntoPeople\DatabaseBundle\Entity\User;
 use IntoPeople\DatabaseBundle\Form\UserType;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\EventDispatcher\EventDispatcher,
+    Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken,
+    Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 /**
  * User controller.
@@ -126,35 +129,89 @@ class UserController extends Controller
                 while (($row = fgetcsv($handle, 1000, ";")) !== FALSE) {
                     $row = array_map("utf8_encode", $row);
                     if ($count != 0) {
-                        $tokenGenerator = $this->get('fos_user.util.token_generator');
-                        $password = substr($tokenGenerator->generateToken(), 0, 10);
-                        $user = new User();
-                        $user->setEmail($row[0]);
-                        $user->setUsername($row[0]);
-                        $user->setPlainPassword($password);
-                        dump($password);
-                        $user->setEnabled(true);
-                        $user->setRoles(array(User::ROLE_DEFAULT));
-                        $user->setFirstname($row[1]);
-                        $user->setLastname($row[2]);
+                        $user = $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:User')->findOneByEmail($row[0]);
+                        if (!$user) {
+                            $tokenGenerator = $this->get('fos_user.util.token_generator');
+                            $password = substr($tokenGenerator->generateToken(), 0, 10);
+                            $user = new User();
+                            $user->setEmail($row[0]);
+                            $user->setUsername($row[0]);
+                            $user->setPlainPassword($password);
+                            $user->setEnabled(true);
+                            $user->setRoles(array(User::ROLE_DEFAULT));
+                            $user->setFirstname($row[1]);
+                            $user->setLastname($row[2]);
 
-                        $em->persist($user);
+                            $em->persist($user);
+                            $em->flush();
+                            $message = \Swift_Message::newInstance()
+                                ->setSubject('Urltest')
+                                ->setFrom('test@gmail.com')
+                                ->setTo($row[0])
+                                ->setBody('https://'. $request->getHttpHost() .$this->generateUrl('user_firstlogin', array('token' => $password, 'id' => $user->getId())));
+
+                            $this->get('mailer')->send($message);
+                        }
                     }
 
                     $count++;
                 }
                 fclose($handle);
-                $em->flush();
 
-                return $this->render('IntoPeopleDatabaseBundle:User:csv.html.twig', array(
-                    'form' => $form->createView()
-                ));
+
             }catch (Exception $e){
 
             }
             }
+        return $this->render('IntoPeopleDatabaseBundle:User:csv.html.twig', array(
+            'form' => $form->createView()
+        ));
 
 
+    }
+
+    public function firstloginAction(Request $request, $token, $id){
+        $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:User');
+
+        $user = $repository->find($id);
+        $encoder_service = $this->get('security.encoder_factory');
+        $encoder = $encoder_service->getEncoder($user);
+        $encoded_pass = $encoder->encodePassword($token, $user->getSalt());
+        if ($user && $user->getPassword() == $encoded_pass) {
+
+            $form = $this->createFormBuilder()
+                ->add('password', 'repeated', array(
+                    'type' => 'password',
+                    'invalid_message' => $this->get('translator')->trans('passwordmatch'),
+                    'options' => array('attr' => array('class' => 'password-field')),
+                    'required' => true,
+                    'first_options' => array('label' => 'Set Password'),
+                    'second_options' => array('label' => 'Repeat Password')))
+                ->add('Save', 'submit')
+                ->getForm();
+
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+                $data = $form->getData();
+                $user->setPlainPassword($data['password']);
+                $this->getDoctrine()->getManager()->flush();
+                $token = new UsernamePasswordToken($user, $user->getPassword(), "public", $user->getRoles());
+                $this->get("security.context")->setToken($token);
+
+                // Fire the login event
+                // Logging the user in above the way we do it doesn't do this automatically
+                $event = new InteractiveLoginEvent($request, $token);
+                $this->get("event_dispatcher")->dispatch("security.interactive_login", $event);
+
+                return $this->redirectToRoute('homepage');
+
+            }
+            return $this->render('IntoPeopleDatabaseBundle:User:firstlogin.html.twig', array(
+                'form' => $form->createView()
+            ));
+        }else {
+            throw new \Exception($this->get('translator')->trans('firstlogin.error'));
+        }
     }
 
     /**

@@ -31,3 +31,6 @@ user_delete:
 user_csv:
      path:     /csv
      defaults: { _controller: "IntoPeopleDatabaseBundle:User:csv" }
+user_firstlogin:
+     path:     /firstlogin/{id}/{token}
+     defaults: { _controller: "IntoPeopleDatabaseBundle:User:firstlogin" }
