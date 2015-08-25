@@ -169,19 +169,19 @@ class GeneralcycleController extends Controller
             // ---
             $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
               
-            $cdptemplate = $repository->findNewest($entity->getOrganization());
+            $cdptemplate = $repository->findNewest();
             
             // FIND NEWEST MID YEAR TEMPLATE
             // ---            
             $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Midyeartemplate');
             
-            $midyeartemplate = $repository->findNewest($entity->getOrganization());
+            $midyeartemplate = $repository->findNewest();
             
             // FIND NEWEST END YEAR TEMPLATE
             // ---           
             $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Endyeartemplate');
             
-            $endyeartemplate = $repository->findNewest($entity->getOrganization());
+            $endyeartemplate = $repository->findNewest();
             
             
             foreach ($users as $user) {
@@ -215,8 +215,7 @@ class GeneralcycleController extends Controller
                 
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($feedbackcycle);
-                
-                
+
             }
             
             $em->persist($entity);

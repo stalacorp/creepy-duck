@@ -10,11 +10,9 @@ namespace IntoPeople\DatabaseBundle\Entity;
  */
 class CdptemplateRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findNewest($organization) {
+    public function findNewest() {
                    
         $query = $this->createQueryBuilder('c')
-            ->where('c.organization = :organization')
-            ->setParameter('organization', $organization)
             ->orderBy('c.date', 'DESC')
             ->getQuery();
         

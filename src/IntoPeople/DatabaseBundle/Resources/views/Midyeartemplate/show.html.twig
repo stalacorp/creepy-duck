@@ -1,0 +1,76 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Midyeartemplate</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Date</th>
+                <td>{{ entity.date|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Whatwhy</th>
+                <td>{{ entity.whatwhy }}</td>
+            </tr>
+            <tr>
+                <th>Whatwhydescription</th>
+                <td>{{ entity.whatwhydescription }}</td>
+            </tr>
+            <tr>
+                <th>Progress</th>
+                <td>{{ entity.progress }}</td>
+            </tr>
+            <tr>
+                <th>Progressdescription</th>
+                <td>{{ entity.progressdescription }}</td>
+            </tr>
+            <tr>
+                <th>Tasks</th>
+                <td>{{ entity.tasks }}</td>
+            </tr>
+            <tr>
+                <th>Skills</th>
+                <td>{{ entity.skills }}</td>
+            </tr>
+            <tr>
+                <th>Organization</th>
+                <td>{{ entity.organization }}</td>
+            </tr>
+            <tr>
+                <th>Feedbacksup</th>
+                <td>{{ entity.feedbacksup }}</td>
+            </tr>
+            <tr>
+                <th>Feedbacksupdescription</th>
+                <td>{{ entity.feedbacksupdescription }}</td>
+            </tr>
+            <tr>
+                <th>Feedbackorganization</th>
+                <td>{{ entity.feedbackorganization }}</td>
+            </tr>
+            <tr>
+                <th>Feedbackorganizationdescription</th>
+                <td>{{ entity.feedbackorganizationdescription }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('midyeartemplate') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('midyeartemplate_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

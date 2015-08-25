@@ -1,0 +1,46 @@
+{% extends '::base.html.twig' %} {% block body -%}
+<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+<div id="portlet-config" class="modal hide">
+	<div class="modal-header">
+		<button data-dismiss="modal" class="close" type="button"></button>
+		<h3>Widget Settings</h3>
+	</div>
+	<div class="modal-body">Widget settings form goes here</div>
+</div>
+<div class="clearfix"></div>
+<div class="container">
+	<div class="content">
+
+		<div class="page-title">
+			<i class="icon-custom-left"></i>
+			<h3>
+				<span class="semi-bold">Template</span>
+			</h3>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+
+
+
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('midyeartemplate') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+
+
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+

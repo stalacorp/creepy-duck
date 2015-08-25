@@ -10,11 +10,9 @@ namespace IntoPeople\DatabaseBundle\Entity;
  */
 class MidyeartemplateRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findNewest($organization) {
+    public function findNewest() {
          
         $query = $this->createQueryBuilder('m')
-        ->where('m.organization = :organization')
-        ->setParameter('organization', $organization)
         ->orderBy('m.date', 'DESC')
         ->getQuery();
     

@@ -1,0 +1,113 @@
+{% extends '::base.html.twig' %} 
+{% block body -%}
+<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+<div id="portlet-config" class="modal hide">
+	<div class="modal-header">
+		<button data-dismiss="modal" class="close" type="button"></button>
+		<h3>Widget Settings</h3>
+	</div>
+	<div class="modal-body">Widget settings form goes here</div>
+</div>
+<div class="clearfix"></div>
+<div class="container">
+	<div class="content">
+
+		<div class="page-title">
+			<i class="icon-custom-left"></i>
+			<h3>
+				<span class="semi-bold">Template</span>
+			</h3>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+			
+			
+			    <h1>Endyeartemplate</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Date</th>
+                <td>{{ entity.date|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Whatwhy</th>
+                <td>{{ entity.whatwhy }}</td>
+            </tr>
+            <tr>
+                <th>Whatwhydescription</th>
+                <td>{{ entity.whatwhydescription }}</td>
+            </tr>
+            <tr>
+                <th>Evaluation</th>
+                <td>{{ entity.evaluation }}</td>
+            </tr>
+            <tr>
+                <th>Evaluationdescription</th>
+                <td>{{ entity.evaluationdescription }}</td>
+            </tr>
+            <tr>
+                <th>Tasks</th>
+                <td>{{ entity.tasks }}</td>
+            </tr>
+            <tr>
+                <th>Skills</th>
+                <td>{{ entity.skills }}</td>
+            </tr>
+            <tr>
+                <th>Organization</th>
+                <td>{{ entity.organization }}</td>
+            </tr>
+            <tr>
+                <th>Feedbackorganization</th>
+                <td>{{ entity.feedbackorganization }}</td>
+            </tr>
+            <tr>
+                <th>Feedbackorganizationdescription1</th>
+                <td>{{ entity.feedbackorganizationdescription1 }}</td>
+            </tr>
+            <tr>
+                <th>Feedbackorganizationdescription2</th>
+                <td>{{ entity.feedbackorganizationdescription2 }}</td>
+            </tr>
+            <tr>
+                <th>Feedbackorganizationdescription3</th>
+                <td>{{ entity.feedbackorganizationdescription3 }}</td>
+            </tr>
+            <tr>
+                <th>Feedbackorganizationdescription4</th>
+                <td>{{ entity.feedbackorganizationdescription4 }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('endyeartemplate') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('endyeartemplate_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+
+
+						    
+
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+

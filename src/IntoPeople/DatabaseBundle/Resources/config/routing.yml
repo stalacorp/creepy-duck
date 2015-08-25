@@ -37,3 +37,15 @@ into_people_database_supervisor:
 into_people_database_hr:
     resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/hr.yml"
     prefix:   /hr
+
+into_people_database_endyeartemplate:
+    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/endyeartemplate.yml"
+    prefix:   /endyeartemplate
+
+into_people_database_midyeartemplate:
+    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/midyeartemplate.yml"
+    prefix:   /midyeartemplate
+
+into_people_database_cdptemplate:
+    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/cdptemplate.yml"
+    prefix:   /cdptemplate
