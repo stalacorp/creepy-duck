@@ -101,3 +101,8 @@ rollerworks_multi_user:
 
 vich_uploader:
     db_driver: orm # or mongodb or propel or phpcr
+
+    mappings:
+            user_photo:
+                uri_prefix:         /user/photos
+                upload_destination: %kernel.root_dir%/../web/images/users

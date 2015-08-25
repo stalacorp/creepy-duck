@@ -1,0 +1,17 @@
+{% extends 'IntoPeopleDatabaseBundle:Cdp:show.html.twig' %} 
+{% block comment -%}
+
+    <h3>Feedback HR</h3>
+
+    {{ form_start(form) }}
+    
+    {{ form_row(form.feedbackHR) }}
+    
+    {{ form_widget(form.save) }} {{ form_widget(form.approve) }} {{ form_widget(form.disapprove) }} {{ form_widget(form.onhold) }}
+    
+    {{ form_end(form) }}
+
+
+{% endblock %}
+
+

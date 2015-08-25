@@ -29,3 +29,11 @@ into_people_database_endyear:
 into_people_database_feedbackcycle:
     resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/feedbackcycle.yml"
     prefix:   /feedbackcycle
+
+into_people_database_supervisor:
+    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/supervisor.yml"
+    prefix:   /supervisor
+
+into_people_database_hr:
+    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/hr.yml"
+    prefix:   /hr

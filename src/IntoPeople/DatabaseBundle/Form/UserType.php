@@ -33,12 +33,6 @@ class UserType extends AbstractType
                 'allow_delete'  => true, // not mandatory, default is true
                 'download_link' => true, // not mandatory, default is true
             ))
-            ->add('title', 'choice', array(
-                'choices' => array(
-                    'Mr' => 'Mr',
-                    'Mrs' => 'Mrs'
-                )
-            ))
             ->add('firstname')
             ->add('lastname')
             //->add('username')
