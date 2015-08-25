@@ -5,6 +5,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use IntoPeople\DatabaseBundle\Entity\User;
 use IntoPeople\DatabaseBundle\Form\UserType;
+use Symfony\Component\Validator\Constraints\File;
 
 /**
  * User controller.
@@ -100,6 +101,60 @@ class UserController extends Controller
             'entity' => $entity,
             'form' => $form->createView()
         ));
+    }
+
+    public function csvAction(Request $request)
+    {
+        $defaultData = array();
+        $form = $this->createFormBuilder($defaultData)
+            ->add('template', 'file',array('constraints' => new File(array('maxSize' => "10M",
+                'mimeTypes' => array('application/vnd.ms-excel', 'text/plain'),
+            ))))
+            ->add('create users', 'submit')
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $data = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+
+            $count = 0;
+            try {
+                $handle = fopen($data['template'], "r");
+                while (($row = fgetcsv($handle, 1000, ";")) !== FALSE) {
+                    $row = array_map("utf8_encode", $row);
+                    if ($count != 0) {
+                        $tokenGenerator = $this->get('fos_user.util.token_generator');
+                        $password = substr($tokenGenerator->generateToken(), 0, 10);
+                        $user = new User();
+                        $user->setEmail($row[0]);
+                        $user->setUsername($row[0]);
+                        $user->setPlainPassword($password);
+                        dump($password);
+                        $user->setEnabled(true);
+                        $user->setRoles(array(User::ROLE_DEFAULT));
+                        $user->setFirstname($row[1]);
+                        $user->setLastname($row[2]);
+
+                        $em->persist($user);
+                    }
+
+                    $count++;
+                }
+                fclose($handle);
+                $em->flush();
+
+                return $this->render('IntoPeopleDatabaseBundle:User:csv.html.twig', array(
+                    'form' => $form->createView()
+                ));
+            }catch (Exception $e){
+
+            }
+            }
+
+
     }
 
     /**

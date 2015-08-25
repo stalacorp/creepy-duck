@@ -28,3 +28,6 @@ user_delete:
     path:     /{id}/delete
     defaults: { _controller: "IntoPeopleDatabaseBundle:User:delete" }
     methods:  [POST, DELETE]
+user_csv:
+     path:     /csv
+     defaults: { _controller: "IntoPeopleDatabaseBundle:User:csv" }
