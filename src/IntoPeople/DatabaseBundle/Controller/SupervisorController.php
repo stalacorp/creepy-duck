@@ -27,9 +27,7 @@ class SupervisorController extends Controller
     {
        
         $user = $this->getUser();
-                
-        $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Feedbackcycle');
-        
+
         $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Feedbackcycle');
         
         $query = $repository->createQueryBuilder('f')
@@ -49,9 +47,7 @@ class SupervisorController extends Controller
             ->join('c.formstatus','cf')
             ->join('m.formstatus','mf')
             ->join('e.formstatus','ef')
-            ->where('g.organization = :organization')  
             ->andWhere('g.generalcyclestatus = :generalcyclestatus')
-            ->setParameter('organization', $user->getOrganization())
             ->setParameter('generalcyclestatus', 1 )
             ->orderby('u.firstname')
             ->getQuery();
