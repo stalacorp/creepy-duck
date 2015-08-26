@@ -17,3 +17,10 @@ systemmail_update:
 systemmail_getmails:
     path:     /getmails/{id}
     defaults: { _controller: "IntoPeopleDatabaseBundle:Systemmail:getmails" }
+    options:
+      expose: true
+systemmail_changeactive:
+    path:     /changeactive/{id}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Systemmail:changeactive" }
+    options:
+      expose: true

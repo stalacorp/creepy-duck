@@ -4,12 +4,13 @@
 
 namespace IntoPeople\DatabaseBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use IntoPeople\DatabaseBundle\Entity\Systemmail;
+use Doctrine\Common\DataFixtures\AbstractFixture;
 
 
-class LoadSystemmail implements FixtureInterface
+class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * {@inheritDoc}
@@ -22,8 +23,6 @@ class LoadSystemmail implements FixtureInterface
         $newfeedback = new Systemmail();
         $formtosupervisor = new Systemmail();
         $formtohr = new Systemmail();
-
-        $english = $manager->getRepository('IntoPeopleDatabaseBundle:Language')->find(1);
         
         $created->setName('Account created mail');
         $weekbeforedeadline->setName('Week before deadline mail');
@@ -32,12 +31,19 @@ class LoadSystemmail implements FixtureInterface
         $formtosupervisor->setName('Form sent to supervisor mail');
         $formtohr->setName('Form sent to HR mail');
 
-        $created->setLanguageid($english);
-        $weekbeforedeadline->setLanguageid($english);
-        $newcycle->setLanguageid($english);
-        $newfeedback->setLanguageid($english);
-        $formtosupervisor->setLanguageid($english);
-        $formtohr->setLanguageid($english);
+        $created->setLanguageid($this->getReference('english'));
+        $weekbeforedeadline->setLanguageid($this->getReference('english'));
+        $newcycle->setLanguageid($this->getReference('english'));
+        $newfeedback->setLanguageid($this->getReference('english'));
+        $formtosupervisor->setLanguageid($this->getReference('english'));
+        $formtohr->setLanguageid($this->getReference('english'));
+
+        $created->setIsActive(true);
+        $weekbeforedeadline->setIsActive(true);
+        $newcycle->setIsActive(true);
+        $newfeedback->setIsActive(true);
+        $formtosupervisor->setIsActive(true);
+        $formtohr->setIsActive(true);
 
         $manager->persist($created);
         $manager->persist($weekbeforedeadline);
@@ -46,5 +52,13 @@ class LoadSystemmail implements FixtureInterface
         $manager->persist($formtosupervisor);
         $manager->persist($formtohr);
         $manager->flush();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getOrder()
+    {
+        return 4;
     }
 }

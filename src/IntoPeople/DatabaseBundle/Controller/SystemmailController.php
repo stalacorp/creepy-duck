@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use IntoPeople\DatabaseBundle\Entity\Systemmail;
 use IntoPeople\DatabaseBundle\Form\SystemmailType;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Systemmail controller.
@@ -37,7 +38,7 @@ class SystemmailController extends Controller
 
         $repository = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail');
         $query = $repository->createQueryBuilder('s')
-            ->where('s.languageId > :id')
+            ->where('s.languageid = :id')
             ->setParameter('id', $id)
             ->getQuery();
 
@@ -46,6 +47,21 @@ class SystemmailController extends Controller
         return $this->render('IntoPeopleDatabaseBundle:Systemmail:mailsview.html.twig', array(
             'entities' => $entities,
         ));
+    }
+
+    public function changeactiveAction($id){
+        $em = $this->getDoctrine()->getManager();
+
+        $repository = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail');
+        $entity = $repository->find($id);
+        if ($entity->getIsActive()){
+            $entity->setIsActive(false);
+        }else {
+            $entity->setIsActive(true);
+        }
+        $em->flush();
+        return new Response();
+
     }
 
     /**

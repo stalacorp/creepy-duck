@@ -1,7 +1,12 @@
 {% extends '::base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('assets/vendor/bootstrap-toggle/css/bootstrap-toggle.min.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block body -%}
-    <h1>Systemmail list</h1>
+    <h1>{{ 'systemmail.header' | trans}}</h1>
     <h3>{{ form_start(form) }}
         {{ form_widget(form) }}
         {{ form_end(form) }}</h3>
@@ -12,12 +17,24 @@
     {% endblock %}
 {%  block javascripts -%}
     {{ parent() }}
+    <script src="{{ asset('assets/vendor/bootstrap-toggle/js/bootstrap-toggle.min.js') }}"></script>
     <script>
+        function changeActive(element){
+            $.ajax({
+                url: Routing.generate('systemmail_changeactive', {id:element.data('id')})
+            });
+        }
+
         function getMails(){
             $.ajax({url: Routing.generate('systemmail_getmails', {id:$('#form_language').val()}),
                 success: function(result){
                     $("#result").html(result);
+                    $('.letoggle').bootstrapToggle();
+                    $('.letoggle').change(function() {
+                        changeActive($(this));
+                    });
             }});
+
         }
         $(function() {
             getMails();

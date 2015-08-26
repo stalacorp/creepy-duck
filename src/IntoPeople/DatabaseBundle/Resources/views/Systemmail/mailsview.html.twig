@@ -1,27 +1,22 @@
-<table class="records_list">
+<table class="table">
     <thead>
     <tr>
-        <th>Name</th>
-        <th>Isactive</th>
-        <th>Actions</th>
+        <th>{{ "table.name" | trans }}</th>
+        <th>{{ "table.isactive" | trans }}</th>
     </tr>
     </thead>
     <tbody>
     {% for entity in entities %}
         <tr>
             <td><a href="{{ path('systemmail_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
-            <td>{{ entity.sender }}</td>
-            <td>{{ entity.isActive }}</td>
-            <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('systemmail_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('systemmail_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+            <td>{% if entity.isActive %}
+                    <input type="checkbox" class="letoggle" data-id="{{ entity.id }}" checked data-toggle="toggle" data-on="Enabled" data-off="Disabled">
+                {% else %}
+                    <input type="checkbox" class="letoggle" data-id="{{ entity.id }}" data-toggle="toggle" data-on="Enabled" data-off="Disabled">
+                {% endif %}
             </td>
+            {#<td><a class="btn btn-primary" href="{{ path('systemmail_show', { 'id': entity.id }) }}">{{ "button.show" | trans}}</a></td>#}
+            <td><a class="btn btn-success" href="{{ path('systemmail_edit', { 'id': entity.id }) }}">{{ "button.edit" | trans}}</a></td>
         </tr>
     {% endfor %}
     </tbody>
