@@ -141,16 +141,29 @@ class UserController extends Controller
                             $user->setRoles(array(User::ROLE_DEFAULT));
                             $user->setFirstname($row[1]);
                             $user->setLastname($row[2]);
+                            $user->setLanguage($em->getRepository('IntoPeopleDatabaseBundle:Language')->findOneByName($row[3]));
 
                             $em->persist($user);
                             $em->flush();
-                            $message = \Swift_Message::newInstance()
-                                ->setSubject('Urltest')
-                                ->setFrom('test@gmail.com')
-                                ->setTo($row[0])
-                                ->setBody('https://'. $request->getHttpHost() .$this->generateUrl('user_firstlogin', array('token' => $password, 'id' => $user->getId())));
 
-                            $this->get('mailer')->send($message);
+                            $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
+                                ->join('s.mailtype', 'm')
+                                ->where('s.language = :id')
+                                ->andWhere('m.name = :name')
+                                ->setParameter('id', $user->getLanguage())
+                                ->setParameter('name', 'usercreated')
+                                ->getQuery();
+
+                            $systemmail = $query->setMaxResults(1)->getOneOrNullResult();
+                            if ($systemmail->getIsActive()) {
+                                $message = \Swift_Message::newInstance()
+                                    ->setSubject($systemmail->getSubject())
+                                    ->setFrom($systemmail->getSender())
+                                    ->setTo($row[0])
+                                    ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('user_firstlogin', array('token' => $password, 'id' => $user->getId())), $systemmail->getBody()));
+
+                                $this->get('mailer')->send($message);
+                            }
                         }
                     }
 

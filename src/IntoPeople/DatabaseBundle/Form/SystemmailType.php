@@ -15,7 +15,6 @@ class SystemmailType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
             ->add('sender')
             ->add('subject')
             ->add('body')

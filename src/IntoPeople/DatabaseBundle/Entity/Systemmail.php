@@ -62,7 +62,17 @@ class Systemmail
      *   @ORM\JoinColumn(name="LanguageId", referencedColumnName="Id")
      * })
      */
-    private $languageid;
+    private $language;
+
+    /**
+     * @var \IntoPeople\DatabaseBundle\Entity\Mailtype
+     *
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Mailtype")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="MailtypeId", referencedColumnName="Id")
+     * })
+     */
+    private $mailtype;
 
     /**
      * @var \IntoPeople\DatabaseBundle\Entity\Organization
@@ -213,27 +223,51 @@ class Systemmail
     }
 
     /**
-     * Set languageid
+     * Set language
      *
-     * @param \IntoPeople\DatabaseBundle\Entity\Language $languageid
+     * @param \IntoPeople\DatabaseBundle\Entity\Language $language
      *
      * @return Systemmail
      */
-    public function setLanguageid(\IntoPeople\DatabaseBundle\Entity\Language $languageid = null)
+    public function setLanguage($language = null)
     {
-        $this->languageid = $languageid;
+        $this->language = $language;
 
         return $this;
     }
 
     /**
-     * Get languageid
+     * Get language
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Mailtype
+     */
+    public function getMailtype()
+    {
+        return $this->Mailtype;
+    }
+
+    /**
+     * Set language
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Mailtype $mailtype
+     *
+     * @return Systemmail
+     */
+    public function setMailtype($mailtype = null)
+    {
+        $this->mailtype = $mailtype;
+
+        return $this;
+    }
+
+    /**
+     * Get language
      *
      * @return \IntoPeople\DatabaseBundle\Entity\Language
      */
-    public function getLanguageid()
+    public function getLanguage()
     {
-        return $this->languageid;
+        return $this->language;
     }
 
     /**

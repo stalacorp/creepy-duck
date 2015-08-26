@@ -38,6 +38,7 @@ class LoadLanguage extends AbstractFixture implements OrderedFixtureInterface
         $manager->flush();
         
         $this->addReference('english', $english);
+        $this->addReference('nederlands', $nederlands);
     }
     
     /**

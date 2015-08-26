@@ -37,8 +37,9 @@ class SystemmailController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $repository = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail');
+
         $query = $repository->createQueryBuilder('s')
-            ->where('s.languageid = :id')
+            ->where('s.language = :id')
             ->setParameter('id', $id)
             ->getQuery();
 
