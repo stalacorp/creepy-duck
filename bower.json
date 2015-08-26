@@ -1,0 +1,20 @@
+{
+  "name": "creepy-duck",
+  "version": "0.0.0",
+  "homepage": "https://github.com/stalacorp/creepy-duck",
+  "authors": [
+    "Matthias <matthias.stala@gmail.com>"
+  ],
+  "description": "Creepy duck bower",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}
