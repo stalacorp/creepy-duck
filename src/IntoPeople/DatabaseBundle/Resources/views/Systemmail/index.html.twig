@@ -1,0 +1,29 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Systemmail list</h1>
+    <h3>{{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}</h3>
+    <div id="result">
+
+    </div>
+
+    {% endblock %}
+{%  block javascripts -%}
+    {{ parent() }}
+    <script>
+        function getMails(){
+            $.ajax({url: Routing.generate('systemmail_getmails', {id:$('#form_language').val()}),
+                success: function(result){
+                    $("#result").html(result);
+            }});
+        }
+        $(function() {
+            getMails();
+            $('#form_language').change(function(){
+                getMails();
+            });
+        });
+    </script>
+{%  endblock %}

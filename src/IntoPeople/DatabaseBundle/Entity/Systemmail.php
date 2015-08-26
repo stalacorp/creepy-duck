@@ -3,6 +3,7 @@
 namespace IntoPeople\DatabaseBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Systemmail
@@ -21,14 +22,16 @@ class Systemmail
 
     /**
      * @var string
-     *
+     *  @Assert\Email(
+     *     message = "validemail"
+     * )
      * @ORM\Column(name="Sender", type="string", length=250, nullable=true)
      */
     private $sender;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message = "notblank")
      * @ORM\Column(name="Subject", type="string", length=250, nullable=true)
      */
     private $subject;
@@ -36,9 +39,10 @@ class Systemmail
     /**
      * @var string
      *
-     * @ORM\Column(name="Text", type="text", length=65535, nullable=true)
+     * @ORM\Column(name="Body", type="text", length=65535, nullable=true)
+     * @Assert\NotBlank(message = "notblank")
      */
-    private $text;
+    private $body;
 
     /**
      * @var integer
@@ -46,6 +50,7 @@ class Systemmail
      * @ORM\Column(name="Id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     *
      */
     private $id;
 
@@ -69,7 +74,37 @@ class Systemmail
      */
     private $organizationid;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="isActive", type="boolean", nullable=true)
+     */
+    private $isActive;
 
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     *
+     * @return Systemmail
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
 
     /**
      * Set name
@@ -144,27 +179,27 @@ class Systemmail
     }
 
     /**
-     * Set text
+     * Set body
      *
-     * @param string $text
+     * @param string $body
      *
      * @return Systemmail
      */
-    public function setText($text)
+    public function setBody($body)
     {
-        $this->text = $text;
+        $this->body = $body;
 
         return $this;
     }
 
     /**
-     * Get text
+     * Get body
      *
      * @return string
      */
-    public function getText()
+    public function getBody()
     {
-        return $this->text;
+        return $this->body;
     }
 
     /**

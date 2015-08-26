@@ -1,3 +1,7 @@
+into_people_database_systemmail:
+    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/systemmail.yml"
+    prefix:   /systemmail
+
 into_people_database_user:
     resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/user.yml"
     prefix:   /user
