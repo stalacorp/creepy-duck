@@ -94,7 +94,7 @@ class MyEndyearController extends Controller
             
             if ($form->get('saveAndAdd')->isClicked()) {
 
-                $entity->setDateSubmitted(date('Y-m-d'));
+                $entity->setDateSubmitted(new \DateTime(date('Y-m-d')));
                 $user = $this->getUser();
                 $supervisor = $user->getSupervisor();
                 $entity->setSupervisor = $supervisor;

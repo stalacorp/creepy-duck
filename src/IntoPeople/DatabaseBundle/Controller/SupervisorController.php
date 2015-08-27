@@ -155,7 +155,7 @@ class SupervisorController extends Controller
 
                 $hrs = $this->getDoctrine()->getRepository('IntoPeopleDatabase:User')->createQueryBuilder('u')
                     ->where('u.roles like :role')
-                    ->setParameter('role', 'ROLE_USER')
+                    ->setParameter('role', 'ROLE_HR')
                     ->getQuery()->getResult();
 
                 $formstatus = $repository->find(5);

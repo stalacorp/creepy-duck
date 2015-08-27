@@ -4,14 +4,15 @@
 
 namespace IntoPeople\DatabaseBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use IntoPeople\DatabaseBundle\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
 
 
-class LoadUserData implements FixtureInterface, ContainerAwareInterface
+class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
     /**
      * @var ContainerInterface
@@ -46,6 +47,41 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         // Update the user
         $userManager->updateUser($user, true);
 
+        $supervisor = $userManager->createUser();
+        $supervisor->setEmail('birtpeeters@hotmail.com');
+        $supervisor->setUsername('birtpeeters@hotmail.com');
+        $supervisor->setUsernameCanonical('birtpeeters@hotmail.com');
+        $supervisor->setEmailCanonical('birtpeeters@hotmail.com');
+        $supervisor->setPlainPassword('test');
+        $supervisor->setEnabled(true);
+        $supervisor->addRole('ROLE_SUPERVISOR');
+        $supervisor->setFirstname('jos');
+        $supervisor->setLastname('vermeulen');
+        $supervisor->setLanguage($this->getReference('english'));
 
+        $userManager->updateUser($supervisor, true);
+
+        $hr = $userManager->createUser();
+        $hr->setEmail('bart_peeters@mail.com');
+        $hr->setUsername('bart_peeters@mail.com');
+        $hr->setPlainPassword('test');
+        $hr->setUsernameCanonical('bart_peeters@mail.com');
+        $hr->setEmailCanonical('bart_peeters@mail.com');
+        $hr->setEnabled(true);
+        $hr->addRole('ROLE_HR');
+        $hr->setFirstname('jos');
+        $hr->setLastname('vermeulen');
+        $hr->setLanguage($this->getReference('english'));
+        $userManager->updateUser($hr, true);
+
+
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getOrder()
+    {
+        return 5;
     }
 }

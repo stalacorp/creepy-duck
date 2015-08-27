@@ -101,7 +101,7 @@ class MyMidyearController extends Controller
                               
                 $formstatus = $repository->find(3);
 
-                $entity->setDateSubmitted(date('Y-m-d'));
+                $entity->setDateSubmitted(new \DateTime(date('Y-m-d')));
                 $user = $this->getUser();
                 $supervisor = $user->getSupervisor();
                 $entity->setSupervisor = $supervisor;

@@ -53,6 +53,27 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $formtosupervisor->setName('Form sent to supervisor mail');
         $formtohr->setName('Form sent to HR mail');
 
+        $created->setSubject('Account created mail');
+        $weekbeforedeadline->setSubject('Week before deadline mail');
+        $newcycle->setSubject('New cycle ready mail');
+        $newfeedback->setSubject('Cycle finished mail');
+        $formtosupervisor->setSubject('Form sent to supervisor mail');
+        $formtohr->setSubject('Form sent to HR mail');
+
+        $created->setBody('$url');
+        $weekbeforedeadline->setBody('$url');
+        $newcycle->setBody('$url');
+        $newfeedback->setBody('$url');
+        $formtosupervisor->setBody('$url');
+        $formtohr->setBody('$url');
+
+        $created->setSender('test@test.com');
+        $weekbeforedeadline->setSender('test@test.com');
+        $newcycle->setSender('test@test.com');
+        $newfeedback->setSender('test@test.com');
+        $formtosupervisor->setSender('test@test.com');
+        $formtohr->setSender('test@test.com');
+
         $created->setMailtype($createdtype);
         $weekbeforedeadline->setMailtype($weekbeforedeadlinetype);
         $newcycle->setMailtype($newcycletype);
@@ -108,6 +129,27 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $newfeedback->setLanguage($this->getReference('nederlands'));
         $formtosupervisor->setLanguage($this->getReference('nederlands'));
         $formtohr->setLanguage($this->getReference('nederlands'));
+
+        $created->setSubject('Account created mail');
+        $weekbeforedeadline->setSubject('Week before deadline mail');
+        $newcycle->setSubject('New cycle ready mail');
+        $newfeedback->setSubject('Cycle finished mail');
+        $formtosupervisor->setSubject('Form sent to supervisor mail');
+        $formtohr->setSubject('Form sent to HR mail');
+
+        $created->setBody('$url');
+        $weekbeforedeadline->setBody('$url');
+        $newcycle->setBody('$url');
+        $newfeedback->setBody('$url');
+        $formtosupervisor->setBody('$url');
+        $formtohr->setBody('$url');
+
+        $created->setSender('test@test.com');
+        $weekbeforedeadline->setSender('test@test.com');
+        $newcycle->setSender('test@test.com');
+        $newfeedback->setSender('test@test.com');
+        $formtosupervisor->setSender('test@test.com');
+        $formtohr->setSender('test@test.com');
 
         $created->setIsActive(true);
         $weekbeforedeadline->setIsActive(true);

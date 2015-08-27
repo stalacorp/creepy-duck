@@ -107,10 +107,13 @@ class MyCdpController extends Controller
                     'Your Career development plan has been sent to your supervisor!'
                 );
 
-                $entity->setDateSubmitted(date('Y-m-d'));
+                $entity->setDateSubmitted(new \DateTime(date('Y-m-d')));
+
                 $user = $this->getUser();
                 $supervisor = $user->getSupervisor();
+                $supervisor = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:User')->find($supervisor->getId());
                 $entity->setSupervisor = $supervisor;
+                dump($supervisor);die();
 
                 if (!$supervisor) {
                     $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
