@@ -40,18 +40,21 @@ class MyEndyearController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('IntoPeopleDatabaseBundle:Endyear')->find($id);
-        
+        $user = $this->getUser();
         if (! $entity) {
             throw $this->createNotFoundException('Unable to find End Year entity.');
         }
-        
+
+        if($user != $entity->getFeedbackcycle()->getUser()){
+            throw new \Exception($this->get('translator')->trans('noaccesserror'));
+        }
         // CAN ONLY FILL IN CDP WHEN STATUS = AVAILABLE OR ...
         //
         
         if ($entity->getFormstatus()->getId() == 1 || $entity->getFormstatus()->getId() == 2 || $entity->getFormstatus()->getId() == 4 || $entity->getFormstatus()->getId() == 7) {
             
             $form = $this->createEditForm($entity);
-            $user = $this->getUser();
+
             
             // Send CDP template
             
@@ -90,6 +93,32 @@ class MyEndyearController extends Controller
         if ($form->isValid()) {
             
             if ($form->get('saveAndAdd')->isClicked()) {
+
+                $entity->setDateSubmitted(date('Y-m-d'));
+                $user = $this->getUser();
+                $supervisor = $user->getSupervisor();
+                $entity->setSupervisor = $supervisor;
+
+                if (!$supervisor) {
+                    $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
+                        ->join('s.mailtype', 'm')
+                        ->where('s.language = :id')
+                        ->andWhere('m.name = :name')
+                        ->setParameter('id', $supervisor->getLanguage())
+                        ->setParameter('name', 'formtosupervisor')
+                        ->getQuery();
+
+                    $systemmail = $query->setMaxResults(1)->getOneOrNullResult();
+                    if ($systemmail->getIsActive()) {
+                        $message = \Swift_Message::newInstance()
+                            ->setSubject($systemmail->getSubject())
+                            ->setFrom($systemmail->getSender())
+                            ->setTo($supervisor->getEmail())
+                            ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('supervisor_addEndyearComment', array('id' => $entity->getId())), $systemmail->getBody()));
+
+                        $this->get('mailer')->send($message);
+                    }
+                }
                 
                 $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Formstatus');
                 $formstatus = $repository->find(3);
@@ -129,6 +158,10 @@ class MyEndyearController extends Controller
     
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Endyear entity.');
+        }
+
+        if($this->getUser() != $entity->getFeedbackcycle()->getUser()){
+            throw new \Exception($this->get('translator')->trans('noaccesserror'));
         }
     
         $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Endyeartemplate');

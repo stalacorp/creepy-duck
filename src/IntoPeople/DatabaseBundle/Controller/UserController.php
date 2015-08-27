@@ -86,7 +86,7 @@ class UserController extends Controller
 
 
             }catch (Exception $e){
-
+                throw new \Exception($this->get('translator')->trans('user.generateusererror'));
             }
         }
 

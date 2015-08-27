@@ -28,7 +28,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $createdtype->setName('usercreated');
         $weekbeforedeadlinetype->setName('weekbeforedeadline');
         $newcycletype->setName('newcycle');
-        $newfeedbacktype->setName('newfeedback');
+        $newfeedbacktype->setName('finished');
         $formtosupervisortype->setName('formtosupervisor');
         $formtohrtype->setName('formtohr');
 
@@ -49,7 +49,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $created->setName('Account created mail');
         $weekbeforedeadline->setName('Week before deadline mail');
         $newcycle->setName('New cycle ready mail');
-        $newfeedback->setName('New feedback mail');
+        $newfeedback->setName('Cycle finished mail');
         $formtosupervisor->setName('Form sent to supervisor mail');
         $formtohr->setName('Form sent to HR mail');
 
@@ -98,7 +98,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $created->setName('Account aangemaakt mail');
         $weekbeforedeadline->setName('Week voor deadline mail');
         $newcycle->setName('Nieuwe  cyclus beschikbaar mail');
-        $newfeedback->setName('Nieuwe feedback mail');
+        $newfeedback->setName('Cyclus klaar mail');
         $formtosupervisor->setName('Formulier naar overste gestuurd mail');
         $formtohr->setName('Formulier naar HR gestuurd mail');
 

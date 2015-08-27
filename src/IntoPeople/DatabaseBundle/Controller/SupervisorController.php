@@ -152,9 +152,35 @@ class SupervisorController extends Controller
             $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Formstatus');
             
             if ($form->get('approve')->isClicked()) {
-                
+
+                $hrs = $this->getDoctrine()->getRepository('IntoPeopleDatabase:User')->createQueryBuilder('u')
+                    ->where('u.roles like :role')
+                    ->setParameter('role', 'ROLE_USER')
+                    ->getQuery()->getResult();
+
                 $formstatus = $repository->find(5);
-                
+
+                foreach ($hrs as $hr) {
+
+                    $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
+                        ->join('s.mailtype', 'm')
+                        ->where('s.language = :id')
+                        ->andWhere('m.name = :name')
+                        ->setParameter('id', $hr->getLanguage())
+                        ->setParameter('name', 'formtohr')
+                        ->getQuery();
+
+                    $systemmail = $query->setMaxResults(1)->getOneOrNullResult();
+                    if ($systemmail->getIsActive()) {
+                        $message = \Swift_Message::newInstance()
+                            ->setSubject($systemmail->getSubject())
+                            ->setFrom($systemmail->getSender())
+                            ->setTo($hr->getEmail())
+                            ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('hr_addFeedback', array('id' => $entity->getId())), $systemmail->getBody()));
+
+                        $this->get('mailer')->send($message);
+                    }
+                }
                 $this->addFlash(
                     'success',
                     'You\'ve succesfully approved the CDP!'
