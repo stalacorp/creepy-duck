@@ -43,6 +43,8 @@ class LoadMidyeartemplate extends AbstractFixture implements OrderedFixtureInter
         $midyeartemplate->setDate($dt);
         $midyeartemplate->setIsstandardtemplate(true);
         $midyeartemplate->setLanguage($this->getReference('english'));
+
+        $midyeartemplate->setOrganization($this->getReference('organization'));
         
 
         $manager->persist($midyeartemplate);

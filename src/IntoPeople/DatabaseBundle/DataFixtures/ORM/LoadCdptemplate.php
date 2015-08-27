@@ -48,7 +48,8 @@ class LoadCdptemplate extends AbstractFixture implements OrderedFixtureInterface
         
         $cdptemplate->setDate($dt);
         $cdptemplate->setIsstandardtemplate(true);
-        
+
+        $cdptemplate->setOrganization($this->getReference('organization'));
 
         $manager->persist($cdptemplate);
         $manager->flush();
@@ -59,6 +60,6 @@ class LoadCdptemplate extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 2;
+        return 3;
     }
 }

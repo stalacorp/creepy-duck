@@ -38,6 +38,8 @@ class LoadEndyeartemplate extends AbstractFixture implements OrderedFixtureInter
         $endyeartemplate->setDate($dt);
         $endyeartemplate->setIsstandardtemplate(true);
         $endyeartemplate->setLanguage($this->getReference('english'));
+
+        $endyeartemplate->setOrganization($this->getReference('organization'));
         
         $manager->persist($endyeartemplate);
         $manager->flush();
@@ -48,6 +50,6 @@ class LoadEndyeartemplate extends AbstractFixture implements OrderedFixtureInter
      */
     public function getOrder()
     {
-        return 3;
+        return 4;
     }
 }

@@ -116,7 +116,7 @@ class User extends BaseUser
      */
     protected $feedbackcycles;
 
-    public function __construct1()
+    public function __construct2()
     {
         $this->feedbackcycles = new ArrayCollection();
     }
@@ -126,7 +126,7 @@ class User extends BaseUser
      */
     protected $users;
 
-    public function __construct2()
+    public function __construct3()
     {
         $this->users = new ArrayCollection();
     }

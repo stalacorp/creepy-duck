@@ -29,7 +29,7 @@ class Organization
     /**
      * @var string
      *
-     * @ORM\Column(name="Name", type="string", length=250, nullable=false)
+     * @ORM\Column(name="Name", type="string", length=250, nullable=true)
      */
     private $name;
 
@@ -137,7 +137,16 @@ class Organization
     {
         $this->endyeartemplates = new ArrayCollection();
     }
-    
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
     /**
      * Set name
