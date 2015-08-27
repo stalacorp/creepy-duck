@@ -53,3 +53,11 @@ into_people_database_midyeartemplate:
 into_people_database_cdptemplate:
     resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/cdptemplate.yml"
     prefix:   /cdptemplate
+
+into_people_database_organization:
+    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/organization.yml"
+    prefix:   /organization
+
+into_people_database_language:
+    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/language.yml"
+    prefix:   /language

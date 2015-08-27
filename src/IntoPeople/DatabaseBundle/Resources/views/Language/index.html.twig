@@ -1,0 +1,73 @@
+{% extends '::base.html.twig' %} 
+{% block body -%}
+<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+<div id="portlet-config" class="modal hide">
+	<div class="modal-header">
+		<button data-dismiss="modal" class="close" type="button"></button>
+		<h3>Widget Settings</h3>
+	</div>
+	<div class="modal-body">Widget settings form goes here</div>
+</div>
+<div class="clearfix"></div>
+<div class="container">
+	<div class="content">
+		<div class="page-title">
+			<i class="icon-custom-left"></i>
+			<h3>
+				  <span class="semi-bold">L</span>anguages
+			</h3>
+		</div>
+
+		<div class="row">
+			<div class="col-md-8">
+
+
+
+    <table class="table no-more-tables">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for language in languages %}
+            <tr>
+                <td>{{ language.name }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('language_show', { 'id': language.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('language_edit', { 'id': language.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('language_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+
+    

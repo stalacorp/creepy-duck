@@ -1,0 +1,32 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h1>Language</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{ language.name }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ language.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('language') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('language_edit', { 'id': language.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}
