@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Mailtype
  *
- * @ORM\Table()
+ * @ORM\Table(name="Mailtype")
  * @ORM\Entity
  */
 class Mailtype

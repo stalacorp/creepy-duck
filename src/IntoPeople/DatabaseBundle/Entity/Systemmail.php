@@ -236,18 +236,29 @@ class Systemmail
         return $this;
     }
 
+
     /**
      * Get language
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Language
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+    /**
+     * Get mailtype
      *
      * @return \IntoPeople\DatabaseBundle\Entity\Mailtype
      */
     public function getMailtype()
     {
-        return $this->Mailtype;
+        return $this->mailtype;
     }
 
     /**
-     * Set language
+     * Set mailtype
      *
      * @param \IntoPeople\DatabaseBundle\Entity\Mailtype $mailtype
      *
@@ -258,16 +269,6 @@ class Systemmail
         $this->mailtype = $mailtype;
 
         return $this;
-    }
-
-    /**
-     * Get language
-     *
-     * @return \IntoPeople\DatabaseBundle\Entity\Language
-     */
-    public function getLanguage()
-    {
-        return $this->language;
     }
 
     /**

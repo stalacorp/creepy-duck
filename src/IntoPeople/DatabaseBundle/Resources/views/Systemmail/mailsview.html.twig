@@ -10,7 +10,7 @@
         <tr>
             <td><a href="{{ path('systemmail_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
             <td>{% if entity.isActive %}
-                    <input type="checkbox" class="letoggle" data-id="{{ entity.id }}" checked data-toggle="toggle" data-on="{{ "systemmail.toggleenable" | trans }}" data-off="{{ "systemmail.toggledisable" | trans }}">
+                    <input type="checkbox" {% if entity.mailtype.name == 'usercreated' %}disabled{% endif %} class="letoggle" data-id="{{ entity.id }}" checked data-toggle="toggle" data-on="{{ "systemmail.toggleenable" | trans }}" data-off="{{ "systemmail.toggledisable" | trans }}">
                 {% else %}
                     <input type="checkbox" class="letoggle" data-id="{{ entity.id }}" data-toggle="toggle" data-on="{{ "systemmail.toggleenable" | trans }}" data-off="{{ "systemmail.toggledisable" | trans }}">
                 {% endif %}
