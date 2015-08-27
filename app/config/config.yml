@@ -35,9 +35,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-    form:
-            resources: ['bootstrap_3_layout.html.twig']
-            # resources: ['bootstrap_3_horizontal_layout.html.twig']
+    form_themes:
+            - 'IntoPeopleDatabaseBundle:Form:bootstrap_3_layout.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -106,3 +105,6 @@ vich_uploader:
             user_photo:
                 uri_prefix:         /user/photos
                 upload_destination: %kernel.root_dir%/../web/images/users
+            organization_logo:
+                            uri_prefix:         /organization/logos
+                            upload_destination: %kernel.root_dir%/../web/organization/logos
