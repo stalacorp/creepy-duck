@@ -1,0 +1,63 @@
+ {% extends '::base.html.twig' %} {% block body -%}
+<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+<div id="portlet-config" class="modal hide">
+	<div class="modal-header">
+		<button data-dismiss="modal" class="close" type="button"></button>
+		<h3>Widget Settings</h3>
+	</div>
+	<div class="modal-body">Widget settings form goes here</div>
+</div>
+<div class="clearfix"></div>
+<div class="container">
+	<div class="content">
+	
+		<div class="page-title">
+			<a href="{{ path('organization') }}"><i class="icon-custom-left"></i></a>
+			<h3>
+				<span class="semi-bold">Organizations</span>
+			</h3>
+		</div>
+
+		<div class="row">
+			<div class="col-md-8">
+                        
+                        {% for flashMessage in app.session.flashbag.get('success') %}
+						                      
+		                  <div class="alert alert-success">
+                            <button class="close" data-dismiss="alert"></button>
+                            {{ flashMessage }}
+                        </div>	
+                        
+		                {% endfor %}
+						
+						{{ form_start(edit_form) }}
+						
+						{{ form_row(edit_form.name) }}
+						
+						{{ form_row(edit_form.logoFile) }}
+						
+						{{ form_row(edit_form.organizationstatus) }}
+						
+						{{ form_widget(edit_form.submit) }}
+						
+						<a href="{{ path('organization') }}" type="button" class="btn btn-primary btn-cons"> Back to the list </a>
+						
+						{{ form_end(edit_form) }}
+
+							
+							{{ form(delete_form) }}
+
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+
+
+
+
+

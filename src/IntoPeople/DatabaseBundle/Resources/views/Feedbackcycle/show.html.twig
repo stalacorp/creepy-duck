@@ -35,7 +35,7 @@
 
 						<h1>Feedbackcycle</h1>
 
-						<table class="record_properties">
+						<table class="table">
 							<tbody>
 								<tr>
 									<th>Id</th>
@@ -45,12 +45,9 @@
 						</table>
 
 						<ul class="record_actions">
-							<li><a href="{{ path('feedbackcycle') }}"> Back to the list </a>
-							</li>
-							<li><a
-								href="{{ path('feedbackcycle_edit', { 'id': entity.id }) }}">
-									Edit </a></li>
-							<li>{{ form(delete_form) }}</li>
+							<a href="{{ path('feedbackcycle') }}" class="btn btn-default btn-cons" type="button"> Back to the list </a>
+							<a href="{{ path('feedbackcycle_edit', { 'id': entity.id }) }}" class="btn btn-default btn-cons" type="button">Edit </a>
+							{{ form(delete_form) }}
 					
 					</div>
 				</div>

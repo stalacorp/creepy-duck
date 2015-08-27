@@ -43,5 +43,6 @@ into_people_adminmain:
     resource: "@IntoPeopleAdminBundle/Controller"
     type: annotation
     prefix: /admin
+
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
