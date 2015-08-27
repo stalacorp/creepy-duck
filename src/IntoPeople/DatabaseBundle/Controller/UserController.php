@@ -19,16 +19,85 @@ class UserController extends Controller
     /**
      * Lists all User entities.
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+        $defaultData = array();
+        $form = $this->createFormBuilder($defaultData)
+            ->add('template', 'file',array('constraints' => new File(array('maxSize' => "10M",
+                'mimeTypes' => array('application/vnd.ms-excel', 'text/plain'),
+            ))))
+            ->add('create users', 'submit')
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $data = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+
+            $count = 0;
+            try {
+                $handle = fopen($data['template'], "r");
+                while (($row = fgetcsv($handle, 1000, ";")) !== FALSE) {
+                    $row = array_map("utf8_encode", $row);
+                    if ($count != 0) {
+                        $user = $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:User')->findOneByEmail($row[0]);
+                        if (!$user) {
+                            $tokenGenerator = $this->get('fos_user.util.token_generator');
+                            $password = substr($tokenGenerator->generateToken(), 0, 10);
+                            $user = new User();
+                            $user->setEmail($row[0]);
+                            $user->setUsername($row[0]);
+                            $user->setPlainPassword($password);
+                            $user->setEnabled(true);
+                            $user->setRoles(array(User::ROLE_DEFAULT));
+                            $user->setFirstname($row[1]);
+                            $user->setLastname($row[2]);
+                            $user->setLanguage($em->getRepository('IntoPeopleDatabaseBundle:Language')->findOneByName($row[3]));
+
+                            $em->persist($user);
+                            $em->flush();
+
+                            $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
+                                ->join('s.mailtype', 'm')
+                                ->where('s.language = :id')
+                                ->andWhere('m.name = :name')
+                                ->setParameter('id', $user->getLanguage())
+                                ->setParameter('name', 'usercreated')
+                                ->getQuery();
+
+                            $systemmail = $query->setMaxResults(1)->getOneOrNullResult();
+                            if ($systemmail->getIsActive()) {
+                                $message = \Swift_Message::newInstance()
+                                    ->setSubject($systemmail->getSubject())
+                                    ->setFrom($systemmail->getSender())
+                                    ->setTo($row[0])
+                                    ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('user_firstlogin', array('token' => $password, 'id' => $user->getId())), $systemmail->getBody()));
+
+                                $this->get('mailer')->send($message);
+                            }
+                        }
+                    }
+
+                    $count++;
+                }
+                fclose($handle);
+
+
+            }catch (Exception $e){
+
+            }
+        }
+
         
         $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:User');
 
         $entities = $repository->findAll();
 
         return $this->render('IntoPeopleDatabaseBundle:User:index.html.twig', array(
-            'entities' => $entities
+            'entities' => $entities,
+            'formtemplate' => $form->createView(),
         ));
     }
 
@@ -108,76 +177,9 @@ class UserController extends Controller
 
     public function csvAction(Request $request)
     {
-        $defaultData = array();
-        $form = $this->createFormBuilder($defaultData)
-            ->add('template', 'file',array('constraints' => new File(array('maxSize' => "10M",
-                'mimeTypes' => array('application/vnd.ms-excel', 'text/plain'),
-            ))))
-            ->add('create users', 'submit')
-            ->getForm();
 
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $data = $form->getData();
-
-            $em = $this->getDoctrine()->getManager();
-
-            $count = 0;
-            try {
-                $handle = fopen($data['template'], "r");
-                while (($row = fgetcsv($handle, 1000, ";")) !== FALSE) {
-                    $row = array_map("utf8_encode", $row);
-                    if ($count != 0) {
-                        $user = $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:User')->findOneByEmail($row[0]);
-                        if (!$user) {
-                            $tokenGenerator = $this->get('fos_user.util.token_generator');
-                            $password = substr($tokenGenerator->generateToken(), 0, 10);
-                            $user = new User();
-                            $user->setEmail($row[0]);
-                            $user->setUsername($row[0]);
-                            $user->setPlainPassword($password);
-                            $user->setEnabled(true);
-                            $user->setRoles(array(User::ROLE_DEFAULT));
-                            $user->setFirstname($row[1]);
-                            $user->setLastname($row[2]);
-                            $user->setLanguage($em->getRepository('IntoPeopleDatabaseBundle:Language')->findOneByName($row[3]));
-
-                            $em->persist($user);
-                            $em->flush();
-
-                            $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
-                                ->join('s.mailtype', 'm')
-                                ->where('s.language = :id')
-                                ->andWhere('m.name = :name')
-                                ->setParameter('id', $user->getLanguage())
-                                ->setParameter('name', 'usercreated')
-                                ->getQuery();
-
-                            $systemmail = $query->setMaxResults(1)->getOneOrNullResult();
-                            if ($systemmail->getIsActive()) {
-                                $message = \Swift_Message::newInstance()
-                                    ->setSubject($systemmail->getSubject())
-                                    ->setFrom($systemmail->getSender())
-                                    ->setTo($row[0])
-                                    ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('user_firstlogin', array('token' => $password, 'id' => $user->getId())), $systemmail->getBody()));
-
-                                $this->get('mailer')->send($message);
-                            }
-                        }
-                    }
-
-                    $count++;
-                }
-                fclose($handle);
-
-
-            }catch (Exception $e){
-
-            }
-            }
         return $this->render('IntoPeopleDatabaseBundle:User:csv.html.twig', array(
-            'form' => $form->createView()
+
         ));
 
 
