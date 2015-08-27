@@ -34,32 +34,19 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     {
         $userManager = $this->container->get('into_people_database.user_manager');
 
-        // Create user and set details
-        $user = $userManager->createUser();
-        $user->setUsername('admin');
-        $user->setEmail('admin@test.com');
-        $user->setPlainPassword('admin');
-        $user->addRole('ROLE_USER');
-        $user->setEnabled(true);
-
-        //$user->setRoles(array('ROLE_ADMIN'));
-
-        // Update the user
-        $userManager->updateUser($user, true);
-
         $supervisor = $userManager->createUser();
         $supervisor->setEmail('birtpeeters@hotmail.com');
         $supervisor->setUsername('birtpeeters@hotmail.com');
-        $supervisor->setUsernameCanonical('birtpeeters@hotmail.com');
-        $supervisor->setEmailCanonical('birtpeeters@hotmail.com');
         $supervisor->setPlainPassword('test');
         $supervisor->setEnabled(true);
         $supervisor->addRole('ROLE_SUPERVISOR');
         $supervisor->setFirstname('jos');
         $supervisor->setLastname('vermeulen');
         $supervisor->setLanguage($this->getReference('english'));
+        $supervisor->setUsernameCanonical('birtpeeters@hotmail.com');
+        $supervisor->setEmailCanonical('birtpeeters@hotmail.com');
 
-        $userManager->updateUser($supervisor, true);
+        $userManager->updateUser($supervisor);
 
         $hr = $userManager->createUser();
         $hr->setEmail('bart_peeters@mail.com');
@@ -74,7 +61,22 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $hr->setLanguage($this->getReference('english'));
         $userManager->updateUser($hr, true);
 
+        $userManager->updateUser($hr);
 
+        // Create user and set details
+        $user = $userManager->createUser();
+        $user->setUsername('admin');
+        $user->setEmail('admin@test.com');
+        $user->setPlainPassword('admin');
+        $user->addRole('ROLE_USER');
+        $user->setEnabled(true);
+        $user->setFirstname('Queenie');
+        $user->setLastname('Dirckx');
+        $user->setUsernameCanonical('admin');
+        $user->setEmailCanonical('admin@test.com');
+        $user->setSupervisor($supervisor);
+
+        $userManager->updateUser($user);
     }
 
     /**

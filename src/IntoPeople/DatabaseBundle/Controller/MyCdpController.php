@@ -111,11 +111,8 @@ class MyCdpController extends Controller
 
                 $user = $this->getUser();
                 $supervisor = $user->getSupervisor();
-                $supervisor = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:User')->find($supervisor->getId());
-                $entity->setSupervisor = $supervisor;
-                dump($supervisor);die();
 
-                if (!$supervisor) {
+                if ($supervisor) {
                     $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
                         ->join('s.mailtype', 'm')
                         ->where('s.language = :id')
