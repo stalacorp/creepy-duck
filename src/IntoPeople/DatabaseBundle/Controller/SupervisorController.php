@@ -93,6 +93,10 @@ class SupervisorController extends Controller
         if (! $entity) {
             throw $this->createNotFoundException('Unable to find Cdp entity.');
         }
+
+        if($this->getUser() != $entity->getSupervisor()){
+            throw new \Exception($this->get('translator')->trans('noaccesserror'));
+        }
         
         // CAN ONLY ADD COMMENT WHEN STATUS = 3
         //
@@ -153,9 +157,9 @@ class SupervisorController extends Controller
             
             if ($form->get('approve')->isClicked()) {
 
-                $hrs = $this->getDoctrine()->getRepository('IntoPeopleDatabase:User')->createQueryBuilder('u')
+                $hrs = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:User')->createQueryBuilder('u')
                     ->where('u.roles like :role')
-                    ->setParameter('role', 'ROLE_HR')
+                    ->setParameter('role', '%ROLE_HR%')
                     ->getQuery()->getResult();
 
                 $formstatus = $repository->find(5);
@@ -257,6 +261,10 @@ class SupervisorController extends Controller
     
         if (! $entity) {
             throw $this->createNotFoundException('Unable to find Midyear entity.');
+        }
+
+        if($this->getUser() != $entity->getSupervisor()){
+            throw new \Exception($this->get('translator')->trans('noaccesserror'));
         }
     
         // CAN ONLY ADD COMMENT WHEN STATUS = 3
@@ -397,7 +405,10 @@ class SupervisorController extends Controller
         if (! $entity) {
             throw $this->createNotFoundException('Unable to find Endyear entity.');
         }
-    
+
+        if($this->getUser() != $entity->getSupervisor()){
+            throw new \Exception($this->get('translator')->trans('noaccesserror'));
+        }
         // CAN ONLY ADD COMMENT WHEN STATUS = 3
         //
     

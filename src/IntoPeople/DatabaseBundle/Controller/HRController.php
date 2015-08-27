@@ -103,6 +103,7 @@ class HRController extends Controller
             if ($form->get('approve')->isClicked()) {
 
                 $user = $entity->getFeedbackcycle()->getUser();
+
                 $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
                     ->join('s.mailtype', 'm')
                     ->where('s.language = :id')
@@ -412,6 +413,7 @@ class HRController extends Controller
             if ($form->get('approve')->isClicked()) {
 
                 $user = $entity->getFeedbackcycle()->getUser();
+
                 $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
                     ->join('s.mailtype', 'm')
                     ->where('s.language = :id')

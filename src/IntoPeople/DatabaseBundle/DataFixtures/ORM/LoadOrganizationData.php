@@ -22,6 +22,7 @@ class LoadOrganizationData extends AbstractFixture implements OrderedFixtureInte
         $organization = new Organization();
 
         $organization->setId(1);
+        $organization->setName('Samsung');
 
         $metadata = $manager->getClassMetaData(get_class($organization));
         $metadata->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);

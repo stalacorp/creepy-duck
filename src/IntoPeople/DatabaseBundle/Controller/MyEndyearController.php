@@ -97,9 +97,9 @@ class MyEndyearController extends Controller
                 $entity->setDateSubmitted(new \DateTime(date('Y-m-d')));
                 $user = $this->getUser();
                 $supervisor = $user->getSupervisor();
-                $entity->setSupervisor = $supervisor;
+                $entity->setSupervisor($supervisor);
 
-                if (!$supervisor) {
+                if ($supervisor) {
                     $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
                         ->join('s.mailtype', 'm')
                         ->where('s.language = :id')
@@ -160,7 +160,8 @@ class MyEndyearController extends Controller
             throw $this->createNotFoundException('Unable to find Endyear entity.');
         }
 
-        if($this->getUser() != $entity->getFeedbackcycle()->getUser()){
+        $securityContext = $this->container->get('security.context');
+        if($this->getUser() != $entity->getFeedbackcycle()->getUser() & $securityContext->isGranted('ROLE_HR')){
             throw new \Exception($this->get('translator')->trans('noaccesserror'));
         }
     

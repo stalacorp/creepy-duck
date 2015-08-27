@@ -111,6 +111,7 @@ class MyCdpController extends Controller
 
                 $user = $this->getUser();
                 $supervisor = $user->getSupervisor();
+                $entity->setSupervisor($supervisor);
 
                 if ($supervisor) {
                     $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
@@ -171,8 +172,8 @@ class MyCdpController extends Controller
         $em = $this->getDoctrine()->getManager();
     
         $entity = $em->getRepository('IntoPeopleDatabaseBundle:Cdp')->find($id);
-
-        if($this->getUser() != $entity->getFeedbackcycle()->getUser()){
+        $securityContext = $this->container->get('security.context');
+        if($this->getUser() != $entity->getFeedbackcycle()->getUser() & $securityContext->isGranted('ROLE_HR')){
             throw new \Exception($this->get('translator')->trans('noaccesserror'));
         }
     
