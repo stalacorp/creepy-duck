@@ -25,6 +25,13 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $formtosupervisortype = new Mailtype();
         $formtohrtype = new Mailtype();
 
+        $createdtype->setIsActive(true);
+        $weekbeforedeadlinetype->setIsActive(true);
+        $newcycletype->setIsActive(true);
+        $newfeedbacktype->setIsActive(true);
+        $formtosupervisortype->setIsActive(true);
+        $formtohrtype->setIsActive(true);
+
         $createdtype->setName('usercreated');
         $weekbeforedeadlinetype->setName('weekbeforedeadline');
         $newcycletype->setName('newcycle');
@@ -88,13 +95,6 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $formtosupervisor->setLanguage($this->getReference('english'));
         $formtohr->setLanguage($this->getReference('english'));
 
-        $created->setIsActive(true);
-        $weekbeforedeadline->setIsActive(true);
-        $newcycle->setIsActive(true);
-        $newfeedback->setIsActive(true);
-        $formtosupervisor->setIsActive(true);
-        $formtohr->setIsActive(true);
-
         $manager->persist($created);
         $manager->persist($weekbeforedeadline);
         $manager->persist($newcycle);
@@ -150,13 +150,6 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $newfeedback->setSender('test@test.com');
         $formtosupervisor->setSender('test@test.com');
         $formtohr->setSender('test@test.com');
-
-        $created->setIsActive(true);
-        $weekbeforedeadline->setIsActive(true);
-        $newcycle->setIsActive(true);
-        $newfeedback->setIsActive(true);
-        $formtosupervisor->setIsActive(true);
-        $formtohr->setIsActive(true);
 
         $manager->persist($created);
         $manager->persist($weekbeforedeadline);

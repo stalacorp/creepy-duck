@@ -61,3 +61,6 @@ into_people_database_organization:
 into_people_database_language:
     resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/language.yml"
     prefix:   /language
+cronjob:
+    path:     /cronjob/{token}
+    defaults: { _controller: IntoPeopleDatabaseBundle:Cronjob:cronjob }

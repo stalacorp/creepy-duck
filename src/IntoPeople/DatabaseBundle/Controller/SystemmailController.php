@@ -53,7 +53,7 @@ class SystemmailController extends Controller
     public function changeactiveAction($id){
         $em = $this->getDoctrine()->getManager();
 
-        $repository = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail');
+        $repository = $em->getRepository('IntoPeopleDatabaseBundle:Mailtype');
         $entity = $repository->find($id);
         if ($entity->getIsActive()){
             $entity->setIsActive(false);

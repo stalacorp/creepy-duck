@@ -113,7 +113,7 @@ class HRController extends Controller
                     ->getQuery();
 
                 $systemmail = $query->setMaxResults(1)->getOneOrNullResult();
-                if ($systemmail->getIsActive()) {
+                if ($systemmail->getMailtype()->getIsActive()) {
                     $message = \Swift_Message::newInstance()
                         ->setSubject($systemmail->getSubject())
                         ->setFrom($systemmail->getSender())
@@ -268,7 +268,7 @@ class HRController extends Controller
                     ->getQuery();
 
                 $systemmail = $query->setMaxResults(1)->getOneOrNullResult();
-                if ($systemmail->getIsActive()) {
+                if ($systemmail->getMailtype()->getIsActive()) {
                     $message = \Swift_Message::newInstance()
                         ->setSubject($systemmail->getSubject())
                         ->setFrom($systemmail->getSender())
@@ -423,7 +423,7 @@ class HRController extends Controller
                     ->getQuery();
 
                 $systemmail = $query->setMaxResults(1)->getOneOrNullResult();
-                if ($systemmail->getIsActive()) {
+                if ($systemmail->getMailtype()->getIsActive()) {
                     $message = \Swift_Message::newInstance()
                         ->setSubject($systemmail->getSubject())
                         ->setFrom($systemmail->getSender())
