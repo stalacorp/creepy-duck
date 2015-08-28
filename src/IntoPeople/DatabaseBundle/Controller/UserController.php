@@ -5,6 +5,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use IntoPeople\DatabaseBundle\Entity\User;
 use IntoPeople\DatabaseBundle\Form\UserType;
+use Symfony\Component\Security\Acl\Exception\Exception;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\EventDispatcher\EventDispatcher,
     Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken,
@@ -55,6 +56,21 @@ class UserController extends Controller
                             $user->setFirstname($row[1]);
                             $user->setLastname($row[2]);
                             $user->setLanguage($em->getRepository('IntoPeopleDatabaseBundle:Language')->findOneByName($row[3]));
+
+                            $supervisor = $row[4];
+
+                            if (strtolower($row[5]) == "hr"){
+                                $user->addRole('ROLE_HR');
+                            }
+
+                            if ($supervisor != ""){
+                                try {
+                                    $supervisor = $em->getRepository('IntoPeopleDatabaseBundle:User')->findOneByEmail($supervisor);
+                                }catch (Exception $e){
+                                    throw new \Exception($this->get('translator')->trans('user.supervisornotfounderror'));
+                                }
+                                $user->setSupervisor($supervisor);
+                            }
 
                             $em->persist($user);
                             $em->flush();

@@ -4,6 +4,7 @@ namespace IntoPeople\DatabaseBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CronjobController extends Controller
 {
@@ -15,7 +16,7 @@ class CronjobController extends Controller
             $query = $em->getRepository('IntoPeopleDatabaseBundle:Generalcycle')->createQueryBuilder('g')
                 ->join('g.generalcyclestatus', 's')
                 ->where('s.name = :name')
-                ->setParameter('name', 'formtosupervisor')
+                ->setParameter('name', 'Active')
                 ->getQuery();
             $generalcycles = $query->getResult();
 
@@ -26,77 +27,132 @@ class CronjobController extends Controller
             $weekbeforedeadlinemails = array();
 
             $languages = $em->getRepository('IntoPeopleDatabaseBundle:Language')->findAll();
+            $querynewcycle = $em->getRepository('IntoPeopleDatabaseBundle:Mailtype')->createQueryBuilder('m')
+                ->where('m.name = :name')
+                ->setParameter('name', 'newcycle')
+                ->getQuery();
+            $queryweekbeforedeadline = $em->getRepository('IntoPeopleDatabaseBundle:Mailtype')->createQueryBuilder('m')
+                ->where('m.name = :name')
+                ->setParameter('name', 'weekbeforedeadline')
+                ->getQuery();
 
-            foreach ($languages as $language) {
-                $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
-                    ->join('s.mailtype', 'm')
-                    ->where('s.language = :id')
-                    ->andWhere('m.name = :name')
-                    ->setParameter('id', $language)
-                    ->setParameter('name', 'newcycle')
-                    ->getQuery();
+            if ($querynewcycle->setMaxResults(1)->getOneOrNullResult()->getIsActive()) {
 
-                $newyclemails[$language->getName()] = $query->setMaxResults(1)->getOneOrNullResult();
+                foreach ($languages as $language) {
+                    $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
+                        ->join('s.mailtype', 'm')
+                        ->where('s.language = :id')
+                        ->andWhere('m.name = :name')
+                        ->setParameter('id', $language)
+                        ->setParameter('name', 'newcycle')
+                        ->getQuery();
 
-                $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
-                    ->join('s.mailtype', 'm')
-                    ->where('s.language = :id')
-                    ->andWhere('m.name = :name')
-                    ->setParameter('id', $language)
-                    ->setParameter('name', 'newcycle')
-                    ->getQuery();
+                    $newcyclemails[$language->getName()] = $query->setMaxResults(1)->getOneOrNullResult();
+                }
 
-                $weekbeforedeadlinemails[$language->getName()] = $query->setMaxResults(1)->getOneOrNullResult();
-            }
+                foreach ($generalcycles as $generalcycle) {
 
-            foreach ($generalcycles as $generalcycle) {
+                    // newcyclemail
 
-                // newcyclemail
-                if ($generalcycle->getStartdatecdp() == $today | $generalcycle->getStartdatemidyear() == $today | $generalcycle->getStartdateyearend() == $today) {
+                    if ($generalcycle->getStartdatecdp() == $today | $generalcycle->getStartdatemidyear() == $today | $generalcycle->getStartdateyearend() == $today) {
 
-                    foreach ($users as $user) {
-                        $systemmail = $newcyclemails[$user->getLanguage()->getName()];
-                        if ($systemmail->getMailtype()->getIsActive()) {
+                        foreach ($users as $user) {
+                            $systemmail = $newcyclemails[$user->getLanguage()->getName()];
+
                             $message = \Swift_Message::newInstance()
                                 ->setSubject($systemmail->getSubject())
                                 ->setFrom($systemmail->getSender())
                                 ->setTo($user->getEmail())
-                                ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('supervisor_addComment', array('id' => $entity->getId())), $systemmail->getBody()));
+                                ->setBody($systemmail->getBody());
 
                             $this->get('mailer')->send($message);
+
                         }
                     }
                 }
+            }
 
-                $sevendaysagointerval = new DateInterval('P7D');
+            if ($queryweekbeforedeadline->setMaxResults(1)->getOneOrNullResult()->getIsActive()){
+                foreach ($languages as $language) {
+                    $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
+                        ->join('s.mailtype', 'm')
+                        ->where('s.language = :id')
+                        ->andWhere('m.name = :name')
+                        ->setParameter('id', $language)
+                        ->setParameter('name', 'weekbeforedeadline')
+                        ->getQuery();
+
+                    $weekbeforedeadlinemails[$language->getName()] = $query->setMaxResults(1)->getOneOrNullResult();
+                }
+                $sevendaysagointerval = new \DateInterval('P7D');
                 $sevendaysagointerval->invert = 1;
+                foreach ($generalcycles as $generalcycle) {
 
-                foreach ($users as $user) {
-                    if ($generalcycle->getEnddatecdp()->add($sevendaysagointerval) == $today) {
+                    $enddatecdp = $generalcycle->getEnddatecdp()->add($sevendaysagointerval);
+                    $enddatemidyear = $generalcycle->getEnddatemidyear()->add($sevendaysagointerval);
+                    $enddateyearend = $generalcycle->getEnddateyearend()->add($sevendaysagointerval);
 
-                    }
+                    if ($enddatecdp == $today | $enddatemidyear  == $today | $enddateyearend == $today) {
+                        foreach ($users as $user) {
+                            $query = $em->getRepository('IntoPeopleDatabaseBundle:Feedbackcycle')->createQueryBuilder('f')
+                                ->where('f.user = :user')
+                                ->andWhere('f.generalcycle = :generalcycle')
+                                ->setParameter('user', $user)
+                                ->setParameter('generalcycle', $generalcycle)
+                                ->getQuery();
 
-                    if ($generalcycle->getEnddatemidyear()->add($sevendaysagointerval) == $today) {
 
-                    }
+                            $feedbackcycle = $query->setMaxResults(1)->getOneOrNullResult();
 
-                    if ($generalcycle->getEnddateyearend()->add($sevendaysagointerval) == $today) {
+                            if ($enddatecdp == $today) {
+                                $cdp = $feedbackcycle->getCdp();
+                                $formstatus = $cdp->getFormstatus();
+                            }
 
-                    }
-                    $systemmail = $weekbeforedeadlinemails[$user->getLanguage()->getName()];
-                    if ($systemmail->getMailtype()->getIsActive()) {
-                        $message = \Swift_Message::newInstance()
-                            ->setSubject($systemmail->getSubject())
-                            ->setFrom($systemmail->getSender())
-                            ->setTo($user->getEmail())
-                            ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('supervisor_addComment', array('id' => $entity->getId())), $systemmail->getBody()));
+                            if ($enddatemidyear == $today) {
+                                $midyear = $feedbackcycle->getMidyear();
+                                $formstatus = $midyear->getFormstatus();
+                            }
 
-                        $this->get('mailer')->send($message);
+                            if ($enddateyearend == $today) {
+                                $endyear = $feedbackcycle->getEndyear();
+                                $formstatus = $endyear->getFormstatus();
+                            }
+
+                            $mailusers = array();
+                            $formstatusid = $formstatus->getId();
+                            if ($formstatusid == 1 | $formstatusid == 2 | $formstatusid == 4){
+                                $mailusers[0] = $user;
+                            }elseif ($formstatusid == 3){
+                                $mailusers[0] = $user->getSupervisor();
+                            }elseif ($formstatusid == 5){
+                                $query = $em->getRepository('IntoPeopleDatabaseBundle:User')->createQueryBuilder('u')
+                                    ->where('u.roles like :role')
+                                    ->setParameter(':role', '%ROLE_HR%')
+                                    ->getQuery();
+
+
+                                $users = $query->getResult();
+
+                            }
+
+                            foreach ($mailusers as $mailuser) {
+                                $systemmail = $weekbeforedeadlinemails[$mailuser->getLanguage()->getName()];
+                                $message = \Swift_Message::newInstance()
+                                    ->setSubject($systemmail->getSubject())
+                                    ->setFrom($systemmail->getSender())
+                                    ->setTo($mailuser->getEmail())
+                                    ->setBody($systemmail->getBody());
+
+                                $this->get('mailer')->send($message);
+                            }
+
+                        }
                     }
                 }
-
             }
         }
+
         return new Response();
 
 
