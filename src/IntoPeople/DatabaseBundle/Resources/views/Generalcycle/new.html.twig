@@ -34,6 +34,7 @@
 		                 {% endfor %}
 				
 					   {{ form_start(form) }}
+                {{form_errors(form)}}
 
                         {{ form_widget(form.year) }}
                         

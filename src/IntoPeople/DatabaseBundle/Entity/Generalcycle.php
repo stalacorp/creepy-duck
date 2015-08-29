@@ -4,12 +4,14 @@ namespace IntoPeople\DatabaseBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use IntoPeople\DatabaseBundle\Validator\Constraints as IntoPeopleAssert;
 
 /**
  * Generalcycle
  *
  * @ORM\Table(name="GeneralCycle", indexes={@ORM\Index(name="OrganizationId", columns={"OrganizationId"}), @ORM\Index(name="GeneralcyclestatusId", columns={"GeneralcyclestatusId"}),})
  * @ORM\Entity(repositoryClass="IntoPeople\DatabaseBundle\Entity\GeneralcycleRepository")
+ * @IntoPeopleAssert\CustomDates(message="generalcycle.startdateenddateerror")
  */
 class Generalcycle
 {
@@ -529,4 +531,5 @@ class Generalcycle
     {
         return $this->endyearAvailable;
     }
+
 }

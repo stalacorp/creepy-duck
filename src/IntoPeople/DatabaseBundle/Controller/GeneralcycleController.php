@@ -87,47 +87,7 @@ class GeneralcycleController extends Controller
                 
             }
 
-            if($entity->getStartdatecdp() > $entity->getEnddatecdp()) {
-                
-                $this->addFlash(
-                    'error',
-                    'End date has to be after start date!'
-                );
-                
-                return $this->render('IntoPeopleDatabaseBundle:Generalcycle:new.html.twig', array(
-                    'entity' => $entity,
-                    'form' => $form->createView()
-                ));
-                
-            }
-            
-            if($entity->getStartdatemidyear() > $entity->getEnddatemidyear()) {
-                
-                $this->addFlash(
-                    'error',
-                    'End date has to be after start date!'
-                );
-                
-                return $this->render('IntoPeopleDatabaseBundle:Generalcycle:new.html.twig', array(
-                    'entity' => $entity,
-                    'form' => $form->createView()
-                ));
-                
-            }
-            
-            if($entity->getStartdateyearend() > $entity->getEnddateyearend()) {
-                
-                $this->addFlash(
-                    'error',
-                    'End date has to be after start date!'
-                );
-                
-                return $this->render('IntoPeopleDatabaseBundle:Generalcycle:new.html.twig', array(
-                    'entity' => $entity,
-                    'form' => $form->createView()
-                ));
-                
-            }
+
 
             if ($em->getRepository('IntoPeopleDatabaseBundle:Generalcycle')->getActiveCycleByOrganization()) {
                 
