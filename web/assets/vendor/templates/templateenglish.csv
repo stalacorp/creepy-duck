@@ -1,1 +1,1 @@
-Email;Firstname;Lastname;Language(English or Nederlands)
+Email;Firstname;Lastname;Language(English or Nederlands);Supervisor(empty or email);Role(empty, HR, Supervisor or both)

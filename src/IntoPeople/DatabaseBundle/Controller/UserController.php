@@ -63,11 +63,20 @@ class UserController extends Controller
                                 $user->addRole('ROLE_HR');
                             }
 
+                            if (strtolower($row[5]) == "supervisor"){
+                                $user->addRole('ROLE_SUPERVISOR');
+                            }
+
+                            if (strtolower($row[5]) == "both" |strtolower($row[5]) == "beide"){
+                                $user->addRole('ROLE_SUPERVISOR');
+                                $user->addRole('ROLE_HR');
+                            }
+
                             if ($supervisor != ""){
                                 try {
                                     $supervisor = $em->getRepository('IntoPeopleDatabaseBundle:User')->findOneByEmail($supervisor);
                                 }catch (Exception $e){
-                                    throw new \Exception($this->get('translator')->trans('user.supervisornotfounderror'));
+                                    throw new \Exception($this->get('translator')->trans('user.supervisornotfounderror') . $supervisor);
                                 }
                                 $user->setSupervisor($supervisor);
                             }
