@@ -25,12 +25,12 @@ security:
             form_login:
                 provider: intopeople_user_bundle
                 csrf_provider: form.csrf_provider
-                login_path: /user/login
-                check_path: /user/login_check
+                login_path: into_people_database_security_login
+                check_path: into_people_database_security_check
                 default_target_path: /user
                 always_use_default_target_path: true
             logout:
-                path:   /user/logout
+                path:   into_people_database_security_logout
                 target: /user
             anonymous:    true
 
