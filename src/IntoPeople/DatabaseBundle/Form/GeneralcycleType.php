@@ -11,12 +11,14 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 class GeneralcycleType extends AbstractType
 {
-    
+    private $locale;
     private $tokenStorage;
-    
-    public function __construct(TokenStorageInterface $tokenStorage) {
+    public function __construct(TokenStorageInterface $tokenStorage, $locale) {
         $this->tokenStorage = $tokenStorage;
+        $this->locale = $locale;
     }
+
+
     
     /**
      * @param FormBuilderInterface $builder
@@ -24,43 +26,49 @@ class GeneralcycleType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $format = "MM/dd/yyyy";
+
+        if ($this->locale == 'nl'){
+            $format = 'dd-MM-yyyy';
+        }
+
         $builder
             ->add('year')
             ->add('startdatecdp', 'date', array(
                'widget' => 'single_text',
                'required' => false,
                 'label' => 'Start date',
-                'format' => 'MM/dd/yyyy',
+                'format' => $format,
             ))
             ->add('enddatecdp', 'date', array(
                 'widget' => 'single_text',
                 'required' => false,
                 'label' => 'End date',
-                'format' => 'MM/dd/yyyy',
+                'format' => $format,
             ))
             ->add('startdatemidyear', 'date', array(
                 'widget' => 'single_text',
                 'required' => false,
                 'label' => 'Start date',
-                'format' => 'MM/dd/yyyy',
+                'format' => $format,
             ))
             ->add('enddatemidyear', 'date', array(
                 'widget' => 'single_text',
                 'required' => false,
                 'label' => 'End date',
-                'format' => 'MM/dd/yyyy',
+                'format' => $format,
             ))
             ->add('startdateyearend', 'date', array(
                 'widget' => 'single_text',
                 'required' => false,
                 'label' => 'Start date',
-                'format' => 'MM/dd/yyyy',
+                'format' => $format,
             ))
             ->add('enddateyearend', 'date', array(
                 'widget' => 'single_text',
                 'required' => false,
                 'label' => 'End date',
-                'format' => 'MM/dd/yyyy',
+                'format' => $format,
             ))         
         ;
             

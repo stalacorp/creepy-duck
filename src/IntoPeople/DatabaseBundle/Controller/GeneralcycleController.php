@@ -204,8 +204,8 @@ class GeneralcycleController extends Controller
     private function createCreateForm(Generalcycle $entity)
     {
         $tokenStorage = $this->container->get('security.token_storage');
-        
-        $form = $this->createForm(new GeneralcycleType($tokenStorage), $entity, array(
+        $locale = $this->get('request')->getLocale();
+        $form = $this->createForm(new GeneralcycleType($tokenStorage, $locale), $entity, array(
             'action' => $this->generateUrl('generalcycle_create'),
             'method' => 'POST'
         ));
@@ -286,8 +286,9 @@ class GeneralcycleController extends Controller
     private function createEditForm(Generalcycle $entity)
     {
         $tokenStorage = $this->container->get('security.token_storage');
-        
-        $form = $this->createForm(new GeneralcycleType($tokenStorage), $entity, array(
+        $options = array();
+        $locale = $this->get('request')->getLocale();
+        $form = $this->createForm(new GeneralcycleType($tokenStorage, $locale), $entity, array(
             'action' => $this->generateUrl('generalcycle_update', array(
                 'id' => $entity->getId()
             )),
