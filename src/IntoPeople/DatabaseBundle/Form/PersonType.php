@@ -80,10 +80,8 @@ class PersonType extends AbstractType
                     ->add('organization')
                     ->add('roles', 'choice', array(
                         'choices' => array(
-                            'ROLE_USER'   => 'Medewerker',
-                            'ROLE_ADMIN' => 'HR / Management',
+                            'ROLE_HR' => 'HR / Management',
                             'ROLE_SUPERVISOR' => 'Supervisor',
-                            'ROLE_SUPER_ADMIN' => 'Super admin'
                         ), 'multiple' => true));
                     
                     if (!$entity || null === $entity->getId()) {
@@ -95,8 +93,7 @@ class PersonType extends AbstractType
                     
                     $form->add('roles', 'choice', array(
                         'choices' => array(
-                            'ROLE_USER'   => 'Medewerker',
-                            'ROLE_ADMIN' => 'HR / Management',
+                            'ROLE_HR' => 'HR / Management',
                             'ROLE_SUPERVISOR' => 'Supervisor',
                         ), 'multiple' => true));
                     
