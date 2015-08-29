@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraint;
 
 /** @Annotation */
 class CustomDates extends Constraint{
-    public $message = 'Startdate cannot be before "%string%" contains an illegal character: it can only contain letters or numbers.';
+    public $message = '%message%';
 
     public function validatedBy()
     {

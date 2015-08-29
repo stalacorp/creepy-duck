@@ -18,14 +18,14 @@ class CustomDatesValidator extends ConstraintValidator{
         if ($protocol->getStartdatecdp() > $protocol->getEnddatecdp()) {
             // If you're using the new 2.5 validation API (you probably are!)
             $this->context->buildViolation($constraint->message)
-                ->setParameter('%string%', 'test')
+                ->setParameter('%message%', 'generalcycle.enddatestartdateerror')
                 ->atPath('startdatecdp')
                 ->addViolation();
         }
         if ($protocol->getStartdatemidyear() > $protocol->getEnddatemidyear()) {
             // If you're using the new 2.5 validation API (you probably are!)
             $this->context->buildViolation($constraint->message)
-                ->setParameter('%string%', 'test')
+                ->setParameter('%message%', 'generalcycle.enddatestartdateerror')
                 ->atPath('startdatemidyear')
                 ->addViolation();
         }
@@ -33,7 +33,31 @@ class CustomDatesValidator extends ConstraintValidator{
         if ($protocol->getStartdateyearend() > $protocol->getEnddateyearend()) {
             // If you're using the new 2.5 validation API (you probably are!)
             $this->context->buildViolation($constraint->message)
-                ->setParameter('%string%', 'test')
+                ->setParameter('%message%', 'generalcycle.enddatestartdateerror')
+                ->atPath('startdateyearend')
+                ->addViolation();
+        }
+
+        if ($protocol->getEnddatemidyear() != null & $protocol->getStartdateyearend()< $protocol->getEnddatemidyear()){
+
+            $this->context->buildViolation($constraint->message)
+                ->setParameter('%message%', 'generalcycle.yearendateaftermidyear')
+                ->atPath('startdateyearend')
+                ->addViolation();
+        }
+
+        if ($protocol->getStartdatemidyear() != null & $protocol->getStartdatemidyear()< $protocol->getEnddatecdp()){
+
+            $this->context->buildViolation($constraint->message)
+                ->setParameter('%message%', 'generalcycle.midyearstartdatebeforecdpenddate')
+                ->atPath('startdatemidyear')
+                ->addViolation();
+        }
+
+        if ($protocol->getStartdateyearend()< $protocol->getEnddatecdp()){
+
+            $this->context->buildViolation($constraint->message)
+                ->setParameter('%message%', 'generalcycle.startdateyearendbeforeenddatecdp')
                 ->atPath('startdateyearend')
                 ->addViolation();
         }

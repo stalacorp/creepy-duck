@@ -11,7 +11,7 @@ use IntoPeople\DatabaseBundle\Validator\Constraints as IntoPeopleAssert;
  *
  * @ORM\Table(name="GeneralCycle", indexes={@ORM\Index(name="OrganizationId", columns={"OrganizationId"}), @ORM\Index(name="GeneralcyclestatusId", columns={"GeneralcyclestatusId"}),})
  * @ORM\Entity(repositoryClass="IntoPeople\DatabaseBundle\Entity\GeneralcycleRepository")
- * @IntoPeopleAssert\CustomDates(message="generalcycle.startdateenddateerror")
+ * @IntoPeopleAssert\CustomDates
  */
 class Generalcycle
 {
