@@ -36,7 +36,7 @@
 						<tr>
 							<td><a
 								href="{{ path('midyeartemplate_show', { 'id': entity.id }) }}">{{
-									entity.date | date('Y-m-d') }}</a></td>
+									entity.date | localizeddate('medium', 'none', app.request.locale ) }}</a></td>
 							<td>{{ entity.organization }}</td>
 							<td>{{ entity.language }}</td>
 							<td>

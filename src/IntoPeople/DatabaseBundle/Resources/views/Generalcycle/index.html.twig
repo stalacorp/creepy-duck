@@ -40,11 +40,11 @@
                 
                 <p class="margin-top-30">Start date</p>
                 
-                <p class="bold">{{ entity.startdatecdp | date('Y-m-d') }}</p>
+                <p class="bold">{{ entity.startdatecdp | localizeddate('medium', 'none', app.request.locale ) }}</p>
                 
                 <p>End date</p>
 			    
-			    <p class="bold">{{ entity.enddatecdp | date('Y-m-d')}}</p>
+			    <p class="bold">{{ entity.enddatecdp | localizeddate('medium', 'none', app.request.locale )}}</p>
                               
                 
 
@@ -56,11 +56,11 @@
 				
 				<p class="margin-top-30">Start date</p>
 								
-				<p class="bold">{{ entity.startdatemidyear | date('Y-m-d') }}</p>
+				<p class="bold">{{ entity.startdatemidyear | localizeddate('medium', 'none', app.request.locale ) }}</p>
 			    
 			    <p>End date</p>
 			    
-			    <p class="bold">{{ entity.enddatemidyear | date('Y-m-d')}}</p>
+			    <p class="bold">{{ entity.enddatemidyear | localizeddate('medium', 'none', app.request.locale )}}</p>
 			    
 				
 				
@@ -75,11 +75,11 @@
 				
 				<p class="margin-top-30">Start date</p>
 				
-				<p class="bold">{{ entity.startdateyearend | date('Y-m-d') }}</p>
+				<p class="bold">{{ entity.startdateyearend | localizeddate('medium', 'none', app.request.locale ) }}</p>
 			    
 			    <p>End date</p>
 			    
-			    <p class="bold">{{ entity.enddateyearend | date('Y-m-d')}}</p>
+			    <p class="bold">{{ entity.enddateyearend | localizeddate('medium', 'none', app.request.locale )}}</p>
 				
 
 			</div>

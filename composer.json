@@ -24,7 +24,8 @@
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "vich/uploader-bundle": "^0.14.0",
         "doctrine/doctrine-fixtures-bundle": "^2.2",
-        "friendsofsymfony/jsrouting-bundle": "^1.5"
+        "friendsofsymfony/jsrouting-bundle": "^1.5",
+        "twig/extensions": "1.0.*@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
