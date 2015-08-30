@@ -33,19 +33,19 @@ security:
 
         admin:
             # Pattern should equal the pattern you configured for the bundle
-            pattern: ^/admin
+            pattern: ^/[a-z]+/admin
             # Or if you use a custom request_matcher configure that one instead
             #request_matcher: some.service.id
 
             form_login:
                 provider: intopeople_admin_bundle
                 csrf_provider: form.csrf_provider
-                check_path: /admin/login_check
-                login_path: /admin/login
+                check_path: into_people_admin_security_check
+                login_path: into_people_admin_security_login
                 default_target_path: /admin
                 always_use_default_target_path: true
             logout:
-                            path:   /admin/logout
+                            path:   into_people_admin_security_logout
                             target: /admin
             anonymous:    true
 
