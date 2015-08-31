@@ -1,3 +1,7 @@
+into_people_database_corequality:
+    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/corequality.yml"
+    prefix:   /corequality
+
 into_people_database_systemmail:
     resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/systemmail.yml"
     prefix:   /systemmail

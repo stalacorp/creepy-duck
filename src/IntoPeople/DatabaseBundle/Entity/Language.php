@@ -69,6 +69,16 @@ class Language
     {
         $this->endyeartemplates = new ArrayCollection();
     }
+
+    /**
+     * @ORM\OneToMany(targetEntity="Corequality", mappedBy="language")
+     */
+    protected $corequalities;
+
+    public function __construct5()
+    {
+        $this->corequalities = new ArrayCollection();
+    }
     
     
     
@@ -256,5 +266,38 @@ class Language
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Add corequalities
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $corequalities
+     * @return Language
+     */
+    public function addCorequality(\IntoPeople\DatabaseBundle\Entity\Corequality $corequalities)
+    {
+        $this->corequalities[] = $corequalities;
+
+        return $this;
+    }
+
+    /**
+     * Remove corequalities
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $corequalities
+     */
+    public function removeCorequality(\IntoPeople\DatabaseBundle\Entity\Corequality $corequalities)
+    {
+        $this->corequalities->removeElement($corequalities);
+    }
+
+    /**
+     * Get corequalities
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCorequalities()
+    {
+        return $this->corequalities;
     }
 }

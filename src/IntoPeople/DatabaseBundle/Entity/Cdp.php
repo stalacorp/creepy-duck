@@ -14,9 +14,121 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Cdp
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="Id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \IntoPeople\DatabaseBundle\Entity\Developmentneeds
+     *
+     * @ORM\OneToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Developmentneeds", cascade={"persist"}, inversedBy="cdp")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="DevelopmentNeedsId", referencedColumnName="Id")
+     * })
+     */
+    private $developmentneeds;
+
+    /**
+     * @var \IntoPeople\DatabaseBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="SupervisorId", referencedColumnName="Id")
+     * })
+     */
+    private $supervisor;
+
+
+    /**
+     * @var \IntoPeople\DatabaseBundle\Entity\Formstatus
+     *
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Formstatus", inversedBy="cdps")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="FormStatusId", referencedColumnName="Id")
+     * })
+     */
+    private $formstatus;
+
+    /**
+     * @var \IntoPeople\DatabaseBundle\Entity\Cdptemplate
+     *
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Cdptemplate", inversedBy="cdps")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="CDPTemplateId", referencedColumnName="Id")
+     * })
+     */
+    private $cdptemplate;
+
+    /**
+     * @ORM\OneToMany(targetEntity="IntoPeople\DatabaseBundle\Entity\Cdphistory", cascade={"persist"}, mappedBy="cdp")
+     */
+    protected $cdphistories;
+
+    public function __construct1()
+    {
+        $this->cdphistories = new ArrayCollection();
+    }
+
+    /**
      * @ORM\OneToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Feedbackcycle", mappedBy="cdp")
      */
     protected $feedbackcycle;
+
+    /**
+     * @var \IntoPeople\DatabaseBundle\Entity\Corequality
+     *
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Corequality", inversedBy="corequality1")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Corequality1Id", referencedColumnName="Id")
+     * })
+     */
+    private $corequality1;
+
+    /**
+     * @var \IntoPeople\DatabaseBundle\Entity\Corequality
+     *
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Corequality", inversedBy="corequality2")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Corequality2Id", referencedColumnName="Id")
+     * })
+     */
+    private $corequality2;
+
+    /**
+     * @var \IntoPeople\DatabaseBundle\Entity\Corequality
+     *
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Corequality", inversedBy="corequality3")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Corequality3Id", referencedColumnName="Id")
+     * })
+     */
+    private $corequality3;
+
+    /**
+     * @var \IntoPeople\DatabaseBundle\Entity\Corequality
+     *
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Corequality", inversedBy="corequality4")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Corequality4Id", referencedColumnName="Id")
+     * })
+     */
+    private $corequality4;
+
+    /**
+     * @var \IntoPeople\DatabaseBundle\Entity\Corequality
+     *
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Corequality", inversedBy="corequality5")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Corequality5Id", referencedColumnName="Id")
+     * })
+     */
+    private $corequality5;
+
+
     
     /**
      * @var \DateTime
@@ -528,68 +640,6 @@ class Cdp
      * @ORM\Column(name="AdditionalInformation", type="text", length=65535, nullable=true)
      */
     private $additionalinformation;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="Id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
-    /**
-     * @var \IntoPeople\DatabaseBundle\Entity\Developmentneeds
-     *
-     * @ORM\OneToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Developmentneeds", cascade={"persist"}, inversedBy="cdp")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="DevelopmentNeedsId", referencedColumnName="Id")
-     * })
-     */
-    private $developmentneeds;
-
-    /**
-     * @var \IntoPeople\DatabaseBundle\Entity\User
-     *
-     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="SupervisorId", referencedColumnName="Id")
-     * })
-     */
-    private $supervisor;
-
-
-    /**
-     * @var \IntoPeople\DatabaseBundle\Entity\Formstatus
-     *
-     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Formstatus", inversedBy="cdps")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="FormStatusId", referencedColumnName="Id")
-     * })
-     */
-    private $formstatus;
-
-    /**
-     * @var \IntoPeople\DatabaseBundle\Entity\Cdptemplate
-     *
-     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Cdptemplate", inversedBy="cdps")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="CDPTemplateId", referencedColumnName="Id")
-     * })
-     */
-    private $cdptemplate;
-    
-    /**
-     * @ORM\OneToMany(targetEntity="IntoPeople\DatabaseBundle\Entity\Cdphistory", cascade={"persist"}, mappedBy="cdp")
-     */
-    protected $cdphistories;
-    
-    public function __construct1()
-    {
-        $this->cdphistories = new ArrayCollection();
-    }
-
-
 
     /**
      * Set datesubmitted
@@ -2540,5 +2590,120 @@ class Cdp
     public function getCdphistories()
     {
         return $this->cdphistories;
+    }
+
+    /**
+     * Set corequality1
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $corequality1
+     * @return Cdp
+     */
+    public function setCorequality1(\IntoPeople\DatabaseBundle\Entity\Corequality $corequality1 = null)
+    {
+        $this->corequality1 = $corequality1;
+
+        return $this;
+    }
+
+    /**
+     * Get corequality1
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
+     */
+    public function getCorequality1()
+    {
+        return $this->corequality1;
+    }
+
+    /**
+     * Set corequality2
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $corequality2
+     * @return Cdp
+     */
+    public function setCorequality2(\IntoPeople\DatabaseBundle\Entity\Corequality $corequality2 = null)
+    {
+        $this->corequality2 = $corequality2;
+
+        return $this;
+    }
+
+    /**
+     * Get corequality2
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
+     */
+    public function getCorequality2()
+    {
+        return $this->corequality2;
+    }
+
+    /**
+     * Set corequality3
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $corequality3
+     * @return Cdp
+     */
+    public function setCorequality3(\IntoPeople\DatabaseBundle\Entity\Corequality $corequality3 = null)
+    {
+        $this->corequality3 = $corequality3;
+
+        return $this;
+    }
+
+    /**
+     * Get corequality3
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
+     */
+    public function getCorequality3()
+    {
+        return $this->corequality3;
+    }
+
+    /**
+     * Set corequality4
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $corequality4
+     * @return Cdp
+     */
+    public function setCorequality4(\IntoPeople\DatabaseBundle\Entity\Corequality $corequality4 = null)
+    {
+        $this->corequality4 = $corequality4;
+
+        return $this;
+    }
+
+    /**
+     * Get corequality4
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
+     */
+    public function getCorequality4()
+    {
+        return $this->corequality4;
+    }
+
+    /**
+     * Set corequality5
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $corequality5
+     * @return Cdp
+     */
+    public function setCorequality5(\IntoPeople\DatabaseBundle\Entity\Corequality $corequality5 = null)
+    {
+        $this->corequality5 = $corequality5;
+
+        return $this;
+    }
+
+    /**
+     * Get corequality5
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
+     */
+    public function getCorequality5()
+    {
+        return $this->corequality5;
     }
 }
