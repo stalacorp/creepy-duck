@@ -1,0 +1,47 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Corequality list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Corequality</th>
+                <th>Pitfall</th>
+                <th>Allergy</th>
+                <th>Challenge</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('corequality_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.coreQuality }}</td>
+                <td>{{ entity.pitfall }}</td>
+                <td>{{ entity.allergy }}</td>
+                <td>{{ entity.challenge }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('corequality_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('corequality_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('corequality_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

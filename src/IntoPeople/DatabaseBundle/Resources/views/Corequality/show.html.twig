@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Corequality</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Corequality</th>
+                <td>{{ entity.coreQuality }}</td>
+            </tr>
+            <tr>
+                <th>Pitfall</th>
+                <td>{{ entity.pitfall }}</td>
+            </tr>
+            <tr>
+                <th>Allergy</th>
+                <td>{{ entity.allergy }}</td>
+            </tr>
+            <tr>
+                <th>Challenge</th>
+                <td>{{ entity.challenge }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('corequality') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('corequality_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

@@ -1,508 +1,462 @@
 {% extends '::base.html.twig' %} {% block body -%}
 
-<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-<div id="portlet-config" class="modal hide">
-	<div class="modal-header">
-		<button data-dismiss="modal" class="close" type="button"></button>
-		<h3>Widget Settings</h3>
-	</div>
-	<div class="modal-body">Widget settings form goes here</div>
-</div>
-<div class="clearfix"></div>
-<div class="container">
-	<div class="content">
-
-		<div class="page-title">
-			<i class="fa fa-file-text-o"></i>
-			<h3>
-				<span class="semi-bold">C</span>areer <span class="semi-bold">D</span>evelopment
-				<span class="semi-bold">P</span>lan
-			</h3>
-		</div>
-		
-		{% set template = entity.cdptemplate %}
-
-		<div class="row">
-			<div class="col-md-12">
-				
-					   <h3>Personalia</h3>
-					   
-					   
-					   <table class="table table-bordered margin-top-30">
-					   
-					       <tr>
-					           <th>Name:<th>
-					           <td>{{ app.user.firstname }} {{ app.user.lastname }}</td>
-					       </tr>
-					       
-					       {% if app.user.supervisor != null %}
-					       <tr>
-					           <th>Supervisor:<th>
-					           <td>{{ app.user.supervisor.firstname }} {{ app.user.supervisor.lastname }}</td>
-					       </tr>
-					       {% endif %}
-					       
-					       <tr>
-					           <th>Date discussion:<th>
-					           <td></td>
-					       </tr>
-					   
-					   </table>
-					
-					
-
-			</div>
-		</div>
-		
-		
-		                  {% if entity.formstatus.id > 3 %}
-						
-						<div class="row margin-top-50">
-			             <div class="col-md-6">
-						
-						<h3>Comments supervisor</h3>
-						
-						{{ entity.commentSup }}
-						
-						</div>
-						</div>
-						
-						{% endif %}
-						
-						{% if entity.formstatus.id > 5 %}
-						
-						<div class="row margin-top-50">
-			             <div class="col-md-6">
-						
-						<h3>Feedback HR</h3>
-						
-						{{ entity.feedbackHR }}
-						
-						</div>
-						</div>
-						
-						{% endif %}
-		
-
-
-		<div class="row margin-top-50">
-			<div class="col-md-12">
-
-
-
-						<h3>{{ template.selfassesment }}</h3>
-
-						<p class="margin-top-30">{{ template.selfassesmentDescription }}</p>
-
-						{{ form_start(form) }} {{ form_errors(form) }}
-						<table class="table table-bordered no-more-tables margin-top-30">
-							<tr>
-								<th style="width: 50%">{{ template.talents }}</th>
-								<th style="width: 50%">{{ template.talentsDescription }}</th>
-							</tr>
-
-							<tr>
 
-								<td>{{ form_errors(form.talent1) }} {{form_widget(form.talent1)
-									}}</td>
 
-								<td>{{ form_errors(form.talentwhy1) }}
-									{{form_widget(form.talentwhy1) }}</td>
-							</tr>
+    {% set template = entity.cdptemplate %}
 
-							<tr>
+    <div class="row">
+        <div class="col-md-12">
 
-								<td>{{ form_errors(form.talent2)}} {{ form_widget(form.talent2)
-									}}</td>
+            <h3>Personalia</h3>
 
-								<td>{{ form_errors(form.talentwhy2) }}
-									{{form_widget(form.talentwhy2) }}</td>
-							</tr>
 
-							<tr>
+            <table class="table">
 
-								<td>{{ form_errors(form.talent3)}} {{ form_widget(form.talent3)
-									}}</td>
+                <tr>
+                    <th>Name:
+                    <th>
+                    <td>{{ app.user.firstname }} {{ app.user.lastname }}</td>
+                </tr>
 
-								<td>{{ form_errors(form.talentwhy3) }}
-									{{form_widget(form.talentwhy3) }}</td>
-							</tr>
+                {% if app.user.supervisor != null %}
+                    <tr>
+                        <th>Supervisor:
+                        <th>
+                        <td>{{ app.user.supervisor.firstname }} {{ app.user.supervisor.lastname }}</td>
+                    </tr>
+                {% endif %}
 
-							<tr>
+                <tr>
+                    <th>Date discussion:
+                    <th>
+                    <td></td>
+                </tr>
 
-								<td>{{ form_errors(form.talent4)}} {{ form_widget(form.talent4)
-									}}</td>
+            </table>
 
-								<td>{{ form_errors(form.talentwhy4) }}
-									{{form_widget(form.talentwhy4) }}</td>
-							</tr>
 
-							<tr>
+        </div>
+    </div>
 
-								<td>{{ form_errors(form.talent5)}} {{ form_widget(form.talent5)
-									}}</td>
 
-								<td>{{ form_errors(form.talentwhy5) }}
-									{{form_widget(form.talentwhy5) }}</td>
-							</tr>
+    {% if entity.formstatus.id > 3 %}
 
-						</table>
+        <div class="row">
+            <div class="col-md-12">
 
+                <h3>Comments supervisor</h3>
 
-			</div>
-		</div>
+                {{ entity.commentSup }}
 
-		<div class="row">
-			<div class="col-md-12">
+            </div>
+        </div>
 
+    {% endif %}
 
+    {% if entity.formstatus.id > 5 %}
 
+        <div class="row">
+            <div class="col-md-12">
 
-						<table class="table table-bordered no-more-tables">
-							<tr>
-								<th style="width: 50%">{{ template.challenges }}</th>
-								<th style="width: 50%">{{ template.challengesDescription }}</th>
-							</tr>
+                <h3>Feedback HR</h3>
 
-							<tr>
+                {{ entity.feedbackHR }}
 
-								<td>{{ form_errors(form.challenge1) }}
-									{{form_widget(form.challenge1) }}</td>
+            </div>
+        </div>
 
-								<td>{{ form_errors(form.challengewhy1) }}
-									{{form_widget(form.challengewhy1) }}</td>
-							</tr>
+    {% endif %}
 
-							<tr>
+    <div class="row">
+        <div class="col-md-12">
 
-								<td>{{ form_errors(form.challenge2)}} {{
-									form_widget(form.challenge2) }}</td>
+            <table class="table">
+                <tr>
+                    <th>{{ "cdp.corequality" | trans }}</th>
+                    <th>{{ "cdp.pitfall" | trans }}</th>
+                    <th>{{ "cdp.challenge" | trans }}</th>
+                    <th>{{ "cdp.allergy" | trans }}</th>
+                </tr>
 
-								<td>{{ form_errors(form.challengewhy2) }}
-									{{form_widget(form.challengewhy2) }}</td>
-							</tr>
+                <tr>
+                    <td>{{ form_widget(form.corequality1) }}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
 
-							<tr>
+                <tr>
+                    <td>{{ form_widget(form.corequality2) }}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
 
-								<td>{{ form_errors(form.challenge3)}} {{
-									form_widget(form.challenge3) }}</td>
+                <tr>
+                    <td>{{ form_widget(form.corequality3) }}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
 
-								<td>{{ form_errors(form.challengewhy3) }}
-									{{form_widget(form.challengewhy3) }}</td>
-							</tr>
+                <tr>
+                    <td>{{ form_widget(form.corequality4) }}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
 
-							<tr>
+                <tr>
+                    <td>{{ form_widget(form.corequality5) }}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
 
-								<td>{{ form_errors(form.challenge4)}} {{
-									form_widget(form.challenge4) }}</td>
+            </table>
 
-								<td>{{ form_errors(form.challengewhy4) }}
-									{{form_widget(form.challengewhy4) }}</td>
-							</tr>
+        </div>
+    </div>
 
-							<tr>
 
-								<td>{{ form_errors(form.challenge5)}} {{
-									form_widget(form.challenge5) }}</td>
 
-								<td>{{ form_errors(form.challengewhy5) }}
-									{{form_widget(form.challengewhy5) }}</td>
-							</tr>
+    <div class="row">
+        <div class="col-md-12">
 
-						</table>
 
-						<h3>Development Needs for your Job</h3>
+            <h3>{{ template.selfassesment }}</h3>
 
-						<p>{{ template.developmentneeds }}</p>
+            <p class="">{{ template.selfassesmentDescription }}</p>
 
-						<table class="table table-bordered no-more-tables">
+            {{ form_start(form) }} {{ form_errors(form) }}
+            <table class="table">
+                <tr>
+                    <th style="width: 50%">{{ template.talents }}</th>
+                    <th style="width: 50%">{{ template.talentsDescription }}</th>
+                </tr>
 
-							<thead>
-								<tr>
-									<th style="width: 22%" colspan="2">{{ template.whatWhy }}</th>
-									<th style="width: 12%">{{ template.how }}</th>
-									<th style="width: 12%">{{ template.success }}</th>
-									<th style="width: 12%">{{ template.needs }}</th>
-								</tr>
-							</thead>
+                <tr>
 
-							<tbody>
+                    <td>{{ form_errors(form.talent1) }} {{ form_widget(form.talent1) }}</td>
 
-								<tr>
-									<td colspan="2">{{ template.whatWhyDescription }}</td>
-									<td>{{ template.howDescription }}</td>
-									<td>{{ template.successDescription }}</td>
-									<td>{{ template.needsDescription }}</td>
-								</tr>
-
-								<tr>
-									<td colspan="5"><h5 class="text-center">Job specific tasks and
-											responsibilities</h5></td>
-								</tr>
-
-
-								<tr>
-									<td colspan="2">{{ form_errors(form.developmentneeds.task1)}}
-										{{ form_widget(form.developmentneeds.task1) }}</td>
-									<td>{{ form_errors(form.taskhow1)}} {{
-										form_widget(form.taskhow1) }}</td>
-									<td>{{ form_errors(form.tasksucces1)}} {{
-										form_widget(form.tasksucces1) }}</td>
-									<td>{{ form_errors(form.taskneeds1)}} {{
-										form_widget(form.taskneeds1) }}</td>
-								</tr>
-
-								<tr>
-									<td colspan="2">{{ form_errors(form.developmentneeds.task2)}}
-										{{ form_widget(form.developmentneeds.task2) }}</td>
-									<td>{{ form_errors(form.taskhow2)}} {{
-										form_widget(form.taskhow2) }}</td>
-									<td>{{ form_errors(form.tasksucces2)}} {{
-										form_widget(form.tasksucces2) }}</td>
-									<td>{{ form_errors(form.taskneeds2)}} {{
-										form_widget(form.taskneeds2) }}</td>
-								</tr>
-
-								<tr>
-									<td colspan="2">{{ form_errors(form.developmentneeds.task3)}}
-										{{ form_widget(form.developmentneeds.task3) }}</td>
-									<td>{{ form_errors(form.taskhow3)}} {{
-										form_widget(form.taskhow3)}}</td>
-									<td>{{ form_errors(form.tasksucces3)}} {{
-										form_widget(form.tasksucces3) }}</td>
-									<td>{{ form_errors(form.taskneeds3)}} {{
-										form_widget(form.taskneeds3) }}</td>
-								</tr>
-
-								<tr>
-									<td colspan="2">{{ form_errors(form.developmentneeds.task4)}}
-										{{ form_widget(form.developmentneeds.task4) }}</td>
-									<td>{{ form_errors(form.taskhow4)}} {{
-										form_widget(form.taskhow4)}}</td>
-									<td>{{ form_errors(form.tasksucces4)}} {{
-										form_widget(form.tasksucces4) }}</td>
-									<td>{{ form_errors(form.taskneeds4)}} {{
-										form_widget(form.taskneeds4) }}</td>
-								</tr>
-
-								<tr>
-									<td colspan="2">{{ form_errors(form.developmentneeds.task5)}}
-										{{ form_widget(form.developmentneeds.task5) }}</td>
-									<td>{{ form_errors(form.taskhow5)}} {{
-										form_widget(form.taskhow5) }}</td>
-									<td>{{ form_errors(form.tasksucces5)}} {{
-										form_widget(form.tasksucces5) }}</td>
-									<td>{{ form_errors(form.taskneeds5)}} {{
-										form_widget(form.taskneeds5) }}</td>
-								</tr>
-
-								<tr>
-									<td colspan="5"><h5 class="text-center">Job specific skills and
-											competencies</h5></td>
-								</tr>
-
-								<tr>
-									<th style="width: 22%" colspan="2">{{ template.whatWhy }}</th>
-									<th style="width: 12%">{{ template.how }}</th>
-									<th style="width: 12%">{{ template.success }}</th>
-									<th style="width: 12%">{{ template.needs }}</th>
-								</tr>
-
-
-								<tr>
-									<td colspan="2">{{ form_errors(form.developmentneeds.skill1)}}
-										{{ form_widget(form.developmentneeds.skill1) }}</td>
-									<td>{{ form_errors(form.skillshow1)}} {{
-										form_widget(form.skillshow1) }}</td>
-									<td>{{ form_errors(form.skillssuccess1)}} {{
-										form_widget(form.skillssuccess1) }}</td>
-									<td>{{ form_errors(form.skillsneeds1)}} {{
-										form_widget(form.skillsneeds1) }}</td>
-								</tr>
-
-								<tr>
-									<td colspan="2">{{ form_errors(form.developmentneeds.skill2)}}
-										{{ form_widget(form.developmentneeds.skill2) }}</td>
-									<td>{{ form_errors(form.skillshow2)}} {{
-										form_widget(form.skillshow2) }}</td>
-									<td>{{ form_errors(form.skillssucces2)}} {{
-										form_widget(form.skillssucces2) }}</td>
-									<td>{{ form_errors(form.skillsneeds2)}} {{
-										form_widget(form.skillsneeds2) }}</td>
-								</tr>
-
-								<tr>
-									<td colspan="2">{{ form_errors(form.developmentneeds.skill3)}}
-										{{ form_widget(form.developmentneeds.skill3) }}</td>
-									<td>{{ form_errors(form.skillshow3)}} {{
-										form_widget(form.skillshow3)}}</td>
-									<td>{{ form_errors(form.skillssucces3)}} {{
-										form_widget(form.skillssucces3) }}</td>
-									<td>{{ form_errors(form.skillsneeds3)}} {{
-										form_widget(form.skillsneeds3) }}</td>
-								</tr>
-
-								<tr>
-									<td colspan="2">{{ form_errors(form.developmentneeds.skill4)}}
-										{{ form_widget(form.developmentneeds.skill4) }}</td>
-									<td>{{ form_errors(form.skillshow4)}} {{
-										form_widget(form.skillshow4)}}</td>
-									<td>{{ form_errors(form.skillssucces4)}} {{
-										form_widget(form.skillssucces4) }}</td>
-									<td>{{ form_errors(form.skillsneeds4)}} {{
-										form_widget(form.skillsneeds4) }}</td>
-								</tr>
-
-								<tr>
-									<td colspan="2">{{ form_errors(form.developmentneeds.skill5)}}
-										{{ form_widget(form.developmentneeds.skill5) }}</td>
-									<td>{{ form_errors(form.skillshow5)}} {{
-										form_widget(form.skillshow5) }}</td>
-									<td>{{ form_errors(form.skillssucces5)}} {{
-										form_widget(form.skillssucces5) }}</td>
-									<td>{{ form_errors(form.skillsneeds5)}} {{
-										form_widget(form.skillsneeds5) }}</td>
-								</tr>
-
-
-								<tr>
-									<td colspan="5"><h5 class="text-center">Organization
-											competencies</h5></td>
-								</tr>
-
-								<tr>
-									<th style="width: 22%" colspan="2">{{ template.whatWhy }}</th>
-									<th style="width: 12%">{{ template.how }}</th>
-									<th style="width: 12%">{{ template.success }}</th>
-									<th style="width: 12%">{{ template.needs }}</th>
-								</tr>
-
-
-								<tr>
-									<td>{{
-										form_errors(form.developmentneeds.organizationcompetence1)}}
-										{{ form_widget(form.developmentneeds.organizationcompetence1)
-										}}</td>
-									<td>{{
-										form_errors(form.developmentneeds.organizationdescription1)}}
-										{{ form_widget(form.developmentneeds.organizationdescription1)
-										}}</td>
-
-									<td>{{ form_errors(form.organizationhow1)}} {{
-										form_widget(form.organizationhow1) }}</td>
-									<td>{{ form_errors(form.organizationsuccess1)}} {{
-										form_widget(form.organizationsuccess1) }}</td>
-									<td>{{ form_errors(form.organizationneeds1)}} {{
-										form_widget(form.organizationneeds1) }}</td>
-								</tr>
-
-								<tr>
-									<td>{{
-										form_errors(form.developmentneeds.organizationcompetence2)}}
-										{{ form_widget(form.developmentneeds.organizationcompetence2)
-										}}</td>
-									<td>{{
-										form_errors(form.developmentneeds.organizationdescription2)}}
-										{{ form_widget(form.developmentneeds.organizationdescription2)
-										}}</td>
-
-									<td>{{ form_errors(form.organizationhow2)}} {{
-										form_widget(form.organizationhow2) }}</td>
-									<td>{{ form_errors(form.organizationsuccess2)}} {{
-										form_widget(form.organizationsuccess2) }}</td>
-									<td>{{ form_errors(form.organizationneeds2)}} {{
-										form_widget(form.organizationneeds2) }}</td>
-								</tr>
-
-								<tr>
-									<td>{{
-										form_errors(form.developmentneeds.organizationcompetence3)}}
-										{{ form_widget(form.developmentneeds.organizationcompetence3)
-										}}</td>
-									<td>{{
-										form_errors(form.developmentneeds.organizationdescription3)}}
-										{{ form_widget(form.developmentneeds.organizationdescription3)
-										}}</td>
-
-									<td>{{ form_errors(form.organizationhow3)}} {{
-										form_widget(form.organizationhow3) }}</td>
-									<td>{{ form_errors(form.organizationsuccess3)}} {{
-										form_widget(form.organizationsuccess3) }}</td>
-									<td>{{ form_errors(form.organizationneeds3)}} {{
-										form_widget(form.organizationneeds3) }}</td>
-								</tr>
-
-								<tr>
-									<td>{{
-										form_errors(form.developmentneeds.organizationcompetence4)}}
-										{{ form_widget(form.developmentneeds.organizationcompetence4)
-										}}</td>
-									<td>{{
-										form_errors(form.developmentneeds.organizationdescription4)}}
-										{{ form_widget(form.developmentneeds.organizationdescription4)
-										}}</td>
-
-									<td>{{ form_errors(form.organizationhow4)}} {{
-										form_widget(form.organizationhow4) }}</td>
-									<td>{{ form_errors(form.organizationsuccess4)}} {{
-										form_widget(form.organizationsuccess4) }}</td>
-									<td>{{ form_errors(form.organizationneeds4)}} {{
-										form_widget(form.organizationneeds4) }}</td>
-								</tr>
-
-								<tr>
-									<td>{{
-										form_errors(form.developmentneeds.organizationcompetence5)}}
-										{{ form_widget(form.developmentneeds.organizationcompetence5)
-										}}</td>
-									<td>{{
-										form_errors(form.developmentneeds.organizationdescription5)}}
-										{{ form_widget(form.developmentneeds.organizationdescription5)
-										}}</td>
-
-									<td>{{ form_errors(form.organizationhow5)}} {{
-										form_widget(form.organizationhow5) }}</td>
-									<td>{{ form_errors(form.organizationsuccess5)}} {{
-										form_widget(form.organizationsuccess5) }}</td>
-									<td>{{ form_errors(form.organizationneeds5)}} {{
-										form_widget(form.organizationneeds5) }}</td>
-								</tr>
-
-
-							</tbody>
-
-
-						</table>
-
-
-						<h3>{{ template.careerObjectives }}</h3>
-
-						<p>{{ template.careerObjectivesQuestion }}</p>
-
-						{{ form_errors(form.careerobjective)}} {{
-						form_widget(form.careerobjective) }}
-
-
-						<h3>{{ template.additionalInformation }}</h3>
-
-						<p>{{ template.additionalInformationQuestion }}</p>
-
-						{{ form_errors(form.additionalinformation)}} {{
-						form_widget(form.additionalinformation)}}
-
-						<p class="margin-top-20">
-							{{ form_widget(form.save) }} {{ form_widget(form.saveAndAdd) }} <a
-								href="{{ app.request.headers.get('referer') }}"
-								class="btn btn-default btn-cons" type="button">Back</a>
-						</p>						
-
-						{{ form_end(form) }}
-
-
-			</div>
-		</div>
-	</div>
-</div>
+                    <td>{{ form_errors(form.talentwhy1) }}
+                        {{ form_widget(form.talentwhy1) }}</td>
+                </tr>
+
+                <tr>
+
+                    <td>{{ form_errors(form.talent2) }} {{ form_widget(form.talent2) }}</td>
+
+                    <td>{{ form_errors(form.talentwhy2) }}
+                        {{ form_widget(form.talentwhy2) }}</td>
+                </tr>
+
+                <tr>
+
+                    <td>{{ form_errors(form.talent3) }} {{ form_widget(form.talent3) }}</td>
+
+                    <td>{{ form_errors(form.talentwhy3) }}
+                        {{ form_widget(form.talentwhy3) }}</td>
+                </tr>
+
+                <tr>
+
+                    <td>{{ form_errors(form.talent4) }} {{ form_widget(form.talent4) }}</td>
+
+                    <td>{{ form_errors(form.talentwhy4) }}
+                        {{ form_widget(form.talentwhy4) }}</td>
+                </tr>
+
+                <tr>
+
+                    <td>{{ form_errors(form.talent5) }} {{ form_widget(form.talent5) }}</td>
+
+                    <td>{{ form_errors(form.talentwhy5) }}
+                        {{ form_widget(form.talentwhy5) }}</td>
+                </tr>
+
+            </table>
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <table class="table">
+                <tr>
+                    <th style="width: 50%">{{ template.challenges }}</th>
+                    <th style="width: 50%">{{ template.challengesDescription }}</th>
+                </tr>
+
+                <tr>
+
+                    <td>{{ form_errors(form.challenge1) }}
+                        {{ form_widget(form.challenge1) }}</td>
+
+                    <td>{{ form_errors(form.challengewhy1) }}
+                        {{ form_widget(form.challengewhy1) }}</td>
+                </tr>
+
+                <tr>
+
+                    <td>{{ form_errors(form.challenge2) }} {{ form_widget(form.challenge2) }}</td>
+
+                    <td>{{ form_errors(form.challengewhy2) }}
+                        {{ form_widget(form.challengewhy2) }}</td>
+                </tr>
+
+                <tr>
+
+                    <td>{{ form_errors(form.challenge3) }} {{ form_widget(form.challenge3) }}</td>
+
+                    <td>{{ form_errors(form.challengewhy3) }}
+                        {{ form_widget(form.challengewhy3) }}</td>
+                </tr>
+
+                <tr>
+
+                    <td>{{ form_errors(form.challenge4) }} {{ form_widget(form.challenge4) }}</td>
+
+                    <td>{{ form_errors(form.challengewhy4) }}
+                        {{ form_widget(form.challengewhy4) }}</td>
+                </tr>
+
+                <tr>
+
+                    <td>{{ form_errors(form.challenge5) }} {{ form_widget(form.challenge5) }}</td>
+
+                    <td>{{ form_errors(form.challengewhy5) }}
+                        {{ form_widget(form.challengewhy5) }}</td>
+                </tr>
+
+            </table>
+
+            <h3>Development Needs for your Job</h3>
+
+            <p>{{ template.developmentneeds }}</p>
+
+            <table class="table">
+
+                <thead>
+                <tr>
+                    <th style="width: 22%" colspan="2">{{ template.whatWhy }}</th>
+                    <th style="width: 12%">{{ template.how }}</th>
+                    <th style="width: 12%">{{ template.success }}</th>
+                    <th style="width: 12%">{{ template.needs }}</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr>
+                    <td colspan="2">{{ template.whatWhyDescription }}</td>
+                    <td>{{ template.howDescription }}</td>
+                    <td>{{ template.successDescription }}</td>
+                    <td>{{ template.needsDescription }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="5"><h5 class="text-center">Job specific tasks and
+                            responsibilities</h5></td>
+                </tr>
+
+
+                <tr>
+                    <td colspan="2">{{ form_errors(form.developmentneeds.task1) }}
+                        {{ form_widget(form.developmentneeds.task1) }}</td>
+                    <td>{{ form_errors(form.taskhow1) }} {{ form_widget(form.taskhow1) }}</td>
+                    <td>{{ form_errors(form.tasksucces1) }} {{ form_widget(form.tasksucces1) }}</td>
+                    <td>{{ form_errors(form.taskneeds1) }} {{ form_widget(form.taskneeds1) }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ form_errors(form.developmentneeds.task2) }}
+                        {{ form_widget(form.developmentneeds.task2) }}</td>
+                    <td>{{ form_errors(form.taskhow2) }} {{ form_widget(form.taskhow2) }}</td>
+                    <td>{{ form_errors(form.tasksucces2) }} {{ form_widget(form.tasksucces2) }}</td>
+                    <td>{{ form_errors(form.taskneeds2) }} {{ form_widget(form.taskneeds2) }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ form_errors(form.developmentneeds.task3) }}
+                        {{ form_widget(form.developmentneeds.task3) }}</td>
+                    <td>{{ form_errors(form.taskhow3) }} {{ form_widget(form.taskhow3) }}</td>
+                    <td>{{ form_errors(form.tasksucces3) }} {{ form_widget(form.tasksucces3) }}</td>
+                    <td>{{ form_errors(form.taskneeds3) }} {{ form_widget(form.taskneeds3) }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ form_errors(form.developmentneeds.task4) }}
+                        {{ form_widget(form.developmentneeds.task4) }}</td>
+                    <td>{{ form_errors(form.taskhow4) }} {{ form_widget(form.taskhow4) }}</td>
+                    <td>{{ form_errors(form.tasksucces4) }} {{ form_widget(form.tasksucces4) }}</td>
+                    <td>{{ form_errors(form.taskneeds4) }} {{ form_widget(form.taskneeds4) }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ form_errors(form.developmentneeds.task5) }}
+                        {{ form_widget(form.developmentneeds.task5) }}</td>
+                    <td>{{ form_errors(form.taskhow5) }} {{ form_widget(form.taskhow5) }}</td>
+                    <td>{{ form_errors(form.tasksucces5) }} {{ form_widget(form.tasksucces5) }}</td>
+                    <td>{{ form_errors(form.taskneeds5) }} {{ form_widget(form.taskneeds5) }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="5"><h5 class="text-center">Job specific skills and
+                            competencies</h5></td>
+                </tr>
+
+                <tr>
+                    <th style="width: 22%" colspan="2">{{ template.whatWhy }}</th>
+                    <th style="width: 12%">{{ template.how }}</th>
+                    <th style="width: 12%">{{ template.success }}</th>
+                    <th style="width: 12%">{{ template.needs }}</th>
+                </tr>
+
+
+                <tr>
+                    <td colspan="2">{{ form_errors(form.developmentneeds.skill1) }}
+                        {{ form_widget(form.developmentneeds.skill1) }}</td>
+                    <td>{{ form_errors(form.skillshow1) }} {{ form_widget(form.skillshow1) }}</td>
+                    <td>{{ form_errors(form.skillssuccess1) }} {{ form_widget(form.skillssuccess1) }}</td>
+                    <td>{{ form_errors(form.skillsneeds1) }} {{ form_widget(form.skillsneeds1) }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ form_errors(form.developmentneeds.skill2) }}
+                        {{ form_widget(form.developmentneeds.skill2) }}</td>
+                    <td>{{ form_errors(form.skillshow2) }} {{ form_widget(form.skillshow2) }}</td>
+                    <td>{{ form_errors(form.skillssucces2) }} {{ form_widget(form.skillssucces2) }}</td>
+                    <td>{{ form_errors(form.skillsneeds2) }} {{ form_widget(form.skillsneeds2) }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ form_errors(form.developmentneeds.skill3) }}
+                        {{ form_widget(form.developmentneeds.skill3) }}</td>
+                    <td>{{ form_errors(form.skillshow3) }} {{ form_widget(form.skillshow3) }}</td>
+                    <td>{{ form_errors(form.skillssucces3) }} {{ form_widget(form.skillssucces3) }}</td>
+                    <td>{{ form_errors(form.skillsneeds3) }} {{ form_widget(form.skillsneeds3) }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ form_errors(form.developmentneeds.skill4) }}
+                        {{ form_widget(form.developmentneeds.skill4) }}</td>
+                    <td>{{ form_errors(form.skillshow4) }} {{ form_widget(form.skillshow4) }}</td>
+                    <td>{{ form_errors(form.skillssucces4) }} {{ form_widget(form.skillssucces4) }}</td>
+                    <td>{{ form_errors(form.skillsneeds4) }} {{ form_widget(form.skillsneeds4) }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ form_errors(form.developmentneeds.skill5) }}
+                        {{ form_widget(form.developmentneeds.skill5) }}</td>
+                    <td>{{ form_errors(form.skillshow5) }} {{ form_widget(form.skillshow5) }}</td>
+                    <td>{{ form_errors(form.skillssucces5) }} {{ form_widget(form.skillssucces5) }}</td>
+                    <td>{{ form_errors(form.skillsneeds5) }} {{ form_widget(form.skillsneeds5) }}</td>
+                </tr>
+
+
+                <tr>
+                    <td colspan="5"><h5 class="text-center">Organization
+                            competencies</h5></td>
+                </tr>
+
+                <tr>
+                    <th style="width: 22%" colspan="2">{{ template.whatWhy }}</th>
+                    <th style="width: 12%">{{ template.how }}</th>
+                    <th style="width: 12%">{{ template.success }}</th>
+                    <th style="width: 12%">{{ template.needs }}</th>
+                </tr>
+
+
+                <tr>
+                    <td>{{ form_errors(form.developmentneeds.organizationcompetence1) }}
+                        {{ form_widget(form.developmentneeds.organizationcompetence1) }}</td>
+                    <td>{{ form_errors(form.developmentneeds.organizationdescription1) }}
+                        {{ form_widget(form.developmentneeds.organizationdescription1) }}</td>
+
+                    <td>{{ form_errors(form.organizationhow1) }} {{ form_widget(form.organizationhow1) }}</td>
+                    <td>{{ form_errors(form.organizationsuccess1) }} {{ form_widget(form.organizationsuccess1) }}</td>
+                    <td>{{ form_errors(form.organizationneeds1) }} {{ form_widget(form.organizationneeds1) }}</td>
+                </tr>
+
+                <tr>
+                    <td>{{ form_errors(form.developmentneeds.organizationcompetence2) }}
+                        {{ form_widget(form.developmentneeds.organizationcompetence2) }}</td>
+                    <td>{{ form_errors(form.developmentneeds.organizationdescription2) }}
+                        {{ form_widget(form.developmentneeds.organizationdescription2) }}</td>
+
+                    <td>{{ form_errors(form.organizationhow2) }} {{ form_widget(form.organizationhow2) }}</td>
+                    <td>{{ form_errors(form.organizationsuccess2) }} {{ form_widget(form.organizationsuccess2) }}</td>
+                    <td>{{ form_errors(form.organizationneeds2) }} {{ form_widget(form.organizationneeds2) }}</td>
+                </tr>
+
+                <tr>
+                    <td>{{ form_errors(form.developmentneeds.organizationcompetence3) }}
+                        {{ form_widget(form.developmentneeds.organizationcompetence3) }}</td>
+                    <td>{{ form_errors(form.developmentneeds.organizationdescription3) }}
+                        {{ form_widget(form.developmentneeds.organizationdescription3) }}</td>
+
+                    <td>{{ form_errors(form.organizationhow3) }} {{ form_widget(form.organizationhow3) }}</td>
+                    <td>{{ form_errors(form.organizationsuccess3) }} {{ form_widget(form.organizationsuccess3) }}</td>
+                    <td>{{ form_errors(form.organizationneeds3) }} {{ form_widget(form.organizationneeds3) }}</td>
+                </tr>
+
+                <tr>
+                    <td>{{ form_errors(form.developmentneeds.organizationcompetence4) }}
+                        {{ form_widget(form.developmentneeds.organizationcompetence4) }}</td>
+                    <td>{{ form_errors(form.developmentneeds.organizationdescription4) }}
+                        {{ form_widget(form.developmentneeds.organizationdescription4) }}</td>
+
+                    <td>{{ form_errors(form.organizationhow4) }} {{ form_widget(form.organizationhow4) }}</td>
+                    <td>{{ form_errors(form.organizationsuccess4) }} {{ form_widget(form.organizationsuccess4) }}</td>
+                    <td>{{ form_errors(form.organizationneeds4) }} {{ form_widget(form.organizationneeds4) }}</td>
+                </tr>
+
+                <tr>
+                    <td>{{ form_errors(form.developmentneeds.organizationcompetence5) }}
+                        {{ form_widget(form.developmentneeds.organizationcompetence5) }}</td>
+                    <td>{{ form_errors(form.developmentneeds.organizationdescription5) }}
+                        {{ form_widget(form.developmentneeds.organizationdescription5) }}</td>
+
+                    <td>{{ form_errors(form.organizationhow5) }} {{ form_widget(form.organizationhow5) }}</td>
+                    <td>{{ form_errors(form.organizationsuccess5) }} {{ form_widget(form.organizationsuccess5) }}</td>
+                    <td>{{ form_errors(form.organizationneeds5) }} {{ form_widget(form.organizationneeds5) }}</td>
+                </tr>
+
+
+                </tbody>
+
+
+            </table>
+
+
+            <h3>{{ template.careerObjectives }}</h3>
+
+            <p>{{ template.careerObjectivesQuestion }}</p>
+
+            {{ form_errors(form.careerobjective) }} {{ form_widget(form.careerobjective) }}
+
+
+            <h3>{{ template.additionalInformation }}</h3>
+
+            <p>{{ template.additionalInformationQuestion }}</p>
+
+            {{ form_errors(form.additionalinformation) }} {{ form_widget(form.additionalinformation) }}
+
+            <p class="">
+                {{ form_widget(form.save) }} {{ form_widget(form.saveAndAdd) }} <a
+                        href="{{ app.request.headers.get('referer') }}"
+                        class="btn btn-default btn-cons" type="button">Back</a>
+            </p>
+
+            {{ form_end(form) }}
+
+
+        </div>
+    </div>
 
 {% endblock %}
 

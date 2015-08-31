@@ -473,4 +473,13 @@ class User extends BaseUser
     {
         return $this->users;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->feedbackcycles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
 }
