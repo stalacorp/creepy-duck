@@ -147,7 +147,7 @@ class Generalcycle
      */
     public function __toString()
     {
-        return $this->getOrganization() . ": Generalcycle " . $this->getYear();
+        return  $this->getYear();
     }
     
 

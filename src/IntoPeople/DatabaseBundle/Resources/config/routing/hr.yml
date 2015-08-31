@@ -28,3 +28,13 @@ hr_updateEndyear:
 hr_addEndyearFeedback:
     path:     /{id}/addEndyearFeedback
     defaults: { _controller: "IntoPeopleDatabaseBundle:HR:addEndyearFeedback" }
+
+hr_dashboard:
+    path:     /dashboard
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:dashboard" }
+
+hr_getcycles:
+    path:     /getcycles/{generalcycleid}/{cycle}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:getcycles" }
+    options:
+      expose: true

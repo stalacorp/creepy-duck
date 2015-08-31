@@ -1,0 +1,88 @@
+{% extends '::base.html.twig' %}
+{% block body -%}
+<style>
+    .pie-legend li span{
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        margin-right: 5px;
+    }
+
+    .pie-legend {
+        list-style-type: none;
+    }
+</style>
+    <h3>HR Dashboard</h3>
+<div class="col-lg-3 col-md-4">
+    {{ form_start(form) }}
+    
+    {{ form_widget(form) }}
+    
+    {{ form_end(form) }}
+</div>
+    <div class="col-lg-9 col-md-8" id="chart">
+        <canvas id="countChart"></canvas>
+    </div>
+<div>
+    <div id="result"></div>
+</div>
+{% endblock %}
+
+{%  block javascripts -%}
+    {{ parent() }}
+    <script src="{{ asset('assets/vendor/Chart.js/Chart.min.js') }}"></script>
+
+    <script>
+        function getcycles(){
+            $.ajax({url: Routing.generate('hr_getcycles', {generalcycleid:$('#form_generalcycle').val(), cycle: $('#form_cycle').val()}),
+                success: function(result){
+                    $("#result").html(result);
+                }});
+        }
+
+        function drawchart(){
+            var data = [
+                {
+                    value: 300,
+                    color:"#F7464A",
+                    highlight: "#FF5A5E",
+                    label: "Finished"
+                },
+                {
+                    value: 50,
+                    color: "#46BFBD",
+                    highlight: "#5AD3D1",
+                    label: "Sent to supervisor"
+
+                },
+                {
+                    value: 100,
+                    color: "#FDB45C",
+                    highlight: "#FFC870",
+                    label: "Available"
+                }
+            ]
+
+            var ctx = $("#countChart").get(0).getContext("2d");
+            var myPieChart = new Chart(ctx).Pie(data);
+            var legend = myPieChart.generateLegend();
+            $('#chart').append(legend);
+        }
+
+        $(function() {
+            Chart.defaults.global.responsive = true;
+            drawchart();
+            getcycles();
+            $('#form_generalcycle').change(function(){
+                getcycles();
+            });
+            $('#form_cycle').change(function(){
+                getcycles();
+            });
+        });
+
+    </script>
+
+{% endblock %}
+
+

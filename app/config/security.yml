@@ -30,6 +30,7 @@ security:
                 default_target_path: homepage
                 always_use_default_target_path: true
             logout:
+                target: into_people_database_security_login
                 path:   into_people_database_security_logout
             anonymous:    true
 

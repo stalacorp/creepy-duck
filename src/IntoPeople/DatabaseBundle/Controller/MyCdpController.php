@@ -173,7 +173,7 @@ class MyCdpController extends Controller
     
         $entity = $em->getRepository('IntoPeopleDatabaseBundle:Cdp')->find($id);
         $securityContext = $this->container->get('security.context');
-        if($this->getUser() != $entity->getFeedbackcycle()->getUser() & $securityContext->isGranted('ROLE_HR')){
+        if($this->getUser() != $entity->getFeedbackcycle()->getUser() & !$securityContext->isGranted('ROLE_HR')){
             throw new \Exception($this->get('translator')->trans('noaccesserror'));
         }
     

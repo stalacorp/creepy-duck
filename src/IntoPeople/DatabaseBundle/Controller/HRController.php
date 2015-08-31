@@ -9,6 +9,7 @@ use IntoPeople\DatabaseBundle\Form\MidyearFeedbackType;
 use IntoPeople\DatabaseBundle\Entity\Midyear;
 use IntoPeople\DatabaseBundle\Entity\Endyear;
 use IntoPeople\DatabaseBundle\Form\EndyearFeedbackType;
+use Doctrine\ORM\EntityRepository;
 
 /**
  * Supervisor controller.
@@ -476,6 +477,59 @@ class HRController extends Controller
         return $this->render('IntoPeopleDatabaseBundle:Endyear:show.html.twig', array(
             'entity' => $entity,
             'form' => $form->createView()
+        ));
+    }
+
+    public function dashboardAction()
+    {
+
+        $form = $this->createFormBuilder()
+            ->add('generalcycle', 'entity', array(
+                'class' => 'IntoPeopleDatabaseBundle:Generalcycle',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('g')
+                        ->orderBy('g.year', 'ASC');
+                },
+            ))
+            ->add('cycle', 'choice', array(
+                'choices'  => array('cdp' => 'CDP', 'midyear' => 'Midyear', 'endyear' => 'Yearend'),
+            ))
+            ->getForm();
+
+
+
+        return $this->render('IntoPeopleDatabaseBundle:HR:dashboard.html.twig', array(
+            'form' => $form->createView(),
+        ));
+
+
+
+    }
+
+    public function getcyclesAction($generalcycleid, $cycle){
+
+        $em = $this->getDoctrine()->getManager();
+        $feedbackcycles = $em->getRepository('IntoPeopleDatabaseBundle:Feedbackcycle')->findByGeneralcycle($generalcycleid);
+
+        $entities = array();
+
+        foreach ($feedbackcycles as $feedbackcycle){
+            if ($cycle == "cdp"){
+                $chosencycle = $feedbackcycle->getCdp();
+            }else if ($cycle == "midyear"){
+                $chosencycle = $feedbackcycle->getMidyear();
+            }else if($cycle == "endyear"){
+                $chosencycle = $feedbackcycle->getEndyear();
+            }
+
+            array_push($entities, $chosencycle);
+        }
+
+        $showlink = $cycle . '_show';
+
+        return $this->render('IntoPeopleDatabaseBundle:HR:getcyclesview.html.twig', array(
+            'entities' => $entities,
+            'showlink' => $showlink,
         ));
     }
 }
