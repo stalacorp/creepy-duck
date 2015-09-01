@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\EventDispatcher\EventDispatcher,
     Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken,
     Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
+use Symfony\Component\Validator\Constraints\Email as EmailConstraint;
 
 /**
  * User controller.
@@ -44,6 +45,14 @@ class UserController extends Controller
                     $row = array_map("utf8_encode", $row);
                     if ($count != 0) {
                         $user = $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:User')->findOneByEmail($row[0]);
+                        $emailConstraint = new EmailConstraint();
+                        $emailConstraint->message = 'Your customized error message';
+
+                        $errors = $this->get('validator')->validateValue(
+                            $row[0],
+                            $emailConstraint
+                        );
+
                         if (!$user) {
                             $tokenGenerator = $this->get('fos_user.util.token_generator');
                             $password = substr($tokenGenerator->generateToken(), 0, 10);
@@ -93,6 +102,7 @@ class UserController extends Controller
                                 ->getQuery();
 
                             $systemmail = $query->setMaxResults(1)->getOneOrNullResult();
+
                             if ($systemmail->getMailtype()->getIsActive()) {
                                 $message = \Swift_Message::newInstance()
                                     ->setSubject($systemmail->getSubject())

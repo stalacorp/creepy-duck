@@ -1,6 +1,6 @@
 {% extends '::base.html.twig' %} {% block body -%}
 
-
+    <h2>Career development plan</h2>
 
     {% set template = entity.cdptemplate %}
 
@@ -70,113 +70,92 @@
     <div class="row">
         <div class="col-md-12">
 
-            <table class="table">
-                <tr>
-                    <th>{{ "cdp.corequality" | trans }}</th>
-                    <th>{{ "cdp.pitfall" | trans }}</th>
-                    <th>{{ "cdp.challenge" | trans }}</th>
-                    <th>{{ "cdp.allergy" | trans }}</th>
-                </tr>
-
-                <tr>
-                    <td>{{ form_widget(form.corequality1) }}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-                <tr>
-                    <td>{{ form_widget(form.corequality2) }}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-                <tr>
-                    <td>{{ form_widget(form.corequality3) }}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-                <tr>
-                    <td>{{ form_widget(form.corequality4) }}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-                <tr>
-                    <td>{{ form_widget(form.corequality5) }}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-            </table>
-
-        </div>
-    </div>
-
-
-
-    <div class="row">
-        <div class="col-md-12">
-
-
             <h3>{{ template.selfassesment }}</h3>
 
             <p class="">{{ template.selfassesmentDescription }}</p>
 
             {{ form_start(form) }} {{ form_errors(form) }}
+
             <table class="table">
                 <tr>
-                    <th style="width: 50%">{{ template.talents }}</th>
-                    <th style="width: 50%">{{ template.talentsDescription }}</th>
+                    <th style="width: 20%">Talents</th>
+                    <th style="width: 20%">Challenges</th>
+                    <th style="width: 20%">How</th>
+                    <th style="width: 20%">Success</th>
+                    <th style="width: 20%">Needs</th>
                 </tr>
 
                 <tr>
-
-                    <td>{{ form_errors(form.talent1) }} {{ form_widget(form.talent1) }}</td>
-
-                    <td>{{ form_errors(form.talentwhy1) }}
-                        {{ form_widget(form.talentwhy1) }}</td>
+                    <td>
+                        <p>{{ form_widget(form.coreQuality1) }}</p>
+                        <p>{{ form_widget(form.coreQuality1Why) }}</p>
+                    </td>
+                    <td>
+                        <p>{{ form_widget(form.challenge1) }}</p>
+                        <p>{{ form_widget(form.challengeWhy1) }}</p>
+                    </td>
+                    <td>{{ form_widget(form.challengeHow1) }}</td>
+                    <td>{{ form_widget(form.challengeSuccess1) }}</td>
+                    <td>{{ form_widget(form.challengeNeeds1) }}</td>
                 </tr>
 
                 <tr>
-
-                    <td>{{ form_errors(form.talent2) }} {{ form_widget(form.talent2) }}</td>
-
-                    <td>{{ form_errors(form.talentwhy2) }}
-                        {{ form_widget(form.talentwhy2) }}</td>
+                    <td>
+                        <p>{{ form_widget(form.coreQuality2) }}</p>
+                        <p>{{ form_widget(form.coreQuality2Why) }}</p>
+                    </td>
+                    <td>
+                        <p>{{ form_widget(form.challenge2) }}</p>
+                        <p>{{ form_widget(form.challengeWhy2) }}</p>
+                    </td>
+                    <td>{{ form_widget(form.challengeHow2) }}</td>
+                    <td>{{ form_widget(form.challengeSuccess2) }}</td>
+                    <td>{{ form_widget(form.challengeNeeds2) }}</td>
                 </tr>
 
                 <tr>
-
-                    <td>{{ form_errors(form.talent3) }} {{ form_widget(form.talent3) }}</td>
-
-                    <td>{{ form_errors(form.talentwhy3) }}
-                        {{ form_widget(form.talentwhy3) }}</td>
+                    <td>
+                        <p>{{ form_widget(form.coreQuality3) }}</p>
+                        <p>{{ form_widget(form.coreQuality3Why) }}</p>
+                    </td>
+                    <td>
+                        <p>{{ form_widget(form.challenge3) }}</p>
+                        <p>{{ form_widget(form.challengeWhy3) }}</p>
+                    </td>
+                    <td>{{ form_widget(form.challengeHow3) }}</td>
+                    <td>{{ form_widget(form.challengeSuccess3) }}</td>
+                    <td>{{ form_widget(form.challengeNeeds3) }}</td>
                 </tr>
 
-                <tr>
-
-                    <td>{{ form_errors(form.talent4) }} {{ form_widget(form.talent4) }}</td>
-
-                    <td>{{ form_errors(form.talentwhy4) }}
-                        {{ form_widget(form.talentwhy4) }}</td>
+                <tr class="hidden">
+                    <td>
+                        <p>{{ form_widget(form.coreQuality4) }}</p>
+                        <p>{{ form_widget(form.coreQuality4Why) }}</p>
+                    </td>
+                    <td>
+                        <p>{{ form_widget(form.challenge4) }}</p>
+                        <p>{{ form_widget(form.challengeWhy4) }}</p>
+                    </td>
+                    <td>{{ form_widget(form.challengeHow4) }}</td>
+                    <td>{{ form_widget(form.challengeSuccess4) }}</td>
+                    <td>{{ form_widget(form.challengeNeeds4) }}</td>
                 </tr>
 
-                <tr>
-
-                    <td>{{ form_errors(form.talent5) }} {{ form_widget(form.talent5) }}</td>
-
-                    <td>{{ form_errors(form.talentwhy5) }}
-                        {{ form_widget(form.talentwhy5) }}</td>
+                <tr class="hidden">
+                    <td>
+                        <p>{{ form_widget(form.coreQuality5) }}</p>
+                        <p>{{ form_widget(form.coreQuality5Why) }}</p>
+                    </td>
+                    <td>
+                        <p>{{ form_widget(form.challenge5) }}</p>
+                        <p>{{ form_widget(form.challengeWhy5) }}</p>
+                    </td>
+                    <td>{{ form_widget(form.challengeHow5) }}</td>
+                    <td>{{ form_widget(form.challengeSuccess5) }}</td>
+                    <td>{{ form_widget(form.challengeNeeds5) }}</td>
                 </tr>
 
             </table>
-
 
         </div>
     </div>
@@ -184,55 +163,6 @@
     <div class="row">
         <div class="col-md-12">
 
-
-            <table class="table">
-                <tr>
-                    <th style="width: 50%">{{ template.challenges }}</th>
-                    <th style="width: 50%">{{ template.challengesDescription }}</th>
-                </tr>
-
-                <tr>
-
-                    <td>{{ form_errors(form.challenge1) }}
-                        {{ form_widget(form.challenge1) }}</td>
-
-                    <td>{{ form_errors(form.challengewhy1) }}
-                        {{ form_widget(form.challengewhy1) }}</td>
-                </tr>
-
-                <tr>
-
-                    <td>{{ form_errors(form.challenge2) }} {{ form_widget(form.challenge2) }}</td>
-
-                    <td>{{ form_errors(form.challengewhy2) }}
-                        {{ form_widget(form.challengewhy2) }}</td>
-                </tr>
-
-                <tr>
-
-                    <td>{{ form_errors(form.challenge3) }} {{ form_widget(form.challenge3) }}</td>
-
-                    <td>{{ form_errors(form.challengewhy3) }}
-                        {{ form_widget(form.challengewhy3) }}</td>
-                </tr>
-
-                <tr>
-
-                    <td>{{ form_errors(form.challenge4) }} {{ form_widget(form.challenge4) }}</td>
-
-                    <td>{{ form_errors(form.challengewhy4) }}
-                        {{ form_widget(form.challengewhy4) }}</td>
-                </tr>
-
-                <tr>
-
-                    <td>{{ form_errors(form.challenge5) }} {{ form_widget(form.challenge5) }}</td>
-
-                    <td>{{ form_errors(form.challengewhy5) }}
-                        {{ form_widget(form.challengewhy5) }}</td>
-                </tr>
-
-            </table>
 
             <h3>Development Needs for your Job</h3>
 
@@ -288,7 +218,7 @@
                     <td>{{ form_errors(form.taskneeds3) }} {{ form_widget(form.taskneeds3) }}</td>
                 </tr>
 
-                <tr>
+                <tr class="hidden">
                     <td colspan="2">{{ form_errors(form.developmentneeds.task4) }}
                         {{ form_widget(form.developmentneeds.task4) }}</td>
                     <td>{{ form_errors(form.taskhow4) }} {{ form_widget(form.taskhow4) }}</td>
@@ -296,7 +226,7 @@
                     <td>{{ form_errors(form.taskneeds4) }} {{ form_widget(form.taskneeds4) }}</td>
                 </tr>
 
-                <tr>
+                <tr class="hidden">
                     <td colspan="2">{{ form_errors(form.developmentneeds.task5) }}
                         {{ form_widget(form.developmentneeds.task5) }}</td>
                     <td>{{ form_errors(form.taskhow5) }} {{ form_widget(form.taskhow5) }}</td>
@@ -341,7 +271,7 @@
                     <td>{{ form_errors(form.skillsneeds3) }} {{ form_widget(form.skillsneeds3) }}</td>
                 </tr>
 
-                <tr>
+                <tr class="hidden">
                     <td colspan="2">{{ form_errors(form.developmentneeds.skill4) }}
                         {{ form_widget(form.developmentneeds.skill4) }}</td>
                     <td>{{ form_errors(form.skillshow4) }} {{ form_widget(form.skillshow4) }}</td>
@@ -349,7 +279,7 @@
                     <td>{{ form_errors(form.skillsneeds4) }} {{ form_widget(form.skillsneeds4) }}</td>
                 </tr>
 
-                <tr>
+                <tr class="hidden">
                     <td colspan="2">{{ form_errors(form.developmentneeds.skill5) }}
                         {{ form_widget(form.developmentneeds.skill5) }}</td>
                     <td>{{ form_errors(form.skillshow5) }} {{ form_widget(form.skillshow5) }}</td>
@@ -404,7 +334,7 @@
                     <td>{{ form_errors(form.organizationneeds3) }} {{ form_widget(form.organizationneeds3) }}</td>
                 </tr>
 
-                <tr>
+                <tr class="hidden">
                     <td>{{ form_errors(form.developmentneeds.organizationcompetence4) }}
                         {{ form_widget(form.developmentneeds.organizationcompetence4) }}</td>
                     <td>{{ form_errors(form.developmentneeds.organizationdescription4) }}
@@ -415,7 +345,7 @@
                     <td>{{ form_errors(form.organizationneeds4) }} {{ form_widget(form.organizationneeds4) }}</td>
                 </tr>
 
-                <tr>
+                <tr class="hidden">
                     <td>{{ form_errors(form.developmentneeds.organizationcompetence5) }}
                         {{ form_widget(form.developmentneeds.organizationcompetence5) }}</td>
                     <td>{{ form_errors(form.developmentneeds.organizationdescription5) }}

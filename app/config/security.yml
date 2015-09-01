@@ -32,6 +32,7 @@ security:
             logout:
                 target: into_people_database_security_login
                 path:   into_people_database_security_logout
+                target: homepage
             anonymous:    true
 
         admin:
