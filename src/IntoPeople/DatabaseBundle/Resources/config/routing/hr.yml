@@ -38,3 +38,15 @@ hr_getcycles:
     defaults: { _controller: "IntoPeopleDatabaseBundle:HR:getcycles" }
     options:
       expose: true
+
+hr_getformstatuscount:
+    path:     /getformstatuscount/{generalcycleid}/{cycle}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:getformstatuscount" }
+    options:
+      expose: true
+
+hr_getforms:
+    path:     /getforms/{generalcycleid}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:getforms" }
+    options:
+      expose: true

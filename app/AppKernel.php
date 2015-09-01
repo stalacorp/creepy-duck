@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new IntoPeople\DatabaseBundle\IntoPeopleDatabaseBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

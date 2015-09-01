@@ -24,9 +24,10 @@
     
     {{ form_end(form) }}
 </div>
-    <div class="col-lg-4 col-md-6" id="chart">
+    <div class="col-lg-6 col-md-6" >
         <h4>Formstatus</h4>
         <canvas id="countChart"></canvas>
+        <div id="legend"></div>
     </div>
 <div>
     <div id="result"></div>
@@ -40,55 +41,221 @@
     <script src="{{ asset('assets/vendor/datatables/media/js/dataTables.bootstrap.min.js') }}"></script>
 
     <script>
+        var table;
+        var nederlands= {
+            "sProcessing": "Bezig...",
+            "sLengthMenu": "_MENU_ resultaten weergeven",
+            "sZeroRecords": "Geen resultaten gevonden",
+            "sInfo": "_START_ tot _END_ van _TOTAL_ resultaten",
+            "sInfoEmpty": "Geen resultaten om weer te geven",
+            "sInfoFiltered": " (gefilterd uit _MAX_ resultaten)",
+            "sInfoPostFix": "",
+            "sSearch": "Zoeken:",
+            "sEmptyTable": "Geen resultaten aanwezig in de tabel",
+            "sInfoThousands": ".",
+            "sLoadingRecords": "Een moment geduld aub - bezig met laden...",
+            "oPaginate": {
+                "sFirst": "Eerste",
+                "sLast": "Laatste",
+                "sNext": "Volgende",
+                "sPrevious": "Vorige"
+            }
+        }
+        var english = {
+            "sEmptyTable":     "No data available in table",
+            "sInfo":           "Showing _START_ to _END_ of _TOTAL_ entries",
+            "sInfoEmpty":      "Showing 0 to 0 of 0 entries",
+            "sInfoFiltered":   "(filtered from _MAX_ total entries)",
+            "sInfoPostFix":    "",
+            "sInfoThousands":  ",",
+            "sLengthMenu":     "Show _MENU_ entries",
+            "sLoadingRecords": "Loading...",
+            "sProcessing":     "Processing...",
+            "sSearch":         "Search:",
+            "sZeroRecords":    "No matching records found",
+            "oPaginate": {
+                "sFirst":    "First",
+                "sLast":     "Last",
+                "sNext":     "Next",
+                "sPrevious": "Previous"
+            },
+            "oAria": {
+                "sSortAscending":  ": activate to sort column ascending",
+                "sSortDescending": ": activate to sort column descending"
+            }
+        }
+        var italiano = {
+            "sEmptyTable":     "Nessun dato presente nella tabella",
+            "sInfo":           "Vista da _START_ a _END_ di _TOTAL_ elementi",
+            "sInfoEmpty":      "Vista da 0 a 0 di 0 elementi",
+            "sInfoFiltered":   "(filtrati da _MAX_ elementi totali)",
+            "sInfoPostFix":    "",
+            "sInfoThousands":  ",",
+            "sLengthMenu":     "Visualizza _MENU_ elementi",
+            "sLoadingRecords": "Caricamento...",
+            "sProcessing":     "Elaborazione...",
+            "sSearch":         "Cerca:",
+            "sZeroRecords":    "La ricerca non ha portato alcun risultato.",
+            "oPaginate": {
+                "sFirst":      "Inizio",
+                "sPrevious":   "Precedente",
+                "sNext":       "Successivo",
+                "sLast":       "Fine"
+            },
+            "oAria": {
+                "sSortAscending":  ": attiva per ordinare la colonna in ordine crescente",
+                "sSortDescending": ": attiva per ordinare la colonna in ordine decrescente"
+            }
+        }
         function getcycles(){
             $.ajax({url: Routing.generate('hr_getcycles', {generalcycleid:$('#form_generalcycle').val(), cycle: $('#form_cycle').val()}),
                 success: function(result){
+                    drawchart();
                     $("#result").html(result);
-                    $('#datatable').DataTable({
+                    var language;
+                    var clear;
+                    switch($('#thelocale').val()) {
+                        case 'en':
+                            language = english;
+                            clear = 'Clear';
+                            break;
+                        case 'nl':
+                            language = nederlands;
+                            clear = 'Wissen';
+                            break;
+                        case 'it':
+                            language = italiano;
+                            clear = 'Pulire';
+                            break;
+                    }
+
+                    table = $('#datatable').DataTable({
+                        "language":language,
                         "order": [],
                         "columnDefs": [ {
                             "targets"  : 'no-sort',
                             "orderable": false
                         }]
                     });
+
+                    var clearSearch = $('<a class="btn btn-default" style="margin-left:5px;cursor:pointer;">' + clear +'</a>');
+                    $(clearSearch).click( function ()
+                    {
+                        table.search('');
+                        table.draw();
+                    });
+                    $('#datatable_filter').append(clearSearch);
+
+                }});
+        }
+
+        function getforms(){
+            $.ajax({url: Routing.generate('hr_getforms', {generalcycleid:$('#form_generalcycle').val()}),
+                success: function(result){
+                    var select = $('#form_cycle');
+                    select.empty().append('<option value="cdp">Cdp ' + result[0] + '</option>');
+                    if (result[1] != 'empty'){
+                        select.append('<option value="midyear">Midyear ' + result[1] + '</option>');
+                    }
+
+                    select.append('<option value="endyear">Yearend ' + result[2] + '</option>');
+
                 }});
         }
 
         function drawchart(){
-            var data = [
-                {
-                    value: 300,
-                    color:"#F7464A",
-                    highlight: "#FF5A5E",
-                    label: "Finished"
-                },
-                {
-                    value: 50,
-                    color: "#46BFBD",
-                    highlight: "#5AD3D1",
-                    label: "Sent to supervisor"
+            $.ajax({url: Routing.generate('hr_getformstatuscount', {generalcycleid:$('#form_generalcycle').val(), cycle: $('#form_cycle').val()}),
+                success: function(result){
+                    var data = [
+                        {
+                            value: result[0].count,
+                            color:"#008C48",
+                            highlight: "#7AC36A",
+                            label: result[0].name
+                        },
+                        {
+                            value: result[1].count,
+                            color: "#F47D23",
+                            highlight: "#FAA75B",
+                            label: result[1].name
 
-                },
-                {
-                    value: 100,
-                    color: "#FDB45C",
-                    highlight: "#FFC870",
-                    label: "Available"
-                }
-            ]
+                        },
+                        {
+                            value: result[2].count,
+                            color: "#185AA9",
+                            highlight: "#5A9BD4",
+                            label: result[2].name
+                        },
+                        {
+                            value: result[3].count,
+                            color:"#CE7058",
+                            highlight: "#7AC36A",
+                            label: result[3].name
+                        },
+                        {
+                            value: result[4].count,
+                            color: "#B43894",
+                            highlight: "#D77FB4",
+                            label: result[4].name
 
-            var ctx = $("#countChart").get(0).getContext("2d");
-            var myPieChart = new Chart(ctx).Pie(data);
-            var legend = myPieChart.generateLegend();
-            $('#chart').append(legend);
+                        },
+                        {
+                            value: result[5].count,
+                            color: "#010202",
+                            highlight: "#737373",
+                            label: result[5].name
+                        },
+                        {
+                            value: result[6].count,
+                            color:"#662C91",
+                            highlight: "#9E67AB",
+                            label: result[6].name
+                        },
+                        {
+                            value: result[7].count,
+                            color: "#EE2E2F",
+                            highlight: "#F15A60",
+                            label: result[7].name
+
+                        },
+                        {
+                            value: result[8].count,
+                            color: "#F7EC17",
+                            highlight: "#FEFF99",
+                            label: result[8].name
+                        }
+                    ]
+                    var ctx = $("#countChart").get(0).getContext("2d");
+                    var myPieChart = new Chart(ctx).Pie(data);
+                    var legendchart = '<ul class="pie-legend">'
+                    $.each(data, function( index, object ) {
+                        if (object.value > 0){
+                            legendchart += '<li><span style=\"background-color:' + object.color + '"></span>' + object.label + '</li>';
+                        }
+                    });
+                    legendchart += '</ul>';
+                    $('#legend').html(legendchart);
+
+                    $('#countChart').click(function(evt){
+                        var activePoints = myPieChart.getSegmentsAtEvent(evt);
+
+                        table.search(activePoints[0].label);
+                        table.draw();
+                    });
+
+                }});
+
+
         }
 
         $(function() {
             Chart.defaults.global.responsive = true;
-            drawchart();
+            getforms();
             getcycles();
             $('#form_generalcycle').change(function(){
+                getforms();
                 getcycles();
+
             });
             $('#form_cycle').change(function(){
                 getcycles();
