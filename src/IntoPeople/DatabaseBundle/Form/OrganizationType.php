@@ -26,10 +26,6 @@ class OrganizationType extends AbstractType
                 'attr' => array('required' => 'true'),
             ))
             //->add('theme')
-            ->add('organizationstatus', 'entity', array(
-                'class' => 'IntoPeopleDatabaseBundle:Organizationstatus',
-                'placeholder' => 'Choose an option',
-))
         ;
         
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {

@@ -48,7 +48,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $supervisor->setUsernameCanonical('birtpeeters@hotmail.com');
         $supervisor->setEmailCanonical('birtpeeters@hotmail.com');
 
-
         $userManager->updateUser($supervisor);
 
         $hr = $userManager->createUser();
@@ -83,6 +82,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $user->setSupervisor($supervisor);
 
         $userManager->updateUser($user);
+
     }
 
     /**

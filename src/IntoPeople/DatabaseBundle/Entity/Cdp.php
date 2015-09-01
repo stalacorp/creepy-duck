@@ -23,6 +23,48 @@ class Cdp
     private $id;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="DateSubmitted", type="date", nullable=true)
+     */
+    private $datesubmitted;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="FeedbackDate", type="date", nullable=true)
+     */
+    private $feedbackdate;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="isApprovedSup", type="boolean", nullable=true)
+     */
+    private $isapprovedsup;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="isApprovedHR", type="boolean", nullable=true)
+     */
+    private $isapprovedhr;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="CommentSup", type="text", length=65535, nullable=true)
+     */
+    private $commentsup;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="FeedbackHR", type="text", length=65535, nullable=true)
+     */
+    private $feedbackhr;
+
+    /**
      * @var \IntoPeople\DatabaseBundle\Entity\Developmentneeds
      *
      * @ORM\OneToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Developmentneeds", cascade={"persist"}, inversedBy="cdp")
@@ -83,197 +125,133 @@ class Cdp
      *
      * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Corequality", inversedBy="corequality1")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Corequality1Id", referencedColumnName="Id")
+     *   @ORM\JoinColumn(name="CoreQuality1Id", referencedColumnName="Id")
      * })
      */
-    private $corequality1;
+    private $coreQuality1;
 
     /**
      * @var \IntoPeople\DatabaseBundle\Entity\Corequality
      *
      * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Corequality", inversedBy="corequality2")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Corequality2Id", referencedColumnName="Id")
+     *   @ORM\JoinColumn(name="CoreQuality2Id", referencedColumnName="Id")
      * })
      */
-    private $corequality2;
+    private $coreQuality2;
 
     /**
      * @var \IntoPeople\DatabaseBundle\Entity\Corequality
      *
      * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Corequality", inversedBy="corequality3")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Corequality3Id", referencedColumnName="Id")
+     *   @ORM\JoinColumn(name="CoreQuality3Id", referencedColumnName="Id")
      * })
      */
-    private $corequality3;
+    private $coreQuality3;
 
     /**
      * @var \IntoPeople\DatabaseBundle\Entity\Corequality
      *
      * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Corequality", inversedBy="corequality4")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Corequality4Id", referencedColumnName="Id")
+     *   @ORM\JoinColumn(name="CoreQuality4Id", referencedColumnName="Id")
      * })
      */
-    private $corequality4;
+    private $coreQuality4;
 
     /**
      * @var \IntoPeople\DatabaseBundle\Entity\Corequality
      *
      * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Corequality", inversedBy="corequality5")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Corequality5Id", referencedColumnName="Id")
+     *   @ORM\JoinColumn(name="CoreQuality5Id", referencedColumnName="Id")
      * })
      */
-    private $corequality5;
-
-
-    
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="DateSubmitted", type="date", nullable=true)
-     */
-    private $datesubmitted;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="FeedbackDate", type="date", nullable=true)
-     */
-    private $feedbackdate;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="isApprovedSup", type="boolean", nullable=true)
-     */
-    private $isapprovedsup;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="isApprovedHR", type="boolean", nullable=true)
-     */
-    private $isapprovedhr;
+    private $coreQuality5;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="CommentSup", type="text", length=65535, nullable=true)
+     * @ORM\Column(name="CoreQuality1Why", type="text", length=65535, nullable=true)
      */
-    private $commentsup;
+    private $coreQuality1Why;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="FeedbackHR", type="text", length=65535, nullable=true)
+     * @ORM\Column(name="CoreQuality2Why", type="text", length=65535, nullable=true)
      */
-    private $feedbackhr;
+    private $coreQuality2Why;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Talent1", type="text", length=65535, nullable=true)
+     * @ORM\Column(name="CoreQuality3Why", type="text", length=65535, nullable=true)
      */
-    private $talent1;
+    private $coreQuality3Why;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Talent2", type="text", length=65535, nullable=true)
+     * @ORM\Column(name="CoreQuality4Why", type="text", length=65535, nullable=true)
      */
-    private $talent2;
+    private $coreQuality4Why;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Talent3", type="text", length=65535, nullable=true)
+     * @ORM\Column(name="CoreQuality5Why", type="text", length=65535, nullable=true)
      */
-    private $talent3;
+    private $coreQuality5Why;
 
     /**
-     * @var string
+     * @var \IntoPeople\DatabaseBundle\Entity\Corequality
      *
-     * @ORM\Column(name="Talent4", type="text", length=65535, nullable=true)
-     */
-    private $talent4;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Talent5", type="text", length=65535, nullable=true)
-     */
-    private $talent5;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="TalentWhy1", type="text", length=65535, nullable=true)
-     */
-    private $talentwhy1;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="TalentWhy2", type="text", length=65535, nullable=true)
-     */
-    private $talentwhy2;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="TalentWhy3", type="text", length=65535, nullable=true)
-     */
-    private $talentwhy3;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="TalentWhy4", type="text", length=65535, nullable=true)
-     */
-    private $talentwhy4;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="TalentWhy5", type="text", length=65535, nullable=true)
-     */
-    private $talentwhy5;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Challenge1", type="text", length=65535, nullable=true)
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Corequality", inversedBy="challenge1")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Challenge1Id", referencedColumnName="Id")
+     * })
      */
     private $challenge1;
 
     /**
-     * @var string
+     * @var \IntoPeople\DatabaseBundle\Entity\Corequality
      *
-     * @ORM\Column(name="Challenge2", type="text", length=65535, nullable=true)
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Corequality", inversedBy="challenge2")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Challenge2Id", referencedColumnName="Id")
+     * })
      */
     private $challenge2;
 
     /**
-     * @var string
+     * @var \IntoPeople\DatabaseBundle\Entity\Corequality
      *
-     * @ORM\Column(name="Challenge3", type="text", length=65535, nullable=true)
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Corequality", inversedBy="challenge3")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Challenge3Id", referencedColumnName="Id")
+     * })
      */
     private $challenge3;
 
     /**
-     * @var string
+     * @var \IntoPeople\DatabaseBundle\Entity\Corequality
      *
-     * @ORM\Column(name="Challenge4", type="text", length=65535, nullable=true)
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Corequality", inversedBy="challenge4")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Challenge4Id", referencedColumnName="Id")
+     * })
      */
     private $challenge4;
 
     /**
-     * @var string
+     * @var \IntoPeople\DatabaseBundle\Entity\Corequality
      *
-     * @ORM\Column(name="Challenge5", type="text", length=65535, nullable=true)
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Corequality", inversedBy="challenge5")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Challenge5Id", referencedColumnName="Id")
+     * })
      */
     private $challenge5;
 
@@ -282,35 +260,140 @@ class Cdp
      *
      * @ORM\Column(name="ChallengeWhy1", type="text", length=65535, nullable=true)
      */
-    private $challengewhy1;
+    private $challengeWhy1;
 
     /**
      * @var string
      *
      * @ORM\Column(name="ChallengeWhy2", type="text", length=65535, nullable=true)
      */
-    private $challengewhy2;
+    private $challengeWhy2;
 
     /**
      * @var string
      *
      * @ORM\Column(name="ChallengeWhy3", type="text", length=65535, nullable=true)
      */
-    private $challengewhy3;
+    private $challengeWhy3;
 
     /**
      * @var string
      *
      * @ORM\Column(name="ChallengeWhy4", type="text", length=65535, nullable=true)
      */
-    private $challengewhy4;
+    private $challengeWhy4;
 
     /**
      * @var string
      *
      * @ORM\Column(name="ChallengeWhy5", type="text", length=65535, nullable=true)
      */
-    private $challengewhy5;
+    private $challengeWhy5;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ChallengeHow1", type="text", length=65535, nullable=true)
+     */
+    private $challengeHow1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ChallengeHow2", type="text", length=65535, nullable=true)
+     */
+    private $challengeHow2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ChallengeHow3", type="text", length=65535, nullable=true)
+     */
+    private $challengeHow3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ChallengeHow4", type="text", length=65535, nullable=true)
+     */
+    private $challengeHow4;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ChallengeHow5", type="text", length=65535, nullable=true)
+     */
+    private $challengeHow5;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ChallengeSuccess1", type="text", length=65535, nullable=true)
+     */
+    private $challengeSuccess1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ChallengeSuccess2", type="text", length=65535, nullable=true)
+     */
+    private $challengeSuccess2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ChallengeSuccess3", type="text", length=65535, nullable=true)
+     */
+    private $challengeSuccess3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ChallengeSuccess4", type="text", length=65535, nullable=true)
+     */
+    private $challengeSuccess4;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ChallengeSuccess5", type="text", length=65535, nullable=true)
+     */
+    private $challengeSuccess5;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ChallengeNeeds1", type="text", length=65535, nullable=true)
+     */
+    private $challengeNeeds1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ChallengeNeeds2", type="text", length=65535, nullable=true)
+     */
+    private $challengeNeeds2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ChallengeNeeds3", type="text", length=65535, nullable=true)
+     */
+    private $challengeNeeds3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ChallengeNeeds4", type="text", length=65535, nullable=true)
+     */
+    private $challengeNeeds4;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ChallengeNeeds5", type="text", length=65535, nullable=true)
+     */
+    private $challengeNeeds5;
 
     /**
      * @var string
@@ -783,486 +866,6 @@ class Cdp
     public function getFeedbackhr()
     {
         return $this->feedbackhr;
-    }
-
-    /**
-     * Set talent1
-     *
-     * @param string $talent1
-     *
-     * @return Cdp
-     */
-    public function setTalent1($talent1)
-    {
-        $this->talent1 = $talent1;
-
-        return $this;
-    }
-
-    /**
-     * Get talent1
-     *
-     * @return string
-     */
-    public function getTalent1()
-    {
-        return $this->talent1;
-    }
-
-    /**
-     * Set talent2
-     *
-     * @param string $talent2
-     *
-     * @return Cdp
-     */
-    public function setTalent2($talent2)
-    {
-        $this->talent2 = $talent2;
-
-        return $this;
-    }
-
-    /**
-     * Get talent2
-     *
-     * @return string
-     */
-    public function getTalent2()
-    {
-        return $this->talent2;
-    }
-
-    /**
-     * Set talent3
-     *
-     * @param string $talent3
-     *
-     * @return Cdp
-     */
-    public function setTalent3($talent3)
-    {
-        $this->talent3 = $talent3;
-
-        return $this;
-    }
-
-    /**
-     * Get talent3
-     *
-     * @return string
-     */
-    public function getTalent3()
-    {
-        return $this->talent3;
-    }
-
-    /**
-     * Set talent4
-     *
-     * @param string $talent4
-     *
-     * @return Cdp
-     */
-    public function setTalent4($talent4)
-    {
-        $this->talent4 = $talent4;
-
-        return $this;
-    }
-
-    /**
-     * Get talent4
-     *
-     * @return string
-     */
-    public function getTalent4()
-    {
-        return $this->talent4;
-    }
-
-    /**
-     * Set talent5
-     *
-     * @param string $talent5
-     *
-     * @return Cdp
-     */
-    public function setTalent5($talent5)
-    {
-        $this->talent5 = $talent5;
-
-        return $this;
-    }
-
-    /**
-     * Get talent5
-     *
-     * @return string
-     */
-    public function getTalent5()
-    {
-        return $this->talent5;
-    }
-
-    /**
-     * Set talentwhy1
-     *
-     * @param string $talentwhy1
-     *
-     * @return Cdp
-     */
-    public function setTalentwhy1($talentwhy1)
-    {
-        $this->talentwhy1 = $talentwhy1;
-
-        return $this;
-    }
-
-    /**
-     * Get talentwhy1
-     *
-     * @return string
-     */
-    public function getTalentwhy1()
-    {
-        return $this->talentwhy1;
-    }
-
-    /**
-     * Set talentwhy2
-     *
-     * @param string $talentwhy2
-     *
-     * @return Cdp
-     */
-    public function setTalentwhy2($talentwhy2)
-    {
-        $this->talentwhy2 = $talentwhy2;
-
-        return $this;
-    }
-
-    /**
-     * Get talentwhy2
-     *
-     * @return string
-     */
-    public function getTalentwhy2()
-    {
-        return $this->talentwhy2;
-    }
-
-    /**
-     * Set talentwhy3
-     *
-     * @param string $talentwhy3
-     *
-     * @return Cdp
-     */
-    public function setTalentwhy3($talentwhy3)
-    {
-        $this->talentwhy3 = $talentwhy3;
-
-        return $this;
-    }
-
-    /**
-     * Get talentwhy3
-     *
-     * @return string
-     */
-    public function getTalentwhy3()
-    {
-        return $this->talentwhy3;
-    }
-
-    /**
-     * Set talentwhy4
-     *
-     * @param string $talentwhy4
-     *
-     * @return Cdp
-     */
-    public function setTalentwhy4($talentwhy4)
-    {
-        $this->talentwhy4 = $talentwhy4;
-
-        return $this;
-    }
-
-    /**
-     * Get talentwhy4
-     *
-     * @return string
-     */
-    public function getTalentwhy4()
-    {
-        return $this->talentwhy4;
-    }
-
-    /**
-     * Set talentwhy5
-     *
-     * @param string $talentwhy5
-     *
-     * @return Cdp
-     */
-    public function setTalentwhy5($talentwhy5)
-    {
-        $this->talentwhy5 = $talentwhy5;
-
-        return $this;
-    }
-
-    /**
-     * Get talentwhy5
-     *
-     * @return string
-     */
-    public function getTalentwhy5()
-    {
-        return $this->talentwhy5;
-    }
-
-    /**
-     * Set challenge1
-     *
-     * @param string $challenge1
-     *
-     * @return Cdp
-     */
-    public function setChallenge1($challenge1)
-    {
-        $this->challenge1 = $challenge1;
-
-        return $this;
-    }
-
-    /**
-     * Get challenge1
-     *
-     * @return string
-     */
-    public function getChallenge1()
-    {
-        return $this->challenge1;
-    }
-
-    /**
-     * Set challenge2
-     *
-     * @param string $challenge2
-     *
-     * @return Cdp
-     */
-    public function setChallenge2($challenge2)
-    {
-        $this->challenge2 = $challenge2;
-
-        return $this;
-    }
-
-    /**
-     * Get challenge2
-     *
-     * @return string
-     */
-    public function getChallenge2()
-    {
-        return $this->challenge2;
-    }
-
-    /**
-     * Set challenge3
-     *
-     * @param string $challenge3
-     *
-     * @return Cdp
-     */
-    public function setChallenge3($challenge3)
-    {
-        $this->challenge3 = $challenge3;
-
-        return $this;
-    }
-
-    /**
-     * Get challenge3
-     *
-     * @return string
-     */
-    public function getChallenge3()
-    {
-        return $this->challenge3;
-    }
-
-    /**
-     * Set challenge4
-     *
-     * @param string $challenge4
-     *
-     * @return Cdp
-     */
-    public function setChallenge4($challenge4)
-    {
-        $this->challenge4 = $challenge4;
-
-        return $this;
-    }
-
-    /**
-     * Get challenge4
-     *
-     * @return string
-     */
-    public function getChallenge4()
-    {
-        return $this->challenge4;
-    }
-
-    /**
-     * Set challenge5
-     *
-     * @param string $challenge5
-     *
-     * @return Cdp
-     */
-    public function setChallenge5($challenge5)
-    {
-        $this->challenge5 = $challenge5;
-
-        return $this;
-    }
-
-    /**
-     * Get challenge5
-     *
-     * @return string
-     */
-    public function getChallenge5()
-    {
-        return $this->challenge5;
-    }
-
-    /**
-     * Set challengewhy1
-     *
-     * @param string $challengewhy1
-     *
-     * @return Cdp
-     */
-    public function setChallengewhy1($challengewhy1)
-    {
-        $this->challengewhy1 = $challengewhy1;
-
-        return $this;
-    }
-
-    /**
-     * Get challengewhy1
-     *
-     * @return string
-     */
-    public function getChallengewhy1()
-    {
-        return $this->challengewhy1;
-    }
-
-    /**
-     * Set challengewhy2
-     *
-     * @param string $challengewhy2
-     *
-     * @return Cdp
-     */
-    public function setChallengewhy2($challengewhy2)
-    {
-        $this->challengewhy2 = $challengewhy2;
-
-        return $this;
-    }
-
-    /**
-     * Get challengewhy2
-     *
-     * @return string
-     */
-    public function getChallengewhy2()
-    {
-        return $this->challengewhy2;
-    }
-
-    /**
-     * Set challengewhy3
-     *
-     * @param string $challengewhy3
-     *
-     * @return Cdp
-     */
-    public function setChallengewhy3($challengewhy3)
-    {
-        $this->challengewhy3 = $challengewhy3;
-
-        return $this;
-    }
-
-    /**
-     * Get challengewhy3
-     *
-     * @return string
-     */
-    public function getChallengewhy3()
-    {
-        return $this->challengewhy3;
-    }
-
-    /**
-     * Set challengewhy4
-     *
-     * @param string $challengewhy4
-     *
-     * @return Cdp
-     */
-    public function setChallengewhy4($challengewhy4)
-    {
-        $this->challengewhy4 = $challengewhy4;
-
-        return $this;
-    }
-
-    /**
-     * Get challengewhy4
-     *
-     * @return string
-     */
-    public function getChallengewhy4()
-    {
-        return $this->challengewhy4;
-    }
-
-    /**
-     * Set challengewhy5
-     *
-     * @param string $challengewhy5
-     *
-     * @return Cdp
-     */
-    public function setChallengewhy5($challengewhy5)
-    {
-        $this->challengewhy5 = $challengewhy5;
-
-        return $this;
-    }
-
-    /**
-     * Get challengewhy5
-     *
-     * @return string
-     */
-    public function getChallengewhy5()
-    {
-        return $this->challengewhy5;
     }
 
     /**
@@ -2591,119 +2194,810 @@ class Cdp
     {
         return $this->cdphistories;
     }
+    
 
     /**
-     * Set corequality1
+     * Set coreQuality1Why
      *
-     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $corequality1
+     * @param string $coreQuality1Why
      * @return Cdp
      */
-    public function setCorequality1(\IntoPeople\DatabaseBundle\Entity\Corequality $corequality1 = null)
+    public function setCoreQuality1Why($coreQuality1Why)
     {
-        $this->corequality1 = $corequality1;
+        $this->coreQuality1Why = $coreQuality1Why;
 
         return $this;
     }
 
     /**
-     * Get corequality1
+     * Get coreQuality1Why
      *
-     * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
+     * @return string 
      */
-    public function getCorequality1()
+    public function getCoreQuality1Why()
     {
-        return $this->corequality1;
+        return $this->coreQuality1Why;
     }
 
     /**
-     * Set corequality2
+     * Set coreQuality2Why
      *
-     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $corequality2
+     * @param string $coreQuality2Why
      * @return Cdp
      */
-    public function setCorequality2(\IntoPeople\DatabaseBundle\Entity\Corequality $corequality2 = null)
+    public function setCoreQuality2Why($coreQuality2Why)
     {
-        $this->corequality2 = $corequality2;
+        $this->coreQuality2Why = $coreQuality2Why;
 
         return $this;
     }
 
     /**
-     * Get corequality2
+     * Get coreQuality2Why
      *
-     * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
+     * @return string 
      */
-    public function getCorequality2()
+    public function getCoreQuality2Why()
     {
-        return $this->corequality2;
+        return $this->coreQuality2Why;
     }
 
     /**
-     * Set corequality3
+     * Set coreQuality3Why
      *
-     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $corequality3
+     * @param string $coreQuality3Why
      * @return Cdp
      */
-    public function setCorequality3(\IntoPeople\DatabaseBundle\Entity\Corequality $corequality3 = null)
+    public function setCoreQuality3Why($coreQuality3Why)
     {
-        $this->corequality3 = $corequality3;
+        $this->coreQuality3Why = $coreQuality3Why;
 
         return $this;
     }
 
     /**
-     * Get corequality3
+     * Get coreQuality3Why
      *
-     * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
+     * @return string 
      */
-    public function getCorequality3()
+    public function getCoreQuality3Why()
     {
-        return $this->corequality3;
+        return $this->coreQuality3Why;
     }
 
     /**
-     * Set corequality4
+     * Set coreQuality4Why
      *
-     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $corequality4
+     * @param string $coreQuality4Why
      * @return Cdp
      */
-    public function setCorequality4(\IntoPeople\DatabaseBundle\Entity\Corequality $corequality4 = null)
+    public function setCoreQuality4Why($coreQuality4Why)
     {
-        $this->corequality4 = $corequality4;
+        $this->coreQuality4Why = $coreQuality4Why;
 
         return $this;
     }
 
     /**
-     * Get corequality4
+     * Get coreQuality4Why
      *
-     * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
+     * @return string 
      */
-    public function getCorequality4()
+    public function getCoreQuality4Why()
     {
-        return $this->corequality4;
+        return $this->coreQuality4Why;
     }
 
     /**
-     * Set corequality5
+     * Set coreQuality5Why
      *
-     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $corequality5
+     * @param string $coreQuality5Why
      * @return Cdp
      */
-    public function setCorequality5(\IntoPeople\DatabaseBundle\Entity\Corequality $corequality5 = null)
+    public function setCoreQuality5Why($coreQuality5Why)
     {
-        $this->corequality5 = $corequality5;
+        $this->coreQuality5Why = $coreQuality5Why;
 
         return $this;
     }
 
     /**
-     * Get corequality5
+     * Get coreQuality5Why
+     *
+     * @return string 
+     */
+    public function getCoreQuality5Why()
+    {
+        return $this->coreQuality5Why;
+    }
+
+    /**
+     * Set challengeHow1
+     *
+     * @param string $challengeHow1
+     * @return Cdp
+     */
+    public function setChallengeHow1($challengeHow1)
+    {
+        $this->challengeHow1 = $challengeHow1;
+
+        return $this;
+    }
+
+    /**
+     * Get challengeHow1
+     *
+     * @return string 
+     */
+    public function getChallengeHow1()
+    {
+        return $this->challengeHow1;
+    }
+
+    /**
+     * Set challengeHow2
+     *
+     * @param string $challengeHow2
+     * @return Cdp
+     */
+    public function setChallengeHow2($challengeHow2)
+    {
+        $this->challengeHow2 = $challengeHow2;
+
+        return $this;
+    }
+
+    /**
+     * Get challengeHow2
+     *
+     * @return string 
+     */
+    public function getChallengeHow2()
+    {
+        return $this->challengeHow2;
+    }
+
+    /**
+     * Set challengeHow3
+     *
+     * @param string $challengeHow3
+     * @return Cdp
+     */
+    public function setChallengeHow3($challengeHow3)
+    {
+        $this->challengeHow3 = $challengeHow3;
+
+        return $this;
+    }
+
+    /**
+     * Get challengeHow3
+     *
+     * @return string 
+     */
+    public function getChallengeHow3()
+    {
+        return $this->challengeHow3;
+    }
+
+    /**
+     * Set challengeHow4
+     *
+     * @param string $challengeHow4
+     * @return Cdp
+     */
+    public function setChallengeHow4($challengeHow4)
+    {
+        $this->challengeHow4 = $challengeHow4;
+
+        return $this;
+    }
+
+    /**
+     * Get challengeHow4
+     *
+     * @return string 
+     */
+    public function getChallengeHow4()
+    {
+        return $this->challengeHow4;
+    }
+
+    /**
+     * Set challengeHow5
+     *
+     * @param string $challengeHow5
+     * @return Cdp
+     */
+    public function setChallengeHow5($challengeHow5)
+    {
+        $this->challengeHow5 = $challengeHow5;
+
+        return $this;
+    }
+
+    /**
+     * Get challengeHow5
+     *
+     * @return string 
+     */
+    public function getChallengeHow5()
+    {
+        return $this->challengeHow5;
+    }
+
+    /**
+     * Set challengeSuccess1
+     *
+     * @param string $challengeSuccess1
+     * @return Cdp
+     */
+    public function setChallengeSuccess1($challengeSuccess1)
+    {
+        $this->challengeSuccess1 = $challengeSuccess1;
+
+        return $this;
+    }
+
+    /**
+     * Get challengeSuccess1
+     *
+     * @return string 
+     */
+    public function getChallengeSuccess1()
+    {
+        return $this->challengeSuccess1;
+    }
+
+    /**
+     * Set challengeSuccess2
+     *
+     * @param string $challengeSuccess2
+     * @return Cdp
+     */
+    public function setChallengeSuccess2($challengeSuccess2)
+    {
+        $this->challengeSuccess2 = $challengeSuccess2;
+
+        return $this;
+    }
+
+    /**
+     * Get challengeSuccess2
+     *
+     * @return string 
+     */
+    public function getChallengeSuccess2()
+    {
+        return $this->challengeSuccess2;
+    }
+
+    /**
+     * Set challengeSuccess3
+     *
+     * @param string $challengeSuccess3
+     * @return Cdp
+     */
+    public function setChallengeSuccess3($challengeSuccess3)
+    {
+        $this->challengeSuccess3 = $challengeSuccess3;
+
+        return $this;
+    }
+
+    /**
+     * Get challengeSuccess3
+     *
+     * @return string 
+     */
+    public function getChallengeSuccess3()
+    {
+        return $this->challengeSuccess3;
+    }
+
+    /**
+     * Set challengeSuccess4
+     *
+     * @param string $challengeSuccess4
+     * @return Cdp
+     */
+    public function setChallengeSuccess4($challengeSuccess4)
+    {
+        $this->challengeSuccess4 = $challengeSuccess4;
+
+        return $this;
+    }
+
+    /**
+     * Get challengeSuccess4
+     *
+     * @return string 
+     */
+    public function getChallengeSuccess4()
+    {
+        return $this->challengeSuccess4;
+    }
+
+    /**
+     * Set challengeSuccess5
+     *
+     * @param string $challengeSuccess5
+     * @return Cdp
+     */
+    public function setChallengeSuccess5($challengeSuccess5)
+    {
+        $this->challengeSuccess5 = $challengeSuccess5;
+
+        return $this;
+    }
+
+    /**
+     * Get challengeSuccess5
+     *
+     * @return string 
+     */
+    public function getChallengeSuccess5()
+    {
+        return $this->challengeSuccess5;
+    }
+
+    /**
+     * Set challengeNeeds1
+     *
+     * @param string $challengeNeeds1
+     * @return Cdp
+     */
+    public function setChallengeNeeds1($challengeNeeds1)
+    {
+        $this->challengeNeeds1 = $challengeNeeds1;
+
+        return $this;
+    }
+
+    /**
+     * Get challengeNeeds1
+     *
+     * @return string 
+     */
+    public function getChallengeNeeds1()
+    {
+        return $this->challengeNeeds1;
+    }
+
+    /**
+     * Set challengeNeeds2
+     *
+     * @param string $challengeNeeds2
+     * @return Cdp
+     */
+    public function setChallengeNeeds2($challengeNeeds2)
+    {
+        $this->challengeNeeds2 = $challengeNeeds2;
+
+        return $this;
+    }
+
+    /**
+     * Get challengeNeeds2
+     *
+     * @return string 
+     */
+    public function getChallengeNeeds2()
+    {
+        return $this->challengeNeeds2;
+    }
+
+    /**
+     * Set challengeNeeds3
+     *
+     * @param string $challengeNeeds3
+     * @return Cdp
+     */
+    public function setChallengeNeeds3($challengeNeeds3)
+    {
+        $this->challengeNeeds3 = $challengeNeeds3;
+
+        return $this;
+    }
+
+    /**
+     * Get challengeNeeds3
+     *
+     * @return string 
+     */
+    public function getChallengeNeeds3()
+    {
+        return $this->challengeNeeds3;
+    }
+
+    /**
+     * Set challengeNeeds4
+     *
+     * @param string $challengeNeeds4
+     * @return Cdp
+     */
+    public function setChallengeNeeds4($challengeNeeds4)
+    {
+        $this->challengeNeeds4 = $challengeNeeds4;
+
+        return $this;
+    }
+
+    /**
+     * Get challengeNeeds4
+     *
+     * @return string 
+     */
+    public function getChallengeNeeds4()
+    {
+        return $this->challengeNeeds4;
+    }
+
+    /**
+     * Set challengeNeeds5
+     *
+     * @param string $challengeNeeds5
+     * @return Cdp
+     */
+    public function setChallengeNeeds5($challengeNeeds5)
+    {
+        $this->challengeNeeds5 = $challengeNeeds5;
+
+        return $this;
+    }
+
+    /**
+     * Get challengeNeeds5
+     *
+     * @return string 
+     */
+    public function getChallengeNeeds5()
+    {
+        return $this->challengeNeeds5;
+    }
+
+    /**
+     * Set coreQuality1
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $coreQuality1
+     * @return Cdp
+     */
+    public function setCoreQuality1(\IntoPeople\DatabaseBundle\Entity\Corequality $coreQuality1 = null)
+    {
+        $this->coreQuality1 = $coreQuality1;
+
+        return $this;
+    }
+
+    /**
+     * Get coreQuality1
      *
      * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
      */
-    public function getCorequality5()
+    public function getCoreQuality1()
     {
-        return $this->corequality5;
+        return $this->coreQuality1;
+    }
+
+    /**
+     * Set coreQuality2
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $coreQuality2
+     * @return Cdp
+     */
+    public function setCoreQuality2(\IntoPeople\DatabaseBundle\Entity\Corequality $coreQuality2 = null)
+    {
+        $this->coreQuality2 = $coreQuality2;
+
+        return $this;
+    }
+
+    /**
+     * Get coreQuality2
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
+     */
+    public function getCoreQuality2()
+    {
+        return $this->coreQuality2;
+    }
+
+    /**
+     * Set coreQuality3
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $coreQuality3
+     * @return Cdp
+     */
+    public function setCoreQuality3(\IntoPeople\DatabaseBundle\Entity\Corequality $coreQuality3 = null)
+    {
+        $this->coreQuality3 = $coreQuality3;
+
+        return $this;
+    }
+
+    /**
+     * Get coreQuality3
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
+     */
+    public function getCoreQuality3()
+    {
+        return $this->coreQuality3;
+    }
+
+    /**
+     * Set coreQuality4
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $coreQuality4
+     * @return Cdp
+     */
+    public function setCoreQuality4(\IntoPeople\DatabaseBundle\Entity\Corequality $coreQuality4 = null)
+    {
+        $this->coreQuality4 = $coreQuality4;
+
+        return $this;
+    }
+
+    /**
+     * Get coreQuality4
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
+     */
+    public function getCoreQuality4()
+    {
+        return $this->coreQuality4;
+    }
+
+    /**
+     * Set coreQuality5
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $coreQuality5
+     * @return Cdp
+     */
+    public function setCoreQuality5(\IntoPeople\DatabaseBundle\Entity\Corequality $coreQuality5 = null)
+    {
+        $this->coreQuality5 = $coreQuality5;
+
+        return $this;
+    }
+
+    /**
+     * Get coreQuality5
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
+     */
+    public function getCoreQuality5()
+    {
+        return $this->coreQuality5;
+    }
+
+    /**
+     * Set challengeWhy1
+     *
+     * @param string $challengeWhy1
+     * @return Cdp
+     */
+    public function setChallengeWhy1($challengeWhy1)
+    {
+        $this->challengeWhy1 = $challengeWhy1;
+
+        return $this;
+    }
+
+    /**
+     * Get challengeWhy1
+     *
+     * @return string 
+     */
+    public function getChallengeWhy1()
+    {
+        return $this->challengeWhy1;
+    }
+
+    /**
+     * Set challengeWhy2
+     *
+     * @param string $challengeWhy2
+     * @return Cdp
+     */
+    public function setChallengeWhy2($challengeWhy2)
+    {
+        $this->challengeWhy2 = $challengeWhy2;
+
+        return $this;
+    }
+
+    /**
+     * Get challengeWhy2
+     *
+     * @return string 
+     */
+    public function getChallengeWhy2()
+    {
+        return $this->challengeWhy2;
+    }
+
+    /**
+     * Set challengeWhy3
+     *
+     * @param string $challengeWhy3
+     * @return Cdp
+     */
+    public function setChallengeWhy3($challengeWhy3)
+    {
+        $this->challengeWhy3 = $challengeWhy3;
+
+        return $this;
+    }
+
+    /**
+     * Get challengeWhy3
+     *
+     * @return string 
+     */
+    public function getChallengeWhy3()
+    {
+        return $this->challengeWhy3;
+    }
+
+    /**
+     * Set challengeWhy4
+     *
+     * @param string $challengeWhy4
+     * @return Cdp
+     */
+    public function setChallengeWhy4($challengeWhy4)
+    {
+        $this->challengeWhy4 = $challengeWhy4;
+
+        return $this;
+    }
+
+    /**
+     * Get challengeWhy4
+     *
+     * @return string 
+     */
+    public function getChallengeWhy4()
+    {
+        return $this->challengeWhy4;
+    }
+
+    /**
+     * Set challengeWhy5
+     *
+     * @param string $challengeWhy5
+     * @return Cdp
+     */
+    public function setChallengeWhy5($challengeWhy5)
+    {
+        $this->challengeWhy5 = $challengeWhy5;
+
+        return $this;
+    }
+
+    /**
+     * Get challengeWhy5
+     *
+     * @return string 
+     */
+    public function getChallengeWhy5()
+    {
+        return $this->challengeWhy5;
+    }
+
+    /**
+     * Set challenge1
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $challenge1
+     * @return Cdp
+     */
+    public function setChallenge1(\IntoPeople\DatabaseBundle\Entity\Corequality $challenge1 = null)
+    {
+        $this->challenge1 = $challenge1;
+
+        return $this;
+    }
+
+    /**
+     * Get challenge1
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
+     */
+    public function getChallenge1()
+    {
+        return $this->challenge1;
+    }
+
+    /**
+     * Set challenge2
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $challenge2
+     * @return Cdp
+     */
+    public function setChallenge2(\IntoPeople\DatabaseBundle\Entity\Corequality $challenge2 = null)
+    {
+        $this->challenge2 = $challenge2;
+
+        return $this;
+    }
+
+    /**
+     * Get challenge2
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
+     */
+    public function getChallenge2()
+    {
+        return $this->challenge2;
+    }
+
+    /**
+     * Set challenge3
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $challenge3
+     * @return Cdp
+     */
+    public function setChallenge3(\IntoPeople\DatabaseBundle\Entity\Corequality $challenge3 = null)
+    {
+        $this->challenge3 = $challenge3;
+
+        return $this;
+    }
+
+    /**
+     * Get challenge3
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
+     */
+    public function getChallenge3()
+    {
+        return $this->challenge3;
+    }
+
+    /**
+     * Set challenge4
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $challenge4
+     * @return Cdp
+     */
+    public function setChallenge4(\IntoPeople\DatabaseBundle\Entity\Corequality $challenge4 = null)
+    {
+        $this->challenge4 = $challenge4;
+
+        return $this;
+    }
+
+    /**
+     * Get challenge4
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
+     */
+    public function getChallenge4()
+    {
+        return $this->challenge4;
+    }
+
+    /**
+     * Set challenge5
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $challenge5
+     * @return Cdp
+     */
+    public function setChallenge5(\IntoPeople\DatabaseBundle\Entity\Corequality $challenge5 = null)
+    {
+        $this->challenge5 = $challenge5;
+
+        return $this;
+    }
+
+    /**
+     * Get challenge5
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
+     */
+    public function getChallenge5()
+    {
+        return $this->challenge5;
     }
 }
