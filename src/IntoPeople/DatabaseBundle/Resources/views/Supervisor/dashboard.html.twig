@@ -2,8 +2,6 @@
 {% block stylesheets %}
     {{ parent() }}
     <link href="{{ asset('assets/vendor/datatables/media/css/dataTables.bootstrap.min.css')}}" rel="stylesheet" type="text/css" media="screen">
-    <link href="{{ asset('assets/vendor/datatables/select/select.dataTables.min.css')}}" rel="stylesheet" type="text/css" media="screen">
-    <link href="{{ asset('assets/vendor/datatables/buttons/buttons.dataTables.min.css')}}" rel="stylesheet" type="text/css" media="screen">
 {% endblock %}
 {% block body -%}
 <style>
@@ -18,8 +16,7 @@
         list-style-type: none;
     }
 </style>
-    <h3>{{ 'hr.dashboard.title' | trans }}</h3>
-    <div class="row">
+    <h3>{{ 'supervisor.dashboard.title' | trans }}</h3>
 <div class="col-lg-3 col-md-4">
     {{ form_start(form) }}
     
@@ -32,20 +29,16 @@
         <canvas id="countChart"></canvas>
         <div id="legend"></div>
     </div>
-    </div>
-<div class="row">
+<div>
     <div id="result"></div>
 </div>
 {% endblock %}
 
 {%  block javascripts -%}
     {{ parent() }}
-
     <script src="{{ asset('assets/vendor/Chart.js/Chart.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables/media/js/dataTables.bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/datatables/select/dataTables.select.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/datatables/buttons/dataTables.buttons.min.js') }}"></script>
 
     <script>
         var table;
@@ -115,7 +108,7 @@
             }
         }
         function getcycles(){
-            $.ajax({url: Routing.generate('hr_getcycles', {generalcycleid:$('#form_generalcycle').val(), cycle: $('#form_cycle').val()}),
+            $.ajax({url: Routing.generate('supervisor_getcycles', {generalcycleid:$('#form_generalcycle').val(), cycle: $('#form_cycle').val()}),
                 success: function(result){
                     drawchart();
                     $("#result").html(result);
@@ -137,27 +130,12 @@
                     }
 
                     table = $('#datatable').DataTable({
-                        dom: 'Bfrtip',
-                        buttons: [
-                            {
-                                text: 'My button',
-                                action: function ( e, dt, node, config ) {
-                                    alert( 'Button activated' );
-                                }
-                            }
-                        ],
                         "language":language,
                         "order": [],
                         "columnDefs": [ {
                             "targets"  : 'no-sort',
                             "orderable": false
-                        }, {orderable: false,
-                            className: 'select-checkbox',
-                            targets:   0}],
-                        select: {
-                            style:    'multi',
-                            selector: 'td:first-child'
-                        }
+                        }]
                     });
 
                     var clearSearch = $('<a class="btn btn-default" style="margin-left:5px;cursor:pointer;">' + clear +'</a>');
@@ -172,7 +150,7 @@
         }
 
         function getforms(){
-            $.ajax({url: Routing.generate('hr_getforms', {generalcycleid:$('#form_generalcycle').val()}),
+            $.ajax({url: Routing.generate('supervisor_getforms', {generalcycleid:$('#form_generalcycle').val()}),
                 success: function(result){
                     var select = $('#form_cycle');
                     select.empty().append('<option value="cdp">Cdp ' + result[0] + '</option>');
@@ -186,7 +164,7 @@
         }
 
         function drawchart(){
-            $.ajax({url: Routing.generate('hr_getformstatuscount', {generalcycleid:$('#form_generalcycle').val(), cycle: $('#form_cycle').val()}),
+            $.ajax({url: Routing.generate('supervisor_getformstatuscount', {generalcycleid:$('#form_generalcycle').val(), cycle: $('#form_cycle').val()}),
                 success: function(result){
                     var data = [
                         {
@@ -285,6 +263,7 @@
         });
 
     </script>
+
 {% endblock %}
 
 

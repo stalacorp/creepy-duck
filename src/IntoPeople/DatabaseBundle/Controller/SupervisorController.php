@@ -13,6 +13,8 @@ use IntoPeople\DatabaseBundle\Form\CommentType;
 use IntoPeople\DatabaseBundle\Form\MidyearCommentType;
 use IntoPeople\DatabaseBundle\Form\EndyearCommentType;
 use IntoPeople\DatabaseBundle\Entity\Cdphistory;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Supervisor controller.
@@ -508,6 +510,131 @@ class SupervisorController extends Controller
             'entity' => $entity,
             'form' => $form->createView()
         ));
+    }
+
+    public function dashboardAction()
+    {
+
+        $form = $this->createFormBuilder()
+            ->add('generalcycle', 'entity', array(
+                'class' => 'IntoPeopleDatabaseBundle:Generalcycle',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('g')
+                        ->orderBy('g.year', 'ASC');
+                },
+            ))
+            ->add('cycle', 'choice', array(
+                'choices'  => array('cdp' => 'Cdp')
+
+            ))
+            ->getForm();
+
+
+
+        return $this->render('IntoPeopleDatabaseBundle:Supervisor:dashboard.html.twig', array(
+            'form' => $form->createView(),
+        ));
+
+
+
+    }
+
+    public function getcyclesAction($generalcycleid, $cycle){
+
+        $em = $this->getDoctrine()->getManager();
+        $feedbackcycles = $em->getRepository('IntoPeopleDatabaseBundle:Feedbackcycle')->findByGeneralcycle($generalcycleid);
+
+        $entities = array();
+
+        foreach ($feedbackcycles as $feedbackcycle){
+            if ($cycle == "cdp"){
+                $chosencycle = $feedbackcycle->getCdp();
+            }else if ($cycle == "midyear"){
+                $chosencycle = $feedbackcycle->getMidyear();
+            }else if($cycle == "endyear"){
+                $chosencycle = $feedbackcycle->getEndyear();
+            }
+            if ($chosencycle->getSupervisor() == $this->getUser()) {
+                array_push($entities, $chosencycle);
+            }
+        }
+
+        $showlink = $cycle . '_show';
+
+        return $this->render('IntoPeopleDatabaseBundle:Supervisor:getcyclesview.html.twig', array(
+            'entities' => $entities,
+            'showlink' => $showlink,
+        ));
+    }
+
+    public function getformstatuscountAction($generalcycleid, $cycle){
+
+
+        $em = $this->getDoctrine()->getManager();
+        $feedbackcycles = $em->getRepository('IntoPeopleDatabaseBundle:Feedbackcycle')->findByGeneralcycle($generalcycleid);
+
+        $formcounts = array();
+
+        foreach ($feedbackcycles as $feedbackcycle){
+            if ($cycle == "cdp"){
+                $chosencycle = $feedbackcycle->getCdp();
+            }else if ($cycle == "midyear"){
+                $chosencycle = $feedbackcycle->getMidyear();
+            }else if($cycle == "endyear"){
+                $chosencycle = $feedbackcycle->getEndyear();
+            }
+            if ($chosencycle->getSupervisor() == $this->getUser()) {
+                array_push($formcounts, $chosencycle->getFormstatus()->getId());
+            }
+        }
+
+        $formstatuses = $em->getRepository('IntoPeopleDatabaseBundle:Formstatus')->findAll();
+
+        $counts = array_count_values($formcounts);
+        $countsbystatus = array();
+
+        foreach ($formstatuses as $formstatus){
+            $object = new \stdClass();
+            $object->name = $this->get('translator')->trans($formstatus->getName());
+            if (array_key_exists($formstatus->getId(), $counts)){
+                $object->count = $counts[$formstatus->getId()];
+            }else {
+                $object->count = 0;
+            }
+
+            array_push($countsbystatus, $object);
+        }
+        $serializer = $this->get('jms_serializer');
+
+        return new JsonResponse($countsbystatus);
+    }
+
+    public function getformsAction($generalcycleid){
+        $em = $this->getDoctrine()->getManager();
+        $generalcycle = $em->getRepository('IntoPeopleDatabaseBundle:Generalcycle')->find($generalcycleid);
+        $generalcycledates = array();
+
+        $request = $this->get('request');
+        $locale = $request->getLocale();
+        $format = "m/d/Y";
+
+        if ($locale == "nl"){
+            $format = "d-m-Y";
+        }
+        if ($generalcycle->getStartdatecdp() != null) {
+            array_push($generalcycledates, $generalcycle->getStartdatecdp()->format($format) . ' -- ' . $generalcycle->getEnddatecdp()->format($format));
+
+            if ($generalcycle->getStartdatemidyear() != null) {
+                array_push($generalcycledates, $generalcycle->getStartdatemidyear()->format($format) . ' -- ' . $generalcycle->getEnddatemidyear()->format($format));
+            } else {
+                array_push($generalcycledates, 'empty');
+            }
+
+            array_push($generalcycledates, $generalcycle->getStartdateyearend()->format($format) . ' -- ' . $generalcycle->getEnddateyearend()->format($format));
+        }
+
+        return new JsonResponse($generalcycledates);
+
     }
 }
 

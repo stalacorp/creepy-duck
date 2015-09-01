@@ -28,3 +28,25 @@ supervisor_updateEndyear:
     path:     /{id}/updateEndyear
     defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:updateEndyear" }
     methods:  [POST, PUT]
+
+supervisor_dashboard:
+    path:     /dashboard
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:dashboard" }
+
+supervisor_getcycles:
+    path:     /getcycles/{generalcycleid}/{cycle}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:getcycles" }
+    options:
+      expose: true
+
+supervisor_getformstatuscount:
+    path:     /getformstatuscount/{generalcycleid}/{cycle}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:getformstatuscount" }
+    options:
+      expose: true
+
+supervisor_getforms:
+    path:     /getforms/{generalcycleid}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:getforms" }
+    options:
+      expose: true

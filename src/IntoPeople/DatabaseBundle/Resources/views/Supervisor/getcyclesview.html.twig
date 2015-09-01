@@ -1,7 +1,6 @@
 <table class="table" id="datatable">
     <thead>
     <tr>
-        <th></th>
         <th>{{ "table.user" | trans }}</th>
         <th>{{ "table.supervisor" | trans }}</th>
         <th>{{ "table.formstatus" | trans }}</th>
@@ -11,7 +10,6 @@
     <tbody>
     {% for entity in entities %}
         <tr>
-            <td></td>
             <td>{{ entity.feedbackcycle.user.firstname }} {{ entity.feedbackcycle.user.lastname }}</td>
             <td>{% if entity.supervisor is not empty %} {{ entity.supervisor.firstname }} {{ entity.supervisor.lastname }} {% endif %}</td>
             <td>{{ entity.formstatus.name }}</td>
