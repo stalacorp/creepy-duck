@@ -83,6 +83,7 @@
                     <th style="width: 20%">How</th>
                     <th style="width: 20%">Success</th>
                     <th style="width: 20%">Needs</th>
+                    <th style="width: 20%"></th>
                 </tr>
 
                 <tr>
@@ -97,6 +98,7 @@
                     <td>{{ form_widget(form.challengeHow1) }}</td>
                     <td>{{ form_widget(form.challengeSuccess1) }}</td>
                     <td>{{ form_widget(form.challengeNeeds1) }}</td>
+                    <td></td>
                 </tr>
 
                 <tr>
@@ -111,6 +113,7 @@
                     <td>{{ form_widget(form.challengeHow2) }}</td>
                     <td>{{ form_widget(form.challengeSuccess2) }}</td>
                     <td>{{ form_widget(form.challengeNeeds2) }}</td>
+                    <td></td>
                 </tr>
 
                 <tr>
@@ -125,6 +128,7 @@
                     <td>{{ form_widget(form.challengeHow3) }}</td>
                     <td>{{ form_widget(form.challengeSuccess3) }}</td>
                     <td>{{ form_widget(form.challengeNeeds3) }}</td>
+                    <td><button type="button" class="btn btn-default addButton"><i class="fa fa-plus"></i></button></td>
                 </tr>
 
                 <tr class="hidden">
@@ -139,6 +143,7 @@
                     <td>{{ form_widget(form.challengeHow4) }}</td>
                     <td>{{ form_widget(form.challengeSuccess4) }}</td>
                     <td>{{ form_widget(form.challengeNeeds4) }}</td>
+                    <td><button type="button" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button></td>
                 </tr>
 
                 <tr class="hidden">
@@ -153,6 +158,7 @@
                     <td>{{ form_widget(form.challengeHow5) }}</td>
                     <td>{{ form_widget(form.challengeSuccess5) }}</td>
                     <td>{{ form_widget(form.challengeNeeds5) }}</td>
+                    <td><button type="button" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button></td>
                 </tr>
 
             </table>
@@ -387,6 +393,15 @@
 
         </div>
     </div>
+
+{% endblock %}
+
+{% block documentReady %}
+
+    $('.addButton').click(function() {
+        $(this).parent().parent().find('.hidden:first').removeClass('hidden');
+    })
+
 
 {% endblock %}
 
