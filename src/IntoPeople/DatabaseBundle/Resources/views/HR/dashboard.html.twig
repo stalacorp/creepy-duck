@@ -2,8 +2,8 @@
 {% block stylesheets %}
     {{ parent() }}
     <link href="{{ asset('assets/vendor/datatables/media/css/dataTables.bootstrap.min.css')}}" rel="stylesheet" type="text/css" media="screen">
-    <link href="{{ asset('assets/vendor/datatables/select/select.dataTables.min.css')}}" rel="stylesheet" type="text/css" media="screen">
-    <link href="{{ asset('assets/vendor/datatables/buttons/buttons.dataTables.min.css')}}" rel="stylesheet" type="text/css" media="screen">
+    <link href="{{ asset('assets/css/select.dataTables.min.css')}}" rel="stylesheet" type="text/css" media="screen">
+
 {% endblock %}
 {% block body -%}
 <style>
@@ -44,10 +44,11 @@
     <script src="{{ asset('assets/vendor/Chart.js/Chart.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables/media/js/dataTables.bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/datatables/select/dataTables.select.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/datatables/buttons/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dataTables.select.min.js') }}"></script>
+
 
     <script>
+        var teller =0;
         var table;
         var nederlands= {
             "sProcessing": "Bezig...",
@@ -137,15 +138,6 @@
                     }
 
                     table = $('#datatable').DataTable({
-                        dom: 'Bfrtip',
-                        buttons: [
-                            {
-                                text: 'My button',
-                                action: function ( e, dt, node, config ) {
-                                    alert( 'Button activated' );
-                                }
-                            }
-                        ],
                         "language":language,
                         "order": [],
                         "columnDefs": [ {
@@ -160,6 +152,21 @@
                         }
                     });
 
+                    var selectbutton = $('<a class="btn btn-primary">Select all</a>');
+
+                    $(selectbutton).click(function(){
+                        if (teller == 0){
+                            table.rows().select();
+                            $(this).text('Select none');
+                            teller++;
+                        }else {
+                            table.rows().deselect();
+                            $(this).text('Select all');
+                            teller = 0;
+                        }
+                    });
+
+
                     var clearSearch = $('<a class="btn btn-default" style="margin-left:5px;cursor:pointer;">' + clear +'</a>');
                     $(clearSearch).click( function ()
                     {
@@ -167,6 +174,7 @@
                         table.draw();
                     });
                     $('#datatable_filter').append(clearSearch);
+                    $('#datatable_length').html(selectbutton);
 
                 }});
         }

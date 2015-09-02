@@ -229,7 +229,7 @@ class UserController extends Controller
         $encoded_pass = $encoder->encodePassword($token, $user->getSalt());
         if ($user && $user->getPassword() == $encoded_pass) {
 
-            $form = $this->createFormBuilder()
+            $form = $this->createFormBuilder($user)
                 ->add('password', 'repeated', array(
                     'type' => 'password',
                     'invalid_message' => $this->get('translator')->trans('passwordmatch'),
@@ -237,13 +237,14 @@ class UserController extends Controller
                     'required' => true,
                     'first_options' => array('label' => 'Set Password'),
                     'second_options' => array('label' => 'Repeat Password')))
+                ->add('language', 'entity',array(
+                    'class' => 'IntoPeopleDatabaseBundle:Language'))
                 ->add('Save', 'submit')
                 ->getForm();
 
             $form->handleRequest($request);
             if ($form->isValid()) {
-                $data = $form->getData();
-                $user->setPlainPassword($data['password']);
+                $user->setPlainPassword($user->getPassword());
                 $this->getDoctrine()->getManager()->flush();
                 $token = new UsernamePasswordToken($user, $user->getPassword(), "public", $user->getRoles());
                 $this->get("security.context")->setToken($token);
@@ -262,6 +263,51 @@ class UserController extends Controller
         }else {
             throw new \Exception($this->get('translator')->trans('firstlogin.error'));
         }
+    }
+
+    public function profileAction(Request $request){
+
+        $user = $this->getUser();
+        $encoder_service = $this->get('security.encoder_factory');
+        $encoder = $encoder_service->getEncoder($user);
+
+
+
+            $form = $this->createFormBuilder($user)
+                ->add('oldpassword', 'password', array('mapped' => false,
+                    'required' => false))
+                ->add('newpassword', 'repeated', array(
+                    'type' => 'password',
+                    'mapped' => false,
+                    'invalid_message' => $this->get('translator')->trans('passwordmatch'),
+                    'options' => array('attr' => array('class' => 'password-field')),
+                    'required' => false,
+                    'first_options' => array('label' => 'Set new Password'),
+                    'second_options' => array('label' => 'Repeat new Password')))
+                ->add('language', 'entity',array(
+                    'class' => 'IntoPeopleDatabaseBundle:Language'))
+                ->add('Save', 'submit')
+                ->getForm();
+
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+                $oldpassword = $form->get('oldpassword')->getData();
+                $newpassword = $form->get('newpassword')->getData();
+                if ($oldpassword != null & $newpassword != null){
+                    $encoded_pass = $encoder->encodePassword($$oldpassword, $user->getSalt());
+                    if ($user->getPassword() == $encoded_pass){
+                        $user->setPlainPassword($newpassword);
+                    }
+
+                }
+
+                $this->getDoctrine()->getManager()->flush();
+
+
+            }
+            return $this->render('IntoPeopleDatabaseBundle:User:profile.html.twig', array(
+                'form' => $form->createView()
+            ));
     }
 
     /**

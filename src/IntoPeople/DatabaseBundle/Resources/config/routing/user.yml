@@ -28,9 +28,15 @@ user_delete:
     path:     /{id}/delete
     defaults: { _controller: "IntoPeopleDatabaseBundle:User:delete" }
     methods:  [POST, DELETE]
+
 user_csv:
      path:     /csv
      defaults: { _controller: "IntoPeopleDatabaseBundle:User:csv" }
+
 user_firstlogin:
      path:     /firstlogin/{id}/{token}
      defaults: { _controller: "IntoPeopleDatabaseBundle:User:firstlogin" }
+
+user_profile:
+     path:     /profile
+     defaults: { _controller: "IntoPeopleDatabaseBundle:User:profile" }
