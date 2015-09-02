@@ -9,30 +9,57 @@
 
             <h3>Personalia</h3>
 
+            <div class="row">
 
-            <table class="table">
+                <div class="col-md-6">
 
-                <tr>
-                    <th>Name:
-                    <th>
-                    <td>{{ app.user.firstname }} {{ app.user.lastname }}</td>
-                </tr>
+                    <table class="table borderless">
 
-                {% if app.user.supervisor != null %}
-                    <tr>
-                        <th>Supervisor:
-                        <th>
-                        <td>{{ app.user.supervisor.firstname }} {{ app.user.supervisor.lastname }}</td>
-                    </tr>
-                {% endif %}
+                        <tr>
+                            <th>Name:
+                            <th>
+                            <td>{{ app.user.firstname }} {{ app.user.lastname }}</td>
+                        </tr>
 
-                <tr>
-                    <th>Date discussion:
-                    <th>
-                    <td></td>
-                </tr>
+                        {% if app.user.supervisor != null %}
+                            <tr>
+                                <th>Supervisor:
+                                <th>
+                                <td>{{ app.user.supervisor.firstname }} {{ app.user.supervisor.lastname }}</td>
+                            </tr>
+                        {% endif %}
 
-            </table>
+                        <tr>
+                            <th>Date discussion:
+                            <th>
+                            <td></td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <table class="table borderless">
+
+                        <tr>
+                            <th>Team:<th>
+                            <td></td>
+                        </tr>
+
+
+                            <tr>
+                                <th>Functie:<th>
+                                <td></td>
+                            </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
 
 
         </div>
@@ -76,7 +103,7 @@
 
             {{ form_start(form) }} {{ form_errors(form) }}
 
-            <table class="table">
+            <table class="table borderless">
                 <tr>
                     <th style="width: 20%">Talents</th>
                     <th style="width: 20%">Challenges</th>
@@ -174,7 +201,7 @@
 
             <p>{{ template.developmentneeds }}</p>
 
-            <table class="table">
+            <table class="table borderless">
 
                 <thead>
                 <tr>
@@ -249,12 +276,17 @@
 
                 </tbody>
 
-                <tbody>
+                </table>
+
+                <table class="table borderless">
+
+                <thead>
 
                 <tr>
-                    <td colspan="6"><h5 class="text-center">Job specific skills and
-                            competencies</h5></td>
+                    <td colspan="6"><h5 class="text-center">Job specific skills and competencies</h5></td>
                 </tr>
+
+
 
                 <tr>
                     <th style="width: 22%" colspan="2">{{ template.whatWhy }}</th>
@@ -263,7 +295,8 @@
                     <th style="width: 12%">{{ template.needs }}</th>
                     <th style="width: 1%"></th>
                 </tr>
-
+                    </thead>
+                    <tbody>
 
                 <tr>
                     <td colspan="2">{{ form_errors(form.developmentneeds.skill1) }}
@@ -312,7 +345,10 @@
 
                 </tbody>
 
-                <tbody>
+                </table>
+
+                <table class="table borderless">
+                    <thead>
 
                 <tr>
                     <td colspan="6"><h5 class="text-center">Organization
@@ -326,7 +362,9 @@
                     <th style="width: 12%">{{ template.needs }}</th>
                     <th style="width: 1%"></th>
                 </tr>
+                    </thead>
 
+                    <tbody>
 
                 <tr>
                     <td>{{ form_errors(form.developmentneeds.organizationcompetence1) }}
@@ -408,11 +446,11 @@
 
             {{ form_errors(form.additionalinformation) }} {{ form_widget(form.additionalinformation) }}
 
-            <p class="">
+            <div class="buttons">
                 {{ form_widget(form.save) }} {{ form_widget(form.saveAndAdd) }} <a
                         href="{{ app.request.headers.get('referer') }}"
                         class="btn btn-default btn-cons" type="button">Back</a>
-            </p>
+            </div>
 
             {{ form_end(form) }}
 

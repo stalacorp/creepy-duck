@@ -18,3 +18,13 @@ h3 {
 textarea {
     resize:none;
 }
+
+/* .borderless thead tr th */
+
+.borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
+    border: none;
+}
+
+.buttons {
+    margin:50px 0px 80px 0px;
+}
