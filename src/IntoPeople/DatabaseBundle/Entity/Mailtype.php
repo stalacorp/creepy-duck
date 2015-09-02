@@ -35,6 +35,13 @@ class Mailtype
      */
     private $isActive;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="reminderdays", type="integer", nullable=true)
+     */
+    private $reminderdays;
+
 
     /**
      * Get id
@@ -91,5 +98,28 @@ class Mailtype
     public function getIsActive()
     {
         return $this->isActive;
+    }
+
+    /**
+     * Set reminderdays
+     *
+     * @param integer $reminderdays
+     * @return Testerino
+     */
+    public function setReminderdays($reminderdays)
+    {
+        $this->reminderdays = $reminderdays;
+
+        return $this;
+    }
+
+    /**
+     * Get reminderdays
+     *
+     * @return integer
+     */
+    public function getReminderdays()
+    {
+        return $this->reminderdays;
     }
 }

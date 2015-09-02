@@ -72,7 +72,8 @@ class CronjobController extends Controller
                 }
             }
 
-            if ($queryweekbeforedeadline->setMaxResults(1)->getOneOrNullResult()->getIsActive()){
+            $beforedeadlinemail = $queryweekbeforedeadline->setMaxResults(1)->getOneOrNullResult();
+            if ($beforedeadlinemail->getIsActive()){
                 foreach ($languages as $language) {
                     $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
                         ->join('s.mailtype', 'm')
@@ -84,7 +85,7 @@ class CronjobController extends Controller
 
                     $weekbeforedeadlinemails[$language->getName()] = $query->setMaxResults(1)->getOneOrNullResult();
                 }
-                $sevendaysagointerval = new \DateInterval('P7D');
+                $sevendaysagointerval = new \DateInterval('P' . $beforedeadlinemail->getMailtype()->getReminderdays() . 'D');
                 $sevendaysagointerval->invert = 1;
                 foreach ($generalcycles as $generalcycle) {
 

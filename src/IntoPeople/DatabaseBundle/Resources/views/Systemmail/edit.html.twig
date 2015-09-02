@@ -4,6 +4,9 @@
 <div class="col-lg-10">
     <h2>{{ entity.name }}</h2>
     {{ form_start(edit_form) }}
+    {% if entity.mailtype.name == 'weekbeforedeadline' %}
+    {{ form_row(edit_form.mailtype) }}
+    {% endif %}
     {{ form_row(edit_form.sender) }}
    {{ form_row(edit_form.subject) }}
     {% if entity.name == "Account created mail" %}
