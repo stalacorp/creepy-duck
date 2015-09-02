@@ -613,7 +613,7 @@ class SupervisorController extends Controller
             }else if($cycle == "endyear"){
                 $chosencycle = $feedbackcycle->getEndyear();
             }
-            if ($chosencycle->getSupervisor() == $this->getUser()) {
+            if ($chosencycle->getFeedbackcycle()->getUser()->getSupervisor() == $this->getUser()) {
                 array_push($entities, $chosencycle);
             }
         }

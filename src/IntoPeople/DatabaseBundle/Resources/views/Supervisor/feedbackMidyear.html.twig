@@ -1,26 +1,38 @@
 {% extends 'IntoPeopleDatabaseBundle:Midyear:show.html.twig' %} 
 {% block comment -%}
 
-<div class="row margin-top-50">
-	<div class="col-md-12">
+    <h3>Comments from supervisor</h3>
 
+    <div class="row">
 
-				<h3>Comments from supervisor</h3>
+        <div class="col-md-6">
 
-				{{ form_start(form) }}
-				
-                    {{ form_row(form.commentSup) }}
-           
+            <div class="panel panel-default">
+
+                <!-- <div class="panel-heading">
+                    <h3 class="panel-title">Comments from supervisor</h3>
+                </div> -->
+
+                <div class="panel-body">
+
+                    {{ form_start(form) }}
+
                     {{ form_row(form.feedbackdate) }}
-        
+
+                    {{ form_row(form.commentSup) }}
+
                     {{ form_widget(form.save) }} {{ form_widget(form.approve) }} {{ form_widget(form.disapprove) }}
-				
-				{{ form_end(form) }}
+
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
 
 
+        </div>
+    </div>
 
-	</div>
-</div>
+
 
 {% endblock %}
 
