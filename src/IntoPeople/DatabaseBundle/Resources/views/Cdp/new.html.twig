@@ -400,7 +400,7 @@
     {{ parent() }}
     <script>
         $('.addButton').click(function() {
-            $(this).parent().parent().find('.hidden:first').removeClass('hidden');
+            $(this).parent().parent().parent().find('.hidden').first().removeClass('hidden');
 
         })
     </script>
