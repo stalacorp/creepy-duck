@@ -101,7 +101,7 @@
 			<p class="">{{ template.selfassesmentDescription }}</p>
 
 
-			<table class="table">
+			<table class="table borderless">
 				<tr>
 					<th style="width: 20%">Talents</th>
 					<th style="width: 20%">Challenges</th>
@@ -193,7 +193,7 @@
 
 			<p>{{ template.developmentneeds }}</p>
 
-			<table class="table">
+			<table class="table borderless">
 
 				<thead>
 				<tr>
@@ -259,7 +259,7 @@
 
 			</table>
 
-			<table class="table">
+			<table class="table borderless">
 
 				<thead>
 
@@ -317,7 +317,7 @@
 
 			</table>
 
-			<table class="table">
+			<table class="table borderless">
 				<thead>
 
 				<tr>
@@ -397,9 +397,11 @@
 			<p>{{ entity.additionalinformation }}</p>
 
 
-
 		</div>
 	</div>
+
+	{% block comment %}
+	{% endblock %}
 
 {% endblock %}
 

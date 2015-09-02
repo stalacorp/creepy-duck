@@ -5,6 +5,7 @@
 
     {% set template = entity.midyeartemplate %}
     {% set devneeds = entity.developmentneeds %}
+    {% set cdp = entity.feedbackcycle.cdp %}
 
     <div class="row">
         <div class="col-md-12">
@@ -70,12 +71,104 @@
     <div class="row">
         <div class="col-md-12">
 
+            <h3>{# template.selfassesment #}</h3>
+
+            <p class="">{# template.selfassesmentDescription #}</p>
+
+
+            <table class="table borderless">
+                <tr>
+                    <th style="width: 20%">Talents</th>
+                    <th style="width: 20%">Challenges</th>
+                    <th style="width: 20%">How</th>
+                    <th style="width: 20%">Success</th>
+                    <th style="width: 20%">Needs</th>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>{{ cdp.coreQuality1 }}</p>
+                        <p>{{ cdp.coreQuality1Why }}</p>
+                    </td>
+                    <td>
+                        <p>{{ cdp.challenge1 }}</p>
+                        <p>{{ cdp.challengeWhy1 }}</p>
+                    </td>
+                    <td>{{ cdp.challengeHow1 }}</td>
+                    <td>{{ cdp.challengeSuccess1 }}</td>
+                    <td>{{ cdp.challengeNeeds1 }}</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>{{ cdp.coreQuality2 }}</p>
+                        <p>{{ cdp.coreQuality2Why }}</p>
+                    </td>
+                    <td>
+                        <p>{{ cdp.challenge2 }}</p>
+                        <p>{{ cdp.challengeWhy2 }}</p>
+                    </td>
+                    <td>{{ cdp.challengeHow2 }}</td>
+                    <td>{{ cdp.challengeSuccess2 }}</td>
+                    <td>{{ cdp.challengeNeeds2 }}</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>{{ cdp.coreQuality3 }}</p>
+                        <p>{{ cdp.coreQuality3Why }}</p>
+                    </td>
+                    <td>
+                        <p>{{ cdp.challenge3 }}</p>
+                        <p>{{ cdp.challengeWhy3 }}</p>
+                    </td>
+                    <td>{{ cdp.challengeHow3 }}</td>
+                    <td>{{ cdp.challengeSuccess3 }}</td>
+                    <td>{{ cdp.challengeNeeds3 }}</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>{{ cdp.coreQuality4 }}</p>
+                        <p>{{ cdp.coreQuality4Why }}</p>
+                    </td>
+                    <td>
+                        <p>{{ cdp.challenge4 }}</p>
+                        <p>{{ cdp.challengeWhy4 }}</p>
+                    </td>
+                    <td>{{ cdp.challengeHow4 }}</td>
+                    <td>{{ cdp.challengeSuccess4 }}</td>
+                    <td>{{ cdp.challengeNeeds4 }}</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>{{ cdp.coreQuality5 }}</p>
+                        <p>{{ cdp.coreQuality5Why }}</p>
+                    </td>
+                    <td>
+                        <p>{{ cdp.challenge5 }}</p>
+                        <p>{{ cdp.challengeWhy5 }}</p>
+                    </td>
+                    <td>{{ cdp.challengeHow5 }}</td>
+                    <td>{{ cdp.challengeSuccess5 }}</td>
+                    <td>{{ cdp.challengeNeeds5 }}</td>
+                </tr>
+
+            </table>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
 
             <h3>{{ template.title2 }}</h3>
 
             <p>Read your job description carefully. </p>
 
-            <table class="table">
+            <table class="table borderless">
 
                 <thead>
                 <tr>

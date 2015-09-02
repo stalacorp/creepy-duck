@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ffa20809-ee1b-4efe-b10c-cdd44237fa18" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/SupervisorController.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/SupervisorController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Supervisor/feedbackMidyear.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Supervisor/feedbackMidyear.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Midyear/new.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Midyear/new.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdp/show.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdp/show.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Midyear/show.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Midyear/show.html.twig" />
@@ -43,8 +40,8 @@
       <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdp/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.346153">
-              <caret line="64" column="10" selection-start-line="5" selection-start-column="4" selection-end-line="64" selection-end-column="10" />
+            <state vertical-scroll-proportion="-7.1923075">
+              <caret line="95" column="21" selection-start-line="95" selection-start-column="21" selection-end-line="95" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -53,8 +50,28 @@
       <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Midyear/new.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.8846154">
-              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="95" selection-end-column="10" />
+            <state vertical-scroll-proportion="-63.692307">
+              <caret line="189" column="10" selection-start-line="189" selection-start-column="10" selection-end-line="189" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Systemmail/index.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.41195476">
+              <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MyMidyearController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/MyMidyearController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-16.346153">
+              <caret line="66" column="36" selection-start-line="66" selection-start-column="36" selection-end-line="66" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -63,18 +80,18 @@
       <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Midyear/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.1923075">
-              <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+            <state vertical-scroll-proportion="-2.6153846">
+              <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="160" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SupervisorController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/SupervisorController.php">
+      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Endyear/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.80775446">
-              <caret line="558" column="13" selection-start-line="558" selection-start-column="13" selection-end-line="558" selection-end-column="13" />
+            <state vertical-scroll-proportion="-14.653846">
+              <caret line="239" column="38" selection-start-line="239" selection-start-column="38" selection-end-line="239" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -103,7 +120,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Resources/RollerworksMultiUserBundle/views/layout.html.twig" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/User/show.html.twig" />
         <option value="$PROJECT_DIR$/app/config/routing.yml" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Feedbackcycle/new.html.twig" />
@@ -149,11 +165,12 @@
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdp/new.html.twig" />
         <option value="$PROJECT_DIR$/web/assets/css/custom.css" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
-        <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdp/show.html.twig" />
-        <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Midyear/new.html.twig" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Supervisor/feedbackMidyear.html.twig" />
-        <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Midyear/show.html.twig" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/SupervisorController.php" />
+        <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdp/show.html.twig" />
+        <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Midyear/show.html.twig" />
+        <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Midyear/new.html.twig" />
+        <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Systemmail/index.html.twig" />
       </list>
     </option>
   </component>
@@ -415,6 +432,40 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Systemmail" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creepy-duck" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creepy-duck" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IntoPeople" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DatabaseBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Supervisor" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -450,6 +501,74 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Midyear" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creepy-duck" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creepy-duck" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IntoPeople" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DatabaseBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HR" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creepy-duck" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creepy-duck" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IntoPeople" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DatabaseBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Endyear" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -719,7 +838,14 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdp/new.html.twig</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/HRController.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/SupervisorController.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/SystemmailController.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/UserController.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadSystemmail.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Form/UserType.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Systemmail/index.html.twig</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/User/new.html.twig</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -980,7 +1106,13 @@
       <option name="project" value="LOCAL" />
       <updated>1441208452017</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="forms + supervisor dashboard fix">
+      <created>1441219582326</created>
+      <option name="number" value="00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1441219582326</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1038,7 +1170,8 @@
     <MESSAGE value="corequalities" />
     <MESSAGE value="Core Qualities" />
     <MESSAGE value="cdp" />
-    <option name="LAST_COMMIT_MESSAGE" value="cdp" />
+    <MESSAGE value="forms + supervisor dashboard fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="forms + supervisor dashboard fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1068,34 +1201,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/CronjobController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/CorequalityController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="54.26923">
-          <caret line="20" column="7" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Corequality/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.6153846">
-          <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Language.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.153846">
-          <caret line="84" column="4" selection-start-line="84" selection-start-column="4" selection-end-line="87" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/config/routing.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1410,6 +1515,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/SupervisorController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.80775446">
+          <caret line="558" column="13" selection-start-line="558" selection-start-column="13" selection-end-line="558" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Supervisor/feedbackMidyear.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.5">
@@ -1418,34 +1531,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdp/show.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/HR/feedback.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.346153">
-          <caret line="64" column="10" selection-start-line="5" selection-start-column="4" selection-end-line="64" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Midyear/new.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Endyear/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.8846154">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="95" selection-end-column="10" />
+        <state vertical-scroll-proportion="-14.653846">
+          <caret line="239" column="38" selection-start-line="239" selection-start-column="38" selection-end-line="239" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdp/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.1923075">
+          <caret line="95" column="21" selection-start-line="95" selection-start-column="21" selection-end-line="95" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/MyMidyearController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.346153">
+          <caret line="66" column="36" selection-start-line="66" selection-start-column="36" selection-end-line="66" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Midyear/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.1923075">
-          <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+        <state vertical-scroll-proportion="-2.6153846">
+          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="160" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/SupervisorController.php">
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Midyear/new.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.80775446">
-          <caret line="558" column="13" selection-start-line="558" selection-start-column="13" selection-end-line="558" selection-end-column="13" />
+        <state vertical-scroll-proportion="-63.692307">
+          <caret line="189" column="10" selection-start-line="189" selection-start-column="10" selection-end-line="189" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Systemmail/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41195476">
+          <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
           <folding />
         </state>
       </provider>
