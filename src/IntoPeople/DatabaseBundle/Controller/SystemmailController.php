@@ -20,13 +20,31 @@ class SystemmailController extends Controller
      * Lists all Systemmail entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $form = $this->createFormBuilder()
+            ->add('defaultemail', 'email')
+            ->add('setemail', 'submit')
             ->add('language', 'entity', array(
                 'class' => 'IntoPeopleDatabaseBundle:Language',
             ))
             ->getForm();
+        $form->handleRequest($request);
+
+        if ($form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $data = $form->getData();
+            $defaultmail = $data['defaultemail'];
+
+
+            $emails = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->findAll();
+            foreach ($emails as $email){
+                $email->setSender($defaultmail);
+            }
+
+            $em->flush();
+
+        }
 
         return $this->render('IntoPeopleDatabaseBundle:Systemmail:index.html.twig', array(
             'form' => $form->createView(),

@@ -108,7 +108,7 @@ class UserController extends Controller
                                     ->setSubject($systemmail->getSubject())
                                     ->setFrom($systemmail->getSender())
                                     ->setTo($row[0])
-                                    ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('user_firstlogin', array('token' => $password, 'id' => $user->getId())), $systemmail->getBody()));
+                                    ->setBody(str_replace(array('$url', '$username', '$password'), array('https://' . $request->getHttpHost() . $this->generateUrl('user_firstlogin', array('token' => $password, 'id' => $user->getId())), $user->getEmail(), $password), $systemmail->getBody()));
 
                                 $this->get('mailer')->send($message);
                             }
@@ -153,11 +153,36 @@ class UserController extends Controller
         $entity->setEnabled(true);
         
         if ($form->isValid()) {
+            $em = $this->getDoctrine()->getEntityManager();
+
+            $tokenGenerator = $this->get('fos_user.util.token_generator');
+            $password = substr($tokenGenerator->generateToken(), 0, 10);
+            $entity->setPlainPassword($password);
+
             if($entity->getOrganization() == null) {
                 $entity->setOrganization($user->getOrganization());
             }
-                      
-            $em = $this->getDoctrine()->getManager();
+
+            $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
+                ->join('s.mailtype', 'm')
+                ->where('s.language = :id')
+                ->andWhere('m.name = :name')
+                ->setParameter('id', $user->getLanguage())
+                ->setParameter('name', 'usercreated')
+                ->getQuery();
+
+            $systemmail = $query->setMaxResults(1)->getOneOrNullResult();
+
+            if ($systemmail->getMailtype()->getIsActive()) {
+                $message = \Swift_Message::newInstance()
+                    ->setSubject($systemmail->getSubject())
+                    ->setFrom($systemmail->getSender())
+                    ->setTo($entity->getEmail())
+                    ->setBody(str_replace(array('$url', '$username', '$password'), array('https://' . $request->getHttpHost() . $this->generateUrl('user_firstlogin', array('token' => $password, 'id' => $user->getId())), $user->getEmail(), $password), $systemmail->getBody()));
+
+                $this->get('mailer')->send($message);
+            }
+
             $em->persist($entity);
             $em->flush();
             

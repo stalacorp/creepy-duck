@@ -134,6 +134,27 @@ class HRController extends Controller
                 );
                 
             } elseif ($form->get('disapprove')->isClicked()) {
+
+                $user = $entity->getFeedbackcycle()->getUser();
+
+                $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
+                    ->join('s.mailtype', 'm')
+                    ->where('s.language = :id')
+                    ->andWhere('m.name = :name')
+                    ->setParameter('id', $user->getLanguage())
+                    ->setParameter('name', 'hrtoemployee')
+                    ->getQuery();
+
+                $systemmail = $query->setMaxResults(1)->getOneOrNullResult();
+                if ($systemmail->getMailtype()->getIsActive()) {
+                    $message = \Swift_Message::newInstance()
+                        ->setSubject($systemmail->getSubject())
+                        ->setFrom($systemmail->getSender())
+                        ->setTo($user->getEmail())
+                        ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('cdp_edit', array('id' => $entity->getId())), $systemmail->getBody()));
+
+                    $this->get('mailer')->send($message);
+                }
                 
                 $formstatus = $repository->find(7);
                 
@@ -289,6 +310,27 @@ class HRController extends Controller
                 );
                 
             } elseif ($form->get('disapprove')->isClicked()) {
+
+                $user = $entity->getFeedbackcycle()->getUser();
+
+                $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
+                    ->join('s.mailtype', 'm')
+                    ->where('s.language = :id')
+                    ->andWhere('m.name = :name')
+                    ->setParameter('id', $user->getLanguage())
+                    ->setParameter('name', 'hrtoemployee')
+                    ->getQuery();
+
+                $systemmail = $query->setMaxResults(1)->getOneOrNullResult();
+                if ($systemmail->getMailtype()->getIsActive()) {
+                    $message = \Swift_Message::newInstance()
+                        ->setSubject($systemmail->getSubject())
+                        ->setFrom($systemmail->getSender())
+                        ->setTo($user->getEmail())
+                        ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('midyear_edit', array('id' => $entity->getId())), $systemmail->getBody()));
+
+                    $this->get('mailer')->send($message);
+                }
                 
                 $formstatus = $repository->find(7);
                 
@@ -444,6 +486,27 @@ class HRController extends Controller
                 );
                 
             } elseif ($form->get('disapprove')->isClicked()) {
+
+                $user = $entity->getFeedbackcycle()->getUser();
+
+                $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
+                    ->join('s.mailtype', 'm')
+                    ->where('s.language = :id')
+                    ->andWhere('m.name = :name')
+                    ->setParameter('id', $user->getLanguage())
+                    ->setParameter('name', 'hrtoemployee')
+                    ->getQuery();
+
+                $systemmail = $query->setMaxResults(1)->getOneOrNullResult();
+                if ($systemmail->getMailtype()->getIsActive()) {
+                    $message = \Swift_Message::newInstance()
+                        ->setSubject($systemmail->getSubject())
+                        ->setFrom($systemmail->getSender())
+                        ->setTo($user->getEmail())
+                        ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('endyear_edit', array('id' => $entity->getId())), $systemmail->getBody()));
+
+                    $this->get('mailer')->send($message);
+                }
                 
                 $formstatus = $repository->find(7);
                 

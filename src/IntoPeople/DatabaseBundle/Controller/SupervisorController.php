@@ -182,7 +182,7 @@ class SupervisorController extends Controller
                             ->setSubject($systemmail->getSubject())
                             ->setFrom($systemmail->getSender())
                             ->setTo($hr->getEmail())
-                            ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('hr_addFeedback', array('id' => $entity->getId())), $systemmail->getBody()));
+                            ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('cdp_edit', array('id' => $entity->getId())), $systemmail->getBody()));
 
                         $this->get('mailer')->send($message);
                     }
@@ -195,6 +195,25 @@ class SupervisorController extends Controller
             } elseif ($form->get('disapprove')->isClicked()) {
 
                 $formstatus = $repository->find(4);
+                $user = $entity->getFeedbackcycle->getUser();
+                $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
+                    ->join('s.mailtype', 'm')
+                    ->where('s.language = :id')
+                    ->andWhere('m.name = :name')
+                    ->setParameter('id', $user->getLanguage())
+                    ->setParameter('name', 'supervisortoemployee')
+                    ->getQuery();
+
+                $systemmail = $query->setMaxResults(1)->getOneOrNullResult();
+                if ($systemmail->getMailtype()->getIsActive()) {
+                    $message = \Swift_Message::newInstance()
+                        ->setSubject($systemmail->getSubject())
+                        ->setFrom($systemmail->getSender())
+                        ->setTo($user->getEmail())
+                        ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('midyear_edit', array('id' => $entity->getId())), $systemmail->getBody()));
+
+                    $this->get('mailer')->send($message);
+                }
                 
                 $this->addFlash(
                     'success',
@@ -337,6 +356,26 @@ class SupervisorController extends Controller
                                               
             } elseif ($form->get('disapprove')->isClicked()) {
 
+                $user = $entity->getFeedbackcycle->getUser();
+                $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
+                    ->join('s.mailtype', 'm')
+                    ->where('s.language = :id')
+                    ->andWhere('m.name = :name')
+                    ->setParameter('id', $user->getLanguage())
+                    ->setParameter('name', 'supervisortoemployee')
+                    ->getQuery();
+
+                $systemmail = $query->setMaxResults(1)->getOneOrNullResult();
+                if ($systemmail->getMailtype()->getIsActive()) {
+                    $message = \Swift_Message::newInstance()
+                        ->setSubject($systemmail->getSubject())
+                        ->setFrom($systemmail->getSender())
+                        ->setTo($user->getEmail())
+                        ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('midyear_edit', array('id' => $entity->getId())), $systemmail->getBody()));
+
+                    $this->get('mailer')->send($message);
+                }
+
                 $formstatus = $repository->find(4);
                 
                 $this->addFlash(
@@ -478,6 +517,26 @@ class SupervisorController extends Controller
                 );
                                               
             } elseif ($form->get('disapprove')->isClicked()) {
+
+                $user = $entity->getFeedbackcycle->getUser();
+                $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
+                    ->join('s.mailtype', 'm')
+                    ->where('s.language = :id')
+                    ->andWhere('m.name = :name')
+                    ->setParameter('id', $user->getLanguage())
+                    ->setParameter('name', 'supervisortoemployee')
+                    ->getQuery();
+
+                $systemmail = $query->setMaxResults(1)->getOneOrNullResult();
+                if ($systemmail->getMailtype()->getIsActive()) {
+                    $message = \Swift_Message::newInstance()
+                        ->setSubject($systemmail->getSubject())
+                        ->setFrom($systemmail->getSender())
+                        ->setTo($user->getEmail())
+                        ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('endyear_edit', array('id' => $entity->getId())), $systemmail->getBody()));
+
+                    $this->get('mailer')->send($message);
+                }
 
                 $formstatus = $repository->find(4);
                 

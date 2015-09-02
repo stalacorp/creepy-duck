@@ -79,7 +79,7 @@ class UserType extends AbstractType
                     
                     if (!$entity || null === $entity->getId()) {
                         $form->add('supervisor');
-                        $form->add('plainpassword', 'password', array('label' => 'Password'));  
+                        //$form->add('plainpassword', 'password', array('label' => 'Password'));
                     }
 
                 } else {
@@ -92,7 +92,7 @@ class UserType extends AbstractType
                     
                     if (!$entity || null === $entity->getId()) {
                     
-                        $form->add('plainpassword', 'password', array('label' => 'Password'));
+                        //$form->add('plainpassword', 'password', array('label' => 'Password'));
                     
                      $formOptions = array(
                         'class' => 'IntoPeople\DatabaseBundle\Entity\User',

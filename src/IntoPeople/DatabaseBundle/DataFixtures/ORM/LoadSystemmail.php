@@ -24,6 +24,8 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $newfeedbacktype = new Mailtype();
         $formtosupervisortype = new Mailtype();
         $formtohrtype = new Mailtype();
+        $supervisortoemployeetype = new Mailtype();
+        $hrtoemployeetype = new Mailtype();
 
         $createdtype->setIsActive(true);
         $weekbeforedeadlinetype->setIsActive(true);
@@ -31,6 +33,8 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $newfeedbacktype->setIsActive(true);
         $formtosupervisortype->setIsActive(true);
         $formtohrtype->setIsActive(true);
+        $supervisortoemployeetype->setIsActive(true);
+        $hrtoemployeetype->setIsActive(true);
 
         $weekbeforedeadlinetype->setReminderdays(7);
 
@@ -40,6 +44,8 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $newfeedbacktype->setName('finished');
         $formtosupervisortype->setName('formtosupervisor');
         $formtohrtype->setName('formtohr');
+        $supervisortoemployeetype->setName('supervisortoemployee');
+        $hrtoemployeetype->setName('hrtoemployee');
 
         $manager->persist($createdtype);
         $manager->persist($weekbeforedeadlinetype);
@@ -47,6 +53,8 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($newfeedbacktype);
         $manager->persist($formtosupervisortype);
         $manager->persist($formtohrtype);
+        $manager->persist($supervisortoemployeetype);
+        $manager->persist($hrtoemployeetype);
 
         $created = new Systemmail();
         $weekbeforedeadline = new Systemmail();
@@ -54,6 +62,8 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $newfeedback = new Systemmail();
         $formtosupervisor = new Systemmail();
         $formtohr = new Systemmail();
+        $supervisortoemployee = new Systemmail();
+        $hrtoemployee = new Systemmail();
         
         $created->setName('Account created mail');
         $weekbeforedeadline->setName('Week before deadline mail');
@@ -61,6 +71,8 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $newfeedback->setName('Cycle finished mail');
         $formtosupervisor->setName('Form sent to supervisor mail');
         $formtohr->setName('Form sent to HR mail');
+        $supervisortoemployee->setName('Form sent back from supervisor to employee mail');
+        $hrtoemployee->setName('Form sent back from HR to employee mail');
 
         $created->setSubject('Account created mail');
         $weekbeforedeadline->setSubject('Week before deadline mail');
@@ -68,6 +80,8 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $newfeedback->setSubject('Cycle finished mail');
         $formtosupervisor->setSubject('Form sent to supervisor mail');
         $formtohr->setSubject('Form sent to HR mail');
+        $supervisortoemployee->setSubject('Form sent back from supervisor to employee mail');
+        $hrtoemployee->setSubject('Form sent back from HR to employee mail');
 
         $created->setBody('$url');
         $weekbeforedeadline->setBody('$url');
@@ -75,13 +89,17 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $newfeedback->setBody('$url');
         $formtosupervisor->setBody('$url');
         $formtohr->setBody('$url');
+        $supervisortoemployee->setBody('$url');
+        $hrtoemployee->setBody('$url');
 
-        $created->setSender('test@test.com');
-        $weekbeforedeadline->setSender('test@test.com');
-        $newcycle->setSender('test@test.com');
-        $newfeedback->setSender('test@test.com');
-        $formtosupervisor->setSender('test@test.com');
-        $formtohr->setSender('test@test.com');
+        $created->setSender('example@mail.com');
+        $weekbeforedeadline->setSender('example@mail.com');
+        $newcycle->setSender('example@mail.com');
+        $newfeedback->setSender('example@mail.com');
+        $formtosupervisor->setSender('example@mail.com');
+        $formtohr->setSender('example@mail.com');
+        $supervisortoemployee->setSender('example@mail.com');
+        $hrtoemployee->setSender('example@mail.com');
 
         $created->setMailtype($createdtype);
         $weekbeforedeadline->setMailtype($weekbeforedeadlinetype);
@@ -89,13 +107,19 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $newfeedback->setMailtype($newfeedbacktype);
         $formtosupervisor->setMailtype($formtosupervisortype);
         $formtohr->setMailtype($formtohrtype);
+        $supervisortoemployee->setMailtype($supervisortoemployeetype);
+        $hrtoemployee->setMailtype($hrtoemployeetype);
+        
+        $english = $this->getReference('english');
 
-        $created->setLanguage($this->getReference('english'));
-        $weekbeforedeadline->setLanguage($this->getReference('english'));
-        $newcycle->setLanguage($this->getReference('english'));
-        $newfeedback->setLanguage($this->getReference('english'));
-        $formtosupervisor->setLanguage($this->getReference('english'));
-        $formtohr->setLanguage($this->getReference('english'));
+        $created->setLanguage();
+        $weekbeforedeadline->setLanguage($english);
+        $newcycle->setLanguage($english);
+        $newfeedback->setLanguage($english);
+        $formtosupervisor->setLanguage($english);
+        $formtohr->setLanguage($english);
+        $supervisortoemployee->setLanguage($english);
+        $hrtoemployee->setMailtype($english);
 
         $manager->persist($created);
         $manager->persist($weekbeforedeadline);
@@ -103,6 +127,8 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($newfeedback);
         $manager->persist($formtosupervisor);
         $manager->persist($formtohr);
+        $manager->persist($supervisortoemployee);
+        $manager->persist($hrtoemployee);
 
         $created = new Systemmail();
         $weekbeforedeadline = new Systemmail();
@@ -110,6 +136,8 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $newfeedback = new Systemmail();
         $formtosupervisor = new Systemmail();
         $formtohr = new Systemmail();
+        $supervisortoemployee = new Systemmail();
+        $hrtoemployee = new Systemmail();
 
         $created->setMailtype($createdtype);
         $weekbeforedeadline->setMailtype($weekbeforedeadlinetype);
@@ -117,6 +145,8 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $newfeedback->setMailtype($newfeedbacktype);
         $formtosupervisor->setMailtype($formtosupervisortype);
         $formtohr->setMailtype($formtohrtype);
+        $supervisortoemployee->setMailtype($supervisortoemployeetype);
+        $hrtoemployee->setMailtype($hrtoemployeetype);
 
         $created->setName('Account aangemaakt mail');
         $weekbeforedeadline->setName('Week voor deadline mail');
@@ -124,20 +154,27 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $newfeedback->setName('Cyclus klaar mail');
         $formtosupervisor->setName('Formulier naar overste gestuurd mail');
         $formtohr->setName('Formulier naar HR gestuurd mail');
+        $supervisortoemployee->setName('Formulier van overste terug naar werknemer gestuurd mail');
+        $hrtoemployee->setName('Formulier van HR terug naar werknemer gestuurd mail');
 
-        $created->setLanguage($this->getReference('nederlands'));
-        $weekbeforedeadline->setLanguage($this->getReference('nederlands'));
-        $newcycle->setLanguage($this->getReference('nederlands'));
-        $newfeedback->setLanguage($this->getReference('nederlands'));
-        $formtosupervisor->setLanguage($this->getReference('nederlands'));
-        $formtohr->setLanguage($this->getReference('nederlands'));
+        $nederlands = $this->getReference('nederlands');
+        $created->setLanguage($nederlands);
+        $weekbeforedeadline->setLanguage($nederlands);
+        $newcycle->setLanguage($nederlands);
+        $newfeedback->setLanguage($nederlands);
+        $formtosupervisor->setLanguage($nederlands);
+        $formtohr->setLanguage($nederlands);
+        $supervisortoemployee->setLanguage($nederlands);
+        $hrtoemployee->setMailtype($nederlands);
 
-        $created->setSubject('Account created mail');
-        $weekbeforedeadline->setSubject('Week before deadline mail');
-        $newcycle->setSubject('New cycle ready mail');
-        $newfeedback->setSubject('Cycle finished mail');
-        $formtosupervisor->setSubject('Form sent to supervisor mail');
-        $formtohr->setSubject('Form sent to HR mail');
+        $created->setSubject('Account aangemaakt mail');
+        $weekbeforedeadline->setSubject('Week voor deadline mail');
+        $newcycle->setSubject('Nieuwe  cyclus beschikbaar mail');
+        $newfeedback->setSubject('Cyclus klaar mail');
+        $formtosupervisor->setSubject('Formulier naar overste gestuurd mail');
+        $formtohr->setSubject('Formulier naar HR gestuurd mail');
+        $supervisortoemployee->setSubject('Formulier van overste terug naar werknemer gestuurd mail');
+        $hrtoemployee->setSubject('Formulier van HR terug naar werknemer gestuurd mail');
 
         $created->setBody('$url');
         $weekbeforedeadline->setBody('$url');
@@ -145,13 +182,17 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $newfeedback->setBody('$url');
         $formtosupervisor->setBody('$url');
         $formtohr->setBody('$url');
+        $supervisortoemployee->setBody('$url');
+        $hrtoemployee->setBody('$url');
 
-        $created->setSender('test@test.com');
-        $weekbeforedeadline->setSender('test@test.com');
-        $newcycle->setSender('test@test.com');
-        $newfeedback->setSender('test@test.com');
-        $formtosupervisor->setSender('test@test.com');
-        $formtohr->setSender('test@test.com');
+        $created->setSender('example@mail.com');
+        $weekbeforedeadline->setSender('example@mail.com');
+        $newcycle->setSender('example@mail.com');
+        $newfeedback->setSender('example@mail.com');
+        $formtosupervisor->setSender('example@mail.com');
+        $formtohr->setSender('example@mail.com');
+        $supervisortoemployee->setSender('example@mail.com');
+        $hrtoemployee->setSender('example@mail.com');
 
         $manager->persist($created);
         $manager->persist($weekbeforedeadline);
@@ -159,6 +200,8 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($newfeedback);
         $manager->persist($formtosupervisor);
         $manager->persist($formtohr);
+        $manager->persist($supervisortoemployee);
+        $manager->persist($hrtoemployee);
 
         $manager->flush();
 
