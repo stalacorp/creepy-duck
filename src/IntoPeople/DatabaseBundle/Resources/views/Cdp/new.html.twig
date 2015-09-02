@@ -396,12 +396,13 @@
 
 {% endblock %}
 
-{% block documentReady %}
+{%  block javascripts -%}
+    {{ parent() }}
+    <script>
+        $('.addButton').click(function() {
+            $(this).parent().parent().find('.hidden:first').removeClass('hidden');
 
-    $('.addButton').click(function() {
-        $(this).parent().parent().find('.hidden:first').removeClass('hidden');
-    })
-
-
+        })
+    </script>
 {% endblock %}
 
