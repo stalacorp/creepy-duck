@@ -23,6 +23,9 @@ class LoadLanguage extends AbstractFixture implements OrderedFixtureInterface
          
         $english->setName('English');
         $nederlands->setName('Nederlands');
+
+        $english->setLocaleabr('en');
+        $nederlands->setLocaleabr('nl');
         
         $english->setId(1);
         $nederlands->setId(2);

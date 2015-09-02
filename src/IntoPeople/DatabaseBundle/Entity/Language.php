@@ -21,6 +21,13 @@ class Language
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="localeabr", type="string", length=255)
+     */
+    private $localeabr;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="Id", type="integer")
@@ -110,6 +117,29 @@ class Language
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set localeabr
+     *
+     * @param string $localeabr
+     * @return testerino
+     */
+    public function setLocaleabr($localeabr)
+    {
+        $this->localeabr = $localeabr;
+
+        return $this;
+    }
+
+    /**
+     * Get localeabr
+     *
+     * @return string
+     */
+    public function getLocaleabr()
+    {
+        return $this->localeabr;
     }
     
     /**
