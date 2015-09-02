@@ -17,6 +17,7 @@ class SystemmailType extends AbstractType
         $builder
             ->add('sender')
             ->add('subject')
+            ->add('mailtype', new MailtypeType())
             ->add('body')
         ;
     }

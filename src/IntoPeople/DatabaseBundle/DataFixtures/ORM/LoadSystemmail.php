@@ -32,6 +32,8 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $formtosupervisortype->setIsActive(true);
         $formtohrtype->setIsActive(true);
 
+        $weekbeforedeadlinetype->setReminderdays(7);
+
         $createdtype->setName('usercreated');
         $weekbeforedeadlinetype->setName('weekbeforedeadline');
         $newcycletype->setName('newcycle');

@@ -291,12 +291,14 @@ class UserController extends Controller
 
             $form->handleRequest($request);
             if ($form->isValid()) {
+                $userManager = $this->get('fos_user.user_manager');
                 $oldpassword = $form->get('oldpassword')->getData();
                 $newpassword = $form->get('newpassword')->getData();
                 if ($oldpassword != null & $newpassword != null){
-                    $encoded_pass = $encoder->encodePassword($$oldpassword, $user->getSalt());
+                    $encoded_pass = $encoder->encodePassword($oldpassword, $user->getSalt());
                     if ($user->getPassword() == $encoded_pass){
                         $user->setPlainPassword($newpassword);
+                        $userManager->updateUser($user);
                     }
 
                 }
