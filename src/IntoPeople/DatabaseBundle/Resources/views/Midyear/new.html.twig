@@ -156,6 +156,8 @@
                     <td>{{ cdp.challengeNeeds3 }}</td>
                 </tr>
 
+                {% if cdp.coreQuality4 != null %}
+
                 <tr>
                     <td>
                         <p>{{ cdp.coreQuality4 }}</p>
@@ -170,6 +172,10 @@
                     <td>{{ cdp.challengeNeeds4 }}</td>
                 </tr>
 
+                {% endif %}
+
+                {% if cdp.coreQuality5 != null %}
+
                 <tr>
                     <td>
                         <p>{{ cdp.coreQuality5 }}</p>
@@ -183,6 +189,8 @@
                     <td>{{ cdp.challengeSuccess5 }}</td>
                     <td>{{ cdp.challengeNeeds5 }}</td>
                 </tr>
+
+                {% endif %}
 
             </table>
 

@@ -44,7 +44,17 @@ class CorequalityController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('corequality_show', array('id' => $entity->getId())));
+            // Notification message after Core Quality has been created
+            //
+            $tr = $this->get('translator');
+            $message = $tr->trans('notification.create.corequality');
+
+            $this->addFlash(
+                'success',
+                $message
+            );
+
+            return $this->redirect($this->generateUrl('corequality', array('id' => $entity->getId())));
         }
 
         return $this->render('IntoPeopleDatabaseBundle:Corequality:new.html.twig', array(
@@ -171,6 +181,16 @@ class CorequalityController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
+
+            // Notification message after Core Quality has been created
+            //
+            $tr = $this->get('translator');
+            $message = $tr->trans('notification.edit.corequality');
+
+            $this->addFlash(
+                'success',
+                $message
+            );
 
             return $this->redirect($this->generateUrl('corequality_edit', array('id' => $id)));
         }

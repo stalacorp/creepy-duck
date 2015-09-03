@@ -1,15 +1,26 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Corequality creation</h1>
 
-    {{ form(form) }}
+    <div class="row">
+        <div class="col-md-6">
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('corequality') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+            <h2>{{ "corequality.new.title" | trans }}</h2>
+
+            {{ form_start(form) }}
+
+            {{ form_row(form.coreQuality) }}
+
+            {{ form_row(form.language) }}
+
+            {{ form_widget(form.submit) }}
+
+            <a href="{{ path('corequality') }}" role="button" class="btn btn-default">{{ "button.back" | trans }}</a>
+
+            {{ form_end(form) }}
+
+
+        </div>
+    </div>
+
 {% endblock %}

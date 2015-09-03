@@ -16,9 +16,6 @@ class CorequalityType extends AbstractType
     {
         $builder
             ->add('coreQuality')
-            ->add('pitfall')
-            ->add('allergy')
-            ->add('challenge')
             ->add('language')
         ;
     }

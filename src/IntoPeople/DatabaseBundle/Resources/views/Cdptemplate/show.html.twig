@@ -1,150 +1,130 @@
 {% extends '::base.html.twig' %} {% block body -%}
-<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-<div id="portlet-config" class="modal hide">
-	<div class="modal-header">
-		<button data-dismiss="modal" class="close" type="button"></button>
-		<h3>Widget Settings</h3>
-	</div>
-	<div class="modal-body">Widget settings form goes here</div>
-</div>
-<div class="clearfix"></div>
-<div class="container">
-	<div class="content">
 
-		<div class="page-title">
-			<i class="icon-custom-left"></i>
-			<h3>
-				<span class="semi-bold">Template</span>
-			</h3>
-		</div>
+    <h2>{{ "cdptemplate.show.title" | trans }}</h2>
 
-		<div class="row">
-			<div class="col-md-12">
-				<div class="grid simple ">
-					<div class="grid-title">
-						<h4>Show CDP Template</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="grid simple ">
+                <div class="grid-title">
+                    <h4>Show CDP Template</h4>
 
-					</div>
-					<div class="grid-body">
+                </div>
+                <div class="grid-body">
 
 
-						<table class="table">
-							<tbody>
-								<tr>
-									<th>Date</th>
-									<td>{{ entity.date|date('Y-m-d') }}</td>
-								</tr>
-								<tr>
-									<th>Selfassesment</th>
-									<td>{{ entity.selfassesment }}</td>
-								</tr>
-								<tr>
-									<th>Selfassesment Description</th>
-									<td>{{ entity.selfassesmentDescription }}</td>
-								</tr>								
-								<tr>
-									<th>Talents</th>
-									<td>{{ entity.talents }}</td>
-								</tr>
-								<tr>
-									<th>TalentsDescription</th>
-									<td>{{ entity.talentsDescription }}</td>
-								</tr>
-								<tr>
-									<th>Challenges</th>
-									<td>{{ entity.challenges }}</td>
-								</tr>
-								<tr>
-									<th>Challenges description</th>
-									<td>{{ entity.challengesDescription }}</td>
-								</tr>
-								<tr>
-									<th>Developmentneeds</th>
-									<td>{{ entity.developmentneeds }}</td>
-								</tr>
-								<tr>
-									<th>Whatwhy</th>
-									<td>{{ entity.whatwhy }}</td>
-								</tr>
-								<tr>
-									<th>Whatwhy description</th>
-									<td>{{ entity.whatwhyDescription }}</td>
-								</tr>
-								<tr>
-									<th>How</th>
-									<td>{{ entity.how }}</td>
-								</tr>
-								<tr>
-									<th>How description</th>
-									<td>{{ entity.howDescription }}</td>
-								</tr>
-								<tr>
-									<th>Success</th>
-									<td>{{ entity.success }}</td>
-								</tr>
-								<tr>
-									<th>Success description</th>
-									<td>{{ entity.successDescription }}</td>
-								</tr>
-								<tr>
-									<th>Needs</th>
-									<td>{{ entity.needs }}</td>
-								</tr>
-								<tr>
-									<th>Needs description</th>
-									<td>{{ entity.needsDescription }}</td>
-								</tr>
-								<tr>
-									<th>Careerobjectives</th>
-									<td>{{ entity.careerobjectives }}</td>
-								</tr>
-								<tr>
-									<th>Careerobjectives question</th>
-									<td>{{ entity.careerobjectivesQuestion }}</td>
-								</tr>
-								<tr>
-									<th>Additionalinformation</th>
-									<td>{{ entity.additionalinformation }}</td>
-								</tr>
-								<tr>
-									<th>Additionalinformation question</th>
-									<td>{{ entity.additionalinformationQuestion }}</td>
-								</tr>
-								<tr>
-									<th>Supervisor comment</th>
-									<td>{{ entity.supervisorComment }}</td>
-								</tr>								
-								<tr>
-									<th>Feedback</th>
-									<td>{{ entity.feedback }}</td>
-								</tr>								
-								<tr>
-									<th>Signature supervisor</th>
-									<td>{{ entity.signatureSupervisor }}</td>
-								</tr>
-								<tr>
-									<th>Signature Employee</th>
-									<td>{{ entity.signatureEmployee }}</td>
-								</tr>
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <th>Date</th>
+                            <td>{{ entity.date|date('Y-m-d') }}</td>
+                        </tr>
+                        <tr>
+                            <th>Selfassesment</th>
+                            <td>{{ entity.selfassesment }}</td>
+                        </tr>
+                        <tr>
+                            <th>Selfassesment Description</th>
+                            <td>{{ entity.selfassesmentDescription }}</td>
+                        </tr>
+                        <tr>
+                            <th>Talents</th>
+                            <td>{{ entity.talents }}</td>
+                        </tr>
+                        <tr>
+                            <th>TalentsDescription</th>
+                            <td>{{ entity.talentsDescription }}</td>
+                        </tr>
+                        <tr>
+                            <th>Challenges</th>
+                            <td>{{ entity.challenges }}</td>
+                        </tr>
+                        <tr>
+                            <th>Challenges description</th>
+                            <td>{{ entity.challengesDescription }}</td>
+                        </tr>
+                        <tr>
+                            <th>Developmentneeds</th>
+                            <td>{{ entity.developmentneeds }}</td>
+                        </tr>
+                        <tr>
+                            <th>Whatwhy</th>
+                            <td>{{ entity.whatwhy }}</td>
+                        </tr>
+                        <tr>
+                            <th>Whatwhy description</th>
+                            <td>{{ entity.whatwhyDescription }}</td>
+                        </tr>
+                        <tr>
+                            <th>How</th>
+                            <td>{{ entity.how }}</td>
+                        </tr>
+                        <tr>
+                            <th>How description</th>
+                            <td>{{ entity.howDescription }}</td>
+                        </tr>
+                        <tr>
+                            <th>Success</th>
+                            <td>{{ entity.success }}</td>
+                        </tr>
+                        <tr>
+                            <th>Success description</th>
+                            <td>{{ entity.successDescription }}</td>
+                        </tr>
+                        <tr>
+                            <th>Needs</th>
+                            <td>{{ entity.needs }}</td>
+                        </tr>
+                        <tr>
+                            <th>Needs description</th>
+                            <td>{{ entity.needsDescription }}</td>
+                        </tr>
+                        <tr>
+                            <th>Careerobjectives</th>
+                            <td>{{ entity.careerobjectives }}</td>
+                        </tr>
+                        <tr>
+                            <th>Careerobjectives question</th>
+                            <td>{{ entity.careerobjectivesQuestion }}</td>
+                        </tr>
+                        <tr>
+                            <th>Additionalinformation</th>
+                            <td>{{ entity.additionalinformation }}</td>
+                        </tr>
+                        <tr>
+                            <th>Additionalinformation question</th>
+                            <td>{{ entity.additionalinformationQuestion }}</td>
+                        </tr>
+                        <tr>
+                            <th>Supervisor comment</th>
+                            <td>{{ entity.supervisorComment }}</td>
+                        </tr>
+                        <tr>
+                            <th>Feedback</th>
+                            <td>{{ entity.feedback }}</td>
+                        </tr>
+                        <tr>
+                            <th>Signature supervisor</th>
+                            <td>{{ entity.signatureSupervisor }}</td>
+                        </tr>
+                        <tr>
+                            <th>Signature Employee</th>
+                            <td>{{ entity.signatureEmployee }}</td>
+                        </tr>
 
-							</tbody>
-						</table>
-
-						<ul class="record_actions">
-							<li><a href="{{ path('cdptemplate') }}"> Back to the list </a></li>
-							<li><a href="{{ path('cdptemplate_edit', { 'id': entity.id }) }}">
-									Edit </a></li>
-							<li>{{ form(delete_form) }}</li>
-						</ul>
+                        </tbody>
+                    </table>
 
 
+                    <a href="{{ path('cdptemplate') }}">{{ "backbutton" | trans }}</a>
+                    <a href="{{ path('cdptemplate_edit', { 'id': entity.id }) }}">Edit </a>
+                    {{ form(delete_form) }}
 
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 {% endblock %}
 
