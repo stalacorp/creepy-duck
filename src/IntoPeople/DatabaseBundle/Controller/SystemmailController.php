@@ -162,7 +162,20 @@ class SystemmailController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $em->flush();
+            if ($entity->getMailtype()->getName() == 'usercreated'){
+                if (!strpos($entity->getBody(), '$url')){
+                    $this->addFlash(
+                        'warning',
+                        $this->get('translator')->trans('systemmail.urlrequired')
+                    );
+                }else {
+                    $em->flush();
+                }
+            }else {
+                $em->flush();
+            }
+
+
 
             return $this->redirect($this->generateUrl('systemmail_edit', array('id' => $id)));
         }

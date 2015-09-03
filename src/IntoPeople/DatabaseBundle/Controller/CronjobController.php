@@ -104,37 +104,54 @@ class CronjobController extends Controller
 
 
                             $feedbackcycle = $query->setMaxResults(1)->getOneOrNullResult();
-
+                            $chosencycle = '';
                             if ($enddatecdp == $today) {
-                                $cdp = $feedbackcycle->getCdp();
-                                $formstatus = $cdp->getFormstatus();
+                                $chosencycle = $feedbackcycle->getCdp();
+                                $formstatus = $chosencycle->getFormstatus();
+                                $type = 'cdp';
                             }
 
                             if ($enddatemidyear == $today) {
-                                $midyear = $feedbackcycle->getMidyear();
-                                $formstatus = $midyear->getFormstatus();
+                                $chosencycle = $feedbackcycle->getMidyear();
+                                $formstatus = $chosencycle->getFormstatus();
+                                $type = 'midyear';
                             }
 
                             if ($enddateyearend == $today) {
-                                $endyear = $feedbackcycle->getEndyear();
-                                $formstatus = $endyear->getFormstatus();
+                                $chosencycle = $feedbackcycle->getEndyear();
+                                $formstatus = $chosencycle->getFormstatus();
+                                $type = 'endyear';
                             }
 
                             $mailusers = array();
                             $formstatusid = $formstatus->getId();
-                            if ($formstatusid == 1 | $formstatusid == 2 | $formstatusid == 4){
+                            if ($formstatusid == 1 | $formstatusid == 2 | $formstatusid == 4 | $formstatusid == 7){
                                 $mailusers[0] = $user;
+                                $url = $type . '_edit';
                             }elseif ($formstatusid == 3){
                                 $mailusers[0] = $user->getSupervisor();
+
+                                $url = 'supervisor_';
+                                if ($type == 'cdp'){
+                                    $url .= 'addComment';
+                                }else {
+                                    $url .= 'add' . ucfirst($type) . 'Comment';
+                                }
+
+
                             }elseif ($formstatusid == 5){
                                 $query = $em->getRepository('IntoPeopleDatabaseBundle:User')->createQueryBuilder('u')
                                     ->where('u.roles like :role')
                                     ->setParameter(':role', '%ROLE_HR%')
                                     ->getQuery();
-
-
                                 $users = $query->getResult();
 
+                                $url = 'hr_';
+                                if ($type == 'cdp'){
+                                    $url .= 'addFeedback';
+                                }else {
+                                    $url .= 'add' . ucfirst($type) . 'Feedback';
+                                }
                             }
 
                             foreach ($mailusers as $mailuser) {
@@ -143,7 +160,7 @@ class CronjobController extends Controller
                                     ->setSubject($systemmail->getSubject())
                                     ->setFrom($systemmail->getSender())
                                     ->setTo($mailuser->getEmail())
-                                    ->setBody($systemmail->getBody());
+                                    ->setBody('$url', 'https://' . $request->getHttpHost() . $this->generateUrl($url, array('id' => $chosencycle->getId())), $systemmail->getBody());
 
                                 $this->get('mailer')->send($message);
                             }
