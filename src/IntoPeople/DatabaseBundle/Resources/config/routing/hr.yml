@@ -50,3 +50,9 @@ hr_getforms:
     defaults: { _controller: "IntoPeopleDatabaseBundle:HR:getforms" }
     options:
       expose: true
+
+hr_pdf:
+    path:     /pdf/{cycle}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:pdf" }
+    options:
+      expose: true

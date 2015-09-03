@@ -58,7 +58,7 @@ class Language
     }
     
     /**
-     * @ORM\OneToMany(targetEntity="Midyear", mappedBy="language")
+     * @ORM\OneToMany(targetEntity="Midyeartemplate", mappedBy="language")
      */
     protected $midyeartemplates;
     
@@ -68,7 +68,7 @@ class Language
     }
     
     /**
-     * @ORM\OneToMany(targetEntity="Endyear", mappedBy="language")
+     * @ORM\OneToMany(targetEntity="Endyeartemplate", mappedBy="language")
      */
     protected $endyeartemplates;
     

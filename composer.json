@@ -25,7 +25,9 @@
         "vich/uploader-bundle": "^0.14.0",
         "doctrine/doctrine-fixtures-bundle": "^2.2",
         "friendsofsymfony/jsrouting-bundle": "^1.5",
-        "twig/extensions": "1.0.*@dev"
+        "twig/extensions": "1.0.*@dev",
+        "psliwa/pdf-bundle": "~1.0"
+
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

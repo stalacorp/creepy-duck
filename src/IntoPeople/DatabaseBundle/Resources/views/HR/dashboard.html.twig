@@ -152,6 +152,24 @@
                         }
                     });
 
+                    var exportopdfbutton = $('<a class="btn btn-primary">Export to pdf</a>');
+
+                    $(exportopdfbutton).click(function(){
+                        var array = [1];
+                        var myJsonString = JSON.stringify(array);
+                        var form = $('#form_cycle').val();
+                        $.ajax({url: Routing.generate('hr_pdf', {cycle: form}),
+                            data: {ids: myJsonString},
+                            success: function(result){
+                                var blob=new Blob([result]);
+                                var link=document.createElement('a');
+                                link.href=window.URL.createObjectURL(blob);
+                                link.download=form + new Date() +".pdf";
+                                link.click();
+
+                            }});
+                    });
+
                     var selectbutton = $('<a class="btn btn-primary">Select all</a>');
 
                     $(selectbutton).click(function(){
@@ -174,7 +192,10 @@
                         table.draw();
                     });
                     $('#datatable_filter').append(clearSearch);
+
                     $('#datatable_length').html(selectbutton);
+                    $('#datatable_length').append(' ');
+                    $('#datatable_length').append(exportopdfbutton);
 
                 }});
         }

@@ -119,7 +119,7 @@ class Organization
     }
     
     /**
-     * @ORM\OneToMany(targetEntity="Midyear", mappedBy="organization")
+     * @ORM\OneToMany(targetEntity="Midyeartemplate", mappedBy="organization")
      */
     protected $midyeartemplates;
     
@@ -129,7 +129,7 @@ class Organization
     }
     
     /**
-     * @ORM\OneToMany(targetEntity="Endyear", mappedBy="organization")
+     * @ORM\OneToMany(targetEntity="Endyeartemplate", mappedBy="organization")
      */
     protected $endyeartemplates;
     

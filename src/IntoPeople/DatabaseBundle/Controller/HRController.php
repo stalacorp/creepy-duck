@@ -1,7 +1,6 @@
 <?php
 namespace IntoPeople\DatabaseBundle\Controller;
 
-use MyProject\Proxies\__CG__\stdClass;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use IntoPeople\DatabaseBundle\Entity\Cdp;
@@ -12,6 +11,7 @@ use IntoPeople\DatabaseBundle\Entity\Endyear;
 use IntoPeople\DatabaseBundle\Form\EndyearFeedbackType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Supervisor controller.
@@ -635,7 +635,6 @@ class HRController extends Controller
 
             array_push($countsbystatus, $object);
         }
-        $serializer = $this->get('jms_serializer');
 
         return new JsonResponse($countsbystatus);
     }
@@ -667,6 +666,32 @@ class HRController extends Controller
         return new JsonResponse($generalcycledates);
 
     }
+
+    public function pdfAction($cycle, Request $request)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $chosencycleids = json_decode($request->get('ids'));
+
+        $query = $em->getRepository('IntoPeopleDatabaseBundle:' . ucfirst($cycle))->createQueryBuilder('c')
+            ->where('c.id IN (:ids)')
+            ->setParameter('ids', $chosencycleids)
+            ->getQuery();
+
+        $cycles = $query->getResult();
+
+        $facade = $this->get('ps_pdf.facade');
+        $response = new Response();
+        $this->render('IntoPeopleDatabaseBundle:HR:' . $cycle . '.pdf.twig', array("entities" => $cycles), $response);
+
+        $xml = $response->getContent();
+
+        $content = $facade->render($xml);
+
+        return new Response($content, 200, array('content-type' => 'application/pdf'));
+
+
+    }
+
 
 }
 

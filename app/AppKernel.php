@@ -21,7 +21,9 @@ class AppKernel extends Kernel
             new IntoPeople\AdminBundle\IntoPeopleAdminBundle(),
             new IntoPeople\DatabaseBundle\IntoPeopleDatabaseBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
-            new FOS\JsRoutingBundle\FOSJsRoutingBundle()
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new Ps\PdfBundle\PsPdfBundle()
+
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
