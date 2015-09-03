@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %} 
 {% block body -%}
 
-    <h2>Mid Year</h2>
+    <h2>{{ "midyear.show.title" | trans }}</h2>
 
     {% set template = entity.midyeartemplate %}
     {% set devneeds = entity.developmentneeds %}

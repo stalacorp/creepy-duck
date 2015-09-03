@@ -3,14 +3,14 @@
 
     {% set cdp = entity.feedbackcycle.cdp %}
 
-    <h2>Mid Year</h2>
+    <h2>{{ "midyear.new.title" | trans }}</h2>
 
 
     {% set template = entity.midyeartemplate %}
 
     {% if entity.formstatus.id > 3 %}
 
-        <div class="row margin-top-50">
+        <div class="row">
             <div class="col-md-6">
 
                 <h3>Comments supervisor</h3>
@@ -24,7 +24,7 @@
 
     {% if entity.formstatus.id > 5 %}
 
-        <div class="row margin-top-50">
+        <div class="row">
             <div class="col-md-6">
 
                 <h3>Feedback HR</h3>
