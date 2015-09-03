@@ -6,19 +6,38 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>{{ 'systemmail.header' | trans}}</h1>
-    <div class="row">{{ form_start(form) }}
-        <div class="col-lg-4">
+    <h2>{{ 'systemmail.header' | trans}}</h2>
+    <div class="row">
+
+        {{ form_start(form) }}
+
+        <div class="col-md-4">
+
             {{ form_row(form.language) }}
+
         </div>
-        <div class="col-lg-4">
-            {{ form_row(form.defaultemail) }}
-            {{ form_row(form.setemail) }}
+
+        <div class="col-md-2">
         </div>
+
+        <div class="col-md-4">
+            {{ form_label(form.defaultemail) }}
+            <div class="input-group">
+
+            {{ form_widget(form.defaultemail) }}
+                <span class="input-group-btn">
+            {{ form_widget(form.setemail) }}
+                </span>
+            </div>
+
+        </div>
+
         {{ form_widget(form) }}
+
         {{ form_end(form) }}
+
     </div>
-    <div id="result">
+    <div id="result" class="row">
 
     </div>
 

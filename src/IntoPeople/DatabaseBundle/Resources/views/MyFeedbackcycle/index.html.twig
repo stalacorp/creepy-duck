@@ -15,22 +15,32 @@
 
         {% if feedbackcycle.generalcycle.generalcyclestatus.id == 1 %}
 
-            <div class="row margin-top-30">
+            <div class="row">
                 <div class="col-md-4">
 
 
-                    <h3>CDP</h3>
+                    <h3>{{ 'myfeedbackcycle.cdp.title' }}</h3>
 
-                    <p class="margin-top-40">Career development plan ..</p>
+                    <p>{{ 'myfeedbackcycle.cdp.description' | trans }}</p>
 
-                    <table class="table margin-top-40">
+                    <table class="table borderless">
                         <tr>
-                            <td>Form status</td>
+                            <th>{{ 'myfeedbackcycle.cdp.startdate' | trans }}</th>
+                            <td>{{ feedbackcycle.generalcycle.startdatecdp | localizeddate('medium', 'none', app.request.locale ) }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>{{ 'myfeedbackcycle.cdp.enddate' | trans }}</th>
+                            <td>{{ feedbackcycle.generalcycle.enddatecdp | localizeddate('medium', 'none', app.request.locale ) }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>{{ 'myfeedbackcycle.cdp.formstatus' | trans }}</th>
                             <td>{{ feedbackcycle.cdp.formstatus.name }}</td>
                         </tr>
 
                         <tr>
-                            <td>Form history</td>
+                            <th>{{ 'myfeedbackcycle.cdp.formhistory' | trans }}</th>
                             <td>
                                 <button class="btn btn-small" data-toggle="modal" data-target="#myModal">History
                                 </button>
@@ -40,25 +50,19 @@
                     </table>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                         aria-hidden="true">
-                        <div class="modal-dialog">
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x
-                                    </button>
-                                    <br>
-                                    <i class="fa fa-history fa-7x"></i>
-                                    <h4 id="myModalLabel" class="semi-bold">Form status history</h4>
-
-                                    <p class="no-margin"></p>
-                                    <br>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">{{ 'myfeedbackcycle.formhistory.title' }}</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="row form-row">
-                                        <div class="col-md-8">
 
-                                            <table class="table">
+                                    <div class="row form-row">
+                                        <div class="col-md-12">
+
+                                            <table class="table borderless">
                                                 <thead>
                                                 <tr>
                                                     <th>Date</th>
@@ -78,16 +82,14 @@
 
                                         </div>
                                     </div>
+
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
-                            <!-- /.modal-content -->
                         </div>
-                        <!-- /.modal-dialog -->
                     </div>
-                    <!-- /.modal -->
 
 
                     {% set progress1 = 0 %}
@@ -110,7 +112,7 @@
                         {% set progress1 = 100 %}
                     {% endif %}
 
-                    <p class="margin-top-40">Overall Progress</p>
+                    <p>Overall Progress</p>
 
                     <div class="progress progress-striped active">
                         <div data-percentage="0%" style="width: {{ progress1 }}%;"
@@ -118,7 +120,7 @@
                              aria-valuemax="100"></div>
                     </div>
 
-                    <div class="margin-top-40">
+                    <div>
 
                         {% if feedbackcycle.cdp.formstatus.id == 1 %}
 
@@ -156,9 +158,19 @@
 
                     <h3>Mid Year</h3>
 
-                    <p class="margin-top-40">Mid year evaluation ...</p>
+                    <p>Mid year evaluation ...</p>
 
-                    <table class="table margin-top-40">
+                    <table class="table borderless">
+                        <tr>
+                            <th>{{ 'myfeedbackcycle.midyear.startdate' | trans }}</th>
+                            <td>{{ feedbackcycle.generalcycle.startdatemidyear | localizeddate('medium', 'none', app.request.locale ) }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>{{ 'myfeedbackcycle.midyear.enddate' | trans }}</th>
+                            <td>{{ feedbackcycle.generalcycle.enddatemidyear | localizeddate('medium', 'none', app.request.locale ) }}</td>
+                        </tr>
+
                         <tr>
                             <td>Form status</td>
                             <td>{{ feedbackcycle.midyear.formstatus.name }}</td>
@@ -175,26 +187,21 @@
 
                     </table>
 
+
                     <!-- Modal -->
-                    <div class="modal fade" id="midyearhistory" tabindex="-1" role="dialog"
-                         aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
+                    <div class="modal fade" id="midyearhistory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x
-                                    </button>
-                                    <br>
-                                    <i class="fa fa-history fa-7x"></i>
-                                    <h4 id="myModalLabel" class="semi-bold">Form status history</h4>
-
-                                    <p class="no-margin"></p>
-                                    <br>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">{{ 'myfeedbackcycle.formhistory.title' }}</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="row form-row">
-                                        <div class="col-md-8">
 
-                                            <table class="table">
+                                    <div class="row form-row">
+                                        <div class="col-md-12">
+
+                                            <table class="table borderless">
                                                 <thead>
                                                 <tr>
                                                     <th>Date</th>
@@ -213,16 +220,14 @@
 
                                         </div>
                                     </div>
+
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
-                            <!-- /.modal-content -->
                         </div>
-                        <!-- /.modal-dialog -->
                     </div>
-                    <!-- /.modal -->
 
 
                     {% set progress2 = 0 %}
@@ -245,7 +250,7 @@
                         {% set progress2 = 100 %}
                     {% endif %}
 
-                    <p class="margin-top-40">Overall Progress</p>
+                    <p>Overall Progress</p>
 
                     <div class="progress progress-striped active">
                         <div data-percentage="0%" style="width: {{ progress2 }}%;"
@@ -253,7 +258,7 @@
                              aria-valuemax="100"></div>
                     </div>
 
-                    <div class="margin-top-40">
+                    <div>
 
                         {% if feedbackcycle.midyear.formstatus.id == 1 %}
 
@@ -291,9 +296,21 @@
 
                     <h3>Year End</h3>
 
-                    <p class="margin-top-40">Year end evaluation ...</p>
+                    <p>Year end evaluation ...</p>
 
-                    <table class="table margin-top-40">
+                    <table class="table borderless">
+
+                        <tr>
+                            <td>Startdate</td>
+                            <td>{{ feedbackcycle.generalcycle.startdateyearend | localizeddate('medium', 'none', app.request.locale ) }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Enddate</td>
+                            <td>{{ feedbackcycle.generalcycle.enddateyearend | localizeddate('medium', 'none', app.request.locale ) }}</td>
+                        </tr>
+
+
                         <tr>
                             <td>Form status</td>
                             <td>{{ feedbackcycle.endyear.formstatus.name }}</td>
@@ -380,7 +397,7 @@
                         {% set progress3 = 100 %}
                     {% endif %}
 
-                    <p class="margin-top-40">Overall Progress</p>
+                    <p>Overall Progress</p>
 
                     <div class="progress progress-striped active">
                         <div data-percentage="0%" style="width: {{ progress3 }}%;"
@@ -388,7 +405,7 @@
                              aria-valuemax="100"></div>
                     </div>
 
-                    <div class="margin-top-40">
+                    <div>
 
 
                         {% if feedbackcycle.endyear.formstatus.id == 1 %}
