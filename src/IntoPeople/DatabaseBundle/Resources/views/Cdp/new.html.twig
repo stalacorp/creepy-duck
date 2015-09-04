@@ -1,13 +1,12 @@
 {% extends '::base.html.twig' %} {% block body -%}
+        
 
-    <h2>{{ "cdp.new.title" | trans }}</h2>
-
-    {% set template = entity.cdptemplate %}
+    <h2>{{ template.mainTitle }}</h2>
 
     <div class="row">
         <div class="col-md-12">
 
-            <h3>Personalia</h3>
+            <h3>{{ template.title1 }}</h3>
 
             <div class="row">
 
@@ -16,21 +15,21 @@
                     <table class="table borderless">
 
                         <tr>
-                            <th>Name:
+                            <th>{{ template.name }}:
                             <th>
                             <td>{{ app.user.firstname }} {{ app.user.lastname }}</td>
                         </tr>
 
                         {% if app.user.supervisor != null %}
                             <tr>
-                                <th>Supervisor:
+                                <th>{{ template.supervisor }}:
                                 <th>
                                 <td>{{ app.user.supervisor.firstname }} {{ app.user.supervisor.lastname }}</td>
                             </tr>
                         {% endif %}
 
                         <tr>
-                            <th>Date discussion:
+                            <th>{{ template.dateDiscussion }}:
                             <th>
                             <td></td>
                         </tr>
@@ -44,13 +43,13 @@
                     <table class="table borderless">
 
                         <tr>
-                            <th>Team:<th>
+                            <th>{{ template.team }}:<th>
                             <td></td>
                         </tr>
 
 
                             <tr>
-                                <th>Functie:<th>
+                                <th>{{ template.function }}:<th>
                                 <td></td>
                             </tr>
 
@@ -97,20 +96,29 @@
     <div class="row">
         <div class="col-md-12">
 
-            <h3>{{ template.selfassesment }}</h3>
+            <h3>{{ template.title2 }}</h3>
 
-            <p class="">{{ template.selfassesmentDescription }}</p>
+            <p class="">{{ template.title2Description }}</p>
 
             {{ form_start(form) }} {{ form_errors(form) }}
 
             <table class="table borderless">
                 <tr>
-                    <th style="width: 20%">Talents</th>
-                    <th style="width: 20%">Challenges</th>
-                    <th style="width: 20%">How</th>
-                    <th style="width: 20%">Success</th>
-                    <th style="width: 20%">Needs</th>
+                    <th style="width: 20%">{{ template.table2Col1 }}</th>
+                    <th style="width: 20%">{{ template.table2Col2 }}</th>
+                    <th style="width: 20%">{{ template.table2Col3 }}</th>
+                    <th style="width: 20%">{{ template.table2Col4 }}</th>
+                    <th style="width: 20%">{{ template.table2Col5 }}</th>
                     <th style="width: 1%"></th>
+                </tr>
+
+                <tr>
+                    <td>{{ template.table2Col1Descr }}</td>
+                    <td>{{ template.table2Col2Descr }}</td>
+                    <td>{{ template.table2Col3Descr }}</td>
+                    <td>{{ template.table2Col4Descr }}</td>
+                    <td>{{ template.table2Col5Descr }}</td>
+                    <td></td>
                 </tr>
 
                 <tr>
@@ -197,18 +205,18 @@
         <div class="col-md-12">
 
 
-            <h3>Development Needs for your Job</h3>
+            <h3>{{ template.title3 }}</h3>
 
-            <p>{{ template.developmentneeds }}</p>
+            <p>{{ template.title3Description }}</p>
 
             <table class="table borderless">
 
                 <thead>
                 <tr>
-                    <th style="width: 22%" colspan="2">{{ template.whatWhy }}</th>
-                    <th style="width: 12%">{{ template.how }}</th>
-                    <th style="width: 12%">{{ template.success }}</th>
-                    <th style="width: 12%">{{ template.needs }}</th>
+                    <th style="width: 22%" colspan="2">{{ template.table3Col1 }}</th>
+                    <th style="width: 12%">{{ template.table3Col2 }}</th>
+                    <th style="width: 12%">{{ template.table3Col3 }}</th>
+                    <th style="width: 12%">{{ template.table3Col4 }}</th>
                     <th style="width: 1%"></th>
                 </tr>
                 </thead>
@@ -216,16 +224,15 @@
                 <tbody>
 
                 <tr>
-                    <td colspan="2">{{ template.whatWhyDescription }}</td>
-                    <td>{{ template.howDescription }}</td>
-                    <td>{{ template.successDescription }}</td>
-                    <td>{{ template.needsDescription }}</td>
+                    <td colspan="2">{{ template.table3Col1Descr }}</td>
+                    <td>{{ template.table3Col2Descr }}</td>
+                    <td>{{ template.table3Col3Descr }}</td>
+                    <td>{{ template.table3Col4Descr }}</td>
                     <td></td>
                 </tr>
 
                 <tr>
-                    <td colspan="6"><h5 class="text-center">Job specific tasks and
-                            responsibilities</h5></td>
+                    <td colspan="6"><h5 class="text-center">{{ template.table3Title1 }}</h5></td>
                 </tr>
 
 
@@ -283,16 +290,16 @@
                 <thead>
 
                 <tr>
-                    <td colspan="6"><h5 class="text-center">Job specific skills and competencies</h5></td>
+                    <td colspan="6"><h5 class="text-center">{{ template.table3Title2 }}</h5></td>
                 </tr>
 
 
 
                 <tr>
-                    <th style="width: 22%" colspan="2">{{ template.whatWhy }}</th>
-                    <th style="width: 12%">{{ template.how }}</th>
-                    <th style="width: 12%">{{ template.success }}</th>
-                    <th style="width: 12%">{{ template.needs }}</th>
+                    <th style="width: 22%" colspan="2">{{ template.table3Col1 }}</th>
+                    <th style="width: 12%">{{ template.table3Col2 }}</th>
+                    <th style="width: 12%">{{ template.table3Col3 }}</th>
+                    <th style="width: 12%">{{ template.table3Col4 }}</th>
                     <th style="width: 1%"></th>
                 </tr>
                     </thead>
@@ -351,15 +358,14 @@
                     <thead>
 
                 <tr>
-                    <td colspan="6"><h5 class="text-center">Organization
-                            competencies</h5></td>
+                    <td colspan="6"><h5 class="text-center">{{ template.table3Title3 }}</h5></td>
                 </tr>
 
                 <tr>
-                    <th style="width: 22%" colspan="2">{{ template.whatWhy }}</th>
-                    <th style="width: 12%">{{ template.how }}</th>
-                    <th style="width: 12%">{{ template.success }}</th>
-                    <th style="width: 12%">{{ template.needs }}</th>
+                    <th style="width: 22%" colspan="2">{{ template.table3Col1 }}</th>
+                    <th style="width: 12%">{{ template.table3Col2 }}</th>
+                    <th style="width: 12%">{{ template.table3Col3 }}</th>
+                    <th style="width: 12%">{{ template.table3Col4 }}</th>
                     <th style="width: 1%"></th>
                 </tr>
                     </thead>
@@ -433,16 +439,16 @@
             </table>
 
 
-            <h3>{{ template.careerObjectives }}</h3>
+            <h3>{{ template.title4 }}</h3>
 
-            <p>{{ template.careerObjectivesQuestion }}</p>
+            <p>{{ template.question1 }}</p>
 
             {{ form_errors(form.careerobjective) }} {{ form_widget(form.careerobjective) }}
 
 
-            <h3>{{ template.additionalInformation }}</h3>
+            <h3>{{ template.title5 }}</h3>
 
-            <p>{{ template.additionalInformationQuestion }}</p>
+            <p>{{ template.question2 }}</p>
 
             {{ form_errors(form.additionalinformation) }} {{ form_widget(form.additionalinformation) }}
 

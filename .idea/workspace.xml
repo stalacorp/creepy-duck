@@ -2,31 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ffa20809-ee1b-4efe-b10c-cdd44237fa18" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/CorequalityController.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/CorequalityController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Form/CorequalityType.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Form/CorequalityType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/assets/css/custom.css" afterPath="$PROJECT_DIR$/web/assets/css/custom.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Supervisor/dashboard.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Supervisor/dashboard.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Cdp.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Cdp.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Cdphistory.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Cdphistory.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Cdptemplate.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Cdptemplate.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/CdptemplateController.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/CdptemplateController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Form/CdptemplateType.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Form/CdptemplateType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Corequality.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Corequality.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Cyclestatus.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Cyclestatus.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Developmentneeds.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Developmentneeds.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Endyear.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Endyear.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Endyearhistory.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Endyearhistory.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Endyeartemplate.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Endyeartemplate.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Feedbackcycle.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Feedbackcycle.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Formstatus.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Formstatus.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Generalcycle.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Generalcycle.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Generalcyclestatus.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Generalcyclestatus.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Language.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Language.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Mailtype.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Mailtype.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Midyear.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Midyear.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Midyearhistory.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Midyearhistory.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Midyeartemplate.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Midyeartemplate.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Organization.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Organization.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Organizationstatus.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Organizationstatus.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Systemmail.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Systemmail.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Text.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Text.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/User.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/User.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Userstatus.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Userstatus.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/edit.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/edit.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Corequality/edit.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Corequality/edit.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Language/edit.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Language/edit.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Organization/edit.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Organization/edit.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Systemmail/edit.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Systemmail/edit.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/index.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Corequality/index.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Corequality/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Feedbackcycle/index.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Feedbackcycle/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Language/index.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Language/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/MyFeedbackcycle/index.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/MyFeedbackcycle/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Organization/index.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Organization/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Systemmail/index.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Systemmail/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Systemmail/mailsview.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Systemmail/mailsview.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdp/new.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdp/new.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/new.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/new.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Corequality/new.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Corequality/new.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Language/new.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Language/new.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Midyear/new.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Midyear/new.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/show.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/show.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Corequality/show.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Corequality/show.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Systemmail/show.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Systemmail/show.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="test.iws" />
@@ -49,21 +54,107 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/MyFeedbackcycle/index.html.twig">
+      <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdp/new.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.423077">
-              <caret line="304" column="71" selection-start-line="304" selection-start-column="71" selection-end-line="304" selection-end-column="71" />
+            <state vertical-scroll-proportion="0.02746365">
+              <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MyCdpController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/MyCdpController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="23.538462">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/edit.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.8076925">
+              <caret line="286" column="55" selection-start-line="0" selection-start-column="0" selection-end-line="316" selection-end-column="0" />
+              <folding>
+                <element signature="n#style#0;n#th#3;n#tr#1;n#thead#0;n#table#1;n#div#0;n#div#6;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/index.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.65384614">
+              <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/show.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.8846154">
+              <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
+              <folding>
+                <element signature="n#style#0;n#th#3;n#tr#1;n#thead#0;n#table#1;n#div#0;n#div#6;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/new.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.7090907">
+              <caret line="307" column="90" selection-start-line="307" selection-start-column="44" selection-end-line="307" selection-end-column="90" />
+              <folding>
+                <element signature="n#style#0;n#th#3;n#tr#1;n#thead#0;n#table#1;n#div#0;n#div#6;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CdptemplateController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/CdptemplateController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.5636363">
+              <caret line="127" column="22" selection-start-line="127" selection-start-column="21" selection-end-line="127" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CdptemplateType.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Form/CdptemplateType.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-18.961538">
+              <caret line="58" column="29" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Cdptemplate.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Cdptemplate.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.923077">
+              <caret line="334" column="71" selection-start-line="334" selection-start-column="71" selection-end-line="334" selection-end-column="71" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Midyear/new.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7314974">
-              <caret line="192" column="24" selection-start-line="192" selection-start-column="24" selection-end-line="192" selection-end-column="24" />
+            <state vertical-scroll-proportion="-14.0">
+              <caret line="384" column="48" selection-start-line="384" selection-start-column="48" selection-end-line="384" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -82,9 +173,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Form/PersonType.php" />
-        <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Form/UserType.php" />
-        <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DependencyInjection/IntoPeopleDatabaseExtension.php" />
         <option value="$PROJECT_DIR$/src/IntoPeople/AdminBundle/DependencyInjection/IntoPeopleAdminExtension.php" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Language.php" />
         <option value="$PROJECT_DIR$/app/config/security.yml" />
@@ -101,20 +189,15 @@
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Cdp.php" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Corequality.php" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/HR/dashboard.html.twig" />
-        <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdp/new.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Supervisor/feedbackMidyear.html.twig" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/SupervisorController.php" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdp/show.html.twig" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Midyear/show.html.twig" />
-        <option value="$PROJECT_DIR$/app/config/parameters.yml" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Supervisor/dashboard.html.twig" />
         <option value="$PROJECT_DIR$/web/assets/css/custom.css" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Feedbackcycle/index.html.twig" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/index.html.twig" />
-        <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/edit.html.twig" />
-        <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/new.html.twig" />
-        <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/show.html.twig" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Form/CorequalityType.php" />
         <option value="$PROJECT_DIR$/app/cache/dev/assetic/config/0/065305341143a6edca5aef32866f7112.php" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Corequality/new.html.twig" />
@@ -132,7 +215,15 @@
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Language/edit.html.twig" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Language/index.html.twig" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/MyFeedbackcycle/index.html.twig" />
+        <option value="$PROJECT_DIR$/app/config/parameters.yml" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Midyear/new.html.twig" />
+        <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/CdptemplateController.php" />
+        <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Cdptemplate.php" />
+        <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Form/CdptemplateType.php" />
+        <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/new.html.twig" />
+        <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/edit.html.twig" />
+        <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/show.html.twig" />
+        <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdp/new.html.twig" />
       </list>
     </option>
   </component>
@@ -421,6 +512,134 @@
               <option name="myItemId" value="Resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Corequality" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creepy-duck" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creepy-duck" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IntoPeople" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DatabaseBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Cdptemplate" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creepy-duck" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creepy-duck" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IntoPeople" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DatabaseBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Cdp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creepy-duck" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creepy-duck" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IntoPeople" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DatabaseBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creepy-duck" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creepy-duck" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IntoPeople" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DatabaseBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Form" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -526,14 +745,14 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="FullScreen" value="false" />
   </component>
@@ -564,12 +783,9 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/app/AppKernel.php</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/composer.json</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/composer.lock</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/CronjobController.php</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/SystemmailController.php</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Systemmail/edit.html.twig</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/HR/cdp.pdf.twig</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/HR/dashboard.html.twig</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/HR/getcyclesview.html.twig</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -842,20 +1058,25 @@
       <option name="project" value="LOCAL" />
       <updated>1441244045503</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="style">
+      <created>1441302935533</created>
+      <option name="number" value="00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1441302935534</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30989584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21770833" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32946146" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28933474" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28933474" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -867,6 +1088,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32946146" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -902,7 +1124,8 @@
     <MESSAGE value="cdp" />
     <MESSAGE value="forms + supervisor dashboard fix" />
     <MESSAGE value="idno wtf this is" />
-    <option name="LAST_COMMIT_MESSAGE" value="idno wtf this is" />
+    <MESSAGE value="style" />
+    <option name="LAST_COMMIT_MESSAGE" value="style" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -932,41 +1155,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Form/CdpType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.098546">
-          <caret line="51" column="34" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4394184">
-          <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32956383">
-          <caret line="60" column="66" selection-start-line="60" selection-start-column="66" selection-end-line="60" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/SupervisorController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.80775446">
-          <caret line="558" column="13" selection-start-line="558" selection-start-column="13" selection-end-line="558" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Supervisor/feedbackMidyear.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2474804">
@@ -1002,21 +1190,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-          <folding>
-            <marker date="1441284233404" expanded="true" signature="-1:-1" placeholder="parameters:" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-15.038462">
           <caret line="26" column="52" selection-start-line="26" selection-start-column="52" selection-end-line="26" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1024,7 +1201,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.32956383">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1032,10 +1208,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.41195476">
           <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-          <folding>
-            <marker date="1441284811467" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441284811467" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1043,7 +1215,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.08239096">
           <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1055,59 +1226,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdp/new.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.9615384">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdp/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.609047">
           <caret line="95" column="21" selection-start-line="95" selection-start-column="21" selection-end-line="95" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.12600969">
-          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/new.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32956383">
-          <caret line="12" column="74" selection-start-line="12" selection-start-column="74" selection-end-line="12" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/edit.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32956383">
-          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53311795">
-          <caret line="119" column="43" selection-start-line="119" selection-start-column="43" selection-end-line="119" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Corequality.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="7.4701133">
-          <caret line="273" column="7" selection-start-line="273" selection-start-column="7" selection-end-line="273" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1115,7 +1237,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1123,7 +1244,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="6" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1131,7 +1251,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.41195476">
           <caret line="17" column="32" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1139,7 +1258,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.14629948">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1147,7 +1265,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.2692308">
           <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1155,7 +1272,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.38037866">
           <caret line="152" column="12" selection-start-line="152" selection-start-column="12" selection-end-line="157" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1163,7 +1279,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.115385">
           <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1179,7 +1294,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.14629948">
           <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1187,7 +1301,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.32185885">
           <caret line="11" column="74" selection-start-line="11" selection-start-column="74" selection-end-line="11" selection-end-column="74" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1195,7 +1308,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1203,7 +1315,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.08777969">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1211,15 +1322,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.61445785">
           <caret line="187" column="52" selection-start-line="187" selection-start-column="52" selection-end-line="187" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Corequality/edit.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.269231">
-          <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1227,7 +1329,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.846154">
           <caret line="39" column="31" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1235,7 +1336,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.8846154">
           <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1243,7 +1343,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-19.615385">
           <caret line="30" column="112" selection-start-line="30" selection-start-column="112" selection-end-line="30" selection-end-column="112" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1251,7 +1350,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.49741825">
           <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1259,7 +1357,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5851979">
           <caret line="20" column="42" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1267,7 +1364,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.40963855">
           <caret line="14" column="91" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="91" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1275,15 +1371,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5851979">
           <caret line="20" column="122" selection-start-line="20" selection-start-column="122" selection-end-line="20" selection-end-column="122" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Cdp.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="128.8077">
-          <caret line="335" column="18" selection-start-line="335" selection-start-column="18" selection-end-line="335" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1291,18 +1378,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.8347676">
           <caret line="143" column="4" selection-start-line="143" selection-start-column="4" selection-end-line="143" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/HR/dashboard.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.7693632">
-          <caret line="141" column="36" selection-start-line="141" selection-start-column="36" selection-end-line="141" selection-end-column="36" />
-          <folding>
-            <marker date="1441243232347" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1441243232347" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1310,7 +1385,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="7.8461537">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1318,25 +1392,164 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.49741825">
           <caret line="29" column="40" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="120" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/HR/dashboard.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38037866">
+          <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="61" selection-start-line="13" selection-start-column="61" selection-end-line="13" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="57" selection-start-line="0" selection-start-column="57" selection-end-line="0" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/MyFeedbackcycle/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.423077">
+        <state vertical-scroll-proportion="0.0">
           <caret line="304" column="71" selection-start-line="304" selection-start-column="71" selection-end-line="304" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Corequality.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37318256">
+          <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Cdp.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.384615">
+          <caret line="330" column="71" selection-start-line="330" selection-start-column="45" selection-end-line="330" selection-end-column="71" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Midyear/new.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7314974">
-          <caret line="192" column="24" selection-start-line="192" selection-start-column="24" selection-end-line="192" selection-end-column="24" />
+        <state vertical-scroll-proportion="-14.0">
+          <caret line="384" column="48" selection-start-line="384" selection-start-column="48" selection-end-line="384" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Cdptemplate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.923077">
+          <caret line="334" column="71" selection-start-line="334" selection-start-column="71" selection-end-line="334" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Form/CdptemplateType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.961538">
+          <caret line="58" column="29" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/CdptemplateController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.5636363">
+          <caret line="127" column="22" selection-start-line="127" selection-start-column="21" selection-end-line="127" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Corequality/edit.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3828756">
+          <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.65384614">
+          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/edit.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.8076925">
+          <caret line="286" column="55" selection-start-line="0" selection-start-column="0" selection-end-line="316" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#th#3;n#tr#1;n#thead#0;n#table#1;n#div#0;n#div#6;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.7090907">
+          <caret line="307" column="90" selection-start-line="307" selection-start-column="44" selection-end-line="307" selection-end-column="90" />
+          <folding>
+            <element signature="n#style#0;n#th#3;n#tr#1;n#thead#0;n#table#1;n#div#0;n#div#6;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdptemplate/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8846154">
+          <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
+          <folding>
+            <element signature="n#style#0;n#th#3;n#tr#1;n#thead#0;n#table#1;n#div#0;n#div#6;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/MyCdpController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="23.538462">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdp/new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.02746365">
+          <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

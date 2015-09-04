@@ -18,185 +18,321 @@ class Cdptemplate
      */
     protected $cdps;
     
-    public function __construct()
+    public function __construct1()
     {
         $this->cdps = new ArrayCollection();
     }
-    
-    
+
     /**
-     * @var boolean
+     * @var string
      *
-     * @ORM\Column(name="isStandardTemplate", type="boolean", nullable=true)
+     * @ORM\Column(name="MainTitle", type="string", length=250, nullable=true)
      */
-    private $isstandardtemplate;
-    
-       
+    private $mainTitle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Title1", type="string", length=250, nullable=true)
+     */
+    private $title1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Title2", type="string", length=250, nullable=true)
+     */
+    private $title2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Title3", type="string", length=250, nullable=true)
+     */
+    private $title3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Title4", type="string", length=250, nullable=true)
+     */
+    private $title4;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Title5", type="string", length=250, nullable=true)
+     */
+    private $title5;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Title1Description", type="text", length=65535, nullable=true)
+     */
+    private $title1Description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Title2Description", type="text", length=65535, nullable=true)
+     */
+    private $title2Description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Title3Description", type="text", length=65535, nullable=true)
+     */
+    private $title3Description;
+
+
+    # Personalia #
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Name", type="string", length=250, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Supervisor", type="string", length=250, nullable=true)
+     */
+    private $supervisor;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DateDiscussion", type="string", length=250, nullable=true)
+     */
+    private $dateDiscussion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Team", type="string", length=250, nullable=true)
+     */
+    private $team;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Function", type="string", length=250, nullable=true)
+     */
+    private $function;
+
+
+    #table2#
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table2Col1", type="string", length=250, nullable=true)
+     */
+    private $table2Col1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table2Col2", type="string", length=250, nullable=true)
+     */
+    private $table2Col2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table2Col3", type="string", length=250, nullable=true)
+     */
+    private $table2Col3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table2Col4", type="string", length=250, nullable=true)
+     */
+    private $table2Col4;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table2Col5", type="string", length=250, nullable=true)
+     */
+    private $table2Col5;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table2Col1Descr", type="text", length=65535, nullable=true)
+     */
+    private $table2Col1Descr;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table2Col2Descr", type="text", length=65535, nullable=true)
+     */
+    private $table2Col2Descr;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table2Col3Descr", type="text", length=65535, nullable=true)
+     */
+    private $table2Col3Descr;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table2Col4Descr", type="text", length=65535, nullable=true)
+     */
+    private $table2Col4Descr;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table2Col5Descr", type="text", length=65535, nullable=true)
+     */
+    private $table2Col5Descr;
+
+
+    # Table3 #
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table3Col1", type="string", length=250, nullable=true)
+     */
+    private $table3Col1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table3Col2", type="string", length=250, nullable=true)
+     */
+    private $table3Col2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table3Col3", type="string", length=250, nullable=true)
+     */
+    private $table3Col3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table3Col4", type="string", length=250, nullable=true)
+     */
+    private $table3Col4;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table3Col1Descr", type="text", length=65535, nullable=true)
+     */
+    private $table3Col1Descr;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table3Col2Descr", type="text", length=65535, nullable=true)
+     */
+    private $table3Col2Descr;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table3Col3Descr", type="text", length=65535, nullable=true)
+     */
+    private $table3Col3Descr;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table3Col4Descr", type="text", length=65535, nullable=true)
+     */
+    private $table3Col4Descr;
+
+
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table3Title1", type="string", length=250, nullable=true)
+     */
+    private $table3Title1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table3Title2", type="string", length=250, nullable=true)
+     */
+    private $table3Title2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table3Title3", type="string", length=250, nullable=true)
+     */
+    private $table3Title3;
+
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Question1", type="text", length=65535, nullable=true)
+     */
+    private $question1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Question2", type="text", length=65535, nullable=true)
+     */
+    private $question2;
+
+
+
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="Date", type="date", nullable=false)
      */
     private $date;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="SelfAssesment", type="text", length=65535, nullable=true)
-     */
-    private $selfassesment;
     
     /**
      * @var string
      *
-     * @ORM\Column(name="SelfAssesmentDescription", type="text", length=65535, nullable=true)
-     */
-    private $selfassesmentDescription;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Talents", type="text", length=65535, nullable=true)
-     */
-    private $talents;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="TalentsDescription", type="text", length=65535, nullable=true)
-     */
-    private $talentsDescription;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Challenges", type="text", length=65535, nullable=true)
-     */
-    private $challenges;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="ChallengesDescription", type="text", length=65535, nullable=true)
-     */
-    private $challengesDescription;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="DevelopmentNeeds", type="text", length=65535, nullable=true)
-     */
-    private $developmentneeds;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="WhatWhy", type="text", length=65535, nullable=true)
-     */
-    private $whatwhy;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="WhatWhyDescription", type="text", length=65535, nullable=true)
-     */
-    private $whatwhyDescription;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="How", type="text", length=65535, nullable=true)
-     */
-    private $how;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="HowDescription", type="text", length=65535, nullable=true)
-     */
-    private $howDescription;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Success", type="text", length=65535, nullable=true)
-     */
-    private $success;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="SuccessDescription", type="text", length=65535, nullable=true)
-     */
-    private $successDescription;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Needs", type="text", length=65535, nullable=true)
-     */
-    private $needs;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="NeedsDescription", type="text", length=65535, nullable=true)
-     */
-    private $needsDescription;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="CareerObjectives", type="text", length=65535, nullable=true)
-     */
-    private $careerobjectives;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="CareerObjectivesQuestion", type="text", length=65535, nullable=true)
-     */
-    private $careerobjectivesQuestion;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="AdditionalInformation", type="text", length=65535, nullable=true)
-     */
-    private $additionalinformation;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="AdditionalInformationQuestion", type="text", length=65535, nullable=true)
-     */
-    private $additionalinformationQuestion;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="SupervisorComment", type="text", length=65535, nullable=true)
+     * @ORM\Column(name="SupervisorComment", type="string", length=250, nullable=true)
      */
     private $supervisorComment;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Feedback", type="text", length=65535, nullable=true)
+     * @ORM\Column(name="Feedback", type="string", length=250, nullable=true)
      */
     private $feedback;
     
     /**
      * @var string
      *
-     * @ORM\Column(name="SignatureSupervisor", type="text", length=65535, nullable=true)
+     * @ORM\Column(name="SignatureSupervisor", type="string", length=250, nullable=true)
      */
     private $signatureSupervisor;
     
     /**
      * @var string
      *
-     * @ORM\Column(name="SignatureEmployee", type="text", length=65535, nullable=true)
+     * @ORM\Column(name="SignatureEmployee", type="string", length=250, nullable=true)
      */
     private $signatureEmployee;
     
@@ -229,13 +365,869 @@ class Cdptemplate
      */
     private $organization;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->cdps = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Set mainTitle
+     *
+     * @param string $mainTitle
+     * @return Cdptemplate
+     */
+    public function setMainTitle($mainTitle)
+    {
+        $this->mainTitle = $mainTitle;
+
+        return $this;
+    }
+
+    /**
+     * Get mainTitle
+     *
+     * @return string 
+     */
+    public function getMainTitle()
+    {
+        return $this->mainTitle;
+    }
+
+    /**
+     * Set title1
+     *
+     * @param string $title1
+     * @return Cdptemplate
+     */
+    public function setTitle1($title1)
+    {
+        $this->title1 = $title1;
+
+        return $this;
+    }
+
+    /**
+     * Get title1
+     *
+     * @return string 
+     */
+    public function getTitle1()
+    {
+        return $this->title1;
+    }
+
+    /**
+     * Set title2
+     *
+     * @param string $title2
+     * @return Cdptemplate
+     */
+    public function setTitle2($title2)
+    {
+        $this->title2 = $title2;
+
+        return $this;
+    }
+
+    /**
+     * Get title2
+     *
+     * @return string 
+     */
+    public function getTitle2()
+    {
+        return $this->title2;
+    }
+
+    /**
+     * Set title3
+     *
+     * @param string $title3
+     * @return Cdptemplate
+     */
+    public function setTitle3($title3)
+    {
+        $this->title3 = $title3;
+
+        return $this;
+    }
+
+    /**
+     * Get title3
+     *
+     * @return string 
+     */
+    public function getTitle3()
+    {
+        return $this->title3;
+    }
+
+    /**
+     * Set title4
+     *
+     * @param string $title4
+     * @return Cdptemplate
+     */
+    public function setTitle4($title4)
+    {
+        $this->title4 = $title4;
+
+        return $this;
+    }
+
+    /**
+     * Get title4
+     *
+     * @return string 
+     */
+    public function getTitle4()
+    {
+        return $this->title4;
+    }
+
+    /**
+     * Set title5
+     *
+     * @param string $title5
+     * @return Cdptemplate
+     */
+    public function setTitle5($title5)
+    {
+        $this->title5 = $title5;
+
+        return $this;
+    }
+
+    /**
+     * Get title5
+     *
+     * @return string 
+     */
+    public function getTitle5()
+    {
+        return $this->title5;
+    }
+
+    /**
+     * Set title1Description
+     *
+     * @param string $title1Description
+     * @return Cdptemplate
+     */
+    public function setTitle1Description($title1Description)
+    {
+        $this->title1Description = $title1Description;
+
+        return $this;
+    }
+
+    /**
+     * Get title1Description
+     *
+     * @return string 
+     */
+    public function getTitle1Description()
+    {
+        return $this->title1Description;
+    }
+
+    /**
+     * Set title2Description
+     *
+     * @param string $title2Description
+     * @return Cdptemplate
+     */
+    public function setTitle2Description($title2Description)
+    {
+        $this->title2Description = $title2Description;
+
+        return $this;
+    }
+
+    /**
+     * Get title2Description
+     *
+     * @return string 
+     */
+    public function getTitle2Description()
+    {
+        return $this->title2Description;
+    }
+
+    /**
+     * Set title3Description
+     *
+     * @param string $title3Description
+     * @return Cdptemplate
+     */
+    public function setTitle3Description($title3Description)
+    {
+        $this->title3Description = $title3Description;
+
+        return $this;
+    }
+
+    /**
+     * Get title3Description
+     *
+     * @return string 
+     */
+    public function getTitle3Description()
+    {
+        return $this->title3Description;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Cdptemplate
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set supervisor
+     *
+     * @param string $supervisor
+     * @return Cdptemplate
+     */
+    public function setSupervisor($supervisor)
+    {
+        $this->supervisor = $supervisor;
+
+        return $this;
+    }
+
+    /**
+     * Get supervisor
+     *
+     * @return string 
+     */
+    public function getSupervisor()
+    {
+        return $this->supervisor;
+    }
+
+    /**
+     * Set dateDiscussion
+     *
+     * @param string $dateDiscussion
+     * @return Cdptemplate
+     */
+    public function setDateDiscussion($dateDiscussion)
+    {
+        $this->dateDiscussion = $dateDiscussion;
+
+        return $this;
+    }
+
+    /**
+     * Get dateDiscussion
+     *
+     * @return string 
+     */
+    public function getDateDiscussion()
+    {
+        return $this->dateDiscussion;
+    }
+
+    /**
+     * Set team
+     *
+     * @param string $team
+     * @return Cdptemplate
+     */
+    public function setTeam($team)
+    {
+        $this->team = $team;
+
+        return $this;
+    }
+
+    /**
+     * Get team
+     *
+     * @return string 
+     */
+    public function getTeam()
+    {
+        return $this->team;
+    }
+
+    /**
+     * Set function
+     *
+     * @param string $function
+     * @return Cdptemplate
+     */
+    public function setFunction($function)
+    {
+        $this->function = $function;
+
+        return $this;
+    }
+
+    /**
+     * Get function
+     *
+     * @return string 
+     */
+    public function getFunction()
+    {
+        return $this->function;
+    }
+
+    /**
+     * Set table2Col1
+     *
+     * @param string $table2Col1
+     * @return Cdptemplate
+     */
+    public function setTable2Col1($table2Col1)
+    {
+        $this->table2Col1 = $table2Col1;
+
+        return $this;
+    }
+
+    /**
+     * Get table2Col1
+     *
+     * @return string 
+     */
+    public function getTable2Col1()
+    {
+        return $this->table2Col1;
+    }
+
+    /**
+     * Set table2Col2
+     *
+     * @param string $table2Col2
+     * @return Cdptemplate
+     */
+    public function setTable2Col2($table2Col2)
+    {
+        $this->table2Col2 = $table2Col2;
+
+        return $this;
+    }
+
+    /**
+     * Get table2Col2
+     *
+     * @return string 
+     */
+    public function getTable2Col2()
+    {
+        return $this->table2Col2;
+    }
+
+    /**
+     * Set table2Col3
+     *
+     * @param string $table2Col3
+     * @return Cdptemplate
+     */
+    public function setTable2Col3($table2Col3)
+    {
+        $this->table2Col3 = $table2Col3;
+
+        return $this;
+    }
+
+    /**
+     * Get table2Col3
+     *
+     * @return string 
+     */
+    public function getTable2Col3()
+    {
+        return $this->table2Col3;
+    }
+
+    /**
+     * Set table2Col4
+     *
+     * @param string $table2Col4
+     * @return Cdptemplate
+     */
+    public function setTable2Col4($table2Col4)
+    {
+        $this->table2Col4 = $table2Col4;
+
+        return $this;
+    }
+
+    /**
+     * Get table2Col4
+     *
+     * @return string 
+     */
+    public function getTable2Col4()
+    {
+        return $this->table2Col4;
+    }
+
+    /**
+     * Set table2Col5
+     *
+     * @param string $table2Col5
+     * @return Cdptemplate
+     */
+    public function setTable2Col5($table2Col5)
+    {
+        $this->table2Col5 = $table2Col5;
+
+        return $this;
+    }
+
+    /**
+     * Get table2Col5
+     *
+     * @return string 
+     */
+    public function getTable2Col5()
+    {
+        return $this->table2Col5;
+    }
+
+    /**
+     * Set table2Col1Descr
+     *
+     * @param string $table2Col1Descr
+     * @return Cdptemplate
+     */
+    public function setTable2Col1Descr($table2Col1Descr)
+    {
+        $this->table2Col1Descr = $table2Col1Descr;
+
+        return $this;
+    }
+
+    /**
+     * Get table2Col1Descr
+     *
+     * @return string 
+     */
+    public function getTable2Col1Descr()
+    {
+        return $this->table2Col1Descr;
+    }
+
+    /**
+     * Set table2Col2Descr
+     *
+     * @param string $table2Col2Descr
+     * @return Cdptemplate
+     */
+    public function setTable2Col2Descr($table2Col2Descr)
+    {
+        $this->table2Col2Descr = $table2Col2Descr;
+
+        return $this;
+    }
+
+    /**
+     * Get table2Col2Descr
+     *
+     * @return string 
+     */
+    public function getTable2Col2Descr()
+    {
+        return $this->table2Col2Descr;
+    }
+
+    /**
+     * Set table2Col3Descr
+     *
+     * @param string $table2Col3Descr
+     * @return Cdptemplate
+     */
+    public function setTable2Col3Descr($table2Col3Descr)
+    {
+        $this->table2Col3Descr = $table2Col3Descr;
+
+        return $this;
+    }
+
+    /**
+     * Get table2Col3Descr
+     *
+     * @return string 
+     */
+    public function getTable2Col3Descr()
+    {
+        return $this->table2Col3Descr;
+    }
+
+    /**
+     * Set table2Col4Descr
+     *
+     * @param string $table2Col4Descr
+     * @return Cdptemplate
+     */
+    public function setTable2Col4Descr($table2Col4Descr)
+    {
+        $this->table2Col4Descr = $table2Col4Descr;
+
+        return $this;
+    }
+
+    /**
+     * Get table2Col4Descr
+     *
+     * @return string 
+     */
+    public function getTable2Col4Descr()
+    {
+        return $this->table2Col4Descr;
+    }
+
+    /**
+     * Set table2Col5Descr
+     *
+     * @param string $table2Col5Descr
+     * @return Cdptemplate
+     */
+    public function setTable2Col5Descr($table2Col5Descr)
+    {
+        $this->table2Col5Descr = $table2Col5Descr;
+
+        return $this;
+    }
+
+    /**
+     * Get table2Col5Descr
+     *
+     * @return string 
+     */
+    public function getTable2Col5Descr()
+    {
+        return $this->table2Col5Descr;
+    }
+
+    /**
+     * Set table3Col1
+     *
+     * @param string $table3Col1
+     * @return Cdptemplate
+     */
+    public function setTable3Col1($table3Col1)
+    {
+        $this->table3Col1 = $table3Col1;
+
+        return $this;
+    }
+
+    /**
+     * Get table3Col1
+     *
+     * @return string 
+     */
+    public function getTable3Col1()
+    {
+        return $this->table3Col1;
+    }
+
+    /**
+     * Set table3Col2
+     *
+     * @param string $table3Col2
+     * @return Cdptemplate
+     */
+    public function setTable3Col2($table3Col2)
+    {
+        $this->table3Col2 = $table3Col2;
+
+        return $this;
+    }
+
+    /**
+     * Get table3Col2
+     *
+     * @return string 
+     */
+    public function getTable3Col2()
+    {
+        return $this->table3Col2;
+    }
+
+    /**
+     * Set table3Col3
+     *
+     * @param string $table3Col3
+     * @return Cdptemplate
+     */
+    public function setTable3Col3($table3Col3)
+    {
+        $this->table3Col3 = $table3Col3;
+
+        return $this;
+    }
+
+    /**
+     * Get table3Col3
+     *
+     * @return string 
+     */
+    public function getTable3Col3()
+    {
+        return $this->table3Col3;
+    }
+
+    /**
+     * Set table3Col4
+     *
+     * @param string $table3Col4
+     * @return Cdptemplate
+     */
+    public function setTable3Col4($table3Col4)
+    {
+        $this->table3Col4 = $table3Col4;
+
+        return $this;
+    }
+
+    /**
+     * Get table3Col4
+     *
+     * @return string 
+     */
+    public function getTable3Col4()
+    {
+        return $this->table3Col4;
+    }
+
+    /**
+     * Set table3Col1Descr
+     *
+     * @param string $table3Col1Descr
+     * @return Cdptemplate
+     */
+    public function setTable3Col1Descr($table3Col1Descr)
+    {
+        $this->table3Col1Descr = $table3Col1Descr;
+
+        return $this;
+    }
+
+    /**
+     * Get table3Col1Descr
+     *
+     * @return string 
+     */
+    public function getTable3Col1Descr()
+    {
+        return $this->table3Col1Descr;
+    }
+
+    /**
+     * Set table3Col2Descr
+     *
+     * @param string $table3Col2Descr
+     * @return Cdptemplate
+     */
+    public function setTable3Col2Descr($table3Col2Descr)
+    {
+        $this->table3Col2Descr = $table3Col2Descr;
+
+        return $this;
+    }
+
+    /**
+     * Get table3Col2Descr
+     *
+     * @return string 
+     */
+    public function getTable3Col2Descr()
+    {
+        return $this->table3Col2Descr;
+    }
+
+    /**
+     * Set table3Col3Descr
+     *
+     * @param string $table3Col3Descr
+     * @return Cdptemplate
+     */
+    public function setTable3Col3Descr($table3Col3Descr)
+    {
+        $this->table3Col3Descr = $table3Col3Descr;
+
+        return $this;
+    }
+
+    /**
+     * Get table3Col3Descr
+     *
+     * @return string 
+     */
+    public function getTable3Col3Descr()
+    {
+        return $this->table3Col3Descr;
+    }
+
+    /**
+     * Set table3Col4Descr
+     *
+     * @param string $table3Col4Descr
+     * @return Cdptemplate
+     */
+    public function setTable3Col4Descr($table3Col4Descr)
+    {
+        $this->table3Col4Descr = $table3Col4Descr;
+
+        return $this;
+    }
+
+    /**
+     * Get table3Col4Descr
+     *
+     * @return string 
+     */
+    public function getTable3Col4Descr()
+    {
+        return $this->table3Col4Descr;
+    }
+
+    /**
+     * Set table3Title1
+     *
+     * @param string $table3Title1
+     * @return Cdptemplate
+     */
+    public function setTable3Title1($table3Title1)
+    {
+        $this->table3Title1 = $table3Title1;
+
+        return $this;
+    }
+
+    /**
+     * Get table3Title1
+     *
+     * @return string 
+     */
+    public function getTable3Title1()
+    {
+        return $this->table3Title1;
+    }
+
+    /**
+     * Set table3Title2
+     *
+     * @param string $table3Title2
+     * @return Cdptemplate
+     */
+    public function setTable3Title2($table3Title2)
+    {
+        $this->table3Title2 = $table3Title2;
+
+        return $this;
+    }
+
+    /**
+     * Get table3Title2
+     *
+     * @return string 
+     */
+    public function getTable3Title2()
+    {
+        return $this->table3Title2;
+    }
+
+    /**
+     * Set table3Title3
+     *
+     * @param string $table3Title3
+     * @return Cdptemplate
+     */
+    public function setTable3Title3($table3Title3)
+    {
+        $this->table3Title3 = $table3Title3;
+
+        return $this;
+    }
+
+    /**
+     * Get table3Title3
+     *
+     * @return string 
+     */
+    public function getTable3Title3()
+    {
+        return $this->table3Title3;
+    }
+
+    /**
+     * Set question1
+     *
+     * @param string $question1
+     * @return Cdptemplate
+     */
+    public function setQuestion1($question1)
+    {
+        $this->question1 = $question1;
+
+        return $this;
+    }
+
+    /**
+     * Get question1
+     *
+     * @return string 
+     */
+    public function getQuestion1()
+    {
+        return $this->question1;
+    }
+
+    /**
+     * Set question2
+     *
+     * @param string $question2
+     * @return Cdptemplate
+     */
+    public function setQuestion2($question2)
+    {
+        $this->question2 = $question2;
+
+        return $this;
+    }
+
+    /**
+     * Get question2
+     *
+     * @return string 
+     */
+    public function getQuestion2()
+    {
+        return $this->question2;
+    }
 
     /**
      * Set date
      *
      * @param \DateTime $date
-     *
      * @return Cdptemplate
      */
     public function setDate($date)
@@ -248,7 +1240,7 @@ class Cdptemplate
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getDate()
     {
@@ -256,534 +1248,9 @@ class Cdptemplate
     }
 
     /**
-     * Set selfassesment
-     *
-     * @param string $selfassesment
-     *
-     * @return Cdptemplate
-     */
-    public function setSelfassesment($selfassesment)
-    {
-        $this->selfassesment = $selfassesment;
-
-        return $this;
-    }
-
-    /**
-     * Get selfassesment
-     *
-     * @return string
-     */
-    public function getSelfassesment()
-    {
-        return $this->selfassesment;
-    }
-
-    /**
-     * Set talents
-     *
-     * @param string $talents
-     *
-     * @return Cdptemplate
-     */
-    public function setTalents($talents)
-    {
-        $this->talents = $talents;
-
-        return $this;
-    }
-
-    /**
-     * Get talents
-     *
-     * @return string
-     */
-    public function getTalents()
-    {
-        return $this->talents;
-    }
-
-    /**
-     * Set challenges
-     *
-     * @param string $challenges
-     *
-     * @return Cdptemplate
-     */
-    public function setChallenges($challenges)
-    {
-        $this->challenges = $challenges;
-
-        return $this;
-    }
-
-    /**
-     * Get challenges
-     *
-     * @return string
-     */
-    public function getChallenges()
-    {
-        return $this->challenges;
-    }
-
-    /**
-     * Set developmentneeds
-     *
-     * @param string $developmentneeds
-     *
-     * @return Cdptemplate
-     */
-    public function setDevelopmentneeds($developmentneeds)
-    {
-        $this->developmentneeds = $developmentneeds;
-
-        return $this;
-    }
-
-    /**
-     * Get developmentneeds
-     *
-     * @return string
-     */
-    public function getDevelopmentneeds()
-    {
-        return $this->developmentneeds;
-    }
-
-    /**
-     * Set whatwhy
-     *
-     * @param string $whatwhy
-     *
-     * @return Cdptemplate
-     */
-    public function setWhatwhy($whatwhy)
-    {
-        $this->whatwhy = $whatwhy;
-
-        return $this;
-    }
-
-    /**
-     * Get whatwhy
-     *
-     * @return string
-     */
-    public function getWhatwhy()
-    {
-        return $this->whatwhy;
-    }
-
-    /**
-     * Set how
-     *
-     * @param string $how
-     *
-     * @return Cdptemplate
-     */
-    public function setHow($how)
-    {
-        $this->how = $how;
-
-        return $this;
-    }
-
-    /**
-     * Get how
-     *
-     * @return string
-     */
-    public function getHow()
-    {
-        return $this->how;
-    }
-
-    /**
-     * Set success
-     *
-     * @param string $success
-     *
-     * @return Cdptemplate
-     */
-    public function setSuccess($success)
-    {
-        $this->success = $success;
-
-        return $this;
-    }
-
-    /**
-     * Get success
-     *
-     * @return string
-     */
-    public function getSuccess()
-    {
-        return $this->success;
-    }
-
-    /**
-     * Set needs
-     *
-     * @param string $needs
-     *
-     * @return Cdptemplate
-     */
-    public function setNeeds($needs)
-    {
-        $this->needs = $needs;
-
-        return $this;
-    }
-
-    /**
-     * Get needs
-     *
-     * @return string
-     */
-    public function getNeeds()
-    {
-        return $this->needs;
-    }
-
-    /**
-     * Set careerobjectives
-     *
-     * @param string $careerobjectives
-     *
-     * @return Cdptemplate
-     */
-    public function setCareerobjectives($careerobjectives)
-    {
-        $this->careerobjectives = $careerobjectives;
-
-        return $this;
-    }
-
-    /**
-     * Get careerobjectives
-     *
-     * @return string
-     */
-    public function getCareerobjectives()
-    {
-        return $this->careerobjectives;
-    }
-
-    /**
-     * Set additionalinformation
-     *
-     * @param string $additionalinformation
-     *
-     * @return Cdptemplate
-     */
-    public function setAdditionalinformation($additionalinformation)
-    {
-        $this->additionalinformation = $additionalinformation;
-
-        return $this;
-    }
-
-    /**
-     * Get additionalinformation
-     *
-     * @return string
-     */
-    public function getAdditionalinformation()
-    {
-        return $this->additionalinformation;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Add cdp
-     *
-     * @param \IntoPeople\DatabaseBundle\Entity\Cdp $cdp
-     *
-     * @return Cdptemplate
-     */
-    public function addCdp(\IntoPeople\DatabaseBundle\Entity\Cdp $cdp)
-    {
-        $this->cdps[] = $cdp;
-
-        return $this;
-    }
-
-    /**
-     * Remove cdp
-     *
-     * @param \IntoPeople\DatabaseBundle\Entity\Cdp $cdp
-     */
-    public function removeCdp(\IntoPeople\DatabaseBundle\Entity\Cdp $cdp)
-    {
-        $this->cdps->removeElement($cdp);
-    }
-
-    /**
-     * Get cdps
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCdps()
-    {
-        return $this->cdps;
-    }
-
-    /**
-     * Set organization
-     *
-     * @param \IntoPeople\DatabaseBundle\Entity\Organization $organization
-     *
-     * @return Cdptemplate
-     */
-    public function setOrganization(\IntoPeople\DatabaseBundle\Entity\Organization $organization = null)
-    {
-        $this->organization = $organization;
-
-        return $this;
-    }
-
-    /**
-     * Get organization
-     *
-     * @return \IntoPeople\DatabaseBundle\Entity\Organization
-     */
-    public function getOrganization()
-    {
-        return $this->organization;
-    }
-
-    /**
-     * Set selfassesmentDescription
-     *
-     * @param string $selfassesmentDescription
-     *
-     * @return Cdptemplate
-     */
-    public function setSelfassesmentDescription($selfassesmentDescription)
-    {
-        $this->selfassesmentDescription = $selfassesmentDescription;
-
-        return $this;
-    }
-
-    /**
-     * Get selfassesmentDescription
-     *
-     * @return string
-     */
-    public function getSelfassesmentDescription()
-    {
-        return $this->selfassesmentDescription;
-    }
-
-    /**
-     * Set talentsDescription
-     *
-     * @param string $talentsDescription
-     *
-     * @return Cdptemplate
-     */
-    public function setTalentsDescription($talentsDescription)
-    {
-        $this->talentsDescription = $talentsDescription;
-
-        return $this;
-    }
-
-    /**
-     * Get talentsDescription
-     *
-     * @return string
-     */
-    public function getTalentsDescription()
-    {
-        return $this->talentsDescription;
-    }
-
-    /**
-     * Set challengesDescription
-     *
-     * @param string $challengesDescription
-     *
-     * @return Cdptemplate
-     */
-    public function setChallengesDescription($challengesDescription)
-    {
-        $this->challengesDescription = $challengesDescription;
-
-        return $this;
-    }
-
-    /**
-     * Get challengesDescription
-     *
-     * @return string
-     */
-    public function getChallengesDescription()
-    {
-        return $this->challengesDescription;
-    }
-
-    /**
-     * Set whatwhyDescription
-     *
-     * @param string $whatwhyDescription
-     *
-     * @return Cdptemplate
-     */
-    public function setWhatwhyDescription($whatwhyDescription)
-    {
-        $this->whatwhyDescription = $whatwhyDescription;
-
-        return $this;
-    }
-
-    /**
-     * Get whatwhyDescription
-     *
-     * @return string
-     */
-    public function getWhatwhyDescription()
-    {
-        return $this->whatwhyDescription;
-    }
-
-    /**
-     * Set howDescription
-     *
-     * @param string $howDescription
-     *
-     * @return Cdptemplate
-     */
-    public function setHowDescription($howDescription)
-    {
-        $this->howDescription = $howDescription;
-
-        return $this;
-    }
-
-    /**
-     * Get howDescription
-     *
-     * @return string
-     */
-    public function getHowDescription()
-    {
-        return $this->howDescription;
-    }
-
-    /**
-     * Set successDescription
-     *
-     * @param string $successDescription
-     *
-     * @return Cdptemplate
-     */
-    public function setSuccessDescription($successDescription)
-    {
-        $this->successDescription = $successDescription;
-
-        return $this;
-    }
-
-    /**
-     * Get successDescription
-     *
-     * @return string
-     */
-    public function getSuccessDescription()
-    {
-        return $this->successDescription;
-    }
-
-    /**
-     * Set needsDescription
-     *
-     * @param string $needsDescription
-     *
-     * @return Cdptemplate
-     */
-    public function setNeedsDescription($needsDescription)
-    {
-        $this->needsDescription = $needsDescription;
-
-        return $this;
-    }
-
-    /**
-     * Get needsDescription
-     *
-     * @return string
-     */
-    public function getNeedsDescription()
-    {
-        return $this->needsDescription;
-    }
-
-    /**
-     * Set careerobjectivesQuestion
-     *
-     * @param string $careerobjectivesQuestion
-     *
-     * @return Cdptemplate
-     */
-    public function setCareerobjectivesQuestion($careerobjectivesQuestion)
-    {
-        $this->careerobjectivesQuestion = $careerobjectivesQuestion;
-
-        return $this;
-    }
-
-    /**
-     * Get careerobjectivesQuestion
-     *
-     * @return string
-     */
-    public function getCareerobjectivesQuestion()
-    {
-        return $this->careerobjectivesQuestion;
-    }
-
-    /**
-     * Set additionalinformationQuestion
-     *
-     * @param string $additionalinformationQuestion
-     *
-     * @return Cdptemplate
-     */
-    public function setAdditionalinformationQuestion($additionalinformationQuestion)
-    {
-        $this->additionalinformationQuestion = $additionalinformationQuestion;
-
-        return $this;
-    }
-
-    /**
-     * Get additionalinformationQuestion
-     *
-     * @return string
-     */
-    public function getAdditionalinformationQuestion()
-    {
-        return $this->additionalinformationQuestion;
-    }
-
-    /**
      * Set supervisorComment
      *
      * @param string $supervisorComment
-     *
      * @return Cdptemplate
      */
     public function setSupervisorComment($supervisorComment)
@@ -796,7 +1263,7 @@ class Cdptemplate
     /**
      * Get supervisorComment
      *
-     * @return string
+     * @return string 
      */
     public function getSupervisorComment()
     {
@@ -807,7 +1274,6 @@ class Cdptemplate
      * Set feedback
      *
      * @param string $feedback
-     *
      * @return Cdptemplate
      */
     public function setFeedback($feedback)
@@ -820,7 +1286,7 @@ class Cdptemplate
     /**
      * Get feedback
      *
-     * @return string
+     * @return string 
      */
     public function getFeedback()
     {
@@ -831,7 +1297,6 @@ class Cdptemplate
      * Set signatureSupervisor
      *
      * @param string $signatureSupervisor
-     *
      * @return Cdptemplate
      */
     public function setSignatureSupervisor($signatureSupervisor)
@@ -844,7 +1309,7 @@ class Cdptemplate
     /**
      * Get signatureSupervisor
      *
-     * @return string
+     * @return string 
      */
     public function getSignatureSupervisor()
     {
@@ -855,7 +1320,6 @@ class Cdptemplate
      * Set signatureEmployee
      *
      * @param string $signatureEmployee
-     *
      * @return Cdptemplate
      */
     public function setSignatureEmployee($signatureEmployee)
@@ -868,7 +1332,7 @@ class Cdptemplate
     /**
      * Get signatureEmployee
      *
-     * @return string
+     * @return string 
      */
     public function getSignatureEmployee()
     {
@@ -876,10 +1340,52 @@ class Cdptemplate
     }
 
     /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Add cdps
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Cdp $cdps
+     * @return Cdptemplate
+     */
+    public function addCdp(\IntoPeople\DatabaseBundle\Entity\Cdp $cdps)
+    {
+        $this->cdps[] = $cdps;
+
+        return $this;
+    }
+
+    /**
+     * Remove cdps
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Cdp $cdps
+     */
+    public function removeCdp(\IntoPeople\DatabaseBundle\Entity\Cdp $cdps)
+    {
+        $this->cdps->removeElement($cdps);
+    }
+
+    /**
+     * Get cdps
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCdps()
+    {
+        return $this->cdps;
+    }
+
+    /**
      * Set language
      *
      * @param \IntoPeople\DatabaseBundle\Entity\Language $language
-     *
      * @return Cdptemplate
      */
     public function setLanguage(\IntoPeople\DatabaseBundle\Entity\Language $language = null)
@@ -892,7 +1398,7 @@ class Cdptemplate
     /**
      * Get language
      *
-     * @return \IntoPeople\DatabaseBundle\Entity\Language
+     * @return \IntoPeople\DatabaseBundle\Entity\Language 
      */
     public function getLanguage()
     {
@@ -900,26 +1406,25 @@ class Cdptemplate
     }
 
     /**
-     * Set isstandardtemplate
+     * Set organization
      *
-     * @param boolean $isstandardtemplate
-     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Organization $organization
      * @return Cdptemplate
      */
-    public function setIsstandardtemplate($isstandardtemplate)
+    public function setOrganization(\IntoPeople\DatabaseBundle\Entity\Organization $organization = null)
     {
-        $this->isstandardtemplate = $isstandardtemplate;
+        $this->organization = $organization;
 
         return $this;
     }
 
     /**
-     * Get isstandardtemplate
+     * Get organization
      *
-     * @return boolean
+     * @return \IntoPeople\DatabaseBundle\Entity\Organization 
      */
-    public function getIsstandardtemplate()
+    public function getOrganization()
     {
-        return $this->isstandardtemplate;
+        return $this->organization;
     }
 }

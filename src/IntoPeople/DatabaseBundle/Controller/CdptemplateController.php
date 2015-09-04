@@ -48,33 +48,7 @@ class CdptemplateController extends Controller
             $dt = new \DateTime();
             $dt->format('Y-m-d');
             $entity->setDate($dt);
-            
-            // If standard = true, then the last standard template must be changed to not standard
-            // ---
-            if ($entity->getIsstandardtemplate() == true) {
-                
-                $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
-            
-                $em = $this->getDoctrine()->getManager();
-                $qb = $em->createQueryBuilder();
-            
-                $qb = $repository->createQueryBuilder('c')
-                    ->where('c.isstandardtemplate = :standard ')
-                    ->andWhere('c.language = :language')
-                    ->setParameter('standard', 1)
-                    ->setParameter('language', $entity->getLanguage())
-                    ->getQuery();
-            
-                $oldStandard = $qb->setMaxResults(1)->getOneOrNullResult();
-            
-                if($oldStandard != null) {
-                    
-                    $oldStandard->setIsstandardtemplate(0);
-                    
-                }                             
-                
-            }
-            
+
             
             // Find all cdps of the company and change cdptemplate 
             // ---
@@ -141,9 +115,7 @@ class CdptemplateController extends Controller
         $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
             
             $qb = $repository->createQueryBuilder('c')
-            ->where('c.isstandardtemplate = :template')
-            ->andWhere('c.language = :language')
-            ->setParameter('template', 1)
+            ->Where('c.language = :language')
             ->setParameter('language', 1)
             ->getQuery();
             
