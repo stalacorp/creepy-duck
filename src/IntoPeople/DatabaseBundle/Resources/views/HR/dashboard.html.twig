@@ -349,9 +349,10 @@
 
                     $('#countChart').click(function (evt) {
                         var activePoints = myPieChart.getSegmentsAtEvent(evt);
-
-                        table.search(activePoints[0].label);
-                        table.draw();
+                        if(typeof activePoints != 'undefined'){
+                            table.search(activePoints[0].label);
+                            table.draw();
+                        }
                     });
 
                 }
