@@ -125,19 +125,29 @@
                     drawchart();
                     $("#result").html(result);
                     var language;
-                    var clear;
+                    var cleartext;
+                    var exporttext;
+                    var mailtext;
+                    var exceltext;
                     switch($('#thelocale').val()) {
                         case 'en':
                             language = english;
-                            clear = 'Clear';
+                            cleartext = 'Clear';
+                            exporttext = 'Export to PDF';
+                            mailtext = 'Send reminder mail';
+                            exceltext = 'Feedback Excel';
                             break;
                         case 'nl':
                             language = nederlands;
-                            clear = 'Wissen';
+                            cleartext = 'Wissen';
+                            exporttext = 'Naar PDF exporteren';
+                            mailtext = 'Herinneringsmail sturen';
                             break;
                         case 'it':
                             language = italiano;
-                            clear = 'Pulire';
+                            cleartext = 'Pulire';
+                            exporttext = 'Esporta in PDF';
+                            mailtext = 'Inviare promemoria di posta';
                             break;
                     }
 
@@ -157,7 +167,7 @@
                     });
                     table.select.selector( 'td:first-child input' );
 
-                    var exportopdfbutton = $('<a class="btn btn-primary">Export to pdf</a>');
+                    var exportopdfbutton = $('<button class="btn btn-primary">'+ exporttext + '</button>');
 
                     $(exportopdfbutton).click(function(){
                         var array = [];
@@ -189,10 +199,6 @@
 
                     });
 
-
-
-                    var selectbutton = $('<a class="btn btn-primary">Select all</a>');
-
                     $('#selectallbox').click(function(){
                         if (teller == 0){
                             table.rows().select();
@@ -205,8 +211,26 @@
                         }
                     });
 
+                    var mailbutton = $('<button class="btn btn-primary">' + mailtext + '</button>');
 
-                    var clearSearch = $('<a class="btn btn-default" style="margin-left:5px;cursor:pointer;">' + clear +'</a>');
+                    $(mailbutton).click(function(){
+                        var array = [];
+                        var indexes = table.rows({ selected: true }).data().toArray();
+                        $.each(indexes , function(i, val) {
+                            array.push(val[0]);
+                        });
+                        var myJsonString = JSON.stringify(array);
+                        var form = $('#form_cycle').val();
+                        $.ajax({url: Routing.generate('hr_remindermail', {cycle: form}),
+                            data: {ids: myJsonString},
+                            success: function(result){
+
+                            }});
+                    });
+
+
+
+                    var clearSearch = $('<button class="btn btn-default" style="margin-left:5px;cursor:pointer;">' + cleartext +'</button>');
                     $(clearSearch).click( function ()
                     {
                         table.search('');
@@ -216,6 +240,7 @@
 
                     $('#datatable_length').html(exportopdfbutton);
                     $('#datatable_length').append(' ');
+                    $('#datatable_length').append(mailbutton);
 
                 }});
         }

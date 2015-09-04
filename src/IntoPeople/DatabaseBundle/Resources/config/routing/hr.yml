@@ -56,3 +56,9 @@ hr_pdf:
     defaults: { _controller: "IntoPeopleDatabaseBundle:HR:pdf" }
     options:
       expose: true
+
+hr_remindermail:
+    path:     /remindermail/{cycle}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:remindermail" }
+    options:
+      expose: true

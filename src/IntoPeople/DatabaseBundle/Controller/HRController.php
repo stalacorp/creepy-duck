@@ -692,6 +692,76 @@ class HRController extends Controller
 
     }
 
+    public function remindermailAction($cycle, Request $request){
+        $em = $this->getDoctrine()->getEntityManager();
+        $chosencycleids = json_decode($request->get('ids'));
+
+        $query = $em->getRepository('IntoPeopleDatabaseBundle:' . ucfirst($cycle))->createQueryBuilder('c')
+            ->where('c.id IN (:ids)')
+            ->setParameter('ids', $chosencycleids)
+            ->getQuery();
+
+        $forms = $query->getResult();
+
+        $query = $em->getRepository('IntoPeopleDatabaseBundle:Mailtype')->createQueryBuilder('m')
+            ->where('m.name = :name')
+            ->setParameter('name', 'remindermail')
+            ->getQuery();
+
+        $languages = $em->getRepository('IntoPeopleDatabaseBundle:Mailtype')->findAll();
+
+        $mails = array();
+        $mailtype = $query->setMaxResults(1)->getOneOrNullResult();
+        if ($mailtype->getIsActive()) {
+            foreach ($languages as $language) {
+                $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
+                    ->join('s.mailtype', 'm')
+                    ->where('s.language = :id')
+                    ->andWhere('m.name = :name')
+                    ->setParameter('id', $language)
+                    ->setParameter('name', 'remindermail')
+                    ->getQuery();
+
+                $mails[$language->getName()] = $query->setMaxResults(1)->getOneOrNullResult();
+            }
+
+            foreach ($forms as $form){
+                $user = $form->getFeedbackcycle()->getUser();
+                $formstatusid = $form->getFormstatus()->getId();
+                $url = '';
+                if ($formstatusid == 1 | 2 | 4 | 7){
+                    $mailuser = $user;
+                    $url = $cycle . '_edit';
+                }else if($formstatusid == 3){
+                    $mailuser = $user->getSupervisor();
+                    $url = 'supervisor_';
+                    if ($cycle == 'cdp'){
+                        $url .= 'addComment';
+                    }else {
+                        $url .= 'add' . ucfirst($cycle) . 'Comment';
+                    }
+                }
+
+
+
+                $systemmail = $mails[$mailuser->getLanguage()->getName()];
+
+                $message = \Swift_Message::newInstance()
+                    ->setSubject($systemmail->getSubject())
+                    ->setFrom($systemmail->getSender())
+                    ->setTo($mailuser->getEmail())
+                    ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl($url, array('id' => $form->getId())), $systemmail->getBody()));
+
+                $this->get('mailer')->send($message);
+
+
+            }
+
+        }
+
+        return new Response();
+    }
+
 
 }
 
