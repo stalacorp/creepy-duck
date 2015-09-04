@@ -26,6 +26,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $formtohrtype = new Mailtype();
         $supervisortoemployeetype = new Mailtype();
         $hrtoemployeetype = new Mailtype();
+        $remindermailtype = new Mailtype();
 
         $createdtype->setIsActive(true);
         $weekbeforedeadlinetype->setIsActive(true);
@@ -35,6 +36,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $formtohrtype->setIsActive(true);
         $supervisortoemployeetype->setIsActive(true);
         $hrtoemployeetype->setIsActive(true);
+        $remindermailtype->setIsActive(true);
 
         $weekbeforedeadlinetype->setReminderdays(7);
 
@@ -46,6 +48,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $formtohrtype->setName('formtohr');
         $supervisortoemployeetype->setName('supervisortoemployee');
         $hrtoemployeetype->setName('hrtoemployee');
+        $remindermailtype->setName('remindermail');
 
         $manager->persist($createdtype);
         $manager->persist($weekbeforedeadlinetype);
@@ -55,6 +58,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($formtohrtype);
         $manager->persist($supervisortoemployeetype);
         $manager->persist($hrtoemployeetype);
+        $manager->persist($remindermailtype);
 
         $created = new Systemmail();
         $weekbeforedeadline = new Systemmail();
@@ -64,6 +68,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $formtohr = new Systemmail();
         $supervisortoemployee = new Systemmail();
         $hrtoemployee = new Systemmail();
+        $remindermail = new Systemmail();
         
         $created->setName('Account created mail');
         $weekbeforedeadline->setName('Week before deadline mail');
@@ -73,6 +78,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $formtohr->setName('Form sent to HR mail');
         $supervisortoemployee->setName('Form sent back from supervisor to employee mail');
         $hrtoemployee->setName('Form sent back from HR to employee mail');
+        $remindermail->setName('Reminder mail');
 
         $created->setSubject('Account created mail');
         $weekbeforedeadline->setSubject('Week before deadline mail');
@@ -82,6 +88,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $formtohr->setSubject('Form sent to HR mail');
         $supervisortoemployee->setSubject('Form sent back from supervisor to employee mail');
         $hrtoemployee->setSubject('Form sent back from HR to employee mail');
+        $remindermail->setSubject('Reminder mail');
 
         $created->setBody('$url');
         $weekbeforedeadline->setBody('$url');
@@ -91,6 +98,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $formtohr->setBody('$url');
         $supervisortoemployee->setBody('$url');
         $hrtoemployee->setBody('$url');
+        $remindermail->setBody('$url');
 
         $created->setSender('example@mail.com');
         $weekbeforedeadline->setSender('example@mail.com');
@@ -100,6 +108,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $formtohr->setSender('example@mail.com');
         $supervisortoemployee->setSender('example@mail.com');
         $hrtoemployee->setSender('example@mail.com');
+        $remindermail->setSender('example@mail.com');
 
         $created->setMailtype($createdtype);
         $weekbeforedeadline->setMailtype($weekbeforedeadlinetype);
@@ -109,17 +118,19 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $formtohr->setMailtype($formtohrtype);
         $supervisortoemployee->setMailtype($supervisortoemployeetype);
         $hrtoemployee->setMailtype($hrtoemployeetype);
+        $remindermail->setMailtype($remindermailtype);
         
         $english = $this->getReference('english');
 
-        $created->setLanguage();
+        $created->setLanguage($english);
         $weekbeforedeadline->setLanguage($english);
         $newcycle->setLanguage($english);
         $newfeedback->setLanguage($english);
         $formtosupervisor->setLanguage($english);
         $formtohr->setLanguage($english);
         $supervisortoemployee->setLanguage($english);
-        $hrtoemployee->setMailtype($english);
+        $hrtoemployee->setLanguage($english);
+        $remindermail->setLanguage($english);
 
         $manager->persist($created);
         $manager->persist($weekbeforedeadline);
@@ -129,6 +140,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($formtohr);
         $manager->persist($supervisortoemployee);
         $manager->persist($hrtoemployee);
+        $manager->persist($remindermail);
 
         $created = new Systemmail();
         $weekbeforedeadline = new Systemmail();
@@ -138,6 +150,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $formtohr = new Systemmail();
         $supervisortoemployee = new Systemmail();
         $hrtoemployee = new Systemmail();
+        $remindermail = new Systemmail();
 
         $created->setMailtype($createdtype);
         $weekbeforedeadline->setMailtype($weekbeforedeadlinetype);
@@ -147,6 +160,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $formtohr->setMailtype($formtohrtype);
         $supervisortoemployee->setMailtype($supervisortoemployeetype);
         $hrtoemployee->setMailtype($hrtoemployeetype);
+        $remindermail->setMailtype($remindermailtype);
 
         $created->setName('Account aangemaakt mail');
         $weekbeforedeadline->setName('Week voor deadline mail');
@@ -156,6 +170,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $formtohr->setName('Formulier naar HR gestuurd mail');
         $supervisortoemployee->setName('Formulier van overste terug naar werknemer gestuurd mail');
         $hrtoemployee->setName('Formulier van HR terug naar werknemer gestuurd mail');
+        $remindermail->setName('Herinneringsmail');
 
         $nederlands = $this->getReference('nederlands');
         $created->setLanguage($nederlands);
@@ -165,7 +180,8 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $formtosupervisor->setLanguage($nederlands);
         $formtohr->setLanguage($nederlands);
         $supervisortoemployee->setLanguage($nederlands);
-        $hrtoemployee->setMailtype($nederlands);
+        $hrtoemployee->setLanguage($nederlands);
+
 
         $created->setSubject('Account aangemaakt mail');
         $weekbeforedeadline->setSubject('Week voor deadline mail');
@@ -175,6 +191,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $formtohr->setSubject('Formulier naar HR gestuurd mail');
         $supervisortoemployee->setSubject('Formulier van overste terug naar werknemer gestuurd mail');
         $hrtoemployee->setSubject('Formulier van HR terug naar werknemer gestuurd mail');
+        $remindermail->setSubject('Herinneringsmail');
 
         $created->setBody('$url');
         $weekbeforedeadline->setBody('$url');
@@ -184,6 +201,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $formtohr->setBody('$url');
         $supervisortoemployee->setBody('$url');
         $hrtoemployee->setBody('$url');
+        $remindermail->setBody('$url');
 
         $created->setSender('example@mail.com');
         $weekbeforedeadline->setSender('example@mail.com');
@@ -193,6 +211,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $formtohr->setSender('example@mail.com');
         $supervisortoemployee->setSender('example@mail.com');
         $hrtoemployee->setSender('example@mail.com');
+        $remindermail->setSender('example@mail.com');
 
         $manager->persist($created);
         $manager->persist($weekbeforedeadline);
@@ -202,6 +221,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($formtohr);
         $manager->persist($supervisortoemployee);
         $manager->persist($hrtoemployee);
+        $manager->persist($remindermail);
 
         $manager->flush();
 
