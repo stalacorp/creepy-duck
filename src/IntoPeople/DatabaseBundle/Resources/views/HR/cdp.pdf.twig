@@ -1,5 +1,8 @@
 <pdf>
     <dynamic-page>
         Hello cdp!
+        {% for entity in entities %}
+        {{ entity.id }}
+        {% endfor %}
     </dynamic-page>
 </pdf>

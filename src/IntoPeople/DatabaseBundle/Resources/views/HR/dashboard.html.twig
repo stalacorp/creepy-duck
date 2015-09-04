@@ -17,6 +17,10 @@
     .pie-legend {
         list-style-type: none;
     }
+
+    .inputcheck:hover, #selectallbox:hover  {
+        cursor:pointer;
+    }
 </style>
     <h3>{{ 'hr.dashboard.title' | trans }}</h3>
     <div class="row">
@@ -140,22 +144,27 @@
                     table = $('#datatable').DataTable({
                         "language":language,
                         "order": [],
-                        "columnDefs": [ {
+                        "columnDefs": [{
                             "targets"  : 'no-sort',
-                            "orderable": false
-                        }, {orderable: false,
-                            className: 'select-checkbox',
-                            targets:   0}],
+                            "orderable": false,
+                            "searchable": false
+                        }, {"targets": [0],
+                            "visible": false
+                        }],
                         select: {
-                            style:    'multi',
-                            selector: 'td:first-child'
+                            style:    'multi'
                         }
                     });
+                    table.select.selector( 'td:first-child input' );
 
                     var exportopdfbutton = $('<a class="btn btn-primary">Export to pdf</a>');
 
                     $(exportopdfbutton).click(function(){
-                        var array = [1];
+                        var array = [];
+                        var indexes = table.rows({ selected: true }).data().toArray();
+                        $.each(indexes , function(i, val) {
+                            array.push(val[0]);
+                        });
                         var myJsonString = JSON.stringify(array);
                         var form = $('#form_cycle').val();
                         $.ajax({url: Routing.generate('hr_pdf', {cycle: form}),
@@ -170,16 +179,28 @@
                             }});
                     });
 
+                    $('.inputcheck').change(function(){
+                        var rowindex = $(this).closest('tr')[0].rowIndex - 1;
+                        if ($(this).is(':checked')){
+                            table.rows(rowindex).select();
+                        }else {
+                            table.rows(rowindex).deselect();
+                        }
+
+                    });
+
+
+
                     var selectbutton = $('<a class="btn btn-primary">Select all</a>');
 
-                    $(selectbutton).click(function(){
+                    $('#selectallbox').click(function(){
                         if (teller == 0){
                             table.rows().select();
-                            $(this).text('Select none');
+                            table.$('.inputcheck').prop('checked', true);
                             teller++;
                         }else {
                             table.rows().deselect();
-                            $(this).text('Select all');
+                            table.$('.inputcheck').prop('checked', false);
                             teller = 0;
                         }
                     });
@@ -193,9 +214,8 @@
                     });
                     $('#datatable_filter').append(clearSearch);
 
-                    $('#datatable_length').html(selectbutton);
+                    $('#datatable_length').html(exportopdfbutton);
                     $('#datatable_length').append(' ');
-                    $('#datatable_length').append(exportopdfbutton);
 
                 }});
         }
