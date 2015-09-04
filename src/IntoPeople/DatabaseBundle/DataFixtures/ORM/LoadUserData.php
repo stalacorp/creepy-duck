@@ -34,6 +34,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     {
         $userManager = $this->container->get('into_people_database.user_manager');
         $organization = $this->getReference('organization');
+        $active = $this->getReference('active');
 
         $supervisor = $userManager->createUser();
         $supervisor->setEmail('birtpeeters@hotmail.com');
@@ -42,11 +43,12 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $supervisor->setEnabled(true);
         $supervisor->setOrganization($organization);
         $supervisor->addRole('ROLE_SUPERVISOR');
-        $supervisor->setFirstname('jos');
-        $supervisor->setLastname('vermeulen');
+        $supervisor->setFirstname('Jos');
+        $supervisor->setLastname('Vermeulen');
         $supervisor->setLanguage($this->getReference('english'));
         $supervisor->setUsernameCanonical('birtpeeters@hotmail.com');
         $supervisor->setEmailCanonical('birtpeeters@hotmail.com');
+        $supervisor->setUserstatus($active);
 
         $userManager->updateUser($supervisor);
 
@@ -62,6 +64,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $hr->setFirstname('Mata');
         $hr->setLastname('Stalacorp');
         $hr->setLanguage($this->getReference('english'));
+        $hr->setUserstatus($active);
         $userManager->updateUser($hr, true);
 
         $userManager->updateUser($hr);
@@ -80,6 +83,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $user->setUsernameCanonical('admin');
         $user->setEmailCanonical('admin@test.com');
         $user->setSupervisor($supervisor);
+        $user->setUserstatus($active);
 
         $userManager->updateUser($user);
 
@@ -90,6 +94,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     public function getOrder()
     {
-        return 5;
+        return 6;
     }
 }

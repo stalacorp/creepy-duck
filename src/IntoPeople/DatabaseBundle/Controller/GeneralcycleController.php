@@ -145,36 +145,39 @@ class GeneralcycleController extends Controller
             
             
             foreach ($users as $user) {
-                
-                $feedbackcycle = new Feedbackcycle();
-                $feedbackcycle->setUser($user);
-                $feedbackcycle->setGeneralcycle($entity);
-                
-                $developmentneeds = new Developmentneeds();
-                
-                $cdp = new Cdp();
-                $cdp->setDevelopmentneeds($developmentneeds);
-                $cdp->setFormstatus($available);                      
-                $cdp->setCdptemplate($cdptemplate);
-                                                            
-                $feedbackcycle->setCdp($cdp);
-                
-                $midyear = new Midyear();
-                $midyear->setDevelopmentneeds($developmentneeds);
-                $midyear->setFormstatus($unavailable);
-                $midyear->setMidyeartemplate($midyeartemplate);
-                
-                $feedbackcycle->setMidyear($midyear);
-                
-                $endyear = new Endyear();
-                $endyear->setDevelopmentneeds($developmentneeds);
-                $endyear->setFormstatus($unavailable);
-                $endyear->setEndyeartemplate($endyeartemplate);
-                
-                $feedbackcycle->setEndyear($endyear);
-                
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($feedbackcycle);
+
+                if($user->getUserstatus()->getId() == 1) {
+
+                    $feedbackcycle = new Feedbackcycle();
+                    $feedbackcycle->setUser($user);
+                    $feedbackcycle->setGeneralcycle($entity);
+
+                    $developmentneeds = new Developmentneeds();
+
+                    $cdp = new Cdp();
+                    $cdp->setDevelopmentneeds($developmentneeds);
+                    $cdp->setFormstatus($available);
+                    $cdp->setCdptemplate($cdptemplate);
+
+                    $feedbackcycle->setCdp($cdp);
+
+                    $midyear = new Midyear();
+                    $midyear->setDevelopmentneeds($developmentneeds);
+                    $midyear->setFormstatus($unavailable);
+                    $midyear->setMidyeartemplate($midyeartemplate);
+
+                    $feedbackcycle->setMidyear($midyear);
+
+                    $endyear = new Endyear();
+                    $endyear->setDevelopmentneeds($developmentneeds);
+                    $endyear->setFormstatus($unavailable);
+                    $endyear->setEndyeartemplate($endyeartemplate);
+
+                    $feedbackcycle->setEndyear($endyear);
+
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($feedbackcycle);
+                }
 
             }
             
