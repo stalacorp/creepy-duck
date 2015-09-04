@@ -1,67 +1,40 @@
 {% extends '::base.html.twig' %} {% block body -%}
-<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-<div id="portlet-config" class="modal hide">
-	<div class="modal-header">
-		<button data-dismiss="modal" class="close" type="button"></button>
-		<h3>Widget Settings</h3>
-	</div>
-	<div class="modal-body">Widget settings form goes here</div>
-</div>
-<div class="clearfix"></div>
-<div class="container">
-	<div class="content">
 
-		<div class="page-title">
-			<i class="fa fa-files-o"></i>
-			<h3>
-				<span class="semi-bold">Mid Year Template</span>
-			</h3>
-		</div>
+    <h2>{{ "midyeartemplate.index.title" | trans }}</h2>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <table class="table borderless">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Language</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td>{{ entity.date | localizeddate('medium', 'none', app.request.locale ) }}</td>
+                        <td>{{ entity.language }}</td>
+                        <td>
+
+                            <a href="{{ path('midyeartemplate_show', { 'id': entity.id }) }}" type="button" class="btn btn-default btn-sm">show</a>
+
+                            <a href="{{ path('midyeartemplate_edit', { 'id': entity.id }) }}" type="button" class="btn btn-default btn-sm">edit</a>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
 
 
-		<div class="row">
-			<div class="col-md-12">
+            <a href="{{ path('midyeartemplate_new') }}" type="button" class="btn btn-default">{{ "button.create" | trans }}</a>
 
-				<table class="table no-more-tables">
-					<thead>
-						<tr>
-							<th>Date</th>
-							<th>Organization</th>
-							<th>Language</th>
-							<th>Actions</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for entity in entities %}
-						<tr>
-							<td><a
-								href="{{ path('midyeartemplate_show', { 'id': entity.id }) }}">{{
-									entity.date | localizeddate('medium', 'none', app.request.locale ) }}</a></td>
-							<td>{{ entity.organization }}</td>
-							<td>{{ entity.language }}</td>
-							<td>
-								<ul>
-									<li><a
-										href="{{ path('midyeartemplate_show', { 'id': entity.id }) }}">show</a>
-									</li>
-									<li><a
-										href="{{ path('midyeartemplate_edit', { 'id': entity.id }) }}">edit</a>
-									</li>
-								</ul>
-							</td>
-						</tr>
-						{% endfor %}
-					</tbody>
-				</table>
 
-				
-					<a href="{{ path('midyeartemplate_new') }}" type="button" class="btn btn-default btn-cons"> Create a new entry</a>
-			
-			
-			</div>
-		</div>
-		
-		
-	</div>
-</div>
+        </div>
+    </div>
+
 {% endblock %}

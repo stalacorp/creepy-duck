@@ -37,6 +37,20 @@ class User extends BaseUser
     private $lastname;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="Team", type="string", length=250, nullable=true)
+     */
+    private $team;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Function", type="string", length=250, nullable=true)
+     */
+    private $function;
+
+    /**
      * @Vich\UploadableField(mapping="user_photo", fileNameProperty="photoname", nullable=true)
      *
      * @var File
@@ -474,4 +488,50 @@ class User extends BaseUser
         return $this->users;
     }
 
+
+    /**
+     * Set team
+     *
+     * @param string $team
+     * @return User
+     */
+    public function setTeam($team)
+    {
+        $this->team = $team;
+
+        return $this;
+    }
+
+    /**
+     * Get team
+     *
+     * @return string 
+     */
+    public function getTeam()
+    {
+        return $this->team;
+    }
+
+    /**
+     * Set function
+     *
+     * @param string $function
+     * @return User
+     */
+    public function setFunction($function)
+    {
+        $this->function = $function;
+
+        return $this;
+    }
+
+    /**
+     * Get function
+     *
+     * @return string 
+     */
+    public function getFunction()
+    {
+        return $this->function;
+    }
 }

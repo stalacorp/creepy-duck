@@ -19,25 +19,54 @@ class LoadCdptemplate extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {       
         $cdptemplate = new Cdptemplate();
-        
-        $cdptemplate->setSelfassesment("Self Assessment");
-        $cdptemplate->setSelfassesmentDescription("Complete at least three, no more than five items for both strengths and development needs. ");
-        $cdptemplate->setTalents("Talents");
-        $cdptemplate->setTalentsDescription("What am i particularly good at (think about situations and activities that you enjoy, for which you receive compliments, where others ask you for help)?");
-        $cdptemplate->setChallenges("Challenges");
-        $cdptemplate->setChallengesDescription("What are areas that require improvement (think about situations and activities that you struggle with, that ask a lot of your energy, where conflict occurs, where you ask/need help with)?");
-        $cdptemplate->setWhatwhy("What & why");
-        $cdptemplate->setWhatwhyDescription("Write down the actions you will take this year, to further develop yourself, in your job. What do you want to do more and/or what are new things you want to take up. Why (what motivates you)?   ");
-        $cdptemplate->setHow("How");
-        $cdptemplate->setHowDescription("How will you do this? ");
-        $cdptemplate->setSuccess("Success");
-        $cdptemplate->setSuccessDescription("How will you know you succeeded? ");
-        $cdptemplate->setNeeds("Needs");
-        $cdptemplate->setNeedsDescription("What help do you need (training, knowledge sharing, books, tools, etc.)? ");
-        $cdptemplate->setCareerobjectives("Career Objectives / Staffing Considerations");
-        $cdptemplate->setCareerobjectivesQuestion("Where do you see yourself in three years?");
-        $cdptemplate->setAdditionalinformation("Additional Information");
-        $cdptemplate->setAdditionalinformationQuestion("List any additional information that is relevant to your Career Development Plan (CDP) for the coming year. Such information could include your interest in special assignments, considerations related to work / life balance, etc.");
+
+        $cdptemplate->setMainTitle('Career Development Plan');
+        $cdptemplate->setTitle1('Personalia');
+
+        $cdptemplate->setName('Name');
+        $cdptemplate->setSupervisor('Supervisor');
+        $cdptemplate->setDateDiscussion('Date discussion');
+        $cdptemplate->setTeam('Team');
+        $cdptemplate->setFunction('Job Title');
+
+        $cdptemplate->setTitle2("Self Assessment");
+        $cdptemplate->setTitle2Description("Complete at least three, no more than five items for both strengths and development needs. ");
+
+        $cdptemplate->setTable2Col1("Talents");
+        $cdptemplate->setTable2Col2("Challenges");
+        $cdptemplate->setTable2Col3("How");
+        $cdptemplate->setTable2Col4("Success");
+        $cdptemplate->setTable2Col5("Needs");
+
+        $cdptemplate->setTable2Col1Descr("What are you good at?");
+        $cdptemplate->setTable2Col2Descr("So what is your challenge?");
+        $cdptemplate->setTable2Col3Descr("How are you going to take on this challenge?");
+        $cdptemplate->setTable2Col4Descr("How will you know if you succeeded?");
+        $cdptemplate->setTable2Col5Descr("What do you need to complete your challenge?");
+
+        $cdptemplate->setTitle3('Development Needs for your Job');
+        $cdptemplate->setTitle3Description('Read your Job Description carefully.');
+
+        $cdptemplate->setTable3Col1("What & why");
+        $cdptemplate->setTable3Col2("How");
+        $cdptemplate->setTable3Col3("Success");
+        $cdptemplate->setTable3Col4("Needs");
+
+        $cdptemplate->setTable3Col1Descr("Write down the actions you will take this year to further develop yourself in your job.");
+        $cdptemplate->setTable3Col1Descr("How will you do this?");
+        $cdptemplate->setTable3Col1Descr("How will you know if you succeeded?");
+        $cdptemplate->setTable3Col1Descr("What do you need ( training, knowledge sharing, books, tools, etc. ) ?");
+
+        $cdptemplate->setTable3Title1('Job Specific Tasks and Responsibilities');
+        $cdptemplate->setTable3Title2('Job Specific Skills and Competencies');
+        $cdptemplate->setTable3Title3('Organization Competencies');
+
+        $cdptemplate->setTitle4("Career Objectives / Staffing Considerations");
+        $cdptemplate->setQuestion1("Where do you see yourself in three years?");
+
+        $cdptemplate->setTitle5("Additional Information");
+        $cdptemplate->setQuestion2("List any additional information that is relevant to your Career Development Plan (CDP) for the coming year. Such information could include your interest in special assignments, considerations related to work / life balance, etc.");
+
         $cdptemplate->setSupervisorComment("Supervisor Comments");
         $cdptemplate->setFeedback("Feedback BOD");
         $cdptemplate->setSignatureSupervisor("Date & supervisor's Signature");
@@ -45,9 +74,7 @@ class LoadCdptemplate extends AbstractFixture implements OrderedFixtureInterface
         $cdptemplate->setLanguage($this->getReference('english'));
         
         $dt = new \DateTime();
-        
         $cdptemplate->setDate($dt);
-        $cdptemplate->setIsstandardtemplate(true);
 
         $cdptemplate->setOrganization($this->getReference('organization'));
 
