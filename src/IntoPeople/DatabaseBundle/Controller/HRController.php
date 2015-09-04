@@ -708,7 +708,7 @@ class HRController extends Controller
             ->setParameter('name', 'remindermail')
             ->getQuery();
 
-        $languages = $em->getRepository('IntoPeopleDatabaseBundle:Mailtype')->findAll();
+        $languages = $em->getRepository('IntoPeopleDatabaseBundle:Language')->findAll();
 
         $mails = array();
         $mailtype = $query->setMaxResults(1)->getOneOrNullResult();

@@ -181,6 +181,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $formtohr->setLanguage($nederlands);
         $supervisortoemployee->setLanguage($nederlands);
         $hrtoemployee->setLanguage($nederlands);
+        $remindermail->setLanguage($nederlands);
 
 
         $created->setSubject('Account aangemaakt mail');
