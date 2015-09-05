@@ -62,3 +62,9 @@ hr_remindermail:
     defaults: { _controller: "IntoPeopleDatabaseBundle:HR:remindermail" }
     options:
       expose: true
+
+hr_excel:
+    path:     /excel/{cycle}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:excel" }
+    options:
+      expose: true

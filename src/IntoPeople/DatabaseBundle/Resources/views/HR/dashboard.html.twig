@@ -41,6 +41,23 @@
     <div class="row">
         <div id="result"></div>
     </div>
+
+    <div class="modal fade" id="mailssent">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{{ 'dashboard.modal.mailssent.title' | trans }}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{ 'dashboard.modal.mailssent.body' | trans }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 {% endblock %}
 
 {% block javascripts -%}
@@ -147,6 +164,7 @@
                             cleartext = 'Wissen';
                             exporttext = 'Naar PDF exporteren';
                             mailtext = 'Herinneringsmail sturen';
+                            exceltext = 'Feedback Excel';
                             break;
                         case 'it':
                             language = italiano;
@@ -183,18 +201,8 @@
                         });
                         var myJsonString = JSON.stringify(array);
                         var form = $('#form_cycle').val();
-                        $.ajax({
-                            url: Routing.generate('hr_pdf', {cycle: form}),
-                            data: {ids: myJsonString},
-                            success: function (result) {
-                                var blob = new Blob([result]);
-                                var link = document.createElement('a');
-                                link.href = window.URL.createObjectURL(blob);
-                                link.download = form + new Date() + ".pdf";
-                                link.click();
+                        window.open(Routing.generate('hr_pdf', {cycle: form}) + '?ids=' + myJsonString);
 
-                            }
-                        });
                     });
 
                     $('.inputcheck').change(function () {
@@ -233,9 +241,24 @@
                             url: Routing.generate('hr_remindermail', {cycle: form}),
                             data: {ids: myJsonString},
                             success: function (result) {
+                                $('#mailssent').modal('show');
 
                             }
                         });
+                    });
+
+                    var excelbutton = $('<button class="btn btn-primary">' + exceltext + '</button>');
+
+                    $(excelbutton).click(function () {
+                        var array = [];
+                        var indexes = table.rows({selected: true}).data().toArray();
+                        $.each(indexes, function (i, val) {
+                            array.push(val[0]);
+                        });
+                        var myJsonString = JSON.stringify(array);
+                        var form = $('#form_cycle').val();
+                        window.open(Routing.generate('hr_excel', {cycle: form}) + '?ids=' + myJsonString);
+
                     });
 
 
@@ -249,6 +272,8 @@
                     $('#datatable_length').html(exportopdfbutton);
                     $('#datatable_length').append(' ');
                     $('#datatable_length').append(mailbutton);
+                    $('#datatable_length').append(' ');
+                    $('#datatable_length').append(excelbutton);
 
                 }
             });

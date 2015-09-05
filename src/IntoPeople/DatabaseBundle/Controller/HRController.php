@@ -806,8 +806,56 @@ class HRController extends Controller
             }
 
         }
-
         return new Response();
+    }
+
+    public function excelAction($cycle, Request $request)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $chosencycleids = json_decode($request->get('ids'));
+
+        $query = $em->getRepository('IntoPeopleDatabaseBundle:' . ucfirst($cycle))->createQueryBuilder('c')
+            ->where('c.id IN (:ids)')
+            ->setParameter('ids', $chosencycleids)
+            ->getQuery();
+
+        $forms = $query->getResult();
+        $teller = 3;
+
+        $path = $this->get('kernel')->getRootDir() . '/../web/assets/excel/feedback.xls';
+
+        $excel = file_get_contents($path);
+
+        $inputFileType = \PHPExcel_IOFactory::identify($path);
+        $objReader = \PHPExcel_IOFactory::createReader($inputFileType);
+        $objPHPExcel = $objReader->load($path);
+
+
+        $objPHPExcel->setActiveSheetIndex(0)
+                    ->setCellValue('C1',$cycle);
+
+        foreach ($forms as $form){
+            $feedbackcycle = $form->getFeedbackcycle();
+
+            $user = $feedbackcycle->getUser();
+            $objPHPExcel->setActiveSheetIndex(0)
+                        ->setCellValue('A' . $teller, $feedbackcycle->getId())
+                        ->setCellValue('B' . $teller, $user->getFirstname())
+                        ->setCellValue('C' . $teller, $user->getLastname());
+
+            $teller++;
+        }
+
+        $writer = $this->get('phpexcel')->createWriter($objPHPExcel, 'Excel5');
+        $response = $this->get('phpexcel')->createStreamedResponse($writer);
+        $response->headers->set('Content-Type', 'text/vnd.ms-excel; charset=utf-8');
+        $response->headers->set('Content-Disposition', 'attachment;filename=' . 'feedback' . '.xls');
+        $response->headers->set('Pragma', 'public');
+        $response->headers->set('Cache-Control', 'maxage=1');
+
+        return $response;
+
+
     }
 
 
