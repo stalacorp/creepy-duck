@@ -2,6 +2,18 @@
 
     <h2>{{ "generalcycle.index.title" | trans }}</h2>
 
+
+    {% for flashMessage in app.session.flashbag.get('success') %}
+
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            {{ flashMessage }}
+        </div>
+
+    {% endfor %}
+
+
     <ul class="nav nav-tabs" role="tablist" id="myTab">
         <li role="presentation" class="active"><a href="#activecycle" aria-controls="activecycle" role="tab"
                                                   data-toggle="tab">activecycle</a></li>
@@ -70,9 +82,9 @@
                 <div class="row margin-top-30">
                     <div class="col-md-12">
 
-                        <a href="{{ path('generalcycle_new') }}" type="button" class="btn btn-primary btn-cons">New
+                        <a href="{{ path('generalcycle_new') }}" type="button" class="btn btn-default">New
                             Cycle</a>
-                        <a href="{{ path('generalcycle_edit',{'id' : entity.id}) }}" class="btn btn-default btn-cons"
+                        <a href="{{ path('generalcycle_edit',{'id' : entity.id}) }}" class="btn btn-default"
                            type="button">Edit</a>
 
                     </div>
@@ -84,7 +96,7 @@
 
                 <p>
                     <a href="{{ path('generalcycle_new') }}" type="button"
-                       class="btn btn-primary btn-cons">New Generalcycle </a>
+                       class="btn btn-default">New Generalcycle </a>
                 </p>
 
             {% endif %}

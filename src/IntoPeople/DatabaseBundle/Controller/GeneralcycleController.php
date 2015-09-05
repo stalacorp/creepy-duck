@@ -183,6 +183,16 @@ class GeneralcycleController extends Controller
             
             $em->persist($entity);
             $em->flush();
+
+            // Notification message after Core Quality has been created
+            //
+            $tr = $this->get('translator');
+            $message = $tr->trans('notification.create.generalcycle');
+
+            $this->addFlash(
+                'success',
+                $message
+            );
             
             return $this->redirect($this->generateUrl('generalcycle', array(
                 'id' => $entity->getId(),
@@ -324,6 +334,16 @@ class GeneralcycleController extends Controller
         
         if ($editForm->isValid()) {
             $em->flush();
+
+            // Notification message after Core Quality has been created
+            //
+            $tr = $this->get('translator');
+            $message = $tr->trans('notification.edit.generalcycle');
+
+            $this->addFlash(
+                'success',
+                $message
+            );
             
             return $this->redirect($this->generateUrl('generalcycle_edit', array(
                 'id' => $id

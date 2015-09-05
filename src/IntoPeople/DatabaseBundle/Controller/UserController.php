@@ -328,6 +328,16 @@ class UserController extends Controller
 
                 }
 
+                // Notification message after Core Quality has been created
+                //
+                $tr = $this->get('translator');
+                $message = $tr->trans('notification.user.profile');
+
+                $this->addFlash(
+                    'success',
+                    $message
+                );
+
                 $this->getDoctrine()->getManager()->flush();
 
 
