@@ -1,7 +1,57 @@
 {% extends '::base.html.twig' %} 
 
 {% block body -%}
+    <style type="text/css">
+        span.twitter-typeahead {
+            width: 100%;
 
+        }
+        .input-group span.twitter-typeahead {
+            display: block !important;
+        }
+        .input-group span.twitter-typeahead .tt-dropdown-menu {
+            top: 32px !important;
+        }
+        .input-group.input-group-lg span.twitter-typeahead .tt-dropdown-menu {
+            top: 44px !important;
+        }
+        .input-group.input-group-sm span.twitter-typeahead .tt-dropdown-menu {
+            top: 28px !important;
+        }
+
+        .typeahead {
+            background-color: #FFFFFF;
+        }
+        .tt-query {
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+        }
+        .tt-hint {
+            color: #999999;
+        }
+        .tt-menu {
+            background-color: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 12px;
+            padding: 8px 0;
+            width: 100%;
+        }
+        .tt-suggestion {
+            line-height: 24px;
+            padding: 3px 20px;
+        }
+        .tt-suggestion {
+
+        }
+
+        .tt-suggestion:hover {
+            cursor:pointer;
+            background-color: #0097CF;
+            color: #FFFFFF;
+        }
+
+    </style>
     <h2>{{ 'user.profile.title' | trans }}</h2>
 
     <div class="row">
@@ -20,7 +70,13 @@
 
 
             {{ form_start(form) }}
-            {{ form_widget(form) }}
+            <div class="form-group">
+            {{ form_label(form.jobtitle) }}
+            <div>
+            {{ form_widget(form.jobtitle) }}
+            </div>
+            </div>
+
             {{ form_end(form) }}
 
         </div>
@@ -28,6 +84,39 @@
     </div>
 
 
+{% endblock %}
+
+{% block javascripts -%}
+    {{ parent() }}
+    <script src="{{ asset('assets/vendor/typeahead.js/dist/typeahead.bundle.min.js') }}"></script>
+    <script>
+        var jobtitles = {{ jobtitles | json_encode() | raw}};
+        var titles = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.whitespace,
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            identify: function(obj) { return obj; },
+            local: {{ jobtitles | json_encode() | raw}}
+        });
+
+        function nflTeamsWithDefaults(q, sync) {
+            if (q === '') {
+                sync(jobtitles);
+            }
+
+            else {
+                titles.search(q, sync);
+            }
+        }
+
+        $('.typeahead').typeahead({
+                    minLength: 0,
+                    highlight: true
+                },
+                {
+                    name: 'titles',
+                    source: nflTeamsWithDefaults
+                });
+    </script>
 {% endblock %}
 
 

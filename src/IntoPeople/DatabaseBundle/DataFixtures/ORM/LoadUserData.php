@@ -6,6 +6,7 @@ namespace IntoPeople\DatabaseBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use IntoPeople\DatabaseBundle\Entity\Jobtitle;
 use IntoPeople\DatabaseBundle\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -32,11 +33,25 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     public function load(ObjectManager $manager)
     {
+
+        $java = new Jobtitle();
+        $php = new Jobtitle();
+        $sql = new Jobtitle();
+
+        $java->setName('java expert');
+        $php->setName('php expert');
+        $sql->setName('sql expert');
+
+        $manager->persist($java);
+        $manager->persist($php);
+        $manager->persist($sql);
+
         $userManager = $this->container->get('into_people_database.user_manager');
         $organization = $this->getReference('organization');
         $active = $this->getReference('active');
 
         $supervisor = $userManager->createUser();
+        $supervisor->setJobtitle($java);
         $supervisor->setEmail('birtpeeters@hotmail.com');
         $supervisor->setUsername('birtpeeters@hotmail.com');
         $supervisor->setPlainPassword('test');
@@ -53,6 +68,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $userManager->updateUser($supervisor);
 
         $hr = $userManager->createUser();
+        $hr->setJobtitle($php);
         $hr->setEmail('bart_peeters@mail.com');
         $hr->setUsername('bart_peeters@mail.com');
         $hr->setPlainPassword('test');
@@ -71,6 +87,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
 
         // Create user and set details
         $user = $userManager->createUser();
+        $user->setJobtitle($sql);
         $user->setUsername('admin');
         $user->setEmail('admin@test.com');
         $user->setPlainPassword('admin');

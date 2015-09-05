@@ -44,11 +44,14 @@ class User extends BaseUser
     private $team;
 
     /**
-     * @var string
+     * @var \IntoPeople\DatabaseBundle\Entity\Jobtitle
      *
-     * @ORM\Column(name="Function", type="string", length=250, nullable=true)
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Jobtitle")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="JobtitleId", referencedColumnName="Id")
+     * })
      */
-    private $function;
+    private $jobtitle;
 
     /**
      * @Vich\UploadableField(mapping="user_photo", fileNameProperty="photoname", nullable=true)
@@ -352,6 +355,31 @@ class User extends BaseUser
     {
         return $this->language;
     }
+
+    /**
+     * Set jobtitle
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Jobtitle $jobtitle
+     * @return User
+     */
+    public function setJobtitle(\IntoPeople\DatabaseBundle\Entity\Jobtitle $jobtitle = null)
+    {
+        $this->jobtitle = $jobtitle;
+
+        return $this;
+    }
+
+    /**
+     * Get jobtitle
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Jobtitle
+     */
+    public function getJobtitle()
+    {
+        return $this->language;
+    }
+
+
 
     /**
      * Set supervisor
