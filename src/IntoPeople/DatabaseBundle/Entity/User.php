@@ -376,7 +376,7 @@ class User extends BaseUser
      */
     public function getJobtitle()
     {
-        return $this->language;
+        return $this->jobtitle;
     }
 
 

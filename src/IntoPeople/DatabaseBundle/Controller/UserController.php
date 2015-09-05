@@ -292,13 +292,15 @@ class UserController extends Controller
     }
 
     public function profileAction(Request $request){
+        $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $encoder_service = $this->get('security.encoder_factory');
         $encoder = $encoder_service->getEncoder($user);
 
-        $em = $this->getDoctrine()->getManager();
+
         $entities = $em->getRepository('IntoPeopleDatabaseBundle:Jobtitle')->findAll();
         $jobtitles = array_map(create_function('$o', 'return $o->getName();'), $entities);
+
 
 
         $form = $this->createFormBuilder($user)
@@ -319,7 +321,7 @@ class UserController extends Controller
                 'class' => 'IntoPeopleDatabaseBundle:Language'))
             ->add('Save', 'submit')
             ->getForm();
-
+        $form['jobtitle']->setData($user->getJobtitle()->getName());
         $form->handleRequest($request);
         if ($form->isValid()) {
             $userManager = $this->get('fos_user.user_manager');
@@ -334,16 +336,16 @@ class UserController extends Controller
 
             }
 
-            $data = $form->getData();
-            $jobtitle = $em->getRepository('IntoPeopleDatabaseBundle:Jobtitle')->findOneByName($data['jobtitle']);
+            $jobtitle = $em->getRepository('IntoPeopleDatabaseBundle:Jobtitle')->findOneByName($form->get('jobtitle')->getData());
 
             if ($jobtitle == null) {
                 $jobtitle = new Jobtitle();
-                $jobtitle->setName($data['jobtitle']);
+                $jobtitle->setName($form->get('jobtitle')->getData());
                 $em->persist($jobtitle);
             }
 
             $user->setJobtitle($jobtitle);
+
 
             // Notification message after Core Quality has been created
             //
