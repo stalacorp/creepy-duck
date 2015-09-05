@@ -2,11 +2,16 @@
 
 {% block body -%}
 
+    <h2>{{ "user.index.title" | trans }}</h2>
 
     <div class="row">
-        <div class="col-lg-10">
+        <div class="col-md-3">
             <div>
-                <p>{{ 'user.templateexplanation' | trans }}
+                <h3>{{ 'user.index.title2' | trans }}</h3>
+
+                <p>{{ 'user.templateexplanation' | trans }}<p>
+
+                <p>
                     {% if app.request.locale == 'nl' %}
                         {% set asset_url = asset('assets/vendor/templates/templatenederlands.csv') %}
                     {% else %}
@@ -20,7 +25,9 @@
             {{ form_end(formtemplate) }}
         </div>
 
-        <div class="col-md-12">
+        <div class="col-md-9">
+
+            <h3>{{ 'user.index.title3' }}</h3>
 
 
             <table class="table" id="table">
@@ -28,7 +35,7 @@
                 <tr>
                     <th>Firstname</th>
                     <th>Lastname</th>
-                    <th>Organization</th>
+                    <th>Status</th>
                     <th>Actions</th>
                     <th></th>
                 </tr>
@@ -43,7 +50,7 @@
                     <tr>
                         <td>{{ entity.firstname }}</td>
                         <td>{{ entity.lastname }}</td>
-                        <td>{{ entity.organization }}</td>
+                        <td>{{ entity.userstatus }}</td>
 
                         <td>
                             <a href="{{ path('user_show', { 'id': entity.id }) }}" type="button"
@@ -65,11 +72,6 @@
 
         </div>
     </div>
-
-
-{% endblock %}
-
-{% block documentReady %}
 
 
 {% endblock %}

@@ -3,6 +3,7 @@
 namespace IntoPeople\DatabaseBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Userstatus
@@ -32,12 +33,26 @@ class Userstatus
      * @ORM\OneToMany(targetEntity="IntoPeople\DatabaseBundle\Entity\User", mappedBy="userstatus")
      */
     protected $users;
-    
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
     }
 
+    /**
+     * Set id
+     *
+     * @param integer $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
     /**
      * Set name

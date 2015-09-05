@@ -47,11 +47,11 @@ class UserType extends AbstractType
                 'required' => false,
                 'format' => 'dd-MM-yyyy',
             ))
-            //->add('photo')
+            ->add('team')
             ->add('language')
-            //->add('supervisor')
-            //->add('policy')
-            //->add('role')            
+            ->add('supervisor')
+            ->add('function')
+            ->add('userstatus')
             //->add('employeefunction')
             
             
@@ -70,7 +70,6 @@ class UserType extends AbstractType
                 
                 if ($user->hasRole('ROLE_SUPER_ADMIN')) {
                     $form
-                    ->add('organization')
                     ->add('roles', 'choice', array(
                         'choices' => array(
                             'ROLE_HR' => 'HR / Management',
