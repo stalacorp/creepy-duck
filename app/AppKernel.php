@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new IntoPeople\DatabaseBundle\IntoPeopleDatabaseBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new Liuggio\ExcelBundle\LiuggioExcelBundle(),
             new Ps\PdfBundle\PsPdfBundle()
 
         );

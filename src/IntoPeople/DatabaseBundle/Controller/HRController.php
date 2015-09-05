@@ -12,6 +12,7 @@ use IntoPeople\DatabaseBundle\Form\EndyearFeedbackType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Constraints\File;
 
 /**
  * Supervisor controller.
@@ -545,7 +546,7 @@ class HRController extends Controller
         ));
     }
 
-    public function dashboardAction()
+    public function dashboardAction(Request $request)
     {
 
         $form = $this->createFormBuilder()
@@ -560,9 +561,56 @@ class HRController extends Controller
                 'choices'  => array('cdp' => 'Cdp')
 
             ))
+            ->add('feedbackupload', 'file',array('constraints' => new File(array('maxSize' => "20M"
+            ))))
+            ->add('addfeedback', 'submit')
             ->getForm();
 
+        $form->handleRequest($request);
 
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $data = $form->getData();
+//
+            $objReader = \PHPExcel_IOFactory::createReader('Excel2007');
+            $objPHPExcel = $objReader->load($data['feedbackupload']);
+
+            $highestRow = $objPHPExcel->setActiveSheetIndex(0)->getHighestRow();
+
+            $worksheet = $objPHPExcel->getActiveSheet();
+
+            $formtype = strtolower($worksheet->getCell('C1')->getValue());
+
+            for ($i = 3; $i <= $highestRow; $i++){
+
+                $feedbackid = $worksheet->getCell('A' . $i)->getValue();
+                $feedback = $worksheet->getCell('D' . $i)->getValue();
+                if (intval($feedbackid) != 0) {
+                    $feedbackcycle = $em->getRepository('IntoPeopleDatabaseBundle:Feedbackcycle')->find($feedbackid);
+
+                    if ($feedbackcycle != null) {
+                        $theform = '';
+                        if ($formtype == 'cdp') {
+                            $theform = $feedbackcycle->getCdp();
+                        } else if ($formtype == 'midyear') {
+                            $theform = $feedbackcycle->getMidyear();
+                        } else if ($formtype == 'endyear') {
+                            $theform = $feedbackcycle->getEndyear();
+                        }
+                        if ($theform->getFormstatus()->getId() == 5) {
+
+                        }
+                        $theform->setFeedbackhr($feedback);
+
+
+                    }
+                }
+
+            }
+
+            $em->flush();
+
+        }
 
         return $this->render('IntoPeopleDatabaseBundle:HR:dashboard.html.twig', array(
             'form' => $form->createView(),
