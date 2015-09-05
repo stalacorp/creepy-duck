@@ -38,3 +38,9 @@ textarea {
 .buttons {
     margin:50px 0px 80px 0px;
 }
+
+.template-example {
+    font-style: italic;
+    color:#aaa;
+    font-weight:200;
+}
