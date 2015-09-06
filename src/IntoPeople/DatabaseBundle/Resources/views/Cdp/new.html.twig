@@ -29,8 +29,7 @@
                         {% endif %}
 
                         <tr>
-                            <th>{{ template.dateDiscussion }}:
-                            <th>
+                            <th>{{ template.dateDiscussion }}:<th>
                             <td></td>
                         </tr>
 
@@ -45,14 +44,14 @@
                         <tr>
                             <th>{{ template.team }}:
                             <th>
-                            <td></td>
+                            <td>{{ app.user.team }}</td>
                         </tr>
 
 
                         <tr>
                             <th>{{ template.function }}:
                             <th>
-                            <td></td>
+                            <td>{{ app.user.jobtitle }}</td>
                         </tr>
 
                     </table>
@@ -99,7 +98,13 @@
 
             <h3>{{ template.title2 }}</h3>
 
-            <p class="">{{ template.title2Description }}</p>
+            <p class=""><em>{{ template.title2Description }}</em></p>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
 
             {{ form_start(form) }} {{ form_errors(form) }}
 
@@ -133,9 +138,9 @@
 
                         <p>{{ form_widget(form.challengeWhy1) }}</p>
                     </td>
-                    <td>{{ form_widget(form.challengeHow1) }}</td>
-                    <td>{{ form_widget(form.challengeSuccess1) }}</td>
-                    <td>{{ form_widget(form.challengeNeeds1) }}</td>
+                    <td>{{ form_widget(form.challengeHow1, { 'attr': {'rows': '4'} }) }}</td>
+                    <td>{{ form_widget(form.challengeSuccess1, { 'attr': {'rows': '4'} }) }}</td>
+                    <td>{{ form_widget(form.challengeNeeds1, { 'attr': {'rows': '4'} }) }}</td>
                     <td></td>
                 </tr>
 
@@ -150,9 +155,9 @@
 
                         <p>{{ form_widget(form.challengeWhy2) }}</p>
                     </td>
-                    <td>{{ form_widget(form.challengeHow2) }}</td>
-                    <td>{{ form_widget(form.challengeSuccess2) }}</td>
-                    <td>{{ form_widget(form.challengeNeeds2) }}</td>
+                    <td>{{ form_widget(form.challengeHow2, { 'attr': {'rows': '4'} }) }}</td>
+                    <td>{{ form_widget(form.challengeSuccess2, { 'attr': {'rows': '4'} }) }}</td>
+                    <td>{{ form_widget(form.challengeNeeds2, { 'attr': {'rows': '4'} }) }}</td>
                     <td></td>
                 </tr>
 
@@ -167,9 +172,9 @@
 
                         <p>{{ form_widget(form.challengeWhy3) }}</p>
                     </td>
-                    <td>{{ form_widget(form.challengeHow3) }}</td>
-                    <td>{{ form_widget(form.challengeSuccess3) }}</td>
-                    <td>{{ form_widget(form.challengeNeeds3) }}</td>
+                    <td>{{ form_widget(form.challengeHow3, { 'attr': {'rows': '4'} }) }}</td>
+                    <td>{{ form_widget(form.challengeSuccess3, { 'attr': {'rows': '4'} }) }}</td>
+                    <td>{{ form_widget(form.challengeNeeds3, { 'attr': {'rows': '4'} }) }}</td>
                     <td>
                         <button type="button" class="btn btn-default addButton"><i class="fa fa-plus"></i></button>
                     </td>
@@ -186,9 +191,9 @@
 
                         <p>{{ form_widget(form.challengeWhy4) }}</p>
                     </td>
-                    <td>{{ form_widget(form.challengeHow4) }}</td>
-                    <td>{{ form_widget(form.challengeSuccess4) }}</td>
-                    <td>{{ form_widget(form.challengeNeeds4) }}</td>
+                    <td>{{ form_widget(form.challengeHow4, { 'attr': {'rows': '4'} }) }}</td>
+                    <td>{{ form_widget(form.challengeSuccess4, { 'attr': {'rows': '4'} }) }}</td>
+                    <td>{{ form_widget(form.challengeNeeds4, { 'attr': {'rows': '4'} }) }}</td>
                     <td>
                         <button type="button" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button>
                     </td>
@@ -205,9 +210,9 @@
 
                         <p>{{ form_widget(form.challengeWhy5) }}</p>
                     </td>
-                    <td>{{ form_widget(form.challengeHow5) }}</td>
-                    <td>{{ form_widget(form.challengeSuccess5) }}</td>
-                    <td>{{ form_widget(form.challengeNeeds5) }}</td>
+                    <td>{{ form_widget(form.challengeHow5, { 'attr': {'rows': '4'} }) }}</td>
+                    <td>{{ form_widget(form.challengeSuccess5, { 'attr': {'rows': '4'} }) }}</td>
+                    <td>{{ form_widget(form.challengeNeeds5, { 'attr': {'rows': '4'} }) }}</td>
                     <td>
                         <button type="button" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button>
                     </td>
@@ -221,10 +226,16 @@
     <div class="row">
         <div class="col-md-12">
 
-
             <h3>{{ template.title3 }}</h3>
 
-            <p>{{ template.title3Description }}</p>
+            <p><em>{{ template.title3Description }}</em></p>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
 
             <table class="table borderless">
 
@@ -476,25 +487,25 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-7">
 
             <h3>{{ template.title4 }}</h3>
 
             <p>{{ template.question1 }}</p>
 
-            {{ form_errors(form.careerobjective) }} {{ form_widget(form.careerobjective) }}
+            {{ form_errors(form.careerobjective) }} {{ form_widget(form.careerobjective, { 'attr': {'rows': '4'} }) }}
 
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-7">
 
             <h3>{{ template.title5 }}</h3>
 
             <p>{{ template.question2 }}</p>
 
-            {{ form_errors(form.additionalinformation) }} {{ form_widget(form.additionalinformation) }}
+            {{ form_errors(form.additionalinformation) }} {{ form_widget(form.additionalinformation, { 'attr': {'rows': '4'} }) }}
 
         </div>
     </div>

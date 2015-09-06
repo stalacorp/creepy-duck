@@ -187,7 +187,7 @@
                     table.select.selector('td:first-child input');
 
 
-                    var actions = '<div class="dropdown"><button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{ 'dashboard.dropdown.title' | trans }}<span class="caret"></span></button><ul class="dropdown-menu" aria-labelledby="dropdownMenu1"><li><a id="exportpdf" href="#">{{ 'dashboard.dropdown.exportpdf' | trans }}</a></li><li><a href="#" id="exportexcel">{{ 'dashboard.dropdown.exportexcel' | trans }}</a></li><li><a id="remindermail" href="#">{{ 'dashboard.dropdown.remindermail' | trans }}</a></li></ul></div>';
+                    var actions = '<div class="dropdown"><button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <i class="fa fa-file-text-o"></i> <i class="fa fa-envelope-o"></i> <span class="caret"></span></button><ul class="dropdown-menu" aria-labelledby="dropdownMenu1"><li><a id="exportpdf" href="#">{{ 'dashboard.dropdown.exportpdf' | trans }}</a></li><li><a href="#" id="exportexcel">{{ 'dashboard.dropdown.exportexcel' | trans }}</a></li><li><a id="remindermail" href="#">{{ 'dashboard.dropdown.remindermail' | trans }}</a></li></ul></div>';
                     $('#datatable_length').html(actions);
 
 
