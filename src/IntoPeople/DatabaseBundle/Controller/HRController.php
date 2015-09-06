@@ -21,11 +21,42 @@ class HRController extends Controller
 {
 
     /**
+     * Displays a form to edit an existing Cdp entity.
+     */
+    public function addFeedbackAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('IntoPeopleDatabaseBundle:Cdp')->find($id);
+
+        if (! $entity) {
+            throw $this->createNotFoundException('Unable to find Cdp entity.');
+        }
+
+        // CAN ONLY ADD FEEDBACK WHEN STATUS = 5
+        //
+
+        if ($entity->getFormstatus()->getId() == 5 || $entity->getFormstatus()->getId() == 6) {
+
+            $form = $this->createEditForm($entity);
+            $user = $this->getUser();
+
+            return $this->render('IntoPeopleDatabaseBundle:HR:feedback.html.twig', array(
+                'entity' => $entity,
+                'form' => $form->createView()
+            ));
+        }
+
+        return $this->redirect($this->generateUrl('cdp_show', array(
+            'id' => $entity->getId()
+        )));
+    }
+
+    /**
      * Creates a form to edit a cdp entity.
      *
      * @param Cdp $entity
      *            The entity
-     *            
+     *
      * @return \Symfony\Component\Form\Form The form
      */
     private function createEditForm(Cdp $entity)
@@ -36,7 +67,7 @@ class HRController extends Controller
             )),
             'method' => 'PUT'
         ));
-        
+
         $form->add('save', 'submit', array(
             'label' => 'Save'
         ))
@@ -49,39 +80,8 @@ class HRController extends Controller
             ->add('onhold', 'submit', array(
             'label' => 'On hold'
         ));
-            
-        return $form;
-    }
 
-    /**
-     * Displays a form to edit an existing Cdp entity.
-     */
-    public function addFeedbackAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('IntoPeopleDatabaseBundle:Cdp')->find($id);
-        
-        if (! $entity) {
-            throw $this->createNotFoundException('Unable to find Cdp entity.');
-        }
-        
-        // CAN ONLY ADD FEEDBACK WHEN STATUS = 5
-        //
-        
-        if ($entity->getFormstatus()->getId() == 5 || $entity->getFormstatus()->getId() == 6) {
-            
-            $form = $this->createEditForm($entity);
-            $user = $this->getUser();
-            
-            return $this->render('IntoPeopleDatabaseBundle:HR:feedback.html.twig', array(
-                'entity' => $entity,
-                'form' => $form->createView()
-            ));
-        }
-        
-        return $this->redirect($this->generateUrl('cdp_show', array(
-            'id' => $entity->getId()
-        )));
+        return $form;
     }
 
     /**
@@ -194,7 +194,36 @@ class HRController extends Controller
         ));
     }
     
-    
+    /**
+     * Displays a form to edit an existing Midyear entity.
+     */
+    public function addMidyearFeedbackAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('IntoPeopleDatabaseBundle:Midyear')->find($id);
+
+        if (! $entity) {
+            throw $this->createNotFoundException('Unable to find Midyear entity.');
+        }
+
+        // CAN ONLY ADD FEEDBACK WHEN STATUS = 5
+        //
+
+        if ($entity->getFormstatus()->getId() == 5 || $entity->getFormstatus()->getId() == 6) {
+
+            $form = $this->createMidyearEditForm($entity);
+            $user = $this->getUser();
+
+            return $this->render('IntoPeopleDatabaseBundle:HR:feedbackMidyear.html.twig', array(
+                'entity' => $entity,
+                'form' => $form->createView()
+            ));
+        }
+
+        return $this->redirect($this->generateUrl('midyear_show', array(
+            'id' => $entity->getId()
+        )));
+    }
     
     /**
      * Creates a form to edit a midyear entity.
@@ -212,7 +241,7 @@ class HRController extends Controller
             )),
             'method' => 'PUT'
         ));
-    
+
         $form->add('save', 'submit', array(
             'label' => 'Save'
         ))
@@ -225,39 +254,8 @@ class HRController extends Controller
             ->add('onhold', 'submit', array(
             'label' => 'On hold'
         ));
-            
+
         return $form;
-    }
-    
-    /**
-     * Displays a form to edit an existing Midyear entity.
-     */
-    public function addMidyearFeedbackAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('IntoPeopleDatabaseBundle:Midyear')->find($id);
-    
-        if (! $entity) {
-            throw $this->createNotFoundException('Unable to find Midyear entity.');
-        }
-    
-        // CAN ONLY ADD FEEDBACK WHEN STATUS = 5
-        //
-    
-        if ($entity->getFormstatus()->getId() == 5 || $entity->getFormstatus()->getId() == 6) {
-    
-            $form = $this->createMidyearEditForm($entity);
-            $user = $this->getUser();
-    
-            return $this->render('IntoPeopleDatabaseBundle:HR:feedbackMidyear.html.twig', array(
-                'entity' => $entity,
-                'form' => $form->createView()
-            ));
-        }
-    
-        return $this->redirect($this->generateUrl('midyear_show', array(
-            'id' => $entity->getId()
-        )));
     }
     
     /**
@@ -370,7 +368,36 @@ class HRController extends Controller
         ));
     }
     
-    
+    /**
+     * Displays a form to edit an existing Endyear entity.
+     */
+    public function addEndyearFeedbackAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('IntoPeopleDatabaseBundle:Endyear')->find($id);
+
+        if (! $entity) {
+            throw $this->createNotFoundException('Unable to find Endyear entity.');
+        }
+
+        // CAN ONLY ADD FEEDBACK WHEN STATUS = 5
+        //
+
+        if ($entity->getFormstatus()->getId() == 5 || $entity->getFormstatus()->getId() == 6) {
+
+            $form = $this->createEndyearEditForm($entity);
+            $user = $this->getUser();
+
+            return $this->render('IntoPeopleDatabaseBundle:HR:feedbackEndyear.html.twig', array(
+                'entity' => $entity,
+                'form' => $form->createView()
+            ));
+        }
+
+        return $this->redirect($this->generateUrl('endyear_show', array(
+            'id' => $entity->getId()
+        )));
+    }
     
     /**
      * Creates a form to edit a Endyear entity.
@@ -388,7 +415,7 @@ class HRController extends Controller
             )),
             'method' => 'PUT'
         ));
-    
+
         $form->add('save', 'submit', array(
             'label' => 'Save'
         ))
@@ -401,39 +428,8 @@ class HRController extends Controller
             ->add('onhold', 'submit', array(
             'label' => 'On hold'
         ));
-            
+
         return $form;
-    }
-    
-    /**
-     * Displays a form to edit an existing Endyear entity.
-     */
-    public function addEndyearFeedbackAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('IntoPeopleDatabaseBundle:Endyear')->find($id);
-    
-        if (! $entity) {
-            throw $this->createNotFoundException('Unable to find Endyear entity.');
-        }
-    
-        // CAN ONLY ADD FEEDBACK WHEN STATUS = 5
-        //
-    
-        if ($entity->getFormstatus()->getId() == 5 || $entity->getFormstatus()->getId() == 6) {
-    
-            $form = $this->createEndyearEditForm($entity);
-            $user = $this->getUser();
-    
-            return $this->render('IntoPeopleDatabaseBundle:HR:feedbackEndyear.html.twig', array(
-                'entity' => $entity,
-                'form' => $form->createView()
-            ));
-        }
-    
-        return $this->redirect($this->generateUrl('endyear_show', array(
-            'id' => $entity->getId()
-        )));
     }
     
     /**
@@ -584,25 +580,44 @@ class HRController extends Controller
             for ($i = 3; $i <= $highestRow; $i++){
 
                 $feedbackid = $worksheet->getCell('A' . $i)->getValue();
-                $feedback = $worksheet->getCell('D' . $i)->getValue();
+                $feedback = $worksheet->getCell('F' . $i)->getValue();
+                $status = $worksheet->getCell('E' . $i)->getValue();
                 if (intval($feedbackid) != 0) {
-                    $feedbackcycle = $em->getRepository('IntoPeopleDatabaseBundle:Feedbackcycle')->find($feedbackid);
+                    $formid = '';
+                    switch (strtolower($status)) {
+                        case 'approved':
+                            $formid = 8;
+                            break;
+                        case 'disapproved':
+                            $formid = 7;
+                            break;
+                        case 'on hold':
+                            $formid = 6;
+                            break;
+                    }
+                    if ($formid != '') {
 
-                    if ($feedbackcycle != null) {
-                        $theform = '';
-                        if ($formtype == 'cdp') {
-                            $theform = $feedbackcycle->getCdp();
-                        } else if ($formtype == 'midyear') {
-                            $theform = $feedbackcycle->getMidyear();
-                        } else if ($formtype == 'endyear') {
-                            $theform = $feedbackcycle->getEndyear();
+
+                        $feedbackcycle = $em->getRepository('IntoPeopleDatabaseBundle:Feedbackcycle')->find($feedbackid);
+                        $formstatus = $em->getRepository('IntoPeopleDatabaseBundle:Formstatus')->find($formid);
+
+                        if ($feedbackcycle != null) {
+                            $theform = '';
+                            if ($formtype == 'cdp') {
+                                $theform = $feedbackcycle->getCdp();
+                            } else if ($formtype == 'midyear') {
+                                $theform = $feedbackcycle->getMidyear();
+                            } else if ($formtype == 'endyear') {
+                                $theform = $feedbackcycle->getEndyear();
+                            }
+                            if ($theform->getFormstatus()->getId() == 5) {
+
+                            }
+                            $theform->setFormstatus($formstatus);
+                            $theform->setFeedbackhr($feedback);
+
+
                         }
-                        if ($theform->getFormstatus()->getId() == 5) {
-
-                        }
-                        $theform->setFeedbackhr($feedback);
-
-
                     }
                 }
 
@@ -834,6 +849,9 @@ class HRController extends Controller
         $objPHPExcel->setActiveSheetIndex(0)
                     ->setCellValue('C1',$cycle);
 
+
+
+
         foreach ($forms as $form){
             $feedbackcycle = $form->getFeedbackcycle();
 
@@ -841,7 +859,21 @@ class HRController extends Controller
             $objPHPExcel->setActiveSheetIndex(0)
                         ->setCellValue('A' . $teller, $feedbackcycle->getId())
                         ->setCellValue('B' . $teller, $user->getFirstname())
-                        ->setCellValue('C' . $teller, $user->getLastname());
+                        ->setCellValue('C' . $teller, $user->getLastname())
+                        ->setCellValue('D' . $teller, $user->getJobtitle()->getName());
+
+            $objValidation = $objPHPExcel->getActiveSheet()->getCell('E' . $teller)->getDataValidation();
+            $objValidation->setType( \PHPExcel_Cell_DataValidation::TYPE_LIST );
+            $objValidation->setErrorStyle( \PHPExcel_Cell_DataValidation::STYLE_INFORMATION );
+            $objValidation->setAllowBlank(false);
+            $objValidation->setShowInputMessage(true);
+            $objValidation->setShowErrorMessage(true);
+            $objValidation->setShowDropDown(true);
+            $objValidation->setErrorTitle('Input error');
+            $objValidation->setError('Value is not in list.');
+            $objValidation->setPromptTitle('Pick from list');
+            $objValidation->setPrompt('Please pick a value from the drop-down list.');
+            $objValidation->setFormula1('"Approved,Disapproved,On hold"');
 
             $teller++;
         }
