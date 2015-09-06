@@ -14,6 +14,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Endyeartemplate
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="Id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
      * @ORM\OneToMany(targetEntity="Endyear", mappedBy="endyeartemplate")
      */
     protected $endyears;
@@ -22,114 +31,13 @@ class Endyeartemplate
     {
         $this->endyears = new ArrayCollection();
     }
-    
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="isStandardTemplate", type="boolean", nullable=true)
-     */
-    private $isstandardtemplate;
-    
-    
+
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="Date", type="date", nullable=false)
      */
     private $date;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="WhatWhy", type="text", length=65535, nullable=true)
-     */
-    private $whatwhy;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="WhatWhyDescription", type="text", length=65535, nullable=true)
-     */
-    private $whatwhydescription;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Evaluation", type="text", length=65535, nullable=true)
-     */
-    private $evaluation;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="EvaluationDescription", type="text", length=65535, nullable=true)
-     */
-    private $evaluationdescription;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Tasks", type="text", length=65535, nullable=true)
-     */
-    private $tasks;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Skills", type="text", length=65535, nullable=true)
-     */
-    private $skills;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="OrganizationField", type="text", length=65535, nullable=true)
-     */
-    private $organizationfield;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="FeedbackOrganization", type="text", length=65535, nullable=true)
-     */
-    private $feedbackorganization;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="FeedbackOrganizationDescription1", type="text", length=65535, nullable=true)
-     */
-    private $feedbackorganizationdescription1;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="FeedbackOrganizationDescription2", type="text", length=65535, nullable=true)
-     */
-    private $feedbackorganizationdescription2;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="FeedbackOrganizationDescription3", type="text", length=65535, nullable=true)
-     */
-    private $feedbackorganizationdescription3;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="FeedbackOrganizationDescription4", type="text", length=65535, nullable=true)
-     */
-    private $feedbackorganizationdescription4;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="Id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
 
     /**
      * @var \IntoPeople\DatabaseBundle\Entity\Language
@@ -151,13 +59,298 @@ class Endyeartemplate
      */
     private $organization;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="MainTitle", type="string", length=250, nullable=true)
+     */
+    private $mainTitle;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Title1", type="string", length=250, nullable=true)
+     */
+    private $title1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Title2", type="string", length=250, nullable=true)
+     */
+    private $title2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Title3", type="string", length=250, nullable=true)
+     */
+    private $title3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Title4", type="string", length=250, nullable=true)
+     */
+    private $title4;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Title1Description", type="text", length=65535, nullable=true)
+     */
+    private $title1Description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Title2Description", type="text", length=65535, nullable=true)
+     */
+    private $title2Description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Title3Description", type="text", length=65535, nullable=true)
+     */
+    private $title3Description;
+
+    # Personalia #
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Name", type="string", length=250, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Supervisor", type="string", length=250, nullable=true)
+     */
+    private $supervisor;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="DateDiscussion", type="string", length=250, nullable=true)
+     */
+    private $dateDiscussion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Team", type="string", length=250, nullable=true)
+     */
+    private $team;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Function", type="string", length=250, nullable=true)
+     */
+    private $function;
+
+
+    #table2#
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table2Col1", type="string", length=250, nullable=true)
+     */
+    private $table2Col1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table2Col2", type="string", length=250, nullable=true)
+     */
+    private $table2Col2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table2Col3", type="string", length=250, nullable=true)
+     */
+    private $table2Col3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table2Col4", type="string", length=250, nullable=true)
+     */
+    private $table2Col4;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table2Col5", type="string", length=250, nullable=true)
+     */
+    private $table2Col5;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table2Col1Descr", type="text", length=65535, nullable=true)
+     */
+    private $table2Col1Descr;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table2Col2Descr", type="text", length=65535, nullable=true)
+     */
+    private $table2Col2Descr;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table2Col3Descr", type="text", length=65535, nullable=true)
+     */
+    private $table2Col3Descr;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table2Col4Descr", type="text", length=65535, nullable=true)
+     */
+    private $table2Col4Descr;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table2Col5Descr", type="text", length=65535, nullable=true)
+     */
+    private $table2Col5Descr;
+
+
+    # Table3 #
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table3Col1", type="string", length=250, nullable=true)
+     */
+    private $table3Col1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table3Col2", type="string", length=250, nullable=true)
+     */
+    private $table3Col2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table3Col1Descr", type="text", length=65535, nullable=true)
+     */
+    private $table3Col1Descr;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table3Col2Descr", type="text", length=65535, nullable=true)
+     */
+    private $table3Col2Descr;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table3Title1", type="string", length=250, nullable=true)
+     */
+    private $table3Title1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table3Title2", type="string", length=250, nullable=true)
+     */
+    private $table3Title2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table3Title3", type="string", length=250, nullable=true)
+     */
+    private $table3Title3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Question1", type="text", length=65535, nullable=true)
+     */
+    private $question1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Question2", type="text", length=65535, nullable=true)
+     */
+    private $question2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Question3", type="text", length=65535, nullable=true)
+     */
+    private $question3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Question4", type="text", length=65535, nullable=true)
+     */
+    private $question4;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="SupervisorComment", type="string", length=250, nullable=true)
+     */
+    private $supervisorComment;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Feedback", type="string", length=250, nullable=true)
+     */
+    private $feedback;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="SignatureSupervisor", type="string", length=250, nullable=true)
+     */
+    private $signatureSupervisor;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="SignatureEmployee", type="string", length=250, nullable=true)
+     */
+    private $signatureEmployee;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set date
      *
      * @param \DateTime $date
-     *
      * @return Endyeartemplate
      */
     public function setDate($date)
@@ -170,7 +363,7 @@ class Endyeartemplate
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getDate()
     {
@@ -178,331 +371,906 @@ class Endyeartemplate
     }
 
     /**
-     * Set whatwhy
+     * Set mainTitle
      *
-     * @param string $whatwhy
-     *
+     * @param string $mainTitle
      * @return Endyeartemplate
      */
-    public function setWhatwhy($whatwhy)
+    public function setMainTitle($mainTitle)
     {
-        $this->whatwhy = $whatwhy;
+        $this->mainTitle = $mainTitle;
 
         return $this;
     }
 
     /**
-     * Get whatwhy
+     * Get mainTitle
      *
-     * @return string
+     * @return string 
      */
-    public function getWhatwhy()
+    public function getMainTitle()
     {
-        return $this->whatwhy;
+        return $this->mainTitle;
     }
 
     /**
-     * Set whatwhydescription
+     * Set title1
      *
-     * @param string $whatwhydescription
-     *
+     * @param string $title1
      * @return Endyeartemplate
      */
-    public function setWhatwhydescription($whatwhydescription)
+    public function setTitle1($title1)
     {
-        $this->whatwhydescription = $whatwhydescription;
+        $this->title1 = $title1;
 
         return $this;
     }
 
     /**
-     * Get whatwhydescription
+     * Get title1
      *
-     * @return string
+     * @return string 
      */
-    public function getWhatwhydescription()
+    public function getTitle1()
     {
-        return $this->whatwhydescription;
+        return $this->title1;
     }
 
     /**
-     * Set evaluation
+     * Set title2
      *
-     * @param string $evaluation
-     *
+     * @param string $title2
      * @return Endyeartemplate
      */
-    public function setEvaluation($evaluation)
+    public function setTitle2($title2)
     {
-        $this->evaluation = $evaluation;
+        $this->title2 = $title2;
 
         return $this;
     }
 
     /**
-     * Get evaluation
+     * Get title2
      *
-     * @return string
+     * @return string 
      */
-    public function getEvaluation()
+    public function getTitle2()
     {
-        return $this->evaluation;
+        return $this->title2;
     }
 
     /**
-     * Set evaluationdescription
+     * Set title3
      *
-     * @param string $evaluationdescription
-     *
+     * @param string $title3
      * @return Endyeartemplate
      */
-    public function setEvaluationdescription($evaluationdescription)
+    public function setTitle3($title3)
     {
-        $this->evaluationdescription = $evaluationdescription;
+        $this->title3 = $title3;
 
         return $this;
     }
 
     /**
-     * Get evaluationdescription
+     * Get title3
      *
-     * @return string
+     * @return string 
      */
-    public function getEvaluationdescription()
+    public function getTitle3()
     {
-        return $this->evaluationdescription;
+        return $this->title3;
     }
 
     /**
-     * Set tasks
+     * Set title4
      *
-     * @param string $tasks
-     *
+     * @param string $title4
      * @return Endyeartemplate
      */
-    public function setTasks($tasks)
+    public function setTitle4($title4)
     {
-        $this->tasks = $tasks;
+        $this->title4 = $title4;
 
         return $this;
     }
 
     /**
-     * Get tasks
+     * Get title4
      *
-     * @return string
+     * @return string 
      */
-    public function getTasks()
+    public function getTitle4()
     {
-        return $this->tasks;
+        return $this->title4;
     }
 
     /**
-     * Set skills
+     * Set title1Description
      *
-     * @param string $skills
-     *
+     * @param string $title1Description
      * @return Endyeartemplate
      */
-    public function setSkills($skills)
+    public function setTitle1Description($title1Description)
     {
-        $this->skills = $skills;
+        $this->title1Description = $title1Description;
 
         return $this;
     }
 
     /**
-     * Get skills
+     * Get title1Description
      *
-     * @return string
+     * @return string 
      */
-    public function getSkills()
+    public function getTitle1Description()
     {
-        return $this->skills;
+        return $this->title1Description;
     }
 
     /**
-     * Set organization
+     * Set title2Description
      *
-     * @param string $organization
-     *
+     * @param string $title2Description
      * @return Endyeartemplate
      */
-    public function setOrganization($organization)
+    public function setTitle2Description($title2Description)
     {
-        $this->organization = $organization;
+        $this->title2Description = $title2Description;
 
         return $this;
     }
 
     /**
-     * Get organization
+     * Get title2Description
      *
-     * @return string
+     * @return string 
      */
-    public function getOrganization()
+    public function getTitle2Description()
     {
-        return $this->organization;
+        return $this->title2Description;
     }
 
     /**
-     * Set feedbackorganization
+     * Set title3Description
      *
-     * @param string $feedbackorganization
-     *
+     * @param string $title3Description
      * @return Endyeartemplate
      */
-    public function setFeedbackorganization($feedbackorganization)
+    public function setTitle3Description($title3Description)
     {
-        $this->feedbackorganization = $feedbackorganization;
+        $this->title3Description = $title3Description;
 
         return $this;
     }
 
     /**
-     * Get feedbackorganization
+     * Get title3Description
      *
-     * @return string
+     * @return string 
      */
-    public function getFeedbackorganization()
+    public function getTitle3Description()
     {
-        return $this->feedbackorganization;
+        return $this->title3Description;
     }
 
     /**
-     * Set feedbackorganizationdescription1
+     * Set name
      *
-     * @param string $feedbackorganizationdescription1
-     *
+     * @param string $name
      * @return Endyeartemplate
      */
-    public function setFeedbackorganizationdescription1($feedbackorganizationdescription1)
+    public function setName($name)
     {
-        $this->feedbackorganizationdescription1 = $feedbackorganizationdescription1;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get feedbackorganizationdescription1
+     * Get name
      *
-     * @return string
+     * @return string 
      */
-    public function getFeedbackorganizationdescription1()
+    public function getName()
     {
-        return $this->feedbackorganizationdescription1;
+        return $this->name;
     }
 
     /**
-     * Set feedbackorganizationdescription2
+     * Set supervisor
      *
-     * @param string $feedbackorganizationdescription2
-     *
+     * @param string $supervisor
      * @return Endyeartemplate
      */
-    public function setFeedbackorganizationdescription2($feedbackorganizationdescription2)
+    public function setSupervisor($supervisor)
     {
-        $this->feedbackorganizationdescription2 = $feedbackorganizationdescription2;
+        $this->supervisor = $supervisor;
 
         return $this;
     }
 
     /**
-     * Get feedbackorganizationdescription2
+     * Get supervisor
      *
-     * @return string
+     * @return string 
      */
-    public function getFeedbackorganizationdescription2()
+    public function getSupervisor()
     {
-        return $this->feedbackorganizationdescription2;
+        return $this->supervisor;
     }
 
     /**
-     * Set feedbackorganizationdescription3
+     * Set dateDiscussion
      *
-     * @param string $feedbackorganizationdescription3
-     *
+     * @param string $dateDiscussion
      * @return Endyeartemplate
      */
-    public function setFeedbackorganizationdescription3($feedbackorganizationdescription3)
+    public function setDateDiscussion($dateDiscussion)
     {
-        $this->feedbackorganizationdescription3 = $feedbackorganizationdescription3;
+        $this->dateDiscussion = $dateDiscussion;
 
         return $this;
     }
 
     /**
-     * Get feedbackorganizationdescription3
+     * Get dateDiscussion
      *
-     * @return string
+     * @return string 
      */
-    public function getFeedbackorganizationdescription3()
+    public function getDateDiscussion()
     {
-        return $this->feedbackorganizationdescription3;
+        return $this->dateDiscussion;
     }
 
     /**
-     * Set feedbackorganizationdescription4
+     * Set team
      *
-     * @param string $feedbackorganizationdescription4
-     *
+     * @param string $team
      * @return Endyeartemplate
      */
-    public function setFeedbackorganizationdescription4($feedbackorganizationdescription4)
+    public function setTeam($team)
     {
-        $this->feedbackorganizationdescription4 = $feedbackorganizationdescription4;
+        $this->team = $team;
 
         return $this;
     }
 
     /**
-     * Get feedbackorganizationdescription4
+     * Get team
      *
-     * @return string
+     * @return string 
      */
-    public function getFeedbackorganizationdescription4()
+    public function getTeam()
     {
-        return $this->feedbackorganizationdescription4;
+        return $this->team;
     }
 
     /**
-     * Get id
+     * Set function
      *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-    
-    /**
-     * Add endyear
-     *
-     * @param \IntoPeople\DatabaseBundle\Entity\Endyear $endyear
-     *
+     * @param string $function
      * @return Endyeartemplate
      */
-    public function addEndyear(\IntoPeople\DatabaseBundle\Entity\Endyear $endyear)
+    public function setFunction($function)
     {
-        $this->endyears[] = $endyear;
+        $this->function = $function;
 
         return $this;
     }
 
     /**
-     * Remove endyear
+     * Get function
      *
-     * @param \IntoPeople\DatabaseBundle\Entity\Endyear $endyear
+     * @return string 
      */
-    public function removeEndyear(\IntoPeople\DatabaseBundle\Entity\Endyear $endyear)
+    public function getFunction()
     {
-        $this->endyears->removeElement($endyear);
+        return $this->function;
+    }
+
+    /**
+     * Set table2Col1
+     *
+     * @param string $table2Col1
+     * @return Endyeartemplate
+     */
+    public function setTable2Col1($table2Col1)
+    {
+        $this->table2Col1 = $table2Col1;
+
+        return $this;
+    }
+
+    /**
+     * Get table2Col1
+     *
+     * @return string 
+     */
+    public function getTable2Col1()
+    {
+        return $this->table2Col1;
+    }
+
+    /**
+     * Set table2Col2
+     *
+     * @param string $table2Col2
+     * @return Endyeartemplate
+     */
+    public function setTable2Col2($table2Col2)
+    {
+        $this->table2Col2 = $table2Col2;
+
+        return $this;
+    }
+
+    /**
+     * Get table2Col2
+     *
+     * @return string 
+     */
+    public function getTable2Col2()
+    {
+        return $this->table2Col2;
+    }
+
+    /**
+     * Set table2Col3
+     *
+     * @param string $table2Col3
+     * @return Endyeartemplate
+     */
+    public function setTable2Col3($table2Col3)
+    {
+        $this->table2Col3 = $table2Col3;
+
+        return $this;
+    }
+
+    /**
+     * Get table2Col3
+     *
+     * @return string 
+     */
+    public function getTable2Col3()
+    {
+        return $this->table2Col3;
+    }
+
+    /**
+     * Set table2Col4
+     *
+     * @param string $table2Col4
+     * @return Endyeartemplate
+     */
+    public function setTable2Col4($table2Col4)
+    {
+        $this->table2Col4 = $table2Col4;
+
+        return $this;
+    }
+
+    /**
+     * Get table2Col4
+     *
+     * @return string 
+     */
+    public function getTable2Col4()
+    {
+        return $this->table2Col4;
+    }
+
+    /**
+     * Set table2Col5
+     *
+     * @param string $table2Col5
+     * @return Endyeartemplate
+     */
+    public function setTable2Col5($table2Col5)
+    {
+        $this->table2Col5 = $table2Col5;
+
+        return $this;
+    }
+
+    /**
+     * Get table2Col5
+     *
+     * @return string 
+     */
+    public function getTable2Col5()
+    {
+        return $this->table2Col5;
+    }
+
+    /**
+     * Set table2Col1Descr
+     *
+     * @param string $table2Col1Descr
+     * @return Endyeartemplate
+     */
+    public function setTable2Col1Descr($table2Col1Descr)
+    {
+        $this->table2Col1Descr = $table2Col1Descr;
+
+        return $this;
+    }
+
+    /**
+     * Get table2Col1Descr
+     *
+     * @return string 
+     */
+    public function getTable2Col1Descr()
+    {
+        return $this->table2Col1Descr;
+    }
+
+    /**
+     * Set table2Col2Descr
+     *
+     * @param string $table2Col2Descr
+     * @return Endyeartemplate
+     */
+    public function setTable2Col2Descr($table2Col2Descr)
+    {
+        $this->table2Col2Descr = $table2Col2Descr;
+
+        return $this;
+    }
+
+    /**
+     * Get table2Col2Descr
+     *
+     * @return string 
+     */
+    public function getTable2Col2Descr()
+    {
+        return $this->table2Col2Descr;
+    }
+
+    /**
+     * Set table2Col3Descr
+     *
+     * @param string $table2Col3Descr
+     * @return Endyeartemplate
+     */
+    public function setTable2Col3Descr($table2Col3Descr)
+    {
+        $this->table2Col3Descr = $table2Col3Descr;
+
+        return $this;
+    }
+
+    /**
+     * Get table2Col3Descr
+     *
+     * @return string 
+     */
+    public function getTable2Col3Descr()
+    {
+        return $this->table2Col3Descr;
+    }
+
+    /**
+     * Set table2Col4Descr
+     *
+     * @param string $table2Col4Descr
+     * @return Endyeartemplate
+     */
+    public function setTable2Col4Descr($table2Col4Descr)
+    {
+        $this->table2Col4Descr = $table2Col4Descr;
+
+        return $this;
+    }
+
+    /**
+     * Get table2Col4Descr
+     *
+     * @return string 
+     */
+    public function getTable2Col4Descr()
+    {
+        return $this->table2Col4Descr;
+    }
+
+    /**
+     * Set table2Col5Descr
+     *
+     * @param string $table2Col5Descr
+     * @return Endyeartemplate
+     */
+    public function setTable2Col5Descr($table2Col5Descr)
+    {
+        $this->table2Col5Descr = $table2Col5Descr;
+
+        return $this;
+    }
+
+    /**
+     * Get table2Col5Descr
+     *
+     * @return string 
+     */
+    public function getTable2Col5Descr()
+    {
+        return $this->table2Col5Descr;
+    }
+
+    /**
+     * Set table3Col1
+     *
+     * @param string $table3Col1
+     * @return Endyeartemplate
+     */
+    public function setTable3Col1($table3Col1)
+    {
+        $this->table3Col1 = $table3Col1;
+
+        return $this;
+    }
+
+    /**
+     * Get table3Col1
+     *
+     * @return string 
+     */
+    public function getTable3Col1()
+    {
+        return $this->table3Col1;
+    }
+
+    /**
+     * Set table3Col2
+     *
+     * @param string $table3Col2
+     * @return Endyeartemplate
+     */
+    public function setTable3Col2($table3Col2)
+    {
+        $this->table3Col2 = $table3Col2;
+
+        return $this;
+    }
+
+    /**
+     * Get table3Col2
+     *
+     * @return string 
+     */
+    public function getTable3Col2()
+    {
+        return $this->table3Col2;
+    }
+
+    /**
+     * Set table3Col1Descr
+     *
+     * @param string $table3Col1Descr
+     * @return Endyeartemplate
+     */
+    public function setTable3Col1Descr($table3Col1Descr)
+    {
+        $this->table3Col1Descr = $table3Col1Descr;
+
+        return $this;
+    }
+
+    /**
+     * Get table3Col1Descr
+     *
+     * @return string 
+     */
+    public function getTable3Col1Descr()
+    {
+        return $this->table3Col1Descr;
+    }
+
+    /**
+     * Set table3Col2Descr
+     *
+     * @param string $table3Col2Descr
+     * @return Endyeartemplate
+     */
+    public function setTable3Col2Descr($table3Col2Descr)
+    {
+        $this->table3Col2Descr = $table3Col2Descr;
+
+        return $this;
+    }
+
+    /**
+     * Get table3Col2Descr
+     *
+     * @return string 
+     */
+    public function getTable3Col2Descr()
+    {
+        return $this->table3Col2Descr;
+    }
+
+    /**
+     * Set table3Title1
+     *
+     * @param string $table3Title1
+     * @return Endyeartemplate
+     */
+    public function setTable3Title1($table3Title1)
+    {
+        $this->table3Title1 = $table3Title1;
+
+        return $this;
+    }
+
+    /**
+     * Get table3Title1
+     *
+     * @return string 
+     */
+    public function getTable3Title1()
+    {
+        return $this->table3Title1;
+    }
+
+    /**
+     * Set table3Title2
+     *
+     * @param string $table3Title2
+     * @return Endyeartemplate
+     */
+    public function setTable3Title2($table3Title2)
+    {
+        $this->table3Title2 = $table3Title2;
+
+        return $this;
+    }
+
+    /**
+     * Get table3Title2
+     *
+     * @return string 
+     */
+    public function getTable3Title2()
+    {
+        return $this->table3Title2;
+    }
+
+    /**
+     * Set table3Title3
+     *
+     * @param string $table3Title3
+     * @return Endyeartemplate
+     */
+    public function setTable3Title3($table3Title3)
+    {
+        $this->table3Title3 = $table3Title3;
+
+        return $this;
+    }
+
+    /**
+     * Get table3Title3
+     *
+     * @return string 
+     */
+    public function getTable3Title3()
+    {
+        return $this->table3Title3;
+    }
+
+    /**
+     * Set question1
+     *
+     * @param string $question1
+     * @return Endyeartemplate
+     */
+    public function setQuestion1($question1)
+    {
+        $this->question1 = $question1;
+
+        return $this;
+    }
+
+    /**
+     * Get question1
+     *
+     * @return string 
+     */
+    public function getQuestion1()
+    {
+        return $this->question1;
+    }
+
+    /**
+     * Set question2
+     *
+     * @param string $question2
+     * @return Endyeartemplate
+     */
+    public function setQuestion2($question2)
+    {
+        $this->question2 = $question2;
+
+        return $this;
+    }
+
+    /**
+     * Get question2
+     *
+     * @return string 
+     */
+    public function getQuestion2()
+    {
+        return $this->question2;
+    }
+
+    /**
+     * Set question3
+     *
+     * @param string $question3
+     * @return Endyeartemplate
+     */
+    public function setQuestion3($question3)
+    {
+        $this->question3 = $question3;
+
+        return $this;
+    }
+
+    /**
+     * Get question3
+     *
+     * @return string 
+     */
+    public function getQuestion3()
+    {
+        return $this->question3;
+    }
+
+    /**
+     * Set question4
+     *
+     * @param string $question4
+     * @return Endyeartemplate
+     */
+    public function setQuestion4($question4)
+    {
+        $this->question4 = $question4;
+
+        return $this;
+    }
+
+    /**
+     * Get question4
+     *
+     * @return string 
+     */
+    public function getQuestion4()
+    {
+        return $this->question4;
+    }
+
+    /**
+     * Set supervisorComment
+     *
+     * @param string $supervisorComment
+     * @return Endyeartemplate
+     */
+    public function setSupervisorComment($supervisorComment)
+    {
+        $this->supervisorComment = $supervisorComment;
+
+        return $this;
+    }
+
+    /**
+     * Get supervisorComment
+     *
+     * @return string 
+     */
+    public function getSupervisorComment()
+    {
+        return $this->supervisorComment;
+    }
+
+    /**
+     * Set feedback
+     *
+     * @param string $feedback
+     * @return Endyeartemplate
+     */
+    public function setFeedback($feedback)
+    {
+        $this->feedback = $feedback;
+
+        return $this;
+    }
+
+    /**
+     * Get feedback
+     *
+     * @return string 
+     */
+    public function getFeedback()
+    {
+        return $this->feedback;
+    }
+
+    /**
+     * Set signatureSupervisor
+     *
+     * @param string $signatureSupervisor
+     * @return Endyeartemplate
+     */
+    public function setSignatureSupervisor($signatureSupervisor)
+    {
+        $this->signatureSupervisor = $signatureSupervisor;
+
+        return $this;
+    }
+
+    /**
+     * Get signatureSupervisor
+     *
+     * @return string 
+     */
+    public function getSignatureSupervisor()
+    {
+        return $this->signatureSupervisor;
+    }
+
+    /**
+     * Set signatureEmployee
+     *
+     * @param string $signatureEmployee
+     * @return Endyeartemplate
+     */
+    public function setSignatureEmployee($signatureEmployee)
+    {
+        $this->signatureEmployee = $signatureEmployee;
+
+        return $this;
+    }
+
+    /**
+     * Get signatureEmployee
+     *
+     * @return string 
+     */
+    public function getSignatureEmployee()
+    {
+        return $this->signatureEmployee;
+    }
+
+    /**
+     * Add endyears
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Endyear $endyears
+     * @return Endyeartemplate
+     */
+    public function addEndyear(\IntoPeople\DatabaseBundle\Entity\Endyear $endyears)
+    {
+        $this->endyears[] = $endyears;
+
+        return $this;
+    }
+
+    /**
+     * Remove endyears
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Endyear $endyears
+     */
+    public function removeEndyear(\IntoPeople\DatabaseBundle\Entity\Endyear $endyears)
+    {
+        $this->endyears->removeElement($endyears);
     }
 
     /**
      * Get endyears
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getEndyears()
     {
@@ -510,58 +1278,9 @@ class Endyeartemplate
     }
 
     /**
-     * Set isstandardtemplate
-     *
-     * @param boolean $isstandardtemplate
-     *
-     * @return Endyeartemplate
-     */
-    public function setIsstandardtemplate($isstandardtemplate)
-    {
-        $this->isstandardtemplate = $isstandardtemplate;
-
-        return $this;
-    }
-
-    /**
-     * Get isstandardtemplate
-     *
-     * @return boolean
-     */
-    public function getIsstandardtemplate()
-    {
-        return $this->isstandardtemplate;
-    }
-
-    /**
-     * Set organizationfield
-     *
-     * @param string $organizationfield
-     *
-     * @return Endyeartemplate
-     */
-    public function setOrganizationfield($organizationfield)
-    {
-        $this->organizationfield = $organizationfield;
-
-        return $this;
-    }
-
-    /**
-     * Get organizationfield
-     *
-     * @return string
-     */
-    public function getOrganizationfield()
-    {
-        return $this->organizationfield;
-    }
-
-    /**
      * Set language
      *
      * @param \IntoPeople\DatabaseBundle\Entity\Language $language
-     *
      * @return Endyeartemplate
      */
     public function setLanguage(\IntoPeople\DatabaseBundle\Entity\Language $language = null)
@@ -574,10 +1293,33 @@ class Endyeartemplate
     /**
      * Get language
      *
-     * @return \IntoPeople\DatabaseBundle\Entity\Language
+     * @return \IntoPeople\DatabaseBundle\Entity\Language 
      */
     public function getLanguage()
     {
         return $this->language;
+    }
+
+    /**
+     * Set organization
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Organization $organization
+     * @return Endyeartemplate
+     */
+    public function setOrganization(\IntoPeople\DatabaseBundle\Entity\Organization $organization = null)
+    {
+        $this->organization = $organization;
+
+        return $this;
+    }
+
+    /**
+     * Get organization
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Organization 
+     */
+    public function getOrganization()
+    {
+        return $this->organization;
     }
 }

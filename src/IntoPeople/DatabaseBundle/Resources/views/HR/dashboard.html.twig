@@ -26,27 +26,33 @@
     <h2>{{ 'hr.dashboard.title' | trans }}</h2>
     <div class="row">
         <div class="col-lg-3 col-md-4">
+
+            <h4>{{ 'dashboard.cycletitle' | trans }}</h4>
+
             {{ form_start(form) }}
 
             {{ form_widget(form) }}
 
             {{ form_end(form) }}
         </div>
-        <div class="col-lg-6 col-md-6">
+        <div class="col-lg-offset-3 col-md-offset-2 col-lg-6 col-md-6">
             <h4>{{ 'dashboard.charttitle' | trans }}</h4>
             <canvas id="countChart"></canvas>
             <div id="legend"></div>
         </div>
     </div>
     <div class="row">
-        <div id="result"></div>
+        <div class="col-md-12">
+            <div id="result"></div>
+        </div>
     </div>
 
     <div class="modal fade" id="mailssent">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">{{ 'dashboard.modal.mailssent.title' | trans }}</h4>
                 </div>
                 <div class="modal-body">
@@ -55,8 +61,10 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
                 </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
     </div><!-- /.modal -->
 {% endblock %}
 
@@ -374,7 +382,7 @@
 
                     $('#countChart').click(function (evt) {
                         var activePoints = myPieChart.getSegmentsAtEvent(evt);
-                        if(typeof activePoints != 'undefined'){
+                        if (typeof activePoints != 'undefined') {
                             table.search(activePoints[0].label);
                             table.draw();
                         }

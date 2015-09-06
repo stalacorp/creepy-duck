@@ -53,9 +53,9 @@ class LoadCdptemplate extends AbstractFixture implements OrderedFixtureInterface
         $cdptemplate->setTable3Col4("Needs");
 
         $cdptemplate->setTable3Col1Descr("Write down the actions you will take this year to further develop yourself in your job.");
-        $cdptemplate->setTable3Col1Descr("How will you do this?");
-        $cdptemplate->setTable3Col1Descr("How will you know if you succeeded?");
-        $cdptemplate->setTable3Col1Descr("What do you need ( training, knowledge sharing, books, tools, etc. ) ?");
+        $cdptemplate->setTable3Col2Descr("How will you do this?");
+        $cdptemplate->setTable3Col3Descr("How will you know if you succeeded?");
+        $cdptemplate->setTable3Col4Descr("What do you need ( training, knowledge sharing, books, tools, etc. ) ?");
 
         $cdptemplate->setTable3Title1('Job Specific Tasks and Responsibilities');
         $cdptemplate->setTable3Title2('Job Specific Skills and Competencies');

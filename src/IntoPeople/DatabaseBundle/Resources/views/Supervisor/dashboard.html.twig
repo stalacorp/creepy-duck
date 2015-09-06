@@ -1,40 +1,54 @@
 {% extends '::base.html.twig' %}
 {% block stylesheets %}
     {{ parent() }}
-    <link href="{{ asset('assets/vendor/datatables/media/css/dataTables.bootstrap.min.css')}}" rel="stylesheet" type="text/css" media="screen">
+    <link href="{{ asset('assets/vendor/datatables/media/css/dataTables.bootstrap.min.css') }}" rel="stylesheet"
+          type="text/css" media="screen">
 {% endblock %}
 {% block body -%}
-<style>
-    .pie-legend li span{
-        display: inline-block;
-        width: 12px;
-        height: 12px;
-        margin-right: 5px;
-    }
+    <style>
+        .pie-legend li span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin-right: 5px;
+        }
 
-    .pie-legend {
-        list-style-type: none;
-    }
-</style>
+        .pie-legend {
+            list-style-type: none;
+        }
+    </style>
+
     <h2>{{ 'supervisor.dashboard.title' | trans }}</h2>
-<div class="col-lg-3 col-md-4">
-    {{ form_start(form) }}
-    
-    {{ form_widget(form) }}
-    
-    {{ form_end(form) }}
-</div>
-    <div class="col-lg-6 col-md-6" >
-        <h4>{{ 'dashboard.charttitle' | trans }}</h4>
-        <canvas id="countChart"></canvas>
-        <div id="legend"></div>
+
+    <div class="row">
+        <div class="col-lg-3 col-md-4">
+
+            <h4>{{ 'dashboard.cycletitle' | trans }}</h4>
+
+            {{ form_start(form) }}
+
+            {{ form_widget(form) }}
+
+            {{ form_end(form) }}
+        </div>
+        <div class="col-lg-offset-3 col-md-offset-2 col-lg-6 col-md-6">
+            <h4>{{ 'dashboard.charttitle' | trans }}</h4>
+            <canvas id="countChart"></canvas>
+            <div id="legend"></div>
+        </div>
     </div>
-<div>
-    <div id="result"></div>
-</div>
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                <div id="result"></div>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}
 
-{%  block javascripts -%}
+{% block javascripts -%}
     {{ parent() }}
     <script src="{{ asset('assets/vendor/Chart.js/Chart.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
@@ -42,7 +56,7 @@
 
     <script>
         var table;
-        var nederlands= {
+        var nederlands = {
             "sProcessing": "Bezig...",
             "sLengthMenu": "_MENU_ resultaten weergeven",
             "sZeroRecords": "Geen resultaten gevonden",
@@ -62,59 +76,63 @@
             }
         }
         var english = {
-            "sEmptyTable":     "No data available in table",
-            "sInfo":           "Showing _START_ to _END_ of _TOTAL_ entries",
-            "sInfoEmpty":      "Showing 0 to 0 of 0 entries",
-            "sInfoFiltered":   "(filtered from _MAX_ total entries)",
-            "sInfoPostFix":    "",
-            "sInfoThousands":  ",",
-            "sLengthMenu":     "Show _MENU_ entries",
+            "sEmptyTable": "No data available in table",
+            "sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+            "sInfoEmpty": "Showing 0 to 0 of 0 entries",
+            "sInfoFiltered": "(filtered from _MAX_ total entries)",
+            "sInfoPostFix": "",
+            "sInfoThousands": ",",
+            "sLengthMenu": "Show _MENU_ entries",
             "sLoadingRecords": "Loading...",
-            "sProcessing":     "Processing...",
-            "sSearch":         "Search:",
-            "sZeroRecords":    "No matching records found",
+            "sProcessing": "Processing...",
+            "sSearch": "Search:",
+            "sZeroRecords": "No matching records found",
             "oPaginate": {
-                "sFirst":    "First",
-                "sLast":     "Last",
-                "sNext":     "Next",
+                "sFirst": "First",
+                "sLast": "Last",
+                "sNext": "Next",
                 "sPrevious": "Previous"
             },
             "oAria": {
-                "sSortAscending":  ": activate to sort column ascending",
+                "sSortAscending": ": activate to sort column ascending",
                 "sSortDescending": ": activate to sort column descending"
             }
         }
         var italiano = {
-            "sEmptyTable":     "Nessun dato presente nella tabella",
-            "sInfo":           "Vista da _START_ a _END_ di _TOTAL_ elementi",
-            "sInfoEmpty":      "Vista da 0 a 0 di 0 elementi",
-            "sInfoFiltered":   "(filtrati da _MAX_ elementi totali)",
-            "sInfoPostFix":    "",
-            "sInfoThousands":  ",",
-            "sLengthMenu":     "Visualizza _MENU_ elementi",
+            "sEmptyTable": "Nessun dato presente nella tabella",
+            "sInfo": "Vista da _START_ a _END_ di _TOTAL_ elementi",
+            "sInfoEmpty": "Vista da 0 a 0 di 0 elementi",
+            "sInfoFiltered": "(filtrati da _MAX_ elementi totali)",
+            "sInfoPostFix": "",
+            "sInfoThousands": ",",
+            "sLengthMenu": "Visualizza _MENU_ elementi",
             "sLoadingRecords": "Caricamento...",
-            "sProcessing":     "Elaborazione...",
-            "sSearch":         "Cerca:",
-            "sZeroRecords":    "La ricerca non ha portato alcun risultato.",
+            "sProcessing": "Elaborazione...",
+            "sSearch": "Cerca:",
+            "sZeroRecords": "La ricerca non ha portato alcun risultato.",
             "oPaginate": {
-                "sFirst":      "Inizio",
-                "sPrevious":   "Precedente",
-                "sNext":       "Successivo",
-                "sLast":       "Fine"
+                "sFirst": "Inizio",
+                "sPrevious": "Precedente",
+                "sNext": "Successivo",
+                "sLast": "Fine"
             },
             "oAria": {
-                "sSortAscending":  ": attiva per ordinare la colonna in ordine crescente",
+                "sSortAscending": ": attiva per ordinare la colonna in ordine crescente",
                 "sSortDescending": ": attiva per ordinare la colonna in ordine decrescente"
             }
         }
-        function getcycles(){
-            $.ajax({url: Routing.generate('supervisor_getcycles', {generalcycleid:$('#form_generalcycle').val(), cycle: $('#form_cycle').val()}),
-                success: function(result){
+        function getcycles() {
+            $.ajax({
+                url: Routing.generate('supervisor_getcycles', {
+                    generalcycleid: $('#form_generalcycle').val(),
+                    cycle: $('#form_cycle').val()
+                }),
+                success: function (result) {
                     drawchart();
                     $("#result").html(result);
                     var language;
                     var clear;
-                    switch($('#thelocale').val()) {
+                    switch ($('#thelocale').val()) {
                         case 'en':
                             language = english;
                             clear = 'Clear';
@@ -130,46 +148,52 @@
                     }
 
                     table = $('#datatable').DataTable({
-                        "language":language,
+                        "language": language,
                         "order": [],
-                        "columnDefs": [ {
-                            "targets"  : 'no-sort',
+                        "columnDefs": [{
+                            "targets": 'no-sort',
                             "orderable": false
                         }]
                     });
 
-                    var clearSearch = $('<a class="btn btn-default" style="margin-left:5px;cursor:pointer;">' + clear +'</a>');
-                    $(clearSearch).click( function ()
-                    {
+                    var clearSearch = $('<a class="btn btn-default" style="margin-left:5px;cursor:pointer;">' + clear + '</a>');
+                    $(clearSearch).click(function () {
                         table.search('');
                         table.draw();
                     });
                     $('#datatable_filter').append(clearSearch);
 
-                }});
+                }
+            });
         }
 
-        function getforms(){
-            $.ajax({url: Routing.generate('supervisor_getforms', {generalcycleid:$('#form_generalcycle').val()}),
-                success: function(result){
+        function getforms() {
+            $.ajax({
+                url: Routing.generate('supervisor_getforms', {generalcycleid: $('#form_generalcycle').val()}),
+                success: function (result) {
                     var select = $('#form_cycle');
                     select.empty().append('<option value="cdp">Cdp ' + result[0] + '</option>');
-                    if (result[1] != 'empty'){
+                    if (result[1] != 'empty') {
                         select.append('<option value="midyear">Midyear ' + result[1] + '</option>');
                     }
 
                     select.append('<option value="endyear">Yearend ' + result[2] + '</option>');
 
-                }});
+                }
+            });
         }
 
-        function drawchart(){
-            $.ajax({url: Routing.generate('supervisor_getformstatuscount', {generalcycleid:$('#form_generalcycle').val(), cycle: $('#form_cycle').val()}),
-                success: function(result){
+        function drawchart() {
+            $.ajax({
+                url: Routing.generate('supervisor_getformstatuscount', {
+                    generalcycleid: $('#form_generalcycle').val(),
+                    cycle: $('#form_cycle').val()
+                }),
+                success: function (result) {
                     var data = [
                         {
                             value: result[0].count,
-                            color:"#008C48",
+                            color: "#008C48",
                             highlight: "#7AC36A",
                             label: result[0].name
                         },
@@ -188,7 +212,7 @@
                         },
                         {
                             value: result[3].count,
-                            color:"#CE7058",
+                            color: "#CE7058",
                             highlight: "#7AC36A",
                             label: result[3].name
                         },
@@ -207,7 +231,7 @@
                         },
                         {
                             value: result[6].count,
-                            color:"#662C91",
+                            color: "#662C91",
                             highlight: "#9E67AB",
                             label: result[6].name
                         },
@@ -228,36 +252,37 @@
                     var ctx = $("#countChart").get(0).getContext("2d");
                     var myPieChart = new Chart(ctx).Pie(data);
                     var legendchart = '<ul class="pie-legend">'
-                    $.each(data, function( index, object ) {
-                        if (object.value > 0){
+                    $.each(data, function (index, object) {
+                        if (object.value > 0) {
                             legendchart += '<li><span style=\"background-color:' + object.color + '"></span>' + object.label + '</li>';
                         }
                     });
                     legendchart += '</ul>';
                     $('#legend').html(legendchart);
 
-                    $('#countChart').click(function(evt){
+                    $('#countChart').click(function (evt) {
                         var activePoints = myPieChart.getSegmentsAtEvent(evt);
 
                         table.search(activePoints[0].label);
                         table.draw();
                     });
 
-                }});
+                }
+            });
 
 
         }
 
-        $(function() {
+        $(function () {
             Chart.defaults.global.responsive = true;
             getforms();
             getcycles();
-            $('#form_generalcycle').change(function(){
+            $('#form_generalcycle').change(function () {
                 getforms();
                 getcycles();
 
             });
-            $('#form_cycle').change(function(){
+            $('#form_cycle').change(function () {
                 getcycles();
             });
         });

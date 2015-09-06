@@ -48,17 +48,17 @@ class LoadMidyeartemplate extends AbstractFixture implements OrderedFixtureInter
         $midyeartemplate->setTitle3Description('Read your Job Description carefully.');
 
         $midyeartemplate->setTable3Col1("What & why");
-        $midyeartemplate->setTable3Col2("How");
+        $midyeartemplate->setTable3Col2("Progression");
 
-        $midyeartemplate->setTable3Col1Descr("Write down the actions you will take this year to further develop yourself in your job.");
-        $midyeartemplate->setTable3Col2Descr("How will you do this?");
+        $midyeartemplate->setTable3Col1Descr("Find stated objectives and motivation as agreed upon at the start of this year.");
+        $midyeartemplate->setTable3Col2Descr("How is it going?");
 
 
         $midyeartemplate->setTable3Title1('Job Specific Tasks and Responsibilities');
         $midyeartemplate->setTable3Title2('Job Specific Skills and Competencies');
         $midyeartemplate->setTable3Title3('Organization Competencies');
 
-        $midyeartemplate->setTitle4("Career Objectives / Staffing Considerations");
+        $midyeartemplate->setTitle4("Feedback for your");
         $midyeartemplate->setQuestion1("Where do you see yourself in three years?");
         $midyeartemplate->setQuestion2("List any additional information that is relevant to your Career Development Plan (CDP) for the coming year. Such information could include your interest in special assignments, considerations related to work / life balance, etc.");
 
