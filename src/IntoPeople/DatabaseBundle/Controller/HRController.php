@@ -568,7 +568,7 @@ class HRController extends Controller
             $em = $this->getDoctrine()->getManager();
             $data = $form->getData();
 //
-            $objReader = \PHPExcel_IOFactory::createReader('Excel2007');
+            $objReader = \PHPExcel_IOFactory::createReader('Excel5');
             $objPHPExcel = $objReader->load($data['feedbackupload']);
 
             $highestRow = $objPHPExcel->setActiveSheetIndex(0)->getHighestRow();
