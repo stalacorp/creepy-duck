@@ -2,6 +2,11 @@
 namespace IntoPeople\DatabaseBundle\Controller;
 
 use IntoPeople\DatabaseBundle\Entity\Jobtitle;
+use IntoPeople\DatabaseBundle\Entity\Feedbackcycle;
+use IntoPeople\DatabaseBundle\Entity\Cdp;
+use IntoPeople\DatabaseBundle\Entity\Midyear;
+use IntoPeople\DatabaseBundle\Entity\Endyear;
+use IntoPeople\DatabaseBundle\Entity\Developmentneeds;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use IntoPeople\DatabaseBundle\Entity\User;
@@ -27,7 +32,7 @@ class UserController extends Controller
         $defaultData = array();
         $form = $this->createFormBuilder($defaultData)
             ->add('template', 'file',array('constraints' => new File(array('maxSize' => "10M",
-                'mimeTypes' => array('application/vnd.ms-excel', 'text/plain'),
+                'mimeTypes' => array('application/vnd.ms-office'),
             ))))
             ->add('create users', 'submit')
             ->getForm();
@@ -39,92 +44,207 @@ class UserController extends Controller
 
             $em = $this->getDoctrine()->getManager();
 
-            $count = 0;
+            $languages = $em->getRepository('IntoPeopleDatabaseBundle:Language')->findAll();
+            $mails = array();
+
+            foreach ($languages as $language){
+                $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
+                    ->join('s.mailtype', 'm')
+                    ->where('s.language = :id')
+                    ->andWhere('m.name = :name')
+                    ->setParameter('id', $language)
+                    ->setParameter('name', 'usercreated')
+                    ->getQuery();
+
+                $mails[$language->getName()] = $query->setMaxResults(1)->getOneOrNullResult();
+            }
+
+            $filereadablecheck = '';
+
+            $objReader = \PHPExcel_IOFactory::createReader('Excel5');
             try {
-                $handle = fopen($data['template'], "r");
-                while (($row = fgetcsv($handle, 1000, ";")) !== FALSE) {
-                    $row = array_map("utf8_encode", $row);
-                    if ($count != 0) {
-                        $user = $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:User')->findOneByEmail($row[0]);
-                        $emailConstraint = new EmailConstraint();
-                        $emailConstraint->message = 'Your customized error message';
+                $objPHPExcel = $objReader->load($data['template']);
+            }catch (Exception $e){
+                $filereadablecheck = "no";
+                $this->addFlash(
+                    'warning',
+                    $this->get('translator')->trans('user.readexcelfileerror')
+                );
+            }
 
-                        $errors = $this->get('validator')->validateValue(
-                            $row[0],
-                            $emailConstraint
-                        );
+            if ($filereadablecheck != "no") {
 
+                $highestRow = $objPHPExcel->setActiveSheetIndex(0)->getHighestRow();
+
+                $worksheet = $objPHPExcel->getActiveSheet();
+
+                $generalcycleactivestatus = $em->getRepository('IntoPeopleDatabaseBundle:Generalcyclestatus')->findOneByName('Active');
+                $generalcycle = $em->getRepository('IntoPeopleDatabaseBundle:Generalcycle')->findOneByGeneralcyclestatus($generalcycleactivestatus);
+
+                $unsupervisedusers = array();
+
+                for ($i = 2; $i <= $highestRow; $i++) {
+
+                    $email = $worksheet->getCell('A' . $i)->getValue();
+                    $firstname = $worksheet->getCell('B' . $i)->getValue();
+                    $lastname = $worksheet->getCell('C' . $i)->getValue();
+                    $languagekey = $worksheet->getCell('D' . $i)->getValue();
+                    $addtoactivecycle = $worksheet->getCell('E' . $i)->getValue();
+                    $supervisormail = $worksheet->getCell('F' . $i)->getValue();
+                    $issupervisor = $worksheet->getCell('G' . $i)->getValue();
+                    $ishr = $worksheet->getCell('H' . $i)->getValue();
+
+                    $emailConstraint = new EmailConstraint();
+                    $emailConstraint->message = 'Your customized error message';
+
+                    $errors = $this->get('validator')->validateValue(
+                        $email,
+                        $emailConstraint
+                    );
+
+                    if (count($errors) == 0) {
+                        $user = $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:User')->findOneByEmail($email);
                         if (!$user) {
                             $tokenGenerator = $this->get('fos_user.util.token_generator');
                             $password = substr($tokenGenerator->generateToken(), 0, 10);
                             $user = new User();
-                            $user->setEmail($row[0]);
-                            $user->setUsername($row[0]);
+                            $user->setEmail($email);
+                            $user->setUsername($email);
                             $user->setPlainPassword($password);
                             $user->setEnabled(true);
                             $user->setRoles(array(User::ROLE_DEFAULT));
-                            $user->setFirstname($row[1]);
-                            $user->setLastname($row[2]);
-                            $user->setLanguage($em->getRepository('IntoPeopleDatabaseBundle:Language')->findOneByName($row[3]));
+                            $user->setFirstname($firstname);
+                            $user->setLastname($lastname);
 
-                            $supervisor = $row[4];
+                            $language = $em->getRepository('IntoPeopleDatabaseBundle:Language')->findOneByName($languagekey);
+                            if ($language != null) {
 
-                            if (strtolower($row[5]) == "hr"){
-                                $user->addRole('ROLE_HR');
-                            }
+                                $user->setLanguage($language);
 
-                            if (strtolower($row[5]) == "supervisor"){
-                                $user->addRole('ROLE_SUPERVISOR');
-                            }
-
-                            if (strtolower($row[5]) == "both" |strtolower($row[5]) == "beide"){
-                                $user->addRole('ROLE_SUPERVISOR');
-                                $user->addRole('ROLE_HR');
-                            }
-
-                            if ($supervisor != ""){
-                                try {
-                                    $supervisor = $em->getRepository('IntoPeopleDatabaseBundle:User')->findOneByEmail($supervisor);
-                                }catch (Exception $e){
-                                    throw new \Exception($this->get('translator')->trans('user.supervisornotfounderror') . $supervisor);
+                                if ($issupervisor == 'x') {
+                                    $user->addRole('ROLE_SUPERVISOR');
                                 }
-                                $user->setSupervisor($supervisor);
-                            }
+                                if ($ishr == 'x') {
+                                    $user->addRole('ROLE_HR');
+                                }
 
-                            $em->persist($user);
-                            $em->flush();
 
-                            $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
-                                ->join('s.mailtype', 'm')
-                                ->where('s.language = :id')
-                                ->andWhere('m.name = :name')
-                                ->setParameter('id', $user->getLanguage())
-                                ->setParameter('name', 'usercreated')
-                                ->getQuery();
+                                $em->persist($user);
+                                $em->flush();
 
-                            $systemmail = $query->setMaxResults(1)->getOneOrNullResult();
 
-                            if ($systemmail->getMailtype()->getIsActive()) {
+                                $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Formstatus');
+
+                                $available = $repository->find(1);
+                                $unavailable = $repository->find(9);
+
+                                // FIND NEWEST CDP TEMPLATE
+                                // ---
+                                $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
+
+                                $cdptemplate = $repository->findNewest();
+
+                                // FIND NEWEST MID YEAR TEMPLATE
+                                // ---
+                                $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Midyeartemplate');
+
+                                $midyeartemplate = $repository->findNewest();
+
+                                // FIND NEWEST END YEAR TEMPLATE
+                                // ---
+                                $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Endyeartemplate');
+
+                                $endyeartemplate = $repository->findNewest();
+                                if ($addtoactivecycle == 'x') {
+
+                                    $feedbackcycle = new Feedbackcycle();
+                                    $feedbackcycle->setUser($user);
+                                    $feedbackcycle->setGeneralcycle($generalcycle);
+
+                                    $developmentneeds = new Developmentneeds();
+
+                                    $cdp = new Cdp();
+                                    $cdp->setDevelopmentneeds($developmentneeds);
+                                    $cdp->setFormstatus($available);
+                                    $cdp->setCdptemplate($cdptemplate);
+
+                                    $feedbackcycle->setCdp($cdp);
+
+                                    $midyear = new Midyear();
+                                    $midyear->setDevelopmentneeds($developmentneeds);
+                                    $midyear->setFormstatus($unavailable);
+                                    $midyear->setMidyeartemplate($midyeartemplate);
+
+                                    $feedbackcycle->setMidyear($midyear);
+
+                                    $endyear = new Endyear();
+                                    $endyear->setDevelopmentneeds($developmentneeds);
+                                    $endyear->setFormstatus($unavailable);
+                                    $endyear->setEndyeartemplate($endyeartemplate);
+
+                                    $feedbackcycle->setEndyear($endyear);
+
+                                    $em = $this->getDoctrine()->getManager();
+                                    $em->persist($feedbackcycle);
+                                }
+
+                                $systemmail = $mails[$user->getLanguage()->getName()];
                                 $message = \Swift_Message::newInstance()
                                     ->setSubject($systemmail->getSubject())
                                     ->setFrom($systemmail->getSender())
-                                    ->setTo($row[0])
+                                    ->setTo($user->getEmail())
                                     ->setBody(str_replace(array('$url', '$username', '$password'), array('https://' . $request->getHttpHost() . $this->generateUrl('user_firstlogin', array('token' => $password, 'id' => $user->getId())), $user->getEmail(), $password), $systemmail->getBody()));
 
                                 $this->get('mailer')->send($message);
+
+
+
+                                if ($supervisormail != '') {
+                                    $unsuperviseduser = new \stdClass();
+                                    $unsuperviseduser->supervisormail = $supervisormail;
+                                    $unsuperviseduser->usermail = $user->getEmail();
+                                    array_push($unsupervisedusers, $unsuperviseduser);
+                                }
+                            } else {
+                                $this->addFlash(
+                                    'warning',
+                                    $this->get('translator')->trans('user.invalidlanguageerror')
+                                );
                             }
                         }
+
+
                     }
 
-                    $count++;
+
                 }
-                fclose($handle);
+
+                foreach ($unsupervisedusers as $unsuperviseduser){
+                    $user = $em->getRepository('IntoPeopleDatabaseBundle:User')->findOneByEmail($unsuperviseduser->usermail);
+                    $supervisor = $em->getRepository('IntoPeopleDatabaseBundle:User')->findOneByEmail($unsuperviseduser->supervisormail);
+                    if ($supervisor != null) {
+                        $user->setSupervisor($supervisor);
+                    }else {
+                        $translated = $this->get('translator')->trans(
+                            'Setting supervisor with email %supervisoremail% for user %name%, supervisor does not exist.',
+                            array('%name%' => $user->getFirstname() . ' ' . $user->getLastname(), '%supervisoremail%' => $unsuperviseduser->supervisormail)
+                        );
+                        $this->addFlash(
+                            'warning',
+                            $translated
+                        );
+                    }
+                }
 
 
-            }catch (Exception $e){
-                throw new \Exception($this->get('translator')->trans('user.generateusererror'));
+                $em->flush();
             }
+
+
+
+
         }
+
 
         
         $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:User');
@@ -389,21 +509,42 @@ class UserController extends Controller
     }
 
     /**
+     * Creates a form to delete a User entity by id.
+     *
+     * @param mixed $id
+     *            The entity id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm($id)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('user_delete', array(
+            'id' => $id
+        )))
+            ->setMethod('DELETE')
+            ->add('submit', 'submit', array(
+            'label' => 'Delete'
+        ))
+            ->getForm();
+    }
+
+    /**
      * Displays a form to edit an existing User entity.
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        
+
         $entity = $em->getRepository('IntoPeopleDatabaseBundle:User')->find($id);
-        
+
         if (! $entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
-        
+
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
-        
+
         return $this->render('IntoPeopleDatabaseBundle:User:edit.html.twig', array(
             'entity' => $entity,
             'edit_form' => $editForm->createView(),
@@ -416,24 +557,24 @@ class UserController extends Controller
      *
      * @param User $entity
      *            The entity
-     *            
+     *
      * @return \Symfony\Component\Form\Form The form
      */
     private function createEditForm(User $entity)
     {
         $tokenStorage = $this->container->get('security.token_storage');
-        
+
         $form = $this->createForm(new UserType($tokenStorage), $entity, array(
             'action' => $this->generateUrl('user_update', array(
                 'id' => $entity->getId()
             )),
             'method' => 'PUT'
         ));
-        
+
         $form->add('submit', 'submit', array(
             'label' => 'Update'
         ));
-        
+
         return $form;
     }
 
@@ -443,25 +584,25 @@ class UserController extends Controller
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-        
+
         $entity = $em->getRepository('IntoPeopleDatabaseBundle:User')->find($id);
-        
+
         if (! $entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
-        
+
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
-        
+
         if ($editForm->isValid()) {
             $em->flush();
-            
+
             return $this->redirect($this->generateUrl('user_edit', array(
                 'id' => $id
             )));
         }
-        
+
         return $this->render('IntoPeopleDatabaseBundle:User:edit.html.twig', array(
             'entity' => $entity,
             'edit_form' => $editForm->createView(),
@@ -476,40 +617,19 @@ class UserController extends Controller
     {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
-        
+
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('IntoPeopleDatabaseBundle:User')->find($id);
-            
+
             if (! $entity) {
                 throw $this->createNotFoundException('Unable to find User entity.');
             }
-            
+
             $em->remove($entity);
             $em->flush();
         }
-        
-        return $this->redirect($this->generateUrl('user'));
-    }
 
-    /**
-     * Creates a form to delete a User entity by id.
-     *
-     * @param mixed $id
-     *            The entity id
-     *            
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('user_delete', array(
-            'id' => $id
-        )))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array(
-            'label' => 'Delete'
-        ))
-            ->getForm();
+        return $this->redirect($this->generateUrl('user'));
     }
 }

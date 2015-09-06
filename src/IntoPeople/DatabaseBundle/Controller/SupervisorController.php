@@ -62,6 +62,58 @@ class SupervisorController extends Controller
     }
     
     /**
+     * Displays a form to edit an existing Cdp entity.
+     */
+    public function addCommentAction($id) {
+
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('IntoPeopleDatabaseBundle:Cdp')->find($id);
+
+        if (! $entity) {
+            throw $this->createNotFoundException('Unable to find Cdp entity.');
+        }
+
+        if($this->getUser() != $entity->getSupervisor()){
+            throw new \Exception($this->get('translator')->trans('noaccesserror'));
+        }
+
+        // CAN ONLY ADD COMMENT WHEN STATUS = 3
+        //
+
+        if ($entity->getFormstatus()->getId() == 3 ) {
+
+            $form = $this->createEditForm($entity);
+            $user = $this->getUser();
+
+            // Send CDP template
+
+            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
+
+            // createQueryBuilder automatically selects FROM IntoPeopleDatabaseBundle:Cdptemplate
+            // and aliases it to "c"
+            $query = $repository->createQueryBuilder('c')
+            ->where('c.organization = :id')
+            ->setParameter('id', $user->getOrganization()
+                ->getId())
+                ->getQuery();
+
+            $template = $query->setMaxResults(1)->getOneOrNullResult();
+            // to get just one result:
+            // $product = $query->setMaxResults(1)->getOneOrNullResult();
+
+            return $this->render('IntoPeopleDatabaseBundle:Supervisor:feedback.html.twig', array(
+                'entity' => $entity,
+                'template' => $template,
+                'form' => $form->createView()
+            ));
+        }
+
+        return $this->redirect($this->generateUrl('cdp_show', array(
+            'id' => $entity->getId()
+        )));
+    }
+    
+    /**
      * Creates a form to edit a cdp entity.
      *
      * @param Cdp $entity
@@ -75,68 +127,14 @@ class SupervisorController extends Controller
             'action' => $this->generateUrl('supervisor_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
-    
+
         $form
         ->add('save', 'submit', array('label' => 'Save'))
         ->add('approve', 'submit', array('label' => 'Approve'))
         ->add('disapprove', 'submit', array('label' => 'Disapprove'));
         return $form;
     }
-    
-    
-    /**
-     * Displays a form to edit an existing Cdp entity.
-     */
-    public function addCommentAction($id) {
-        
-        $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('IntoPeopleDatabaseBundle:Cdp')->find($id);
-        
-        if (! $entity) {
-            throw $this->createNotFoundException('Unable to find Cdp entity.');
-        }
-
-        if($this->getUser() != $entity->getSupervisor()){
-            throw new \Exception($this->get('translator')->trans('noaccesserror'));
-        }
-        
-        // CAN ONLY ADD COMMENT WHEN STATUS = 3
-        //
-        
-        if ($entity->getFormstatus()->getId() == 3 ) {
-        
-            $form = $this->createEditForm($entity);
-            $user = $this->getUser();
-        
-            // Send CDP template
-        
-            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
-        
-            // createQueryBuilder automatically selects FROM IntoPeopleDatabaseBundle:Cdptemplate
-            // and aliases it to "c"
-            $query = $repository->createQueryBuilder('c')
-            ->where('c.organization = :id')
-            ->setParameter('id', $user->getOrganization()
-                ->getId())
-                ->getQuery();
-        
-            $template = $query->setMaxResults(1)->getOneOrNullResult();
-            // to get just one result:
-            // $product = $query->setMaxResults(1)->getOneOrNullResult();
-        
-            return $this->render('IntoPeopleDatabaseBundle:Supervisor:feedback.html.twig', array(
-                'entity' => $entity,
-                'template' => $template,
-                'form' => $form->createView()
-            ));
-        }
-        
-        return $this->redirect($this->generateUrl('cdp_show', array(
-            'id' => $entity->getId()
-        )));     
-    }
   
-    
     /**
      * Updates a Cdp entity.
      */
@@ -246,8 +244,57 @@ class SupervisorController extends Controller
         ));
     }
     
-    
-    
+    /**
+     * Displays a form to edit an existing Midyear entity.
+     */
+    public function addMidyearCommentAction($id) {
+
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('IntoPeopleDatabaseBundle:Midyear')->find($id);
+
+        if (! $entity) {
+            throw $this->createNotFoundException('Unable to find Midyear entity.');
+        }
+
+        if($this->getUser() != $entity->getSupervisor()){
+            throw new \Exception($this->get('translator')->trans('noaccesserror'));
+        }
+
+        // CAN ONLY ADD COMMENT WHEN STATUS = 3
+        //
+
+        if ($entity->getFormstatus()->getId() == 3 ) {
+
+            $form = $this->createMidyearEditForm($entity);
+            $user = $this->getUser();
+
+            // Send CDP template
+
+            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Midyeartemplate');
+
+            // createQueryBuilder automatically selects FROM IntoPeopleDatabaseBundle:Cdptemplate
+            // and aliases it to "c"
+            $query = $repository->createQueryBuilder('c')
+            ->where('c.organization = :id')
+            ->setParameter('id', $user->getOrganization()
+                ->getId())
+                ->getQuery();
+
+            $template = $query->setMaxResults(1)->getOneOrNullResult();
+            // to get just one result:
+            // $product = $query->setMaxResults(1)->getOneOrNullResult();
+
+            return $this->render('IntoPeopleDatabaseBundle:Supervisor:feedbackMidyear.html.twig', array(
+                'entity' => $entity,
+                'template' => $template,
+                'form' => $form->createView()
+            ));
+        }
+
+        return $this->redirect($this->generateUrl('midyear_show', array(
+            'id' => $entity->getId()
+        )));
+    }
     
     /**
      * Creates a form to edit a midyear entity.
@@ -263,67 +310,13 @@ class SupervisorController extends Controller
             'action' => $this->generateUrl('supervisor_updateMidyear', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
-    
+
         $form
         ->add('save', 'submit', array('label' => 'Save'))
         ->add('approve', 'submit', array('label' => 'Approve'))
         ->add('disapprove', 'submit', array('label' => 'Disapprove'));
         return $form;
     }
-    
-    
-    /**
-     * Displays a form to edit an existing Midyear entity.
-     */
-    public function addMidyearCommentAction($id) {
-    
-        $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('IntoPeopleDatabaseBundle:Midyear')->find($id);
-    
-        if (! $entity) {
-            throw $this->createNotFoundException('Unable to find Midyear entity.');
-        }
-
-        if($this->getUser() != $entity->getSupervisor()){
-            throw new \Exception($this->get('translator')->trans('noaccesserror'));
-        }
-    
-        // CAN ONLY ADD COMMENT WHEN STATUS = 3
-        //
-    
-        if ($entity->getFormstatus()->getId() == 3 ) {
-    
-            $form = $this->createMidyearEditForm($entity);
-            $user = $this->getUser();
-    
-            // Send CDP template
-    
-            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Midyeartemplate');
-    
-            // createQueryBuilder automatically selects FROM IntoPeopleDatabaseBundle:Cdptemplate
-            // and aliases it to "c"
-            $query = $repository->createQueryBuilder('c')
-            ->where('c.organization = :id')
-            ->setParameter('id', $user->getOrganization()
-                ->getId())
-                ->getQuery();
-    
-            $template = $query->setMaxResults(1)->getOneOrNullResult();
-            // to get just one result:
-            // $product = $query->setMaxResults(1)->getOneOrNullResult();
-    
-            return $this->render('IntoPeopleDatabaseBundle:Supervisor:feedbackMidyear.html.twig', array(
-                'entity' => $entity,
-                'template' => $template,
-                'form' => $form->createView()
-            ));
-        }
-    
-        return $this->redirect($this->generateUrl('midyear_show', array(
-            'id' => $entity->getId()
-        )));
-    }
-    
     
     /**
      * Updates a midyear entity.
@@ -409,8 +402,56 @@ class SupervisorController extends Controller
         ));
     }
     
-    
-    
+    /**
+     * Displays a form to edit an existing Yearend entity.
+     */
+    public function addEndyearCommentAction($id) {
+
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('IntoPeopleDatabaseBundle:Endyear')->find($id);
+
+        if (! $entity) {
+            throw $this->createNotFoundException('Unable to find Endyear entity.');
+        }
+
+        if($this->getUser() != $entity->getSupervisor()){
+            throw new \Exception($this->get('translator')->trans('noaccesserror'));
+        }
+        // CAN ONLY ADD COMMENT WHEN STATUS = 3
+        //
+
+        if ($entity->getFormstatus()->getId() == 3 ) {
+
+            $form = $this->createEndyearEditForm($entity);
+            $user = $this->getUser();
+
+            // Send CDP template
+
+            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Endyeartemplate');
+
+            // createQueryBuilder automatically selects FROM IntoPeopleDatabaseBundle:Cdptemplate
+            // and aliases it to "c"
+            $query = $repository->createQueryBuilder('c')
+            ->where('c.organization = :id')
+            ->setParameter('id', $user->getOrganization()->getId())
+            ->orderby('c.date','DESC')
+            ->getQuery();
+
+            $template = $query->setMaxResults(1)->getOneOrNullResult();
+            // to get just one result:
+            // $product = $query->setMaxResults(1)->getOneOrNullResult();
+
+            return $this->render('IntoPeopleDatabaseBundle:Supervisor:feedbackEndyear.html.twig', array(
+                'entity' => $entity,
+                'template' => $template,
+                'form' => $form->createView()
+            ));
+        }
+
+        return $this->redirect($this->generateUrl('endyear_show', array(
+            'id' => $entity->getId()
+        )));
+    }
     
     /**
      * Creates a form to edit a Endyear entity.
@@ -426,66 +467,13 @@ class SupervisorController extends Controller
             'action' => $this->generateUrl('supervisor_updateEndyear', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
-    
+
         $form
         ->add('save', 'submit', array('label' => 'Save'))
         ->add('approve', 'submit', array('label' => 'Approve'))
         ->add('disapprove', 'submit', array('label' => 'Disapprove'));
         return $form;
     }
-    
-    
-    /**
-     * Displays a form to edit an existing Yearend entity.
-     */
-    public function addEndyearCommentAction($id) {
-    
-        $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('IntoPeopleDatabaseBundle:Endyear')->find($id);
-    
-        if (! $entity) {
-            throw $this->createNotFoundException('Unable to find Endyear entity.');
-        }
-
-        if($this->getUser() != $entity->getSupervisor()){
-            throw new \Exception($this->get('translator')->trans('noaccesserror'));
-        }
-        // CAN ONLY ADD COMMENT WHEN STATUS = 3
-        //
-    
-        if ($entity->getFormstatus()->getId() == 3 ) {
-    
-            $form = $this->createEndyearEditForm($entity);
-            $user = $this->getUser();
-    
-            // Send CDP template
-    
-            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Endyeartemplate');
-    
-            // createQueryBuilder automatically selects FROM IntoPeopleDatabaseBundle:Cdptemplate
-            // and aliases it to "c"
-            $query = $repository->createQueryBuilder('c')
-            ->where('c.organization = :id')
-            ->setParameter('id', $user->getOrganization()->getId())
-            ->orderby('c.date','DESC')
-            ->getQuery();
-    
-            $template = $query->setMaxResults(1)->getOneOrNullResult();
-            // to get just one result:
-            // $product = $query->setMaxResults(1)->getOneOrNullResult();
-    
-            return $this->render('IntoPeopleDatabaseBundle:Supervisor:feedbackEndyear.html.twig', array(
-                'entity' => $entity,
-                'template' => $template,
-                'form' => $form->createView()
-            ));
-        }
-    
-        return $this->redirect($this->generateUrl('endyear_show', array(
-            'id' => $entity->getId()
-        )));
-    }
-    
     
     /**
      * Updates a Endyear entity.
@@ -663,7 +651,6 @@ class SupervisorController extends Controller
 
             array_push($countsbystatus, $object);
         }
-        $serializer = $this->get('jms_serializer');
 
         return new JsonResponse($countsbystatus);
     }
