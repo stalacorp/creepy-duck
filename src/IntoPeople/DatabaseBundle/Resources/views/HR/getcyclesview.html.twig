@@ -10,6 +10,7 @@
         <th>{{ "table.supervisor" | trans }}</th>
         <th>{{ "table.formstatus" | trans }}</th>
         <th class="no-sort"></th>
+        <th class="no-sort"></th>
     </tr>
     </thead>
     <tbody>
@@ -24,6 +25,7 @@
             <td>{{ entity.feedbackcycle.user.firstname }} {{ entity.feedbackcycle.user.lastname }}</td>
             <td>{% if entity.supervisor is not empty %} {{ entity.supervisor.firstname }} {{ entity.supervisor.lastname }} {% endif %}</td>
             <td>{{ entity.formstatus.name }}</td>
+            <td><button data-id="{{ entity.id }}"  class="btn btn-default history">History</button></td>
             <td><a class="btn btn-primary" href="{{ path(showlink, { 'id': entity.id }) }}">{{ "button.show" | trans}}</a></td>
         </tr>
         {% set teller = teller + 1 %}

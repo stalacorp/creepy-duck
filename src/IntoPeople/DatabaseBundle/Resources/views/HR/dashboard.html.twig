@@ -66,6 +66,7 @@
         </div>
         <!-- /.modal-dialog -->
     </div><!-- /.modal -->
+    <div id="historymodal"></div>
 {% endblock %}
 
 {% block javascripts -%}
@@ -155,6 +156,18 @@
                 success: function (result) {
                     drawchart();
                     $("#result").html(result);
+
+                    $('.history').click(function(){
+                        $.ajax({
+                            url: Routing.generate('hr_history', {cycle: $('#form_cycle').val(), id: $(this).data('id')}),
+                            success: function (result) {
+                                $('#historymodal').html(result);
+                                $('#myHistoryModal').modal('show');
+                            }
+                        });
+                    });
+
+
                     var language;
 
                     switch (locale) {

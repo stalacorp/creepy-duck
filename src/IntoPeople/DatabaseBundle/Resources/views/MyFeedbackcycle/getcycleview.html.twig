@@ -56,7 +56,7 @@
 
                                     {% for formhistory in feedbackcycle.cdp.cdphistories %}
                                         <tr>
-                                            <td>{{ formhistory.date | date }}</td>
+                                            <td>{{ formhistory.date | localizeddate('medium', 'none', app.request.locale )}}</td>
                                             <td>{{ formhistory.formstatus.name }}</td>
                                         </tr>
 

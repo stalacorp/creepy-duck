@@ -890,6 +890,23 @@ class HRController extends Controller
 
     }
 
+    public function historyAction($cycle, $id){
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->getRepository('IntoPeopleDatabaseBundle:' . ucfirst($cycle) . 'history')->createQueryBuilder('h')
+            ->where('h.' . $cycle . ' = :id')
+            ->setParameter('id', $id)
+            ->orderBy('h.date', 'ASC')
+            ->getQuery();
+
+        $entities = $query->getResult();
+
+        return $this->render('IntoPeopleDatabaseBundle:HR:historymodal.html.twig', array(
+            'entities' => $entities,
+        ));
+
+
+    }
+
 
 }
 

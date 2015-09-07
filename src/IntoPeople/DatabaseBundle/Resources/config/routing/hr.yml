@@ -68,3 +68,9 @@ hr_excel:
     defaults: { _controller: "IntoPeopleDatabaseBundle:HR:excel" }
     options:
       expose: true
+
+hr_history:
+    path:     /history/{cycle}/{id}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:history" }
+    options:
+      expose: true
