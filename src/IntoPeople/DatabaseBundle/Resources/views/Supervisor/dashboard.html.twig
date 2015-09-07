@@ -125,7 +125,8 @@
             $.ajax({
                 url: Routing.generate('supervisor_getcycles', {
                     generalcycleid: $('#form_generalcycle').val(),
-                    cycle: $('#form_cycle').val()
+                    cycle: $('#form_cycle').val(),
+                    _locale:locale
                 }),
                 success: function (result) {
                     drawchart();
@@ -169,7 +170,7 @@
 
         function getforms() {
             $.ajax({
-                url: Routing.generate('supervisor_getforms', {generalcycleid: $('#form_generalcycle').val()}),
+                url: Routing.generate('supervisor_getforms', {generalcycleid: $('#form_generalcycle').val(), _locale:locale}),
                 success: function (result) {
                     var select = $('#form_cycle');
                     select.empty().append('<option value="cdp">Cdp ' + result[0] + '</option>');
@@ -187,7 +188,8 @@
             $.ajax({
                 url: Routing.generate('supervisor_getformstatuscount', {
                     generalcycleid: $('#form_generalcycle').val(),
-                    cycle: $('#form_cycle').val()
+                    cycle: $('#form_cycle').val(),
+                    _locale:locale
                 }),
                 success: function (result) {
                     var data = [

@@ -130,9 +130,7 @@
 {% endblock %}
 
 <script>
-
-
-
+    var locale= {{ app.request.locale | json_encode() | raw}};
     $( document ).ready(function() {
         //Date Pickers
         $('.datepicker').datepicker({

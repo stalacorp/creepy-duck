@@ -53,7 +53,7 @@
         }
 
         function getMails(){
-            $.ajax({url: Routing.generate('systemmail_getmails', {id:$('#form_language').val()}),
+            $.ajax({url: Routing.generate('systemmail_getmails', {id:$('#form_language').val(), _locale:locale}),
                 success: function(result){
                     $("#result").html(result);
                     $('.letoggle').bootstrapToggle();

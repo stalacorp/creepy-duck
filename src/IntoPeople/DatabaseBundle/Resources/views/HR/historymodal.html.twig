@@ -23,7 +23,7 @@
                             {% for formhistory in entities %}
                                 <tr>
                                     <td>{{ formhistory.date | localizeddate('medium', 'none', app.request.locale ) }}</td>
-                                    <td>{{ formhistory.formstatus.name }}</td>
+                                    <td>{{ formhistory.formstatus.name | trans }}</td>
                                 </tr>
                             {% endfor %}
                         </table>

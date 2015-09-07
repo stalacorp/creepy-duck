@@ -81,7 +81,6 @@
     <script>
         var teller = 0;
         var table;
-        var locale= {{ app.request.locale | json_encode() | raw}};
         var nederlands = {
             "sProcessing": "Bezig...",
             "sLengthMenu": "_MENU_ resultaten weergeven",
@@ -151,7 +150,8 @@
             $.ajax({
                 url: Routing.generate('hr_getcycles', {
                     generalcycleid: $('#form_generalcycle').val(),
-                    cycle: $('#form_cycle').val()
+                    cycle: $('#form_cycle').val(),
+                    _locale:locale
                 }),
                 success: function (result) {
                     drawchart();
@@ -159,7 +159,7 @@
 
                     $('.history').click(function(){
                         $.ajax({
-                            url: Routing.generate('hr_history', {cycle: $('#form_cycle').val(), id: $(this).data('id')}),
+                            url: Routing.generate('hr_history', {cycle: $('#form_cycle').val(), id: $(this).data('id'), _locale:locale }),
                             success: function (result) {
                                 $('#historymodal').html(result);
                                 $('#myHistoryModal').modal('show');
@@ -212,7 +212,7 @@
                         });
                         var myJsonString = JSON.stringify(array);
                         var form = $('#form_cycle').val();
-                        window.open(Routing.generate('hr_pdf', {cycle: form}) + '?ids=' + myJsonString);
+                        window.open(Routing.generate('hr_pdf', {cycle: form, _locale:locale}) + '?ids=' + myJsonString);
 
                     });
 
@@ -248,7 +248,7 @@
                         var myJsonString = JSON.stringify(array);
                         var form = $('#form_cycle').val();
                         $.ajax({
-                            url: Routing.generate('hr_remindermail', {cycle: form}),
+                            url: Routing.generate('hr_remindermail', {cycle: form, _locale:locale}),
                             data: {ids: myJsonString},
                             success: function (result) {
                                 $('#mailssent').modal('show');
@@ -266,7 +266,7 @@
                         });
                         var myJsonString = JSON.stringify(array);
                         var form = $('#form_cycle').val();
-                        window.open(Routing.generate('hr_excel', {cycle: form}) + '?ids=' + myJsonString);
+                        window.open(Routing.generate('hr_excel', {cycle: form, _locale:locale}) + '?ids=' + myJsonString);
 
                     });
 
@@ -284,7 +284,7 @@
 
         function getforms() {
             $.ajax({
-                url: Routing.generate('hr_getforms', {generalcycleid: $('#form_generalcycle').val()}),
+                url: Routing.generate('hr_getforms', {generalcycleid: $('#form_generalcycle').val(), _locale:locale}),
                 success: function (result) {
                     var select = $('#form_cycle');
                     select.empty().append('<option value="cdp">Cdp ' + result[0] + '</option>');
@@ -302,7 +302,8 @@
             $.ajax({
                 url: Routing.generate('hr_getformstatuscount', {
                     generalcycleid: $('#form_generalcycle').val(),
-                    cycle: $('#form_cycle').val()
+                    cycle: $('#form_cycle').val(),
+                    _locale:locale
                 }),
                 success: function (result) {
                     var data = [

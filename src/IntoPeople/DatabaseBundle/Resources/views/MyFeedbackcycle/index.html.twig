@@ -35,7 +35,8 @@
         function getcycle() {
             $.ajax({
                 url: Routing.generate('myfeedbackcycle_getcycle', {
-                    generalcycleid: $('#form_generalcycle').val()
+                    generalcycleid: $('#form_generalcycle').val(),
+                    _locale:locale
                 }),
                 success: function (result) {
                     $("#result").html(result);
