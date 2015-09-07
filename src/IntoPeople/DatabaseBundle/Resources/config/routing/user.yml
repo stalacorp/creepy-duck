@@ -1,0 +1,42 @@
+user:
+    path:     /
+    defaults: { _controller: "IntoPeopleDatabaseBundle:User:index" }
+
+user_show:
+    path:     /{id}/show
+    defaults: { _controller: "IntoPeopleDatabaseBundle:User:show" }
+
+user_new:
+    path:     /new
+    defaults: { _controller: "IntoPeopleDatabaseBundle:User:new" }
+
+user_create:
+    path:     /create
+    defaults: { _controller: "IntoPeopleDatabaseBundle:User:create" }
+    methods:  POST
+
+user_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "IntoPeopleDatabaseBundle:User:edit" }
+
+user_update:
+    path:     /{id}/update
+    defaults: { _controller: "IntoPeopleDatabaseBundle:User:update" }
+    methods:  [POST, PUT]
+
+user_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "IntoPeopleDatabaseBundle:User:delete" }
+    methods:  [POST, DELETE]
+
+user_csv:
+     path:     /csv
+     defaults: { _controller: "IntoPeopleDatabaseBundle:User:csv" }
+
+user_firstlogin:
+     path:     /firstlogin/{id}/{token}
+     defaults: { _controller: "IntoPeopleDatabaseBundle:User:firstlogin" }
+
+user_profile:
+     path:     /profile
+     defaults: { _controller: "IntoPeopleDatabaseBundle:User:profile" }

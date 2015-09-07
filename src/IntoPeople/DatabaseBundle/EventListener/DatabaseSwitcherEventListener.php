@@ -33,7 +33,7 @@ class DatabaseSwitcherEventListener {
 
             $db_name = 'br_'.$domains[0];
             // TODO: validate that this site exists
-            if ($db_name != $params['dbname']) {
+            if ($db_name != $params['dbname'] && strtolower($domains[0]) != 'intopeople') {
 			    
 				if ($this->context->getToken() != null){
                 if ($this->context->getToken()->getUser() != 'anon.'){

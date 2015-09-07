@@ -1,0 +1,26 @@
+systemmail:
+    path:     /
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Systemmail:index" }
+
+systemmail_show:
+    path:     /{id}/show
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Systemmail:show" }
+
+systemmail_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Systemmail:edit" }
+
+systemmail_update:
+    path:     /{id}/update
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Systemmail:update" }
+    methods:  [POST, PUT]
+systemmail_getmails:
+    path:     /getmails/{id}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Systemmail:getmails" }
+    options:
+      expose: true
+systemmail_changeactive:
+    path:     /changeactive/{id}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Systemmail:changeactive" }
+    options:
+      expose: true

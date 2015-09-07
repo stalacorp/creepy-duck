@@ -1,0 +1,30 @@
+feedbackcycle:
+    path:     /
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Feedbackcycle:index" }
+
+feedbackcycle_show:
+    path:     /{id}/show
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Feedbackcycle:show" }
+
+feedbackcycle_new:
+    path:     /new
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Feedbackcycle:new" }
+
+feedbackcycle_create:
+    path:     /create
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Feedbackcycle:create" }
+    methods:  POST
+
+feedbackcycle_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Feedbackcycle:edit" }
+
+feedbackcycle_update:
+    path:     /{id}/update
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Feedbackcycle:update" }
+    methods:  [POST, PUT]
+
+feedbackcycle_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Feedbackcycle:delete" }
+    methods:  [POST, DELETE]

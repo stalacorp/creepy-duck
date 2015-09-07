@@ -1,0 +1,76 @@
+hr_update:
+    path:     /{id}/update
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:update" }
+    methods:  [POST, PUT]
+    
+hr_addFeedback:
+    path:     /{id}/addFeedback
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:addFeedback" }
+    
+hr_show:
+    path:     /{id}/show
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:show" }
+    
+hr_updateMidyear:
+    path:     /{id}/updateMidyear
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:updateMidyear" }
+    methods:  [POST, PUT]
+    
+hr_addMidyearFeedback:
+    path:     /{id}/addMidyearFeedback
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:addMidyearFeedback" }
+    
+hr_updateEndyear:
+    path:     /{id}/updateEndyear
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:updateEndyear" }
+    methods:  [POST, PUT]
+    
+hr_addEndyearFeedback:
+    path:     /{id}/addEndyearFeedback
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:addEndyearFeedback" }
+
+hr_dashboard:
+    path:     /dashboard
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:dashboard" }
+
+hr_getcycles:
+    path:     /getcycles/{generalcycleid}/{cycle}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:getcycles" }
+    options:
+      expose: true
+
+hr_getformstatuscount:
+    path:     /getformstatuscount/{generalcycleid}/{cycle}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:getformstatuscount" }
+    options:
+      expose: true
+
+hr_getforms:
+    path:     /getforms/{generalcycleid}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:getforms" }
+    options:
+      expose: true
+
+hr_pdf:
+    path:     /pdf/{cycle}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:pdf" }
+    options:
+      expose: true
+
+hr_remindermail:
+    path:     /remindermail/{cycle}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:remindermail" }
+    options:
+      expose: true
+
+hr_excel:
+    path:     /excel/{cycle}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:excel" }
+    options:
+      expose: true
+
+hr_history:
+    path:     /history/{cycle}/{id}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:history" }
+    options:
+      expose: true

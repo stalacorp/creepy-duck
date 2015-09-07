@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+
+    {% block stylesheets %}
+
+        <link href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="screen">
+
+    {% endblock %}
+</head>
+<body>
+<div class="container">
+    <div class="row margin-top-bart">
+        <div class="col-md-12">
+    {% for type, messages in app.session.flashbag.all() %}
+        {% for message in messages %}
+            <div class="flash-{{ type }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

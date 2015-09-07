@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %} 
+{% block body -%}
+
+    <h2>{{ 'language.index.title' | trans }}</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <table class="table borderless">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for language in languages %}
+                    <tr>
+                        <td>{{ language.name }}</td>
+                        <td>
+                            <a href="{{ path('language_edit', { 'id': language.id }) }}" class="btn btn-default btn-cons">{{ 'button.edit' | trans }}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+            <a href="{{ path('language_new') }}" type="button" class="btn btn-default btn-cons">{{ 'button.create' | trans }}</a>
+
+
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+    

@@ -1,0 +1,473 @@
+{% extends '::base.html.twig' %} {% block body -%}
+
+    {% set template = entity.cdptemplate %}
+
+    <h2>{{ template.mainTitle }}</h2>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <h3>{{ template.title1 }}</h3>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <table class="table borderless">
+
+                        <tr>
+                            <th>{{ template.name }}:
+                            <th>
+                            <td>{{ app.user.firstname }} {{ app.user.lastname }}</td>
+                        </tr>
+
+                        {% if app.user.supervisor != null %}
+                            <tr>
+                                <th>{{ template.supervisor }}:
+                                <th>
+                                <td>{{ app.user.supervisor.firstname }} {{ app.user.supervisor.lastname }}</td>
+                            </tr>
+                        {% endif %}
+
+                        <tr>
+                            <th>{{ template.dateDiscussion }}:
+                            <th>
+                            <td></td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <table class="table borderless">
+
+                        <tr>
+                            <th>{{ template.team }}:
+                            <th>
+                            <td>{{ app.user.team }}</td>
+                        </tr>
+
+
+                        <tr>
+                            <th>{{ template.function }}:
+                            <th>
+                            <td>{{ app.user.jobtitle }}</td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <h3>{{ template.title2 }}</h3>
+
+            <p class=""><em>{{ template.title2Description }}</em></p>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <table class="table borderless">
+                <tr>
+                    <th style="width: 20%">{{ template.table2Col1 }}</th>
+                    <th style="width: 20%">{{ template.table2Col2 }}</th>
+                    <th style="width: 20%">{{ template.table2Col3 }}</th>
+                    <th style="width: 20%">{{ template.table2Col4 }}</th>
+                    <th style="width: 20%">{{ template.table2Col5 }}</th>
+                </tr>
+
+                <tr>
+                    <td>{{ template.table2Col1Descr }}</td>
+                    <td>{{ template.table2Col2Descr }}</td>
+                    <td>{{ template.table2Col3Descr }}</td>
+                    <td>{{ template.table2Col4Descr }}</td>
+                    <td>{{ template.table2Col5Descr }}</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>{{ entity.coreQuality1 }}</p>
+
+                        <p>{{ entity.coreQuality1Why }}</p>
+                    </td>
+                    <td>
+                        <p>{{ entity.challenge1 }}</p>
+
+                        <p>{{ entity.challengeWhy1 }}</p>
+                    </td>
+                    <td>{{ entity.challengeHow1 }}</td>
+                    <td>{{ entity.challengeSuccess1 }}</td>
+                    <td>{{ entity.challengeNeeds1 }}</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>{{ entity.coreQuality2 }}</p>
+
+                        <p>{{ entity.coreQuality2Why }}</p>
+                    </td>
+                    <td>
+                        <p>{{ entity.challenge2 }}</p>
+
+                        <p>{{ entity.challengeWhy2 }}</p>
+                    </td>
+                    <td>{{ entity.challengeHow2 }}</td>
+                    <td>{{ entity.challengeSuccess2 }}</td>
+                    <td>{{ entity.challengeNeeds2 }}</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>{{ entity.coreQuality3 }}</p>
+
+                        <p>{{ entity.coreQuality3Why }}</p>
+                    </td>
+                    <td>
+                        <p>{{ entity.challenge3 }}</p>
+
+                        <p>{{ entity.challengeWhy3 }}</p>
+                    </td>
+                    <td>{{ entity.challengeHow3 }}</td>
+                    <td>{{ entity.challengeSuccess3 }}</td>
+                    <td>{{ entity.challengeNeeds3 }}</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>{{ entity.coreQuality4 }}</p>
+
+                        <p>{{ entity.coreQuality4Why }}</p>
+                    </td>
+                    <td>
+                        <p>{{ entity.challenge4 }}</p>
+
+                        <p>{{ entity.challengeWhy4 }}</p>
+                    </td>
+                    <td>{{ entity.challengeHow4 }}</td>
+                    <td>{{ entity.challengeSuccess4 }}</td>
+                    <td>{{ entity.challengeNeeds4 }}</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>{{ entity.coreQuality5 }}</p>
+
+                        <p>{{ entity.coreQuality5Why }}</p>
+                    </td>
+                    <td>
+                        <p>{{ entity.challenge5 }}</p>
+
+                        <p>{{ entity.challengeWhy5 }}</p>
+                    </td>
+                    <td>{{ entity.challengeHow5 }}</td>
+                    <td>{{ entity.challengeSuccess5 }}</td>
+                    <td>{{ entity.challengeNeeds5 }}</td>
+                </tr>
+
+            </table>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <h3>{{ template.title3 }}</h3>
+
+            <p><em>{{ template.title3Description }}</em></p>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <table class="table borderless">
+
+                <thead>
+                <tr>
+                    <th style="width: 22%" colspan="2">{{ template.table3Col1 }}</th>
+                    <th style="width: 12%">{{ template.table3Col2 }}</th>
+                    <th style="width: 12%">{{ template.table3Col3 }}</th>
+                    <th style="width: 12%">{{ template.table3Col4 }}</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr>
+                    <td colspan="2">{{ template.table3Col1Descr }}</td>
+                    <td>{{ template.table3Col2Descr }}</td>
+                    <td>{{ template.table3Col3Descr }}</td>
+                    <td>{{ template.table3Col4Descr }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="5"><h5 class="text-center">{{ template.table3Title1 }}</h5></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        {{ entity.developmentneeds.task1 }}</td>
+                    <td>{{ entity.taskhow1 }}</td>
+                    <td>{{ entity.tasksucces1 }}</td>
+                    <td>{{ entity.taskneeds1 }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ entity.developmentneeds.task2 }}</td>
+                    <td>{{ entity.taskhow2 }}</td>
+                    <td>{{ entity.tasksucces2 }}</td>
+                    <td>{{ entity.taskneeds2 }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ entity.developmentneeds.task3 }}</td>
+                    <td>{{ entity.taskhow3 }}</td>
+                    <td>{{ entity.tasksucces3 }}</td>
+                    <td>{{ entity.taskneeds3 }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ entity.developmentneeds.task4 }}</td>
+                    <td>{{ entity.taskhow4 }}</td>
+                    <td>{{ entity.tasksucces4 }}</td>
+                    <td>{{ entity.taskneeds4 }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ entity.developmentneeds.task5 }}</td>
+                    <td>{{ entity.taskhow5 }}</td>
+                    <td>{{ entity.tasksucces5 }}</td>
+                    <td>{{ entity.taskneeds5 }}</td>
+                </tr>
+
+                </tbody>
+
+            </table>
+
+            <table class="table borderless">
+
+                <thead>
+
+                <tr>
+                    <td colspan="5"><h5 class="text-center">{{ template.table3Title2 }}</h5></td>
+                </tr>
+
+
+                <tr>
+                    <th style="width: 22%" colspan="2">{{ template.table3Col1 }}</th>
+                    <th style="width: 12%">{{ template.table3Col2 }}</th>
+                    <th style="width: 12%">{{ template.table3Col3 }}</th>
+                    <th style="width: 12%">{{ template.table3Col4 }}</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td colspan="2">{{ entity.developmentneeds.skill1 }}</td>
+                    <td>{{ entity.skillshow1 }}</td>
+                    <td>{{ entity.skillssuccess1 }}</td>
+                    <td>{{ entity.skillsneeds1 }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ entity.developmentneeds.skill2 }}</td>
+                    <td>{{ entity.skillshow2 }}</td>
+                    <td>{{ entity.skillssucces2 }}</td>
+                    <td>{{ entity.skillsneeds2 }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ entity.developmentneeds.skill3 }}</td>
+                    <td>{{ entity.skillshow3 }}</td>
+                    <td>{{ entity.skillssucces3 }}</td>
+                    <td>{{ entity.skillsneeds3 }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ entity.developmentneeds.skill4 }}</td>
+                    <td>{{ entity.skillshow4 }}</td>
+                    <td>{{ entity.skillssucces4 }}</td>
+                    <td>{{ entity.skillsneeds4 }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ entity.developmentneeds.skill5 }}</td>
+                    <td>{{ entity.skillshow5 }}</td>
+                    <td>{{ entity.skillssucces5 }}</td>
+                    <td>{{ entity.skillsneeds5 }}</td>
+                </tr>
+
+                </tbody>
+
+            </table>
+
+            <table class="table borderless">
+                <thead>
+
+                <tr>
+                    <td colspan="5"><h5 class="text-center">{{ template.table3Title3 }}</h5></td>
+                </tr>
+
+                <tr>
+                    <th style="width: 22%" colspan="2">{{ template.table3Col1 }}</th>
+                    <th style="width: 12%">{{ template.table3Col2 }}</th>
+                    <th style="width: 12%">{{ template.table3Col3 }}</th>
+                    <th style="width: 12%">{{ template.table3Col4 }}</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr>
+                    <td>{{ entity.developmentneeds.organizationcompetence1 }}</td>
+                    <td>{{ entity.developmentneeds.organizationdescription1 }}</td>
+
+                    <td>{{ entity.organizationhow1 }}</td>
+                    <td>{{ entity.organizationsuccess1 }}</td>
+                    <td>{{ entity.organizationneeds1 }}</td>
+                </tr>
+
+                <tr>
+                    <td>{{ entity.developmentneeds.organizationcompetence2 }}</td>
+                    <td>{{ entity.developmentneeds.organizationdescription2 }}</td>
+                    <td>{{ entity.organizationhow2 }}</td>
+                    <td>{{ entity.organizationsuccess2 }}</td>
+                    <td>{{ entity.organizationneeds2 }}</td>
+                </tr>
+
+                <tr>
+                    <td>{{ entity.developmentneeds.organizationcompetence3 }}</td>
+                    <td>{{ entity.developmentneeds.organizationdescription3 }}</td>
+                    <td>{{ entity.organizationhow3 }}</td>
+                    <td>{{ entity.organizationsuccess3 }}</td>
+                    <td>{{ entity.organizationneeds3 }}</td>
+                </tr>
+
+                <tr>
+                    <td>{{ entity.developmentneeds.organizationcompetence4 }}</td>
+                    <td>{{ entity.developmentneeds.organizationdescription4 }}</td>
+                    <td>{{ entity.organizationhow4 }}</td>
+                    <td>{{ entity.organizationsuccess4 }}</td>
+                    <td>{{ entity.organizationneeds4 }}</td>
+                </tr>
+
+                <tr>
+                    <td>{{ entity.developmentneeds.organizationcompetence5 }}</td>
+                    <td>{{ entity.developmentneeds.organizationdescription5 }}</td>
+                    <td>{{ entity.organizationhow5 }}</td>
+                    <td>{{ entity.organizationsuccess5 }}</td>
+                    <td>{{ entity.organizationneeds5 }}</td>
+                </tr>
+
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-7">
+
+            <h3>{{ template.title4 }}</h3>
+
+            <p>{{ template.question1 }}</p>
+
+            <p>{{ entity.careerobjective }}</p>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-7">
+
+            <h3>{{ template.title5 }}</h3>
+
+            <p>{{ template.question2 }}</p>
+
+            <p>{{ entity.additionalinformation }}</p>
+
+        </div>
+    </div>
+
+    <div class="row">
+
+
+        {% if entity.formstatus.id > 3 %}
+
+            <div class="col-md-6">
+
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        <h3>Comments supervisor</h3>
+
+                        {{ entity.commentSup }}
+                    </div>
+                </div>
+
+            </div>
+
+        {% else %}
+
+            <div class="col-md-6">
+
+                {% block comment %}
+                {% endblock %}
+
+            </div>
+
+        {% endif %}
+
+        {% if entity.formstatus.id > 5 %}
+
+            <div class="col-md-6">
+
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        <h3>Feedback HR</h3>
+
+                        {{ entity.feedbackHR }}
+
+                    </div>
+                </div>
+
+            </div>
+
+        {% else %}
+
+            <div class="col-md-6">
+
+                {% block feedback %}
+                {% endblock %}
+
+            </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+{% endblock %}
+

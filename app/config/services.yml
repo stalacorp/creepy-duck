@@ -10,3 +10,7 @@ services:
         scope:      request
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+    twig.extension.intl:
+            class: Twig_Extensions_Extension_Intl
+            tags:
+                - { name: twig.extension }

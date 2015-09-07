@@ -1,0 +1,281 @@
+{% extends '::base.html.twig' %} {% block body -%}
+
+    <h2>{{ "midyeartemplate.show.title" | trans }}</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            {{ entity.language }}
+
+            <h2>{{ entity.mainTitle }}</h2>
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <h3>{{ entity.title1 }}</h3>
+
+            <p>{{ entity.title1Description }}</p>
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <table class="table borderless">
+
+                        <tr>
+                            <th>{{ entity.name }}<th>
+                            <td><span class="template-example">: John Doe</span></td>
+                        </tr>
+
+                        <tr>
+                            <th>{{ entity.supervisor }}<th>
+                            <td><span class="template-example">: John Doe</span></td>
+                        </tr>
+
+                        <tr>
+                            <th>{{ entity.dateDiscussion }}<th>
+                            <td><span class="template-example">: dd / mm / yyyy</span></td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <table class="table borderless">
+
+                        <tr>
+                            <th>{{ entity.team }}<th>
+                            <td><span class="template-example">: Sales Team</span></td>
+                        </tr>
+
+
+                        <tr>
+                            <th>{{ entity.function }}<th>
+                            <td><span class="template-example">: Manager</span></td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <h3>{{ entity.title2 }}</h3>
+
+            <p>{{ entity.title2Description }}</p>
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <table class="table borderless">
+                <tr>
+                    <th style="width: 20%">{{ entity.table2Col1 }}</th>
+                    <th style="width: 20%">{{ entity.table2Col2 }}</th>
+                    <th style="width: 20%">{{ entity.table2Col3 }}</th>
+                    <th style="width: 20%">{{ entity.table2Col4 }}</th>
+                    <th style="width: 20%">{{ entity.table2Col5 }}</th>
+                </tr>
+
+                <tr>
+                    <td>{{ entity.table2Col1Descr }}</td>
+                    <td>{{ entity.table2Col2Descr }}</td>
+                    <td>{{ entity.table2Col3Descr }}</td>
+                    <td>{{ entity.table2Col4Descr }}</td>
+                    <td>{{ entity.table2Col5Descr }}</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p><span class="template-example">Integer vestibulum molestie velit, ac congue libero ullamcorper sit amet.</span></p>
+                    </td>
+                    <td>
+                        <p><span class="template-example">Morbi id tincidunt lorem, eu feugiat odio. Aenean pellentesque placerat ornare.</span></p>
+                    </td>
+                    <td><span class="template-example">Donec sollicitudin ipsum nec pulvinar facilisis.</span></td>
+                    <td><span class="template-example">Curabitur tincidunt felis mi, at imperdiet tortor porta ut. Ut eu dui condimentum erat hendrerit lobortis.</span></td>
+                    <td><span class="template-example">Fusce sed mi eget nisi pretium tincidunt. Phasellus sapien mi, fringilla eget mattis in, suscipit sit amet turpis.</span></td>
+                </tr>
+
+            </table>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <h3>{{ entity.title3 }}</h3>
+
+            <p>{{ entity.title3Description }}</p>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <table class="table borderless">
+
+                <thead>
+                <tr>
+                    <th style="width: 22%" colspan="2">{{ entity.table3Col1 }}</th>
+                    <th style="width: 12%">{{ entity.table3Col2 }}</th>
+
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr>
+                    <td colspan="2">{{ entity.table3Col1Descr }}</td>
+                    <td>{{ entity.table3Col2Descr }}</td>
+                </tr>
+
+                <tr>
+                    <td>{{ entity.table3Title1 }}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+
+                <tr>
+                    <td colspan="2"><em>Nulla bibendum justo et eros finibus viverra. Proin sed dolor lacus. Fusce interdum dignissim rhoncus.</em></td>
+                    <td><em>Fusce sed mi eget nisi pretium tincidunt. Phasellus sapien mi, fringilla eget mattis in, suscipit sit amet turpis.</em></td>
+                </tr>
+
+
+                </tbody>
+
+            </table>
+
+            <table class="table borderless">
+
+                <thead>
+
+                <tr>
+                    <td>{{ entity.table3Title2 }}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+
+                <tr>
+                    <th style="width: 22%" colspan="2"></th>
+                    <th style="width: 12%"></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td colspan="2"><em>Nulla bibendum justo et eros finibus viverra. Proin sed dolor lacus. Fusce interdum dignissim rhoncus.</em></td>
+                    <td><em>Fusce sed mi eget nisi pretium tincidunt. Phasellus sapien mi, fringilla eget mattis in, suscipit sit amet turpis.</em></td>
+                </tr>
+
+
+                </tbody>
+
+            </table>
+
+            <table class="table borderless">
+                <thead>
+
+                <tr>
+                    <td>{{ entity.table3Title3 }}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th style="width: 22%" colspan="2"></th>
+                    <th style="width: 12%"></th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr>
+                    <td><em>Nulla bibendum justo et eros finibus viverra. Proin sed dolor lacus. Fusce interdum dignissim rhoncus.</em></td>
+                    <td><em>Ut vel arcu mi. Aliquam scelerisque mauris sed ante rutrum, nec gravida eros vulputate.</em></td>
+                    <td><em>Fusce sed mi eget nisi pretium tincidunt. Phasellus sapien mi, fringilla eget mattis in, suscipit sit amet turpis.</em></td>
+                </tr>
+
+                </tbody>
+
+
+            </table>
+
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <h3>{{ entity.title4 }}</h3>
+
+            <p>{{ entity.question1 }}</p>
+
+            <p>{{ entity.question2 }}</p>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            {{ entity.supervisorComment }}
+
+            {{ entity.signatureSupervisor }}
+
+
+
+        </div>
+
+        <div class="col-md-6">
+
+            {{ entity.feedback }}
+
+            {{ entity.signatureEmployee }}
+
+        </div>
+    </div>
+
+
+    <div class="buttons">
+
+        <a href="{{ path('midyeartemplate_edit', { 'id': entity.id }) }}" type="button" class="btn btn-default btn-cons">{{ "button.edit" | trans }} </a>
+        <a href="{{ path('midyeartemplate') }}" type="button" class="btn btn-default btn-cons">{{ "button.back" | trans }}</a>
+
+        {{ form(delete_form) }}
+
+    </div>
+
+
+{% endblock %}

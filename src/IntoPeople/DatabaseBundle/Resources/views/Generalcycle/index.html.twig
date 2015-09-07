@@ -1,0 +1,259 @@
+{% extends '::base.html.twig' %} {% block body -%}
+
+    <h2>{{ 'generalcycle.index.title' | trans }}</h2>
+
+
+    {% for flashMessage in app.session.flashbag.get('success') %}
+
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            {{ flashMessage }}
+        </div>
+
+    {% endfor %}
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <ul class="nav nav-tabs" role="tablist" id="myTab">
+                <li role="presentation" class="active"><a href="#activecycle" aria-controls="activecycle" role="tab"
+                                                          data-toggle="tab">{{ 'generalcycle.index.active' | trans }}</a>
+                </li>
+                <li role="presentation"><a href="#finished" aria-controls="finished" role="tab"
+                                           data-toggle="tab">{{ 'generalcycle.index.finished' | trans }}</a>
+                </li>
+                <li role="presentation"><a href="#inactive" aria-controls="inactive" role="tab"
+                                           data-toggle="tab">{{ 'generalcycle.index.inactive' | trans }}</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+
+                <div class="tab-pane active" id="activecycle">
+
+
+                    {% if entity != null %}
+
+                        <div class="row">
+                            <div class="col-md-4">
+
+
+                                <h3>{{ 'generalcycle.index.cdp' | trans }}</h3>
+
+                                <p>{{ 'generalcycle.index.cdp.description' | trans }}</p>
+
+                                <table class="table borderless">
+
+                                    <tr>
+                                        <th>{{ 'generalcycle.index.startdate' | trans }}</th>
+                                        <td>{{ entity.startdatecdp | localizeddate('medium', 'none', app.request.locale ) }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>{{ 'generalcycle.index.enddate' | trans }}</th>
+                                        <td>{{ entity.enddatecdp | localizeddate('medium', 'none', app.request.locale ) }}</td>
+                                    </tr>
+
+
+                                </table>
+
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <h3>{{ 'generalcycle.index.midyear' | trans }}</h3>
+
+                                <p>{{ 'generalcycle.index.midyear.description' | trans }}</p>
+
+                                <table class="table borderless">
+
+                                    <tr>
+                                        <th>{{ 'generalcycle.index.startdate' | trans }}</th>
+                                        <td>{{ entity.startdatemidyear | localizeddate('medium', 'none', app.request.locale ) }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>{{ 'generalcycle.index.enddate' | trans }}</th>
+                                        <td>{{ entity.enddatemidyear | localizeddate('medium', 'none', app.request.locale ) }}</td>
+                                    </tr>
+
+
+                                </table>
+
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <h3>{{ 'generalcycle.index.endyear' | trans }}</h3>
+
+                                <p>{{ 'generalcycle.index.endyear.description' | trans }}</p>
+
+                                <table class="table borderless">
+
+                                    <tr>
+                                        <th>{{ 'generalcycle.index.startdate' | trans }}</th>
+                                        <td>{{ entity.startdateyearend | localizeddate('medium', 'none', app.request.locale ) }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>{{ 'generalcycle.index.enddate' | trans }}</th>
+                                        <td>{{ entity.enddateyearend | localizeddate('medium', 'none', app.request.locale ) }}</td>
+                                    </tr>
+
+
+                                </table>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <a href="{{ path('generalcycle_new') }}" type="button" class="btn btn-default">{{ 'button.create' | trans }}</a>
+                                <a href="{{ path('generalcycle_edit',{'id' : entity.id}) }}" class="btn btn-default"
+                                   type="button">{{ 'button.edit' | trans }}</a>
+
+                            </div>
+                        </div>
+
+                    {% else %}
+
+                        <p>There is no current cycle, would you like to create one?</p>
+
+                        <p>
+                            <a href="{{ path('generalcycle_new') }}" type="button"
+                               class="btn btn-default">{{ 'button.create' | trans }} </a>
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="tab-pane" id="finished">
+
+                    {% if finished != null %}
+
+                        <div class="row">
+                            <div class="col-md-12">
+
+
+                                <h3>
+                                    Finished <span class="semi-bold">Generalcycles</span>
+                                </h3>
+
+                                <p></p>
+
+
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Started by</th>
+                                        <th>Start date</th>
+                                        <th>Year</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for entity in finished %}
+                                        <tr>
+                                            <td>{{ entity.startedby }}</td>
+                                            <td>{% if entity.startdate %}{{ entity.startdate|date('d-m-Y') }}{% endif %}</td>
+                                            <td>{{ entity.year }}</td>
+                                            <td>
+
+                                                <a href="{{ path('generalcycle_show', { 'id': entity.id }) }}"
+                                                   class="btn btn-default btn-cons" type="button">show</a>
+
+                                                <a href="{{ path('generalcycle_edit', { 'id': entity.id }) }}"
+                                                   class="btn btn-default btn-cons" type="button">{{ 'button.edit' | trans }}</a>
+
+                                            </td>
+
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+                <div class="tab-pane" id="inactive">
+
+                    {% if inactive != null %}
+
+                        <div class="row">
+                            <div class="col-md-12">
+
+
+                                <h3>
+                                    Inactive <span class="semi-bold">Generalcycles</span>
+                                </h3>
+
+                                <p></p>
+
+
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Started by</th>
+                                        <th>Start date</th>
+                                        <th>Year</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for entity in inactive %}
+                                        <tr>
+                                            <td>{{ entity.startedby }}</td>
+                                            <td>{% if entity.startdate %}{{ entity.startdate|date('d-m-Y') }}{% endif %}</td>
+                                            <td>{{ entity.year }}</td>
+                                            <td>
+
+                                                <a href="{{ path('generalcycle_show', { 'id': entity.id }) }}"
+                                                   class="btn btn-default btn-cons" type="button">show</a>
+
+                                                <a href="{{ path('generalcycle_edit', { 'id': entity.id }) }}"
+                                                   class="btn btn-default btn-cons" type="button"><th>{{ 'button.edit' | trans }}</th></a>
+
+                                            </td>
+
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+                        </div>
+
+                    {% endif %}
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+
+{% block documentReady %}
+
+    $('#myTab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+    });
+
+
+{% endblock %}

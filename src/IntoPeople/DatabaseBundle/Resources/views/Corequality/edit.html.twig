@@ -1,0 +1,42 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+
+    <h2>{{ 'corequality.edit.title' | trans }}</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            {% for flashMessage in app.session.flashbag.get('success') %}
+
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{ flashMessage }}
+                </div>
+
+            {% endfor %}
+
+
+
+            {{ form_start(edit_form) }}
+
+            {{ form_row(edit_form.coreQuality) }}
+
+            {{ form_row(edit_form.language) }}
+
+            {{ form_widget(edit_form.submit) }}
+
+            <a href="{{ path('corequality') }}" role="button" class="btn btn-default">{{ "button.back" | trans }}</a>
+
+            {{ form_end(edit_form) }}
+
+            {{ form_start(delete_form) }}
+
+            {{ form_widget(delete_form.submit) }}
+
+            {{ form_end(delete_form) }}
+
+        </div>
+    </div>
+
+{% endblock %}

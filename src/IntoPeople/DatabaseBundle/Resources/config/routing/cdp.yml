@@ -1,0 +1,12 @@
+cdp_update:
+    path:     /{id}/update
+    defaults: { _controller: "IntoPeopleDatabaseBundle:MyCdp:update" }
+    methods:  [POST, PUT]
+    
+cdp_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "IntoPeopleDatabaseBundle:MyCdp:edit" }
+    
+cdp_show:
+    path:     /{id}/show
+    defaults: { _controller: "IntoPeopleDatabaseBundle:MyCdp:show" }

@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+
+    <h2>Systemmail</h2>
+
+    <div class="row">
+        <div class="col-lg-6">
+
+            <table class="table borderless">
+                <tbody>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ entity.name }}</td>
+                </tr>
+                <tr>
+                    <th>Sender</th>
+                    <td>{{ entity.sender }}</td>
+                </tr>
+                <tr>
+                    <th>Subject</th>
+                    <td>{{ entity.subject }}</td>
+                </tr>
+                <tr>
+                    <th>Body</th>
+                    <td>{{ entity.body }}</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <a href="{{ path('systemmail_edit', { 'id': entity.id }) }}" class="btn btn-default">{{ "button.edit" | trans }}</a>
+
+            <a href="{{ path('systemmail') }}" class="btn btn-default">{{ "button.back" | trans }}</a>
+
+
+        </div>
+    </div>
+
+{% endblock %}

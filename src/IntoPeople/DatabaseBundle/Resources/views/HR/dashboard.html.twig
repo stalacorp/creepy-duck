@@ -1,0 +1,410 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('assets/vendor/datatables/media/css/dataTables.bootstrap.min.css') }}" rel="stylesheet"
+          type="text/css" media="screen">
+    <link href="{{ asset('assets/css/select.bootstrap.min.css') }}" rel="stylesheet" type="text/css" media="screen">
+
+{% endblock %}
+{% block body -%}
+    <style>
+        .pie-legend li span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin-right: 5px;
+        }
+
+        .pie-legend {
+            list-style-type: none;
+        }
+
+        .inputcheck:hover, #selectallbox:hover {
+            cursor: pointer;
+        }
+    </style>
+    <h2>{{ 'hr.dashboard.title' | trans }}</h2>
+    <div class="row">
+        <div class="col-lg-3 col-md-4">
+
+            <h4>{{ 'dashboard.cycletitle' | trans }}</h4>
+
+            {{ form_start(form) }}
+
+            {{ form_widget(form) }}
+
+            {{ form_end(form) }}
+        </div>
+        <div class="col-lg-offset-3 col-md-offset-2 col-lg-6 col-md-6">
+            <h4>{{ 'dashboard.charttitle' | trans }}</h4>
+            <canvas id="countChart"></canvas>
+            <div id="legend"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="result"></div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="mailssent">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{{ 'dashboard.modal.mailssent.title' | trans }}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{ 'dashboard.modal.mailssent.body' | trans }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <div id="historymodal"></div>
+{% endblock %}
+
+{% block javascripts -%}
+    {{ parent() }}
+
+    <script src="{{ asset('assets/vendor/Chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/datatables/media/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dataTables.select.min.js') }}"></script>
+
+
+    <script>
+        var teller = 0;
+        var table;
+        var nederlands = {
+            "sProcessing": "Bezig...",
+            "sLengthMenu": "_MENU_ resultaten weergeven",
+            "sZeroRecords": "Geen resultaten gevonden",
+            "sInfo": "_START_ tot _END_ van _TOTAL_ resultaten",
+            "sInfoEmpty": "Geen resultaten om weer te geven",
+            "sInfoFiltered": " (gefilterd uit _MAX_ resultaten)",
+            "sInfoPostFix": "",
+            "sSearch": "Zoeken:",
+            "sEmptyTable": "Geen resultaten aanwezig in de tabel",
+            "sInfoThousands": ".",
+            "sLoadingRecords": "Een moment geduld aub - bezig met laden...",
+            "oPaginate": {
+                "sFirst": "Eerste",
+                "sLast": "Laatste",
+                "sNext": "Volgende",
+                "sPrevious": "Vorige"
+            }
+        }
+        var english = {
+            "sEmptyTable": "No data available in table",
+            "sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+            "sInfoEmpty": "Showing 0 to 0 of 0 entries",
+            "sInfoFiltered": "(filtered from _MAX_ total entries)",
+            "sInfoPostFix": "",
+            "sInfoThousands": ",",
+            "sLengthMenu": "Show _MENU_ entries",
+            "sLoadingRecords": "Loading...",
+            "sProcessing": "Processing...",
+            "sSearch": "Search:",
+            "sZeroRecords": "No matching records found",
+            "oPaginate": {
+                "sFirst": "First",
+                "sLast": "Last",
+                "sNext": "Next",
+                "sPrevious": "Previous"
+            },
+            "oAria": {
+                "sSortAscending": ": activate to sort column ascending",
+                "sSortDescending": ": activate to sort column descending"
+            }
+        }
+        var italiano = {
+            "sEmptyTable": "Nessun dato presente nella tabella",
+            "sInfo": "Vista da _START_ a _END_ di _TOTAL_ elementi",
+            "sInfoEmpty": "Vista da 0 a 0 di 0 elementi",
+            "sInfoFiltered": "(filtrati da _MAX_ elementi totali)",
+            "sInfoPostFix": "",
+            "sInfoThousands": ",",
+            "sLengthMenu": "Visualizza _MENU_ elementi",
+            "sLoadingRecords": "Caricamento...",
+            "sProcessing": "Elaborazione...",
+            "sSearch": "Cerca:",
+            "sZeroRecords": "La ricerca non ha portato alcun risultato.",
+            "oPaginate": {
+                "sFirst": "Inizio",
+                "sPrevious": "Precedente",
+                "sNext": "Successivo",
+                "sLast": "Fine"
+            },
+            "oAria": {
+                "sSortAscending": ": attiva per ordinare la colonna in ordine crescente",
+                "sSortDescending": ": attiva per ordinare la colonna in ordine decrescente"
+            }
+        }
+        function getcycles() {
+            $.ajax({
+                url: Routing.generate('hr_getcycles', {
+                    generalcycleid: $('#form_generalcycle').val(),
+                    cycle: $('#form_cycle').val(),
+                    _locale:locale
+                }),
+                success: function (result) {
+                    drawchart();
+                    $("#result").html(result);
+
+                    $('.history').click(function(){
+                        $.ajax({
+                            url: Routing.generate('hr_history', {cycle: $('#form_cycle').val(), id: $(this).data('id'), _locale:locale }),
+                            success: function (result) {
+                                $('#historymodal').html(result);
+                                $('#myHistoryModal').modal('show');
+                            }
+                        });
+                    });
+
+
+                    var language;
+
+                    switch (locale) {
+                        case 'en':
+                            language = english;
+                            break;
+                        case 'nl':
+                            language = nederlands;
+                            break;
+                        case 'it':
+                            language = italiano;
+                            break;
+                    }
+
+                    table = $('#datatable').DataTable({
+                        "language": language,
+                        "order": [],
+                        "columnDefs": [{
+                            "targets": 'no-sort',
+                            "orderable": false,
+                            "searchable": false
+                        }, {
+                            "targets": [0],
+                            "visible": false
+                        }],
+                        select: {
+                            style: 'multi'
+                        }
+                    });
+                    table.select.selector('td:first-child input');
+
+
+                    var actions = '<div class="dropdown"><button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <i class="fa fa-file-text-o"></i> <i class="fa fa-envelope-o"></i> <span class="caret"></span></button><ul class="dropdown-menu" aria-labelledby="dropdownMenu1"><li><a id="exportpdf" href="#">{{ 'dashboard.dropdown.exportpdf' | trans }}</a></li><li><a href="#" id="exportexcel">{{ 'dashboard.dropdown.exportexcel' | trans }}</a></li><li><a id="remindermail" href="#">{{ 'dashboard.dropdown.remindermail' | trans }}</a></li></ul></div>';
+                    $('#datatable_length').html(actions);
+
+
+                    $('#exportpdf').click(function () {
+                        var array = [];
+                        var indexes = table.rows({selected: true}).data().toArray();
+                        $.each(indexes, function (i, val) {
+                            array.push(val[0]);
+                        });
+                        var myJsonString = JSON.stringify(array);
+                        var form = $('#form_cycle').val();
+                        window.open(Routing.generate('hr_pdf', {cycle: form, _locale:locale}) + '?ids=' + myJsonString);
+
+                    });
+
+                    $('.inputcheck').change(function () {
+                        var rowindex = $(this).closest('tr')[0].rowIndex - 1;
+                        if ($(this).is(':checked')) {
+                            table.rows(rowindex).select();
+                        } else {
+                            table.rows(rowindex).deselect();
+                        }
+
+                    });
+
+                    $('#selectallbox').click(function () {
+                        if (teller == 0) {
+                            table.rows().select();
+                            table.$('.inputcheck').prop('checked', true);
+                            teller++;
+                        } else {
+                            table.rows().deselect();
+                            table.$('.inputcheck').prop('checked', false);
+                            teller = 0;
+                        }
+                    });
+
+
+                    $('#remindermail').click(function () {
+                        var array = [];
+                        var indexes = table.rows({selected: true}).data().toArray();
+                        $.each(indexes, function (i, val) {
+                            array.push(val[0]);
+                        });
+                        var myJsonString = JSON.stringify(array);
+                        var form = $('#form_cycle').val();
+                        $.ajax({
+                            url: Routing.generate('hr_remindermail', {cycle: form, _locale:locale}),
+                            data: {ids: myJsonString},
+                            success: function (result) {
+                                $('#mailssent').modal('show');
+
+                            }
+                        });
+                    });
+
+
+                    $('#exportexcel').click(function () {
+                        var array = [];
+                        var indexes = table.rows({selected: true}).data().toArray();
+                        $.each(indexes, function (i, val) {
+                            array.push(val[0]);
+                        });
+                        var myJsonString = JSON.stringify(array);
+                        var form = $('#form_cycle').val();
+                        window.open(Routing.generate('hr_excel', {cycle: form, _locale:locale}) + '?ids=' + myJsonString);
+
+                    });
+
+
+                    var clearSearch = $('<button class="btn btn-default" style="margin-left:5px;cursor:pointer;">' + {{ 'dashboard.clearsearch' | trans |json_encode() | raw}} + '</button>');
+                    $(clearSearch).click(function () {
+                        table.search('');
+                        table.draw();
+                    });
+                    $('#datatable_filter').append(clearSearch);
+
+                }
+            });
+        }
+
+        function getforms() {
+            $.ajax({
+                url: Routing.generate('hr_getforms', {generalcycleid: $('#form_generalcycle').val(), _locale:locale}),
+                success: function (result) {
+                    var select = $('#form_cycle');
+                    select.empty().append('<option value="cdp">Cdp ' + result[0] + '</option>');
+                    if (result[1] != 'empty') {
+                        select.append('<option value="midyear">Midyear ' + result[1] + '</option>');
+                    }
+
+                    select.append('<option value="endyear">Yearend ' + result[2] + '</option>');
+
+                }
+            });
+        }
+
+        function drawchart() {
+            $.ajax({
+                url: Routing.generate('hr_getformstatuscount', {
+                    generalcycleid: $('#form_generalcycle').val(),
+                    cycle: $('#form_cycle').val(),
+                    _locale:locale
+                }),
+                success: function (result) {
+                    var data = [
+                        {
+                            value: result[0].count,
+                            color: "#008C48",
+                            highlight: "#7AC36A",
+                            label: result[0].name
+                        },
+                        {
+                            value: result[1].count,
+                            color: "#F47D23",
+                            highlight: "#FAA75B",
+                            label: result[1].name
+
+                        },
+                        {
+                            value: result[2].count,
+                            color: "#185AA9",
+                            highlight: "#5A9BD4",
+                            label: result[2].name
+                        },
+                        {
+                            value: result[3].count,
+                            color: "#CE7058",
+                            highlight: "#7AC36A",
+                            label: result[3].name
+                        },
+                        {
+                            value: result[4].count,
+                            color: "#B43894",
+                            highlight: "#D77FB4",
+                            label: result[4].name
+
+                        },
+                        {
+                            value: result[5].count,
+                            color: "#010202",
+                            highlight: "#737373",
+                            label: result[5].name
+                        },
+                        {
+                            value: result[6].count,
+                            color: "#662C91",
+                            highlight: "#9E67AB",
+                            label: result[6].name
+                        },
+                        {
+                            value: result[7].count,
+                            color: "#EE2E2F",
+                            highlight: "#F15A60",
+                            label: result[7].name
+
+                        },
+                        {
+                            value: result[8].count,
+                            color: "#F7EC17",
+                            highlight: "#FEFF99",
+                            label: result[8].name
+                        }
+                    ]
+                    var ctx = $("#countChart").get(0).getContext("2d");
+                    var myPieChart = new Chart(ctx).Pie(data);
+                    var legendchart = '<ul class="pie-legend">'
+                    $.each(data, function (index, object) {
+                        if (object.value > 0) {
+                            legendchart += '<li><span style=\"background-color:' + object.color + '"></span>' + object.label + '</li>';
+                        }
+                    });
+                    legendchart += '</ul>';
+                    $('#legend').html(legendchart);
+
+                    $('#countChart').click(function (evt) {
+                        var activePoints = myPieChart.getSegmentsAtEvent(evt);
+                        if (typeof activePoints != 'undefined') {
+                            table.search(activePoints[0].label);
+                            table.draw();
+                        }
+                    });
+
+                }
+            });
+
+
+        }
+
+        $(function () {
+            Chart.defaults.global.responsive = true;
+            getforms();
+            getcycles();
+            $('#form_generalcycle').change(function () {
+                getforms();
+                getcycles();
+
+            });
+            $('#form_cycle').change(function () {
+                getcycles();
+            });
+        });
+
+    </script>
+{% endblock %}
+
+

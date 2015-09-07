@@ -6,11 +6,15 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    app.locales: en|nl
     locale: en
 
 framework:
     #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
+    translator:
+      fallback: "%locale%"
+      enabled: true
+      logging: true
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -35,12 +39,14 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form_themes:
+            - 'IntoPeopleDatabaseBundle:Form:bootstrap_3_layout.html.twig'
 
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        [IntoPeopleDatabaseBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -61,7 +67,7 @@ doctrine:
                     user:     "%database_user%"
                     password: "%database_password%"
                     charset:  UTF8
-                customer:
+                admin:
                     host:     "%database_host2%"
                     port:     "%database_port2%"
                     dbname:   "%database_name2%"
@@ -77,8 +83,8 @@ doctrine:
                     mappings:
                         IntoPeopleDatabaseBundle: ~
                         FOSUserBundle: ~
-                customer:
-                    connection: customer
+                admin:
+                    connection: admin
                     mappings:
                         IntoPeopleAdminBundle: ~
                         FOSUserBundle: ~
@@ -95,3 +101,23 @@ rollerworks_multi_user:
     from_email:
         address: webmaster@example.com
         sender_name: webmaster
+
+vich_uploader:
+    db_driver: orm # or mongodb or propel or phpcr
+
+    mappings:
+            user_photo:
+                uri_prefix:         /user/photos
+                upload_destination: %kernel.root_dir%/../web/images/users
+            organization_logo:
+                            uri_prefix:         /organization/logos
+                            upload_destination: %kernel.root_dir%/../web/organization/logos
+
+monolog:
+    handlers:
+        translation:
+            # log all messages (since debug is the lowest level)
+            level:    debug
+            type:     stream
+            path:     "%kernel.logs_dir%/translation.log"
+            channels: [translation]

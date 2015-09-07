@@ -1,0 +1,82 @@
+{% extends '::base.html.twig' %} {% block body -%}
+
+<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+<div id="portlet-config" class="modal hide">
+	<div class="modal-header">
+		<button data-dismiss="modal" class="close" type="button"></button>
+		<h3>Widget Settings</h3>
+	</div>
+	<div class="modal-body">Widget settings form goes here</div>
+</div>
+<div class="clearfix"></div>
+<div class="container">
+	<div class="content">
+
+		<div class="page-title">
+			<i class="fa fa-group"></i>
+			<h3>
+				 New<span class="semi-bold"> organization</span>
+			</h3>
+		</div>
+
+		<div class="row">
+			<div class="col-md-8">
+				
+
+
+						{{ form_start(form) }} {{ form_errors(form) }}
+
+                        {{ form_row(form.name) }}
+                        
+                                               
+                        {{ form_row(form.logoFile) }}
+                        
+
+                        
+                        {% for person in form.persons %}
+                          </div>
+                            </div>
+                            
+                            <div class="row margin-top-30">
+			<div class="col-md-8">
+                            
+                            <div class="page-title">
+                            <i class="fa fa-user"></i> <h3> Organization <span class="semi-bold">Admin</span></h3>
+                            </div>
+                            
+                            <p><em>Create an admin for this organization. The admin can create new users for his organization.</em></p>
+                        
+                            {{ form_row(person.title) }}
+                        
+                            {{ form_row(person.firstname) }}
+                        
+                            {{ form_row(person.lastname) }}
+                            
+                            <!-- HIDDEN FIELDS FOR CHROME WRONG AUTOFILL -->
+                            <input style="display:none" type="text" name="fakeusernameremembered"/>
+                            <input style="display:none" type="password" name="fakepasswordremembered"/>
+                        
+                            {{ form_row(person.email) }}
+                        
+                            {{ form_row(person.plainpassword) }}
+                        
+                        
+                            {{ form_row(person.language) }}
+    
+						<p class="margin-top-30">{{ form_widget(form.submit) }} <a href="{{ path('organization') }}" class="btn btn-default btn-cons" type="button">Back</a></p>
+
+						{{ form_end(form) }} 
+						
+						{% endfor %}
+						
+						
+						
+						
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

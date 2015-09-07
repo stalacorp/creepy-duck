@@ -1,0 +1,37 @@
+<div class="col-md-10">
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>{{ "table.name" | trans }}</th>
+            <th>{{ "table.isactive" | trans }}</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('systemmail_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+                <td>{% if entity.mailtype.isActive %}
+                        <input type="checkbox" {% if entity.mailtype.name == 'usercreated' %}disabled{% endif %}
+                               class="letoggle" data-id="{{ entity.mailtype.id }}" checked data-toggle="toggle"
+                               data-on="{{ "systemmail.toggleenable" | trans }}"
+                               data-off="{{ "systemmail.toggledisable" | trans }}">
+                    {% else %}
+                        <input type="checkbox" class="letoggle" data-id="{{ entity.mailtype.id }}" data-toggle="toggle"
+                               data-on="{{ "systemmail.toggleenable" | trans }}"
+                               data-off="{{ "systemmail.toggledisable" | trans }}">
+                    {% endif %}
+                </td>
+                {#<td><a class="btn btn-primary" href="{{ path('systemmail_show', { 'id': entity.id }) }}">{{ "button.show" | trans}}</a></td>#}
+                <td><a class="btn btn-success"
+                       href="{{ path('systemmail_edit', { 'id': entity.id }) }}">{{ "button.edit" | trans }}</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+
+

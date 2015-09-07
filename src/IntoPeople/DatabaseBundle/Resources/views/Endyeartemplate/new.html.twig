@@ -1,0 +1,291 @@
+{% extends '::base.html.twig' %} {% block body -%}
+
+	<h2>{{ "endyeartemplate.new.title" | trans }}</h2>
+
+	{{ form_start(form) }}
+
+	<div class="row">
+		<div class="col-md-4">
+
+			{{ form_row(form.language) }}
+
+			{{ form_row(form.mainTitle) }}
+
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-md-6">
+
+			{{ form_row(form.title1) }}
+
+			{{ form_row(form.title1Description) }}
+
+		</div>
+	</div>
+
+
+
+
+	<div class="row">
+		<div class="col-md-12">
+
+
+			<div class="row">
+
+				<div class="col-md-6">
+
+					<table class="table borderless">
+
+						<tr>
+							<th>{{ form_widget(form.name) }}<th>
+							<td><span class="template-example">: John Doe</span></td>
+						</tr>
+
+						<tr>
+							<th>{{ form_widget(form.supervisor) }}<th>
+							<td><span class="template-example">: John Doe</span></td>
+						</tr>
+
+						<tr>
+							<th>{{ form_widget(form.dateDiscussion) }}<th>
+							<td><span class="template-example">: dd / mm / yyyy</span></td>
+						</tr>
+
+					</table>
+
+				</div>
+
+				<div class="col-md-6">
+
+					<table class="table borderless">
+
+						<tr>
+							<th>{{ form_widget(form.team) }}<th>
+							<td><span class="template-example">: Sales Team</span></td>
+						</tr>
+
+
+						<tr>
+							<th>{{ form_widget(form.function) }}<th>
+							<td><span class="template-example">: Manager</span></td>
+						</tr>
+
+					</table>
+
+				</div>
+
+			</div>
+
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+
+			{{ form_row(form.title2) }}
+
+			{{ form_row(form.title2Description) }}
+
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-md-12">
+
+			<table class="table borderless">
+				<tr>
+					<th style="width: 20%">{{ form_widget(form.table2Col1) }}</th>
+					<th style="width: 20%">{{ form_widget(form.table2Col2) }}</th>
+					<th style="width: 20%">{{ form_widget(form.table2Col3) }}</th>
+					<th style="width: 20%">{{ form_widget(form.table2Col4) }}</th>
+					<th style="width: 20%">{{ form_widget(form.table2Col5) }}</th>
+				</tr>
+
+				<tr>
+					<td>{{ form_widget(form.table2Col1Descr) }}</td>
+					<td>{{ form_widget(form.table2Col2Descr) }}</td>
+					<td>{{ form_widget(form.table2Col3Descr) }}</td>
+					<td>{{ form_widget(form.table2Col4Descr) }}</td>
+					<td>{{ form_widget(form.table2Col5Descr) }}</td>
+				</tr>
+
+				<tr>
+					<td>
+						<p></p>
+
+						<p><span class="template-example">Integer vestibulum molestie velit, ac congue libero ullamcorper sit amet.</span></p>
+					</td>
+					<td>
+						<p></p>
+
+						<p><span class="template-example">Morbi id tincidunt lorem, eu feugiat odio. Aenean pellentesque placerat ornare.</span></p>
+					</td>
+					<td><span class="template-example">Donec sollicitudin ipsum nec pulvinar facilisis.</span></td>
+					<td><span class="template-example">Curabitur tincidunt felis mi, at imperdiet tortor porta ut. Ut eu dui condimentum erat hendrerit lobortis.</span></td>
+					<td><span class="template-example">Fusce sed mi eget nisi pretium tincidunt. Phasellus sapien mi, fringilla eget mattis in, suscipit sit amet turpis.</span></td>
+				</tr>
+
+			</table>
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+
+			{{ form_row(form.title3) }}
+
+			{{ form_row(form.title3Description) }}
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+
+
+			<table class="table borderless">
+
+				<thead>
+				<tr>
+					<th style="width: 50%" colspan="2">{{ form_widget(form.table3Col1) }}</th>
+					<th style="width: 50%">{{ form_widget(form.table3Col2) }}</th>
+				</tr>
+				</thead>
+
+				<tbody>
+
+				<tr>
+					<td colspan="2">{{ form_widget(form.table3Col1Descr) }}</td>
+					<td>{{ form_widget(form.table3Col2Descr) }}</td>
+				</tr>
+
+				<tr>
+					<td>{{ form_row(form.table3Title1) }}</td>
+					<td></td>
+					<td></td>
+				</tr>
+
+
+				<tr>
+					<td colspan="2"><span class="template-example">Nulla bibendum justo et eros finibus viverra. Proin sed dolor lacus. Fusce interdum dignissim rhoncus.</span></td>
+					<td><span class="template-example">Fusce sed mi eget nisi pretium tincidunt. Phasellus sapien mi, fringilla eget mattis in, suscipit sit amet turpis.</span></td>
+				</tr>
+
+
+				</tbody>
+
+			</table>
+
+			<table class="table borderless">
+
+				<thead>
+
+				<tr>
+					<td>{{ form_row(form.table3Title2) }}</td>
+					<td></td>
+					<td></td>
+				</tr>
+
+
+				<tr>
+					<th style="width: 50%" colspan="2"></th>
+					<th style="width: 50%"></th>
+				</tr>
+				</thead>
+				<tbody>
+
+				<tr>
+					<td colspan="2"><span class="template-example">Nulla bibendum justo et eros finibus viverra. Proin sed dolor lacus. Fusce interdum dignissim rhoncus.</span></td>
+					<td><span class="template-example">Fusce sed mi eget nisi pretium tincidunt. Phasellus sapien mi, fringilla eget mattis in, suscipit sit amet turpis.</span></td>
+				</tr>
+
+
+				</tbody>
+
+			</table>
+
+			<table class="table borderless">
+				<thead>
+
+				<tr>
+					<td>{{ form_row(form.table3Title3) }}</td>
+					<td></td>
+					<td></td>
+				</tr>
+
+				<tr>
+					<th style="width: 50%" colspan="2"></th>
+					<th style="width: 50%"></th>
+				</tr>
+				</thead>
+
+				<tbody>
+
+				<tr>
+					<td><span class="template-example">Nulla bibendum justo et eros finibus viverra. Proin sed dolor lacus. Fusce interdum dignissim rhoncus.</span></td>
+					<td><span class="template-example">Ut vel arcu mi. Aliquam scelerisque mauris sed ante rutrum, nec gravida eros vulputate.</span></td>
+					<td><span class="template-example">Fusce sed mi eget nisi pretium tincidunt. Phasellus sapien mi, fringilla eget mattis in, suscipit sit amet turpis.</span></td>
+				</tr>
+
+				</tbody>
+
+
+			</table>
+
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+
+			{{ form_row(form.title4) }}
+
+			{{ form_row(form.question1) }}
+
+			{{ form_row(form.question2) }}
+
+			{{ form_row(form.question3) }}
+
+			{{ form_row(form.question4) }}
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+
+			{{ form_row(form.supervisorComment) }}
+
+			{{ form_row(form.signatureSupervisor) }}
+
+
+
+		</div>
+
+		<div class="col-md-6">
+
+			{{ form_row(form.feedback) }}
+
+			{{ form_row(form.signatureEmployee) }}
+
+		</div>
+	</div>
+
+
+	<div class="buttons">
+		{{ form_widget(form.submit) }}
+
+		<a href="{{ path('endyeartemplate') }}" type="button" class="btn btn-default">{{ "button.back" | trans }}</a>
+	</div>
+
+	{{ form_end(form) }}
+
+
+{% endblock %}
+

@@ -1,0 +1,71 @@
+{% extends '::base.html.twig' %} {% block body -%}
+
+
+    <h2>{{ 'user.show.title' | trans }}</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+
+
+            <table class="table borderless">
+                <tbody>
+                <tr>
+                    <th>Firstname</th>
+                    <td>{{ entity.firstname }}</td>
+                </tr>
+                <tr>
+                    <th>Lastname</th>
+                    <td>{{ entity.lastname }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ entity.email }}</td>
+                </tr>
+                <tr>
+                    <th>Supervisor</th>
+                    <td>{{ entity.supervisor }}</td>
+                </tr>
+                <tr>
+                    <th>User status</th>
+                    <td>{{ entity.userstatus }}</td>
+                </tr>
+                <tr>
+                    <th>Team</th>
+                    <td>{{ entity.team }}</td>
+                </tr>
+                <tr>
+                    <th>Function</th>
+                    <td>{{ entity.function }}</td>
+                </tr>
+                <tr>
+                    <th>Hiredate</th>
+                    <td>{% if entity.hiredate != null %}{{ entity.hiredate | localizeddate('medium', 'none', app.request.locale ) }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Datelastpromotion</th>
+                    <td>{% if entity.datelastpromotion != null %}{{ entity.datelastpromotion | localizeddate('medium', 'none', app.request.locale ) }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Photo</th>
+                    <td><img src="{{ app.request.basePath }}{{ vich_uploader_asset(entity, 'photo') }}"
+                             alt="{{ entity.photoname }}"/></td>
+                </tr>
+                </tbody>
+            </table>
+
+
+            <a href="{{ path('user') }}" type="button" class="btn btn-default btn-cons"> Back to the list </a>
+            <a href="{{ path('user_edit', { 'id': entity.id }) }}" type="button" class="btn btn-default btn-cons">
+                Edit </a>
+
+            {{ form(delete_form) }}
+
+
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+

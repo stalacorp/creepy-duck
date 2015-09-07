@@ -1,0 +1,20 @@
+<table class="table" id="datatable">
+    <thead>
+    <tr>
+        <th>{{ "table.user" | trans }}</th>
+        <th>{{ "table.supervisor" | trans }}</th>
+        <th>{{ "table.formstatus" | trans }}</th>
+        <th class="no-sort"></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td>{{ entity.feedbackcycle.user.firstname }} {{ entity.feedbackcycle.user.lastname }}</td>
+            <td>{% if entity.supervisor is not empty %} {{ entity.supervisor.firstname }} {{ entity.supervisor.lastname }} {% endif %}</td>
+            <td>{{ entity.formstatus.name }}</td>
+            <td><a class="btn btn-primary" href="{{ path(showlink, { 'id': entity.id }) }}">{{ "button.show" | trans}}</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

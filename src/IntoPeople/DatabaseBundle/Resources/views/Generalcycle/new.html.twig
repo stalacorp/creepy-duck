@@ -1,0 +1,103 @@
+{% extends '::base.html.twig' %} 
+
+{% block body -%}
+
+    <h2>{{ "generalcycle.new.title" | trans }}</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            {% for flashMessage in app.session.flashbag.get('error') %}
+
+                <div class="alert alert-error">
+                    <button class="close" data-dismiss="alert"></button>
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+
+            {{ form_start(form) }}
+
+            <h4>{{ 'generalcycle.new.subtitle1' | trans }}</h4>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <p><em>{{ 'generalcycle.new.description1' | trans }}</em></p>
+
+                    {{ form_row(form.year) }}
+
+
+                </div>
+
+            </div>
+
+            <h4>{{ 'generalcycle.new.subtitle2' | trans }}</h4>
+
+            <p><em>{{ 'generalcycle.new.description2' | trans }}</em></p>
+
+            <div class="row">
+
+
+
+                <div class="col-md-6">
+                    {{ form_row(form.startdatecdp) }}
+                </div>
+
+                <div class="col-md-6">
+                    {{ form_row(form.enddatecdp) }}
+                </div>
+
+            </div>
+
+            <h4>{{ 'generalcycle.new.subtitle3' | trans }}</h4>
+
+            <p><em>{{ 'generalcycle.new.description3' | trans }}</em></p>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    {{ form_row(form.startdatemidyear) }}
+                </div>
+
+                <div class="col-md-6">
+                    {{ form_row(form.enddatemidyear) }}
+                </div>
+
+            </div>
+
+            <h4>{{ 'generalcycle.new.subtitle4' | trans }}</h4>
+
+            <p><em>{{ 'generalcycle.new.description4' | trans }}</em></p>
+
+            <div class="row form-row">
+
+                <div class="col-md-6">
+                    {{ form_row(form.startdateyearend) }}
+                </div>
+
+                <div class="col-md-6">
+                    {{ form_row(form.enddateyearend) }}
+                </div>
+
+            </div>
+
+
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+
+                {{ form_row(form.organization) }}
+
+            {% endif %}
+
+            <div class="buttons">{{ form_widget(form.submit) }} <a href="{{ path('generalcycle') }}"
+                                                                         class="btn btn-default btn-cons" type="button">Back</a>
+            </div>
+
+            {{ form_end(form) }}
+
+
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+
+
+    <h2>{{ 'corequality.index.title' | trans }}</h2>
+
+
+    <div class="row">
+        <div class="col-md-6">
+
+
+            {% for flashMessage in app.session.flashbag.get('success') %}
+
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{ flashMessage }}
+                </div>
+
+            {% endfor %}
+
+
+            <table class="table borderless">
+                <thead>
+                <tr>
+                    <th>Corequality</th>
+                    <th>Language</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td>{{ entity.coreQuality }}</td>
+                        <td>{{ entity.language }}</td>
+                        <td>
+                            <a href="{{ path('corequality_edit', { 'id': entity.id }) }}" role="button" class="btn btn-default">{{ 'button.edit' | trans }}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+            <a href="{{ path('corequality_new') }}" role="button" class="btn btn-default">{{ 'button.create' | trans }}</a>
+
+
+        </div>
+    </div>
+
+{% endblock %}
+

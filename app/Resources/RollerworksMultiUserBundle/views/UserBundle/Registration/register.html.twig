@@ -1,0 +1,5 @@
+{% extends rollerworks_multi_user_user().getTemplate("layout") %}
+
+{% block fos_user_content %}
+{% include "RollerworksMultiUserBundle:UserBundle/Registration:register_content.html.twig" %}
+{% endblock fos_user_content %}

@@ -1,46 +1,57 @@
-home:
-    path:     /
-    defaults: { _controller: "IntoPeopleDatabaseBundle:Default:index" }
+into_people_database:
+    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}/user
+    requirements:
+      _locale: "%app.locales%"
+    defaults: { _locale: en }
 
 #user
 into_people_database_security:
     resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/security.yml"
-    prefix: /user
+    prefix: /{_locale}/user
+    requirements:
+          _locale: "%app.locales%"
+    defaults: { _locale: en }
 
 into_people_database_profile:
     resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/profile.yml"
-    prefix: /user/profile
+    prefix: /{_locale}/user/profile
+    requirements:
+      _locale: "%app.locales%"
+    defaults: { _locale: en }
 
 into_people_database_register:
     resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/registration.yml"
-    prefix: /user/register
+    prefix: /{_locale}/user/register
+    requirements:
+      _locale: "%app.locales%"
+    defaults: { _locale: en }
 
 into_people_database_resetting:
     resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/resetting.yml"
-    prefix: /user/resetting
+    prefix: /{_locale}/user/resetting
+    requirements:
+      _locale: "%app.locales%"
+    defaults: { _locale: en }
 
 into_people_database_change_password:
     resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/change_password.yml"
-    prefix: /user/profile
+    prefix: /{_locale}/user/profile
+    requirements:
+      _locale: "%app.locales%"
+    defaults: { _locale: en }
 
 #admin
-into_people_admin:
-    resource: "@IntoPeopleAdminBundle/Controller"
-    type: annotation
-    prefix: /admin
-
 into_people_admin_security:
     resource: "@IntoPeopleAdminBundle/Resources/config/routing/security.yml"
     prefix: /admin
+    requirements:
+      _locale: "%app.locales%"
+    defaults: { _locale: en }
 
 into_people_admin_profile:
     resource: "@IntoPeopleAdminBundle/Resources/config/routing/profile.yml"
     prefix: /admin/profile
-
-into_people_admin_register:
-    resource: "@IntoPeopleAdminBundle/Resources/config/routing/registration.yml"
-    prefix: /admin/register
-
 into_people_admin_resetting:
     resource: "@IntoPeopleAdminBundle/Resources/config/routing/resetting.yml"
     prefix: /admin/resetting
@@ -49,5 +60,10 @@ into_people_admin_change_password:
     resource: "@IntoPeopleAdminBundle/Resources/config/routing/change_password.yml"
     prefix: /admin/profile
 
+into_people_adminmain:
+    resource: "@IntoPeopleAdminBundle/Controller"
+    type: annotation
+    prefix: /admin
 
-
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

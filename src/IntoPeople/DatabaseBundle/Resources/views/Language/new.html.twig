@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h2>{{ 'language.new.title' }}</h2>
+
+    <div class="row">
+        <div class="col-md-4">
+
+            {{ form_start(form) }}
+
+            {{ form_row(form.name) }}
+
+            {{ form_widget(form.submit) }}
+
+            <a href="{{ path('language') }}" type="button" class="btn btn-default btn-cons">{{ 'button.back' | trans }}</a>
+
+            {{ form_end(form) }}
+
+
+
+        </div>
+    </div>
+
+
+{% endblock %}

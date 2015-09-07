@@ -1,0 +1,423 @@
+<div class="row">
+    <div class="col-md-4">
+
+
+        <h3>{{ 'myfeedbackcycle.cdp.title' | trans }}</h3>
+
+        <p>{{ 'myfeedbackcycle.cdp.description' | trans }}</p>
+
+        <table class="table borderless">
+            <tr>
+                <th>{{ 'myfeedbackcycle.cdp.startdate' | trans }}</th>
+                <td>{{ feedbackcycle.generalcycle.startdatecdp | localizeddate('medium', 'none', app.request.locale ) }}</td>
+            </tr>
+
+            <tr>
+                <th>{{ 'myfeedbackcycle.cdp.enddate' | trans }}</th>
+                <td>{{ feedbackcycle.generalcycle.enddatecdp | localizeddate('medium', 'none', app.request.locale ) }}</td>
+            </tr>
+
+            <tr>
+                <th>{{ 'myfeedbackcycle.cdp.formstatus' | trans }}</th>
+                <td>{{ feedbackcycle.cdp.formstatus.name }}</td>
+            </tr>
+
+            <tr>
+                <th>{{ 'myfeedbackcycle.cdp.formhistory' | trans }}</th>
+                <td>
+                    <button class="btn btn-small" data-toggle="modal" data-target="#myModal">History
+                    </button>
+                </td>
+            </tr>
+
+        </table>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{{ 'myfeedbackcycle.formhistory.title' }}</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row form-row">
+                            <div class="col-md-12">
+
+                                <table class="table borderless">
+                                    <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+
+                                    {% for formhistory in feedbackcycle.cdp.cdphistories %}
+                                        <tr>
+                                            <td>{{ formhistory.date | localizeddate('medium', 'none', app.request.locale )}}</td>
+                                            <td>{{ formhistory.formstatus.name }}</td>
+                                        </tr>
+
+                                    {% endfor %}
+
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {% set progress1 = 0 %}
+
+        {% if feedbackcycle.cdp.formstatus.id == 1 %}
+            {% set progress1 = 0 %}
+        {% elseif feedbackcycle.cdp.formstatus.id == 2 %}
+            {% set progress1 = 15 %}
+        {% elseif feedbackcycle.cdp.formstatus.id == 3 %}
+            {% set progress1 = 30 %}
+        {% elseif feedbackcycle.cdp.formstatus.id == 4 %}
+            {% set progress1 = 45 %}
+        {% elseif feedbackcycle.cdp.formstatus.id == 5 %}
+            {% set progress1 = 60 %}
+        {% elseif feedbackcycle.cdp.formstatus.id == 6 %}
+            {% set progress1 = 75 %}
+        {% elseif feedbackcycle.cdp.formstatus.id == 7 %}
+            {% set progress1 = 90 %}
+        {% elseif feedbackcycle.cdp.formstatus.id == 8 %}
+            {% set progress1 = 100 %}
+        {% endif %}
+
+        <p>Overall Progress</p>
+
+        <div class="progress progress-striped active">
+            <div data-percentage="0%" style="width: {{ progress1 }}%;"
+                 class="progress-bar progress-bar-primary" role="progressbar" aria-valuemin="0"
+                 aria-valuemax="100"></div>
+        </div>
+
+        <div>
+
+            {% if feedbackcycle.cdp.formstatus.id == 1 %}
+
+                <a href="{{ path('cdp_edit',{'id' : feedbackcycle.cdp.id}) }}"
+                   class="btn btn-block btn-primary" type="button">Fill in</a>
+
+            {% elseif feedbackcycle.cdp.formstatus.id == 2 %}
+
+                <a href="{{ path('cdp_edit',{'id' : feedbackcycle.cdp.id}) }}"
+                   class="btn btn-block btn-primary" type="button">Fill in</a>
+
+            {% elseif feedbackcycle.cdp.formstatus.id == 4 %}
+
+                <a href="{{ path('cdp_edit',{'id' : feedbackcycle.cdp.id}) }}"
+                   class="btn btn-block btn-primary" type="button">Edit</a>
+
+            {% elseif feedbackcycle.cdp.formstatus.id == 7 %}
+
+                <a href="{{ path('cdp_edit',{'id' : feedbackcycle.cdp.id}) }}"
+                   class="btn btn-block btn-primary" type="button">Edit</a>
+
+            {% elseif feedbackcycle.cdp.formstatus.id == 8 %}
+
+                <a href="{{ path('cdp_edit',{'id' : feedbackcycle.cdp.id}) }}"
+                   class="btn btn-block btn-primary" type="button">View</a>
+
+            {% endif %}
+
+        </div>
+
+
+    </div>
+
+    <div class="col-md-4">
+
+        <h3>{{ 'myfeedbackcycle.midyear.title' | trans }}</h3>
+
+        <p>{{ 'myfeedbackcycle.midyear.description' | trans }}</p>
+
+        <table class="table borderless">
+            <tr>
+                <th>{{ 'myfeedbackcycle.midyear.startdate' | trans }}</th>
+                <td>{{ feedbackcycle.generalcycle.startdatemidyear | localizeddate('medium', 'none', app.request.locale ) }}</td>
+            </tr>
+
+            <tr>
+                <th>{{ 'myfeedbackcycle.midyear.enddate' | trans }}</th>
+                <td>{{ feedbackcycle.generalcycle.enddatemidyear | localizeddate('medium', 'none', app.request.locale ) }}</td>
+            </tr>
+
+            <tr>
+                <th>{{ 'myfeedbackcycle.midyear.formstatus' | trans }}</th>
+                <td>{{ feedbackcycle.midyear.formstatus.name }}</td>
+            </tr>
+
+            <tr>
+                <th>{{ 'myfeedbackcycle.midyear.formhistory' | trans }}</th>
+                <td>
+                    <button class="btn btn-small" data-toggle="modal" data-target="#midyearhistory">
+                        History
+                    </button>
+                </td>
+            </tr>
+
+        </table>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="midyearhistory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{{ 'myfeedbackcycle.formhistory.title' }}</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row form-row">
+                            <div class="col-md-12">
+
+                                <table class="table borderless">
+                                    <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+
+                                    {% for formhistory in feedbackcycle.midyear.midyearhistories %}
+                                        <tr>
+                                            <td>{{ formhistory.date | date }}</td>
+                                            <td>{{ formhistory.formstatus.name }}</td>
+                                        </tr>
+                                    {% endfor %}
+
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {% set progress2 = 0 %}
+
+        {% if feedbackcycle.midyear.formstatus.id == 1 %}
+            {% set progress2 = 0 %}
+        {% elseif feedbackcycle.midyear.formstatus.id == 2 %}
+            {% set progress2 = 15 %}
+        {% elseif feedbackcycle.midyear.formstatus.id == 3 %}
+            {% set progress2 = 30 %}
+        {% elseif feedbackcycle.midyear.formstatus.id == 4 %}
+            {% set progress2 = 45 %}
+        {% elseif feedbackcycle.midyear.formstatus.id == 5 %}
+            {% set progress2 = 60 %}
+        {% elseif feedbackcycle.midyear.formstatus.id == 6 %}
+            {% set progress2 = 75 %}
+        {% elseif feedbackcycle.midyear.formstatus.id == 7 %}
+            {% set progress2 = 90 %}
+        {% elseif feedbackcycle.midyear.formstatus.id == 8 %}
+            {% set progress2 = 100 %}
+        {% endif %}
+
+        <p>Overall Progress</p>
+
+        <div class="progress progress-striped active">
+            <div data-percentage="0%" style="width: {{ progress2 }}%;"
+                 class="progress-bar progress-bar-primary" role="progressbar" aria-valuemin="0"
+                 aria-valuemax="100"></div>
+        </div>
+
+        <div>
+
+            {% if feedbackcycle.midyear.formstatus.id == 1 %}
+
+                <a href="{{ path('midyear_edit',{'id' : feedbackcycle.midyear.id}) }}"
+                   class="btn btn-block btn-primary" type="button">Fill in</a>
+
+            {% elseif feedbackcycle.midyear.formstatus.id == 2 %}
+
+                <a href="{{ path('midyear_edit',{'id' : feedbackcycle.midyear.id}) }}"
+                   class="btn btn-block btn-primary" type="button">Fill in</a>
+
+            {% elseif feedbackcycle.midyear.formstatus.id == 4 %}
+
+                <a href="{{ path('midyear_edit',{'id' : feedbackcycle.midyear.id}) }}"
+                   class="btn btn-block btn-primary" type="button">Edit</a>
+
+            {% elseif feedbackcycle.midyear.formstatus.id == 7 %}
+
+                <a href="{{ path('midyear_edit',{'id' : feedbackcycle.midyear.id}) }}"
+                   class="btn btn-block btn-primary" type="button">Edit</a>
+
+            {% elseif feedbackcycle.midyear.formstatus.id == 8 %}
+
+                <a href="{{ path('midyear_edit',{'id' : feedbackcycle.midyear.id}) }}"
+                   class="btn btn-block btn-primary" type="button">View</a>
+
+            {% endif %}
+
+        </div>
+
+
+    </div>
+
+    <div class="col-md-4">
+
+        <h3>{{ 'myfeedbackcycle.endyear.title' | trans }}</h3>
+
+        <p>{{ 'myfeedbackcycle.endyear.description' | trans }}</p>
+
+        <table class="table borderless">
+
+            <tr>
+                <th>{{ 'myfeedbackcycle.endyear.startdate' | trans }}</th>
+                <td>{{ feedbackcycle.generalcycle.startdateyearend | localizeddate('medium', 'none', app.request.locale ) }}</td>
+            </tr>
+
+            <tr>
+                <th>{{ 'myfeedbackcycle.endyear.enddate' | trans }}</th>
+                <td>{{ feedbackcycle.generalcycle.enddateyearend | localizeddate('medium', 'none', app.request.locale ) }}</td>
+            </tr>
+
+
+            <tr>
+                <th>{{ 'myfeedbackcycle.endyear.formstatus' | trans }}</th>
+                <td>{{ feedbackcycle.endyear.formstatus.name }}</td>
+            </tr>
+
+            <tr>
+                <th>{{ 'myfeedbackcycle.endyear.formhistory' | trans }}</th>
+                <td>
+                    <button class="btn btn-small" data-toggle="modal" data-target="#endyearhistory">
+                        History
+                    </button>
+                </td>
+            </tr>
+
+        </table>
+
+        <!-- Modal -->
+        <div class="modal fade" id="endyearhistory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{{ 'myfeedbackcycle.formhistory.title' }}</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row form-row">
+                            <div class="col-md-12">
+
+                                <table class="table borderless">
+                                    <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+
+                                    {% for formhistory in feedbackcycle.endyear.endyearhistories %}
+                                        <tr>
+                                            <td>{{ formhistory.date | date }}</td>
+                                            <td>{{ formhistory.formstatus.name }}</td>
+                                        </tr>
+                                    {% endfor %}
+
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {% set progress3 = 0 %}
+
+        {% if feedbackcycle.endyear.formstatus.id == 1 %}
+            {% set progress3 = 0 %}
+        {% elseif feedbackcycle.endyear.formstatus.id == 2 %}
+            {% set progress3 = 15 %}
+        {% elseif feedbackcycle.endyear.formstatus.id == 3 %}
+            {% set progress3 = 30 %}
+        {% elseif feedbackcycle.endyear.formstatus.id == 4 %}
+            {% set progress3 = 45 %}
+        {% elseif feedbackcycle.endyear.formstatus.id == 5 %}
+            {% set progress3 = 60 %}
+        {% elseif feedbackcycle.endyear.formstatus.id == 6 %}
+            {% set progress3 = 75 %}
+        {% elseif feedbackcycle.endyear.formstatus.id == 7 %}
+            {% set progress3 = 90 %}
+        {% elseif feedbackcycle.endyear.formstatus.id == 8 %}
+            {% set progress3 = 100 %}
+        {% endif %}
+
+        <p>Overall Progress</p>
+
+        <div class="progress progress-striped active">
+            <div data-percentage="0%" style="width: {{ progress3 }}%;"
+                 class="progress-bar progress-bar-primary" role="progressbar" aria-valuemin="0"
+                 aria-valuemax="100"></div>
+        </div>
+
+        <div>
+
+
+            {% if feedbackcycle.endyear.formstatus.id == 1 %}
+
+                <a href="{{ path('endyear_edit',{'id' : feedbackcycle.endyear.id}) }}"
+                   class="btn btn-block btn-primary" type="button">Fill in</a>
+
+            {% elseif feedbackcycle.endyear.formstatus.id == 2 %}
+
+                <a href="{{ path('endyear_edit',{'id' : feedbackcycle.endyear.id}) }}"
+                   class="btn btn-block btn-primary" type="button">Fill in</a>
+
+            {% elseif feedbackcycle.endyear.formstatus.id == 4 %}
+
+                <a href="{{ path('endyear_edit',{'id' : feedbackcycle.endyear.id}) }}"
+                   class="btn btn-block btn-primary" type="button">Edit</a>
+
+            {% elseif feedbackcycle.endyear.formstatus.id == 7 %}
+
+                <a href="{{ path('endyear_edit',{'id' : feedbackcycle.endyear.id}) }}"
+                   class="btn btn-block btn-primary" type="button">Edit</a>
+
+            {% elseif feedbackcycle.endyear.formstatus.id == 8 %}
+
+                <a href="{{ path('endyear_edit',{'id' : feedbackcycle.endyear.id}) }}"
+                   class="btn btn-block btn-primary" type="button">View</a>
+
+            {% endif %}
+
+        </div>
+
+
+    </div>
+</div>
+
+
+

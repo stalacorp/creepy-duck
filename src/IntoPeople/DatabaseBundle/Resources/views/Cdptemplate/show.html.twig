@@ -1,0 +1,313 @@
+{% extends '::base.html.twig' %} {% block body -%}
+
+    <h2>{{ "cdptemplate.show.title" | trans }}</h2>
+
+    <div class="row">
+        <div class="col-md-4">
+
+            {{ entity.language }}
+
+            <h2>{{ entity.mainTitle }}</h2>
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-6">
+
+            {{ entity.title1 }}
+
+            {{ entity.title1Description }}
+
+        </div>
+    </div>
+
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <table class="table borderless">
+
+                        <tr>
+                            <th>{{ entity.name }}<th>
+                            <td><em>: John Doe</em></td>
+                        </tr>
+
+                        <tr>
+                            <th>{{ entity.supervisor }}<th>
+                            <td><em>: John Doe</em></td>
+                        </tr>
+
+                        <tr>
+                            <th>{{ entity.dateDiscussion }}<th>
+                            <td><em>: dd / mm / yyyy</em></td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <table class="table borderless">
+
+                        <tr>
+                            <th>{{ entity.team }}<th>
+                            <td><em>: Sales Team</em></td>
+                        </tr>
+
+
+                        <tr>
+                            <th>{{ entity.function }}<th>
+                            <td><em>: Manager</em></td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            {{ entity.title2 }}
+
+            {{ entity.title2Description }}
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <table class="table borderless">
+                <tr>
+                    <th style="width: 20%">{{ entity.table2Col1 }}</th>
+                    <th style="width: 20%">{{ entity.table2Col2 }}</th>
+                    <th style="width: 20%">{{ entity.table2Col3 }}</th>
+                    <th style="width: 20%">{{ entity.table2Col4 }}</th>
+                    <th style="width: 20%">{{ entity.table2Col5 }}</th>
+                </tr>
+
+                <tr>
+                    <td>{{ entity.table2Col1Descr }}</td>
+                    <td>{{ entity.table2Col2Descr }}</td>
+                    <td>{{ entity.table2Col3Descr }}</td>
+                    <td>{{ entity.table2Col4Descr }}</td>
+                    <td>{{ entity.table2Col5Descr }}</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p></p>
+
+                        <p><em>Integer vestibulum molestie velit, ac congue libero ullamcorper sit amet.</em></p>
+                    </td>
+                    <td>
+                        <p></p>
+
+                        <p><em>Morbi id tincidunt lorem, eu feugiat odio. Aenean pellentesque placerat ornare.</em></p>
+                    </td>
+                    <td><em>Donec sollicitudin ipsum nec pulvinar facilisis.</em></td>
+                    <td><em>Curabitur tincidunt felis mi, at imperdiet tortor porta ut. Ut eu dui condimentum erat hendrerit lobortis.</em></td>
+                    <td><em>Fusce sed mi eget nisi pretium tincidunt. Phasellus sapien mi, fringilla eget mattis in, suscipit sit amet turpis.</em></td>
+                </tr>
+
+            </table>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            {{ entity.title3 }}
+
+            {{ entity.title3Description }}
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <table class="table borderless">
+
+                <thead>
+                <tr>
+                    <th style="width: 22%" colspan="2">{{ entity.table3Col1 }}</th>
+                    <th style="width: 12%">{{ entity.table3Col2 }}</th>
+                    <th style="width: 12%">{{ entity.table3Col3 }}</th>
+                    <th style="width: 12%">{{ entity.table3Col4 }}</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr>
+                    <td colspan="2">{{ entity.table3Col1Descr }}</td>
+                    <td>{{ entity.table3Col2Descr }}</td>
+                    <td>{{ entity.table3Col3Descr }}</td>
+                    <td>{{ entity.table3Col4Descr }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="3">{{ entity.table3Title1 }}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+
+                <tr>
+                    <td colspan="2"><em>Nulla bibendum justo et eros finibus viverra. Proin sed dolor lacus. Fusce interdum dignissim rhoncus.</em></td>
+                    <td><em>Fusce sed mi eget nisi pretium tincidunt. Phasellus sapien mi, fringilla eget mattis in, suscipit sit amet turpis.</em></td>
+                    <td><em>Nulla bibendum justo et eros finibus viverra. Proin sed dolor lacus.</em></td>
+                    <td><em>Pellentesque in interdum ex, nec viverra quam. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam a rutrum leo.</em></td>
+                </tr>
+
+
+                </tbody>
+
+            </table>
+
+            <table class="table borderless">
+
+                <thead>
+
+                <tr>
+                    <td colspan="3">{{ entity.table3Title2 }}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+
+                <tr>
+                    <th style="width: 22%" colspan="2"></th>
+                    <th style="width: 12%"></th>
+                    <th style="width: 12%"></th>
+                    <th style="width: 12%"></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td colspan="2"><em>Nulla bibendum justo et eros finibus viverra. Proin sed dolor lacus. Fusce interdum dignissim rhoncus.</em></td>
+                    <td><em>Fusce sed mi eget nisi pretium tincidunt. Phasellus sapien mi, fringilla eget mattis in, suscipit sit amet turpis.</em></td>
+                    <td><em>Nulla bibendum justo et eros finibus viverra. Proin sed dolor lacus.</em></td>
+                    <td><em>Pellentesque in interdum ex, nec viverra quam. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam a rutrum leo.</em></td>
+                </tr>
+
+
+                </tbody>
+
+            </table>
+
+            <table class="table borderless">
+                <thead>
+
+                <tr>
+                    <td colspan="3">{{ entity.table3Title3 }}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th style="width: 22%" colspan="2"></th>
+                    <th style="width: 12%"></th>
+                    <th style="width: 12%"></th>
+                    <th style="width: 12%"></th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr>
+                    <td><em>Nulla bibendum justo et eros finibus viverra. Proin sed dolor lacus. Fusce interdum dignissim rhoncus.</em></td>
+                    <td><em>Ut vel arcu mi. Aliquam scelerisque mauris sed ante rutrum, nec gravida eros vulputate.</em></td>
+                    <td><em>Fusce sed mi eget nisi pretium tincidunt. Phasellus sapien mi, fringilla eget mattis in, suscipit sit amet turpis.</em></td>
+                    <td><em>Nulla bibendum justo et eros finibus viverra. Proin sed dolor lacus.</em></td>
+                    <td><em>Pellentesque in interdum ex, nec viverra quam. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam a rutrum leo.</em></td>
+                </tr>
+
+                </tbody>
+
+
+            </table>
+
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            {{ entity.title4 }}
+
+            {{ entity.question1 }}
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            {{ entity.title5 }}
+
+            {{ entity.question2 }}
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            {{ entity.supervisorComment }}
+
+            {{ entity.signatureSupervisor }}
+
+
+
+        </div>
+
+        <div class="col-md-6">
+
+            {{ entity.feedback }}
+
+            {{ entity.signatureEmployee }}
+
+        </div>
+    </div>
+
+
+    <div class="buttons">
+
+        <a href="{{ path('cdptemplate_edit', { 'id': entity.id }) }}" type="button" class="btn btn-default btn-cons">{{ "button.edit" | trans }} </a>
+        <a href="{{ path('cdptemplate') }}" type="button" class="btn btn-default btn-cons">{{ "button.back" | trans }}</a>
+
+        {{ form(delete_form) }}
+
+    </div>
+
+
+
+
+
+{% endblock %}
+
+

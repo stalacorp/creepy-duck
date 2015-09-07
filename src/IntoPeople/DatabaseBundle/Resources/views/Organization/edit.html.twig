@@ -1,0 +1,40 @@
+{% extends '::base.html.twig' %} {% block body -%}
+
+    <h2>{{ 'organization.edit.title' | trans }}</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            {% for flashMessage in app.session.flashbag.get('success') %}
+
+                <div class="alert alert-success">
+                    <button class="close" data-dismiss="alert"></button>
+                    {{ flashMessage }}
+                </div>
+
+            {% endfor %}
+
+            {{ form_start(edit_form) }}
+
+            {{ form_row(edit_form.name) }}
+
+            {{ form_row(edit_form.logoFile) }}
+
+
+            {{ form_widget(edit_form.submit) }}
+
+            <a href="{{ path('organization') }}" type="button" class="btn btn-default btn-cons">{{ 'button.back' | trans }}</a>
+
+            {{ form_end(edit_form) }}
+
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+
+
+
+

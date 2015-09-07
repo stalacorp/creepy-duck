@@ -1,0 +1,52 @@
+supervisor:
+    path:     /
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:index" }
+    
+supervisor_addComment:
+    path:     /{id}/addComment
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:addComment" }
+    
+supervisor_update:
+    path:     /{id}/update
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:update" }
+    methods:  [POST, PUT]
+
+supervisor_addMidyearComment:
+    path:     /{id}/addMidyearComment
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:addMidyearComment" }
+
+supervisor_updateMidyear:
+    path:     /{id}/updateMidyear
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:updateMidyear" }
+    methods:  [POST, PUT]
+    
+supervisor_addEndyearComment:
+    path:     /{id}/addEndyearComment
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:addEndyearComment" }
+
+supervisor_updateEndyear:
+    path:     /{id}/updateEndyear
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:updateEndyear" }
+    methods:  [POST, PUT]
+
+supervisor_dashboard:
+    path:     /dashboard
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:dashboard" }
+
+supervisor_getcycles:
+    path:     /getcycles/{generalcycleid}/{cycle}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:getcycles" }
+    options:
+      expose: true
+
+supervisor_getformstatuscount:
+    path:     /getformstatuscount/{generalcycleid}/{cycle}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:getformstatuscount" }
+    options:
+      expose: true
+
+supervisor_getforms:
+    path:     /getforms/{generalcycleid}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:getforms" }
+    options:
+      expose: true

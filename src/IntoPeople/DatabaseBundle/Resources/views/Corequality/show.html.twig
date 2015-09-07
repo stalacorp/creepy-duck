@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <h2>{{ "corequality.show.title" | trans }}</h2>
+
+            <table class="table borderless">
+                <tbody>
+                <tr>
+                    <th>Corequality</th>
+                    <td>{{ entity.coreQuality }}</td>
+                </tr>
+                <tr>
+                    <th>Language</th>
+                    <td>{{ entity.language }}</td>
+                </tr>
+
+                </tbody>
+            </table>
+
+            {{ form_start(delete_form) }}
+
+            <a href="{{ path('corequality_edit', { 'id': entity.id }) }}" role="button" class="btn btn-default">{{ "button.edit" | trans }}</a>
+
+            <a href="{{ path('corequality') }}" role="button" class="btn btn-default">{{ "button.back" | trans }}</a>
+
+            {{ form_widget(delete_form.submit) }}
+
+            {{ form_end(delete_form) }}
+
+        </div>
+    </div>
+
+
+
+{% endblock %}

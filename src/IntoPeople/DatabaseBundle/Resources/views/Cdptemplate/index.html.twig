@@ -1,0 +1,41 @@
+{% extends '::base.html.twig' %} {% block body -%}
+
+    <h2>{{ "cdptemplate.index.title" | trans }}</h2>
+
+    <div class="row margin-top-50">
+        <div class="col-md-12">
+
+            <table class="table borderless">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Language</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td>{% if entity.date %}{{ entity.date|date('d-m-Y') }}{% endif %}</td>
+                        <td>{{ entity.language }}</td>
+                        <td>
+                            <a href="{{ path('cdptemplate_show', { 'id': entity.id }) }}" type="button" class="btn btn-default btn-sm">show</a>
+
+                            <a href="{{ path('cdptemplate_edit', { 'id': entity.id }) }}" type="button" class="btn btn-default btn-sm">edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+            <p>
+                <a href="{{ path('cdptemplate_new') }}" type="button" class="btn btn-default"> Create a new entry </a>
+            </p>
+
+
+        </div>
+    </div>
+
+
+{% endblock %}
