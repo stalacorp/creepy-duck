@@ -112,3 +112,12 @@ vich_uploader:
             organization_logo:
                             uri_prefix:         /organization/logos
                             upload_destination: %kernel.root_dir%/../web/organization/logos
+
+monolog:
+    handlers:
+        translation:
+            # log all messages (since debug is the lowest level)
+            level:    debug
+            type:     stream
+            path:     "%kernel.logs_dir%/translation.log"
+            channels: [translation]
