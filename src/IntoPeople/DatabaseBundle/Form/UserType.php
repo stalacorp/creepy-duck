@@ -50,7 +50,7 @@ class UserType extends AbstractType
             ->add('team')
             ->add('language')
             ->add('supervisor')
-            ->add('function')
+            ->add('jobtitle')
             ->add('userstatus')
             //->add('employeefunction')
             

@@ -1,3 +1,9 @@
 myfeedbackcycle:
     path:     /
     defaults: { _controller: "IntoPeopleDatabaseBundle:MyFeedbackcycle:index" }
+
+myfeedbackcycle_getcycle:
+    path:     /getcycle/{generalcycleid}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:MyFeedbackcycle:getcycle" }
+    options:
+      expose: true

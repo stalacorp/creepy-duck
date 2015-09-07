@@ -38,9 +38,9 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $php = new Jobtitle();
         $sql = new Jobtitle();
 
-        $java->setName('java expert');
-        $php->setName('php expert');
-        $sql->setName('sql expert');
+        $java->setName('Java Expert');
+        $php->setName('PHP Expert');
+        $sql->setName('Sql Expert');
 
         $manager->persist($java);
         $manager->persist($php);

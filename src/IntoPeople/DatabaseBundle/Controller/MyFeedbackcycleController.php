@@ -6,7 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use IntoPeople\DatabaseBundle\Entity\Generalcycle;
 use IntoPeople\DatabaseBundle\Form\GeneralcycleType;
 use IntoPeople\DatabaseBundle\Entity\Feedbackcycle;
-use IntoPeople\DatabaseBundle\Entity\Person;
+use IntoPeople\DatabaseBundle\Entity\User;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Constraints\File;
 
 /**
  * Feedbackcycle controller.
@@ -17,14 +21,31 @@ class MyFeedbackcycleController extends Controller
     /**
      * Lists all my Feedbackcycle entities.
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        $form = $this->createFormBuilder()
+            ->add('generalcycle', 'entity', array(
+                'class' => 'IntoPeopleDatabaseBundle:Generalcycle',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('g')
+                        ->orderBy('g.year', 'ASC');
+                },
+            ))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        return $this->render('IntoPeopleDatabaseBundle:MyFeedbackcycle:index.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+
+    public function getcycleAction($generalcycleid) {
+
         $user = $this->getUser();
-        
-        $em = $this->getDoctrine()->getManager();
 
         $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Feedbackcycle');
-        
+
         $query = $repository->createQueryBuilder('f')
             ->addSelect('g')
             ->addSelect('u')
@@ -43,14 +64,17 @@ class MyFeedbackcycleController extends Controller
             ->join('m.formstatus','mf')
             ->join('e.formstatus','ef')
             ->where('f.user = :user')
+            ->andWhere('f.generalcycle = :generalcycle')
             ->setParameter('user', $user)
+            ->setParameter('generalcycle', $generalcycleid)
             ->getQuery();
-        
-        $entities = $query->getResult();
 
-        return $this->render('IntoPeopleDatabaseBundle:MyFeedbackcycle:index.html.twig', array(
-            'entities' => $entities
+        $entity = $query->setMaxResults(1)->getOneOrNullResult();
+
+        return $this->render('IntoPeopleDatabaseBundle:MyFeedbackcycle:getcycleview.html.twig', array(
+            'feedbackcycle' => $entity
         ));
+
     }
 
     /**
