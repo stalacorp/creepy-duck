@@ -16,6 +16,15 @@
     <tbody>
     {% set teller = 0 %}
     {% for entity in entities %}
+    {% if entity.formstatus.id != 5 %}
+    {% set link = cycle ~ '_show' %}
+    {% else %}
+        {% if cycle == 'cdp' %}
+            {% set link = 'hr_addFeedback' %}
+            {% else %}
+        {% set link = 'hr_add' ~ (cycle|capitalize) ~ 'Feedback' %}
+            {% endif %}
+        {% endif %}
         <tr>
             <td>{{entity.id }}</td>
             <td><div class="checkbox">
@@ -26,7 +35,10 @@
             <td>{% if entity.supervisor is not empty %} {{ entity.supervisor.firstname }} {{ entity.supervisor.lastname }} {% endif %}</td>
             <td>{{ entity.formstatus.name }}</td>
             <td><button data-id="{{ entity.id }}"  class="btn btn-default history">{{ 'button.history' | trans }}</button></td>
-            <td><a class="btn btn-primary" href="{{ path(showlink, { 'id': entity.id }) }}">{{ "button.show" | trans}}</a></td>
+            <td>
+
+                <a class="btn btn-primary" href="{{ path(link, { 'id': entity.id }) }}">{{ "button.show" | trans}}</a>
+            </td>
         </tr>
         {% set teller = teller + 1 %}
     {% endfor %}

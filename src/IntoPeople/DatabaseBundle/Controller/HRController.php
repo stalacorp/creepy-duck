@@ -654,11 +654,10 @@ class HRController extends Controller
             array_push($entities, $chosencycle);
         }
 
-        $showlink = $cycle . '_show';
 
         return $this->render('IntoPeopleDatabaseBundle:HR:getcyclesview.html.twig', array(
             'entities' => $entities,
-            'showlink' => $showlink,
+            'cycle' => $cycle,
         ));
     }
 
