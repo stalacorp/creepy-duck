@@ -1,11 +1,13 @@
 {% extends '::base.html.twig' %} 
 {% block body -%}
 
-    <h2>{{ "midyear.show.title" | trans }}</h2>
+
 
     {% set template = entity.midyeartemplate %}
     {% set devneeds = entity.developmentneeds %}
     {% set cdp = entity.feedbackcycle.cdp %}
+
+    <h2>{{ template.mainTitle }}</h2>
 
     <div class="row">
         <div class="col-md-12">
@@ -71,18 +73,32 @@
     <div class="row">
         <div class="col-md-12">
 
-            <h3>{# template.selfassesment #}</h3>
+            <h3>{{ template.title2 }}</h3>
 
-            <p class="">{# template.selfassesmentDescription #}</p>
+            <p class=""><em>{{ template.title2Description }}</em></p>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
 
 
             <table class="table borderless">
                 <tr>
-                    <th style="width: 20%">Talents</th>
-                    <th style="width: 20%">Challenges</th>
-                    <th style="width: 20%">How</th>
-                    <th style="width: 20%">Success</th>
-                    <th style="width: 20%">Needs</th>
+                    <th style="width: 20%">{{ template.table2Col1 }}</th>
+                    <th style="width: 20%">{{ template.table2Col2 }}</th>
+                    <th style="width: 20%">{{ template.table2Col3 }}</th>
+                    <th style="width: 20%">{{ template.table2Col4 }}</th>
+                    <th style="width: 20%">{{ template.table2Col5 }}</th>
+                </tr>
+
+                <tr>
+                    <td>{{ template.table2Col1Descr }}</td>
+                    <td>{{ template.table2Col2Descr }}</td>
+                    <td>{{ template.table2Col3Descr }}</td>
+                    <td>{{ template.table2Col4Descr }}</td>
+                    <td>{{ template.table2Col5Descr }}</td>
                 </tr>
 
                 <tr>
@@ -163,30 +179,34 @@
     <div class="row">
         <div class="col-md-12">
 
+            <h3>{{ template.title3 }}</h3>
 
-            <h3>{{ template.title2 }}</h3>
+            <p><em>{{ template.title3Description }}</em></p>
 
-            <p>Read your job description carefully. </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
 
             <table class="table borderless">
 
                 <thead>
                 <tr>
-                    <th style="width:40%" colspan="2">{{ template.whatWhy }}</th>
-                    <th style="width:60%">{{ template.progress }}</th>
-
+                    <th style="width: 50%" colspan="2">{{ template.table3Col1 }}</th>
+                    <th style="width: 50%">{{ template.table3Col2 }}</th>
                 </tr>
                 </thead>
 
                 <tbody>
 
                 <tr>
-                    <td colspan="2">{{ template.whatWhyDescription }}</td>
-                    <td>{{ template.progressDescription }}</td>
+                    <td colspan="2">{{ template.table3Col1Descr }}</td>
+                    <td>{{ template.table3Col2Descr }}</td>
                 </tr>
 
                 <tr>
-                    <td colspan="5"><h5 class="text-center">{{ template.smallTitle1 }}</h5></td>
+                    <td colspan="3"><h5 class="text-center">{{ template.table3Title1 }}</h5></td>
                 </tr>
 
 
@@ -221,12 +241,12 @@
                 </tr>
 
                 <tr>
-                    <td colspan="5"><h5 class="text-center">{{ template.smallTitle2 }}</h5></td>
+                    <td colspan="3"><h5 class="text-center">{{ template.table3Title2 }}</h5></td>
                 </tr>
 
                 <tr>
-                    <th style="width:40%" colspan="2">{{ template.whatWhy }}</th>
-                    <th style="width:60%">{{ template.progress }}</th>
+                    <td colspan="2">{{ template.table3Col1Descr }}</td>
+                    <td>{{ template.table3Col2Descr }}</td>
 
                 </tr>
 
@@ -263,12 +283,12 @@
 
 
                 <tr>
-                    <td colspan="5"><h5 class="text-center">{{ template.smallTitle3 }}</h5></td>
+                    <td colspan="3"><h5 class="text-center">{{ template.table3Title3 }}</h5></td>
                 </tr>
 
                 <tr>
-                    <th style="width:40%" colspan="2">{{ template.whatWhy }}</th>
-                    <th style="width:60%">{{ template.progress }}</th>
+                    <td colspan="2">{{ template.table3Col1Descr }}</td>
+                    <td>{{ template.table3Col2Descr }}</td>
 
                 </tr>
 
@@ -319,23 +339,29 @@
 
             </table>
 
+                    </div>
+    </div>
 
-            <h3>{{ template.feedbackSup }}</h3>
-
-            <p>{{ template.feedbackSupDescription }}</p>
-
-            {{ entity.feedbacksupervisor }}
+    <div class="row">
+        <div class="col-md-6">
 
 
-            <h3>{{ template.feedbackOrganization }}</h3>
+            <h3>{{ template.title4 }}</h3>
 
-            <p>{{ template.feedbackOrganizationDescription }}</p>
+            <p>{{ template.question1 }}</p>
 
-            {{ entity.feedbackorganization }}
+            <p>{{ entity.feedbacksupervisor }}</p>
+
+            <p>{{ template.question2 }}</p>
+
+            <p>{{ entity.feedbackorganization }}</p>
 
 
         </div>
     </div>
+
+
+
 
     {% if entity.formstatus.id > 3 %}
 

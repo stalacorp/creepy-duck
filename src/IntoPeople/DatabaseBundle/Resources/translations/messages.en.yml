@@ -1,12 +1,12 @@
 cdptemplate.edit.title: __cdptemplate.edit.title
-button.back: Back
+button.back: 'Back'
 cdptemplate.index.title: __cdptemplate.index.title
 cdptemplate.new.title: __cdptemplate.new.title
 cdptemplate.show.title: __cdptemplate.show.title
-button.edit: __button.edit
+button.edit: 'Edit'
 corequality.edit.title: __corequality.edit.title
 corequality.index.title: __corequality.index.title
-button.create: Create
+button.create: 'Create'
 corequality.new.title: __corequality.new.title
 corequality.show.title: __corequality.show.title
 endyear.show.title: __endyear.show.title
@@ -57,20 +57,20 @@ midyeartemplate.new.title: __midyeartemplate.new.title
 midyeartemplate.index.title: __midyeartemplate.index.title
 midyeartemplate.show.title: __midyeartemplate.show.title
 myfeedbackcycle.cdp.description: __myfeedbackcycle.cdp.description
-myfeedbackcycle.cdp.startdate: __myfeedbackcycle.cdp.startdate
-myfeedbackcycle.cdp.enddate: __myfeedbackcycle.cdp.enddate
-myfeedbackcycle.cdp.formstatus: __myfeedbackcycle.cdp.formstatus
-myfeedbackcycle.cdp.formhistory: __myfeedbackcycle.cdp.formhistory
+myfeedbackcycle.cdp.startdate: 'Start date'
+myfeedbackcycle.cdp.enddate: 'End date'
+myfeedbackcycle.cdp.formstatus: 'Form status'
+myfeedbackcycle.cdp.formhistory: 'Form history'
 myfeedbackcycle.midyear.description: __myfeedbackcycle.midyear.description
-myfeedbackcycle.midyear.startdate: __myfeedbackcycle.midyear.startdate
-myfeedbackcycle.midyear.enddate: __myfeedbackcycle.midyear.enddate
-myfeedbackcycle.midyear.formstatus: __myfeedbackcycle.midyear.formstatus
-myfeedbackcycle.midyear.formhistory: __myfeedbackcycle.midyear.formhistory
+myfeedbackcycle.midyear.startdate: 'Start date'
+myfeedbackcycle.midyear.enddate: 'End date'
+myfeedbackcycle.midyear.formstatus: 'Form status'
+myfeedbackcycle.midyear.formhistory: 'Form history'
 myfeedbackcycle.endyear.description: __myfeedbackcycle.endyear.description
-myfeedbackcycle.endyear.startdate: __myfeedbackcycle.endyear.startdate
-myfeedbackcycle.endyear.enddate: __myfeedbackcycle.endyear.enddate
-myfeedbackcycle.endyear.formstatus: __myfeedbackcycle.endyear.formstatus
-myfeedbackcycle.endyear.formhistory: __myfeedbackcycle.endyear.formhistory
+myfeedbackcycle.endyear.startdate: 'Start date'
+myfeedbackcycle.endyear.enddate: 'End date'
+myfeedbackcycle.endyear.formstatus: 'Form status'
+myfeedbackcycle.endyear.formhistory: 'Form history'
 myfeedbackcycle.index.title: 'My feedbackcycle'
 organization.edit.title: __organization.edit.title
 organization.index.title: __organization.index.title
@@ -90,3 +90,6 @@ user.templatedownload: __user.templatedownload
 user.profile.title: __user.profile.title
 user.show.title: __user.show.title
 button.history: __button.history
+myfeedbackcycle.cdp.title: 'CDP'
+myfeedbackcycle.midyear.title: 'Mid Year'
+myfeedbackcycle.endyear.title: 'Year End'

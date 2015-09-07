@@ -89,17 +89,7 @@ class SupervisorController extends Controller
 
             $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
 
-            // createQueryBuilder automatically selects FROM IntoPeopleDatabaseBundle:Cdptemplate
-            // and aliases it to "c"
-            $query = $repository->createQueryBuilder('c')
-            ->where('c.organization = :id')
-            ->setParameter('id', $user->getOrganization()
-                ->getId())
-                ->getQuery();
-
-            $template = $query->setMaxResults(1)->getOneOrNullResult();
-            // to get just one result:
-            // $product = $query->setMaxResults(1)->getOneOrNullResult();
+            $template = $entity->getCdptemplate();
 
             return $this->render('IntoPeopleDatabaseBundle:Supervisor:feedback.html.twig', array(
                 'entity' => $entity,
@@ -123,7 +113,9 @@ class SupervisorController extends Controller
      */
     private function createEditForm(Cdp $entity)
     {
-        $form = $this->createForm(new CommentType(), $entity, array(
+        $locale = $this->get('request')->getLocale();
+
+        $form = $this->createForm(new CommentType($locale), $entity, array(
             'action' => $this->generateUrl('supervisor_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
@@ -237,7 +229,11 @@ class SupervisorController extends Controller
                 
             )));
         }
-    
+
+        $errors = $form->getErrorsAsString();
+
+        dump($errors);
+
         return $this->render('IntoPeopleDatabaseBundle:Cdp:show.html.twig', array(
             'entity' => $entity,
             'form' => $form->createView()

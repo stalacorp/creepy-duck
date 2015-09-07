@@ -900,6 +900,16 @@ class Endyear
     {
         $this->formstatus = $formstatus;
 
+        $history = new Endyearhistory();
+        $history->setEndyear($this);
+        $history->setFormstatus($formstatus);
+
+        $dt = new \DateTime();
+
+        $history->setDate($dt);
+
+        $this->addEndyearhistory($history);
+
         return $this;
     }
 

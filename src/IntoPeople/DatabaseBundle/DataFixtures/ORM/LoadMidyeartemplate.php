@@ -20,7 +20,7 @@ class LoadMidyeartemplate extends AbstractFixture implements OrderedFixtureInter
     {
         $midyeartemplate = new Midyeartemplate();
 
-        $midyeartemplate->setMainTitle('Career Development Plan');
+        $midyeartemplate->setMainTitle('Mid Year');
         $midyeartemplate->setTitle1('Personalia');
 
         $midyeartemplate->setName('Name');

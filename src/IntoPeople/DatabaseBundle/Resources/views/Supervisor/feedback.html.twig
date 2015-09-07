@@ -1,23 +1,39 @@
 {% extends 'IntoPeopleDatabaseBundle:Cdp:show.html.twig' %} 
 {% block comment -%}
 
-<div class="row margin-top-50">
-    <div class="col-md-8">
 
-    <h3>Comments from supervisor</h3>
 
-    {{ form_start(form) }}
-    
-        {{ form_row(form.commentSup) }}
-           
-        {{ form_row(form.feedbackdate) }}
-        
-        {{ form_widget(form.save) }} {{ form_widget(form.approve) }} {{ form_widget(form.disapprove) }}
-    
-    {{ form_end(form) }}
-    
+
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <h3>Comments from supervisor</h3>
+
+            {{ form_start(form) }}
+
+            <div class="row">
+                <div class="col-md-3">
+
+                    {{ form_row(form.feedbackdate) }}
+
+                </div>
+            </div>
+
+
+            {{ form_row(form.commentSup, { 'attr': {'rows': '4'} }) }}
+
+
+
+            {{ form_widget(form.save) }} {{ form_widget(form.approve) }} {{ form_widget(form.disapprove) }}
+
+            {{ form_end(form) }}
+
+        </div>
     </div>
-</div>
+
+
+
 
 {% endblock %}
 

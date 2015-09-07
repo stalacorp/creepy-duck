@@ -102,9 +102,15 @@
     <div class="row">
         <div class="col-md-12">
 
-            <h3>{# template.selfassesment #}</h3>
+            <h3>{{ template.title2 }}</h3>
 
-            <p class="">{# template.selfassesmentDescription #}</p>
+            <p class=""><em>{{ template.title2Description }}</em></p>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
 
 
             <table class="table borderless">
@@ -223,15 +229,21 @@
     <div class="row">
         <div class="col-md-12">
 
+            <h3>{{ template.title3 }}</h3>
+
+            <p><em>{{ template.title3Description }}</em></p>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
 
             {{ form_start(form) }}
 
             {{ form_errors(form) }}
 
-
-            <h3>{{ template.title3 }}</h3>
-
-            <p>{{ template.title3Description }}</p>
 
             <table class="table borderless">
 

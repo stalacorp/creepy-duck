@@ -936,6 +936,16 @@ class Midyear
     {
         $this->formstatus = $formstatus;
 
+        $history = new Midyearhistory();
+        $history->setMidyear($this);
+        $history->setFormstatus($formstatus);
+
+        $dt = new \DateTime();
+
+        $history->setDate($dt);
+
+        $this->addMidyearhistory($history);
+
         return $this;
     }
 
