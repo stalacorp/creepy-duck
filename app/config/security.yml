@@ -58,6 +58,14 @@ security:
         - { path: ^/[a-z]+/user/user/firstlogin/[0-9]+/[a-z0-9]+, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/[a-z]+/user/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/[a-z]+/user/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/[a-z]+/user/hr/\W*, role: ROLE_HR }
+        - { path: ^/[a-z]+/user/systemmail/\W*, role: ROLE_HR }
+        - { path: ^/[a-z]+/user/organization/\W*, role: ROLE_HR }
+        - { path: ^/[a-z]+/user/cdptemplate/\W*, role: ROLE_HR }
+        - { path: ^/[a-z]+/user/midyeartemplate/\W*, role: ROLE_HR }
+        - { path: ^/[a-z]+/user/endyeartemplate/\W*, role: ROLE_HR }
+        - { path: ^/[a-z]+/user/user/\W*, role: ROLE_HR }
+        - { path: ^/[a-z]+/user/supervisor/\W*, role: ROLE_SUPERVISOR }
         - { path: ^/[a-z]+/user/\W*, role: IS_AUTHENTICATED_FULLY }
         - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
