@@ -34,6 +34,9 @@
             {{ form_widget(edit_form.datelastpromotion) }}
 
             {{ form_row(edit_form.supervisor) }}
+            {{ form_row(edit_form.jobtitle) }}
+            {{ form_row(edit_form.team) }}
+            {{ form_label(edit_form.enabled) }}  {{ form_widget(edit_form.enabled) }}
 
             {% if is_granted('ROLE_SUPER_ADMIN') %}
 

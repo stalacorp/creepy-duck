@@ -424,6 +424,8 @@ class UserController extends Controller
 
 
         $form = $this->createFormBuilder($user)
+            ->add('firstname')
+            ->add('lastname')
             ->add('jobtitle', 'text', array('mapped' => false,
                 'attr'   =>  array('class'   => 'typeahead')
             ))

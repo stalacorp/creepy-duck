@@ -29,9 +29,9 @@
             <td><button data-id="{{ entity.id }}"  class="btn btn-default history">{{ 'button.history' | trans }}</button></td>
             <td>
                 {% if entity.formstatus.id != 5 and entity.formstatus.id != 6%}
-                    {% set disabled = 'disabled' %}
-                    {% if entity.formstatus.id == 8 %}
-                        {% set disabled = '' %}
+                    {% set disabled = '' %}
+                    {% if entity.formstatus.id == 2 %}
+                        {% set disabled = 'disabled' %}
                         {% endif %}
                     <button class="btn btn-primary" {{ disabled }} href="{{ path(cycle ~ '_show', { 'id': entity.id }) }}">{{ "button.show" | trans}}</button>
                 {% else %}
