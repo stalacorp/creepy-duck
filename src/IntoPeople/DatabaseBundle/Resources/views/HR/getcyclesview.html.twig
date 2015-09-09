@@ -16,15 +16,7 @@
     <tbody>
     {% set teller = 0 %}
     {% for entity in entities %}
-    {% if entity.formstatus.id != 5 %}
-    {% set link = cycle ~ '_show' %}
-    {% else %}
-        {% if cycle == 'cdp' %}
-            {% set link = 'hr_addFeedback' %}
-            {% else %}
-        {% set link = 'hr_add' ~ (cycle|capitalize) ~ 'Feedback' %}
-            {% endif %}
-        {% endif %}
+
         <tr>
             <td>{{entity.id }}</td>
             <td><div class="checkbox">
@@ -36,8 +28,21 @@
             <td>{{ entity.formstatus.name }}</td>
             <td><button data-id="{{ entity.id }}"  class="btn btn-default history">{{ 'button.history' | trans }}</button></td>
             <td>
+                {% if entity.formstatus.id != 5 and entity.formstatus.id != 6%}
+                    {% set disabled = 'disabled' %}
+                    {% if entity.formstatus.id == 8 %}
+                        {% set disabled = '' %}
+                        {% endif %}
+                    <button class="btn btn-primary" {{ disabled }} href="{{ path(cycle ~ '_show', { 'id': entity.id }) }}">{{ "button.show" | trans}}</button>
+                {% else %}
+                    {% if cycle == 'cdp' %}
+                        {% set link = 'hr_addFeedback' %}
+                    {% else %}
+                        {% set link = 'hr_add' ~ (cycle|capitalize) ~ 'Feedback' %}
+                    {% endif %}
+                    <button class="btn btn-success" href="{{ path(link, { 'id': entity.id }) }}">{{ "button.addfeedback" | trans}}</button>
+                {% endif %}
 
-                <a class="btn btn-primary" href="{{ path(link, { 'id': entity.id }) }}">{{ "button.show" | trans}}</a>
             </td>
         </tr>
         {% set teller = teller + 1 %}

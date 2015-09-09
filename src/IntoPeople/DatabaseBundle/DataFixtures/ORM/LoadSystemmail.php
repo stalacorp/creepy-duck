@@ -71,7 +71,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $remindermail = new Systemmail();
         
         $created->setName('Account created mail');
-        $weekbeforedeadline->setName('Week before deadline mail');
+        $weekbeforedeadline->setName('X days before deadline mail');
         $newcycle->setName('New cycle ready mail');
         $newfeedback->setName('Form approved mail');
         $formtosupervisor->setName('Form sent to supervisor mail');
@@ -81,7 +81,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $remindermail->setName('Reminder mail');
 
         $created->setSubject('Account created mail');
-        $weekbeforedeadline->setSubject('Week before deadline mail');
+        $weekbeforedeadline->setSubject('X days before deadline mail');
         $newcycle->setSubject('New cycle ready mail');
         $newfeedback->setSubject('Cycle finished mail');
         $formtosupervisor->setSubject('Form sent to supervisor mail');
@@ -163,7 +163,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
         $remindermail->setMailtype($remindermailtype);
 
         $created->setName('Account aangemaakt mail');
-        $weekbeforedeadline->setName('Week voor deadline mail');
+        $weekbeforedeadline->setName('X dagen voor deadline mail');
         $newcycle->setName('Nieuwe  cyclus beschikbaar mail');
         $newfeedback->setName('Formulier goedgekeurd mail');
         $formtosupervisor->setName('Formulier naar overste gestuurd mail');
@@ -185,7 +185,7 @@ class LoadSystemmail extends AbstractFixture implements OrderedFixtureInterface
 
 
         $created->setSubject('Account aangemaakt mail');
-        $weekbeforedeadline->setSubject('Week voor deadline mail');
+        $weekbeforedeadline->setSubject('X dagen voor deadline mail');
         $newcycle->setSubject('Nieuwe  cyclus beschikbaar mail');
         $newfeedback->setSubject('Cyclus klaar mail');
         $formtosupervisor->setSubject('Formulier naar overste gestuurd mail');

@@ -33,10 +33,10 @@
             <table class="table" id="table">
                 <thead>
                 <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Status</th>
-                    <th>Actions</th>
+                    <th>{{ 'user.firstname' | trans }}</th>
+                    <th>{{ 'user.lastname' | trans }}</th>
+                    <th>{{ 'user.status' | trans }}</th>
+                    <th>{{ 'actions' | trans }}</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -50,15 +50,15 @@
                     <tr>
                         <td>{{ entity.firstname }}</td>
                         <td>{{ entity.lastname }}</td>
-                        <td>{{ entity.userstatus }}</td>
+                        <td>{% if entity.enabled == 1 %}{{ 'user.enabled' | trans }}{% else %}{{ 'user.disabled' | trans }}{% endif %}</td>
 
                         <td>
                             <a href="{{ path('user_show', { 'id': entity.id }) }}" type="button"
-                               class="btn btn-default btn-sm btn-small">show</a>
+                               class="btn btn-default btn-sm btn-small">{{ 'button.show' | trans }}</a>
                         </td>
                         <td>
                             <a href="{{ path('user_edit', { 'id': entity.id }) }}" type="button"
-                               class="btn btn-default btn-sm btn-small">edit</a>
+                               class="btn btn-default btn-sm btn-small">{{ 'button.edit' | trans }}</a>
                         </td>
                     </tr>
                 {% endfor %}

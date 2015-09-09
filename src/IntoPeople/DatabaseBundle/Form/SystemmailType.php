@@ -14,12 +14,21 @@ class SystemmailType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('sender')
-            ->add('subject')
-            ->add('mailtype', new MailtypeType())
-            ->add('body')
-        ;
+        if ($options['data']->getMailtype()->getName() == 'weekbeforedeadline'){
+            $builder
+                ->add('sender')
+                ->add('subject')
+                ->add('mailtype', new MailtypeType())
+                ->add('body')
+            ;
+        }else {
+            $builder
+                ->add('sender')
+                ->add('subject')
+                ->add('body')
+            ;
+        }
+
     }
     
     /**
