@@ -685,7 +685,9 @@ class SupervisorController extends Controller
 
         $query = $em->getRepository('IntoPeopleDatabaseBundle:' . ucfirst($cycle))->createQueryBuilder('c')
             ->where('c.id IN (:ids)')
+            ->andWhere('c.supervisor = :supervisor')
             ->setParameter('ids', $chosencycleids)
+            ->setParameter('supervisor', $this->getUser())
             ->getQuery();
 
         $cycles = $query->getResult();
