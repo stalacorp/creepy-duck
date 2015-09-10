@@ -16,6 +16,54 @@ class MyCdpController extends Controller
 {
 
     /**
+     * Choose language template
+     *
+     */
+    public function languageAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('IntoPeopleDatabaseBundle:Cdp')->find($id);
+
+        $form = $this->createFormBuilder()
+            ->add('language', 'entity', array(
+                'class' => 'IntoPeopleDatabaseBundle:Language',
+                'query_builder' => function (EntityRepository $er) use ($entity) {
+                    return $er->createQueryBuilder('l')->join('l.cdptemplates','c')->where('c.templateversion = :version')->setParameter('version', $entity->getTemplateversion());
+                },
+            ))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        return $this->render('IntoPeopleDatabaseBundle:Cdp:new.html.twig', array(
+            'form' => $form->createView(),
+            'entity' => $entity
+        ));
+    }
+
+    /**
+     * Creates a form to edit a cdp entity.
+     *
+     * @param Cdp $entity
+     *            The entity
+     *            
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createEditForm(Cdp $entity)
+    {
+        $form = $this->createForm(new CdpType(), $entity, array(
+            'action' => $this->generateUrl('cdp_update', array('id' => $entity->getId())),
+            'method' => 'PUT',
+        ));
+        
+        $form
+        ->add('save', 'submit', array('label' => 'Save'))
+        ->add('saveAndAdd', 'submit', array('label' => 'Save and Submit'));
+        
+        return $form;
+    }
+
+    /**
      * Displays a form to edit an existing Cdp entity.
      */
     public function editAction($id)
@@ -33,49 +81,33 @@ class MyCdpController extends Controller
         }
         // CAN ONLY FILL IN CDP WHEN STATUS = AVAILABLE OR ...
         //
-
+        
         if ($entity->getFormstatus()->getId() == 1 || $entity->getFormstatus()->getId() == 2 || $entity->getFormstatus()->getId() == 4 || $entity->getFormstatus()->getId() == 7) {
-
+            
             $form = $this->createEditForm($entity);
 
+            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
 
-            // Send CDP template
+            $query = $repository->createQueryBuilder('c')
+                ->where('c.templateversion = :cdptemplateversion')
+                ->andWhere('c.language = :language')
+                ->setParameter('cdptemplateversion', $entity->getTemplateversion())
+                ->setParameter('language', $languageId)
+                ->getQuery();
 
-            $template = $entity->getCdptemplate();
-
-            return $this->render('IntoPeopleDatabaseBundle:Cdp:new.html.twig', array(
+            $template = $query->setMaxResults(1)->getOneOrNullResult();
+            
+            return $this->render('IntoPeopleDatabaseBundle:Cdp:getform.html.twig', array(
                 'template' => $template,
                 'entity' => $entity,
                 'form' => $form->createView(),
                 'corequalities' => $corequalities
             ));
         }
-
+        
         return $this->redirect($this->generateUrl('cdp_show', array(
             'id' => $entity->getId()
         )));
-    }
-
-    /**
-     * Creates a form to edit a cdp entity.
-     *
-     * @param Cdp $entity
-     *            The entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createEditForm(Cdp $entity)
-    {
-        $form = $this->createForm(new CdpType(), $entity, array(
-            'action' => $this->generateUrl('cdp_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
-
-        $form
-        ->add('save', 'submit', array('label' => 'Save'))
-        ->add('saveAndAdd', 'submit', array('label' => 'Save and Submit'));
-
-        return $form;
     }
 
     /**
@@ -86,9 +118,6 @@ class MyCdpController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('IntoPeopleDatabaseBundle:Cdp')->find($id);
-
-
-
         
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Cdp entity.');
@@ -163,7 +192,7 @@ class MyCdpController extends Controller
         
         return $this->render('IntoPeopleDatabaseBundle:Cdp:new.html.twig', array(
             'entity' => $entity,
-            'form' => $form->createView(),
+            'form' => $form->createView()
         ));
     }
     
@@ -186,11 +215,8 @@ class MyCdpController extends Controller
             throw $this->createNotFoundException('Unable to find Person entity.');
         }
         
-        $template = $entity->getCdptemplate();
-        
         return $this->render('IntoPeopleDatabaseBundle:Cdp:show.html.twig', array(
-            'entity'      => $entity,
-            'template' => $template
+            'entity'      => $entity
         ));
     }
 }

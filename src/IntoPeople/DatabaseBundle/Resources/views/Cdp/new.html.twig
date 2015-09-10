@@ -1,11 +1,10 @@
 {% extends '::base.html.twig' %} {% block body -%}
 
 
-    <h2>{{ template.mainTitle }}</h2>
+    {{ form(form) }}
 
-    <div class="row">
-        <div class="col-md-12">
 
+<<<<<<< HEAD
             <h3>{{ template.title1 }}</h3>
 
             <div class="row">
@@ -528,6 +527,9 @@
 
         </div>
     </div>
+=======
+    <div id="result"></div>
+>>>>>>> origin/admin
 
     <!-- Modal -->
     <div class="modal fade" id="corequalitiesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -645,6 +647,26 @@
                 $(this).parent().parent().addClass('hidden');
             });
         })
+
+        function getform() {
+            $.ajax({
+                url: Routing.generate('cdp_edit', {
+                    languageId: $('#form_language').val(),
+                    id: {{ entity.id }},
+                    _locale:locale
+                }),
+                success: function (result) {
+                    $("#result").html(result);
+                }
+            });
+        }
+        $(function () {
+            getform();
+
+            $('#form_language').change(function () {
+                getform();
+            });
+        });
     </script>
 {% endblock %}
 

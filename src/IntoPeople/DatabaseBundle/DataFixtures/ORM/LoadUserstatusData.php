@@ -49,6 +49,6 @@ class LoadUserstatusData extends AbstractFixture implements OrderedFixtureInterf
      */
     public function getOrder()
     {
-        return 5;
+        return 7;
     }
 }

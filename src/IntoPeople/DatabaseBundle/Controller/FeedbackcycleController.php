@@ -78,43 +78,22 @@ class FeedbackcycleController extends Controller
             $unavailable = $em->getRepository('IntoPeopleDatabaseBundle:Formstatus')->find(9);
             
             $available = $em->getRepository('IntoPeopleDatabaseBundle:Formstatus')->find(1);
-            
-            // FIND NEWEST CDP TEMPLATE
-            // ---
-            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
-            
-            $cdptemplate = $repository->findNewest($entity->getUser()->getOrganization());
-            
-            // FIND NEWEST MID YEAR TEMPLATE
-            // ---
-            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Midyeartemplate');
-            
-            $midyeartemplate = $repository->findNewest($entity->getUser()->getOrganization());
-            
-            // FIND NEWEST END YEAR TEMPLATE
-            // ---
-            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Endyeartemplate');
-            
-            $endyeartemplate = $repository->findNewest($entity->getUser()->getOrganization());
-                        
+
             $developmentneeds = new Developmentneeds();
             
             $cdp = new Cdp();
             $cdp->setDevelopmentneeds($developmentneeds);
             $cdp->setFormstatus($available);
-            $cdp->setCdptemplate($cdptemplate);
             $entity->setCdp($cdp);
             
             $midyear = new Midyear();
             $midyear->setDevelopmentneeds($developmentneeds);
             $midyear->setFormstatus($unavailable);
-            $midyear->setMidyeartemplate($midyeartemplate);
             $entity->setMidyear($midyear);
             
             $endyear = new Endyear();
             $endyear->setDevelopmentneeds($developmentneeds);
             $endyear->setFormstatus($unavailable);
-            $endyear->setEndyeartemplate($endyeartemplate);
             $entity->setEndyear($endyear);
                        
             $em = $this->getDoctrine()->getManager();

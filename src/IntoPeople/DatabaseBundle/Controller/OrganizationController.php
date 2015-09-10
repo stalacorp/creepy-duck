@@ -5,9 +5,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use IntoPeople\DatabaseBundle\Entity\Organization;
 use IntoPeople\DatabaseBundle\Form\OrganizationType;
-use IntoPeople\DatabaseBundle\Entity\Cdptemplate;
-use IntoPeople\DatabaseBundle\Entity\Midyeartemplate;
-use IntoPeople\DatabaseBundle\Entity\Endyeartemplate;
 use IntoPeople\DatabaseBundle\Entity\Person;
 
 /**
@@ -51,103 +48,12 @@ class OrganizationController extends Controller
             $user = $this->getuser();
             
             $em = $this->getDoctrine()->getManager();
-           
-            // Create templates
-            // ---                            
-            $cdptemplate = new Cdptemplate();
-            $midyeartemplate = new Midyeartemplate();
-            $endyeartemplate = new Endyeartemplate();
             
             // Date now
             // ---            
             $dt = new \DateTime();
-                       
             
-            // Search standard templates -> !!! THIS HAS TO MOVE TO REPOSITORY !!!
-            // Create a template foreach language!!
-            // ----
-            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
-                                  
-            $standardcdps = $repository->findAllStandardtemplates();
-            
-            if ($standardcdps != null) {
-            
-                foreach($standardcdps as $standardcdp) {
-                    
-                    $cdptemplate = clone $standardcdp;
-                    
-                    $cdptemplate->setDate($dt);
-                    
-                    $cdptemplate->setOrganization($entity);
-                    
-                    $cdptemplate->setIsstandardtemplate(0);
-                    
-                    $em->persist($cdptemplate);
-                }
-            
-            } else {
-                
-                $cdptemplate->setDate($dt);
-                
-                $cdptemplate->setOrganization($entity);
-                
-                $cdptemplate->setIsstandardtemplate(0);
-                
-                $em->persist($cdptemplate);
-            }
-            
-            
-            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Midyeartemplate');
-            
-            $qb = $repository->createQueryBuilder('m')
-            ->where('m.isstandardtemplate = :template')
-            ->setParameter('template', 1)
-            ->getQuery();
-            
-            $standardmidyear = $qb->setMaxResults(1)->getOneOrNullResult();
-            
-            if ($standardmidyear != null) {
-                
-                $midyeartemplate = clone $standardmidyear;
-                
-            }
-                      
-            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Endyeartemplate');
-            
-            $qb = $repository->createQueryBuilder('e')
-            ->where('e.isstandardtemplate = :template')
-            ->setParameter('template', 1)
-            ->getQuery();
-            
-            $standardendyear = $qb->setMaxResults(1)->getOneOrNullResult();
-            
-            if ($standardendyear != null) {
-            
-                $endyeartemplate = clone $standardendyear;
-            
-            }
-                       
-            
-            // Set date of templates now
-            // -------------------------
-            
-            
-            
-            $midyeartemplate->setDate($dt);
-            $endyeartemplate->setDate($dt);
-                      
-            
-            $midyeartemplate->setOrganization($entity);
-            $endyeartemplate->setOrganization($entity);
-            
-            
-            $midyeartemplate->setIsstandardtemplate(0);
-            $endyeartemplate->setIsstandardtemplate(0);
-            
-            
-            $em->persist($entity);            
-            $em->persist($midyeartemplate);
-            $em->persist($endyeartemplate);
+            $em->persist($entity);
             $em->flush();
             
             // Notification message after organization has been created

@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Midyear
  *
- * @ORM\Table(name="MidYear", indexes={@ORM\Index(name="MidYearTemplateId", columns={"MidYearTemplateId"}), @ORM\Index(name="FormStatusId", columns={"FormStatusId"}), @ORM\Index(name="SupervisorId", columns={"SupervisorId"}), @ORM\Index(name="DevelopmentNeedsId", columns={"DevelopmentNeedsId"})})
+ * @ORM\Table(name="MidYear", indexes={@ORM\Index(name="FormStatusId", columns={"FormStatusId"}), @ORM\Index(name="SupervisorId", columns={"SupervisorId"}), @ORM\Index(name="DevelopmentNeedsId", columns={"DevelopmentNeedsId"})})
  * @ORM\Entity
  */
 class Midyear
@@ -189,6 +189,16 @@ class Midyear
     private $id;
 
     /**
+     * @var \IntoPeople\DatabaseBundle\Entity\Templateversion
+     *
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Templateversion", inversedBy="midyears")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="TemplateversionId", referencedColumnName="Id")
+     * })
+     */
+    private $templateversion;
+
+    /**
      * @var \IntoPeople\DatabaseBundle\Entity\User
      *
      * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\User", inversedBy="midyears")
@@ -207,16 +217,6 @@ class Midyear
      * })
      */
     private $formstatus;
-
-    /**
-     * @var \IntoPeople\DatabaseBundle\Entity\Midyeartemplate
-     *
-     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Midyeartemplate",cascade={"persist"}, inversedBy="midyears")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="MidYearTemplateId", referencedColumnName="Id")
-     * })
-     */
-    private $midyeartemplate;
 
     /**
      * @var \IntoPeople\DatabaseBundle\Entity\Developmentneeds
@@ -970,5 +970,28 @@ class Midyear
         $this->developmentneeds = $developmentneeds;
 
         return $this;
+    }
+
+    /**
+     * Set templateversion
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Templateversion $templateversion
+     * @return Midyear
+     */
+    public function setTemplateversion(\IntoPeople\DatabaseBundle\Entity\Templateversion $templateversion = null)
+    {
+        $this->templateversion = $templateversion;
+
+        return $this;
+    }
+
+    /**
+     * Get templateversion
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Templateversion 
+     */
+    public function getTemplateversion()
+    {
+        return $this->templateversion;
     }
 }

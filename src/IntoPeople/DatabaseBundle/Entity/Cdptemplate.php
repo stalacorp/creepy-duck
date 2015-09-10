@@ -13,15 +13,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Cdptemplate
 {
-    /**
-     * @ORM\OneToMany(targetEntity="Cdp", mappedBy="cdptemplate")
-     */
-    protected $cdps;
-    
-    public function __construct1()
-    {
-        $this->cdps = new ArrayCollection();
-    }
 
     /**
      * @var string
@@ -167,6 +158,13 @@ class Cdptemplate
     /**
      * @var string
      *
+     * @ORM\Column(name="Table2Col6", type="string", length=250, nullable=true)
+     */
+    private $table2Col6;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="Table2Col1Descr", type="text", length=65535, nullable=true)
      */
     private $table2Col1Descr;
@@ -198,6 +196,14 @@ class Cdptemplate
      * @ORM\Column(name="Table2Col5Descr", type="text", length=65535, nullable=true)
      */
     private $table2Col5Descr;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Table2Col6Descr", type="text", length=65535, nullable=true)
+     */
+    private $table2Col6Descr;
 
 
     # Table3 #
@@ -344,6 +350,16 @@ class Cdptemplate
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
+    /**
+     * @var \IntoPeople\DatabaseBundle\Entity\Templateversion
+     *
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Templateversion", inversedBy="cdptemplates")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="TemplateversionId", referencedColumnName="Id")
+     * })
+     */
+    private $templateversion;
 
     /**
      * @var \IntoPeople\DatabaseBundle\Entity\Language
@@ -1426,5 +1442,74 @@ class Cdptemplate
     public function getOrganization()
     {
         return $this->organization;
+    }
+
+    /**
+     * Set table2Col6
+     *
+     * @param string $table2Col6
+     * @return Cdptemplate
+     */
+    public function setTable2Col6($table2Col6)
+    {
+        $this->table2Col6 = $table2Col6;
+
+        return $this;
+    }
+
+    /**
+     * Get table2Col6
+     *
+     * @return string 
+     */
+    public function getTable2Col6()
+    {
+        return $this->table2Col6;
+    }
+
+    /**
+     * Set table2Col6Descr
+     *
+     * @param string $table2Col6Descr
+     * @return Cdptemplate
+     */
+    public function setTable2Col6Descr($table2Col6Descr)
+    {
+        $this->table2Col6Descr = $table2Col6Descr;
+
+        return $this;
+    }
+
+    /**
+     * Get table2Col6Descr
+     *
+     * @return string 
+     */
+    public function getTable2Col6Descr()
+    {
+        return $this->table2Col6Descr;
+    }
+
+    /**
+     * Set templateversion
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Templateversion $templateversion
+     * @return Cdptemplate
+     */
+    public function setTemplateversion(\IntoPeople\DatabaseBundle\Entity\Templateversion $templateversion = null)
+    {
+        $this->templateversion = $templateversion;
+
+        return $this;
+    }
+
+    /**
+     * Get templateversion
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Templateversion 
+     */
+    public function getTemplateversion()
+    {
+        return $this->templateversion;
     }
 }

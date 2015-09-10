@@ -4,9 +4,15 @@ endyear_update:
     methods:  [POST, PUT]
     
 endyear_edit:
-    path:     /{id}/edit
+    path:     /{id}/{languageId}/edit
     defaults: { _controller: "IntoPeopleDatabaseBundle:MyEndyear:edit" }
+    options:
+      expose: true
     
 endyear_show:
     path:     /{id}/show
     defaults: { _controller: "IntoPeopleDatabaseBundle:MyEndyear:show" }
+
+endyear_language:
+    path:     /{id}/language
+    defaults: { _controller: "IntoPeopleDatabaseBundle:MyEndyear:language" }

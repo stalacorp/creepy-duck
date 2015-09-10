@@ -23,14 +23,14 @@ class Midyeartemplate
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Midyear", mappedBy="midyeartemplate")
+     * @var \IntoPeople\DatabaseBundle\Entity\Templateversion
+     *
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Templateversion", inversedBy="midyeartemplates")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="TemplateversionId", referencedColumnName="Id")
+     * })
      */
-    protected $midyears;
-    
-    public function __construct()
-    {
-        $this->midyears = new ArrayCollection();
-    }
+    private $templateversion;
 
     /**
      * @var \DateTime
@@ -1262,5 +1262,28 @@ class Midyeartemplate
     public function getOrganization()
     {
         return $this->organization;
+    }
+
+    /**
+     * Set templateversion
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Templateversion $templateversion
+     * @return Midyeartemplate
+     */
+    public function setTemplateversion(\IntoPeople\DatabaseBundle\Entity\Templateversion $templateversion = null)
+    {
+        $this->templateversion = $templateversion;
+
+        return $this;
+    }
+
+    /**
+     * Get templateversion
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Templateversion 
+     */
+    public function getTemplateversion()
+    {
+        return $this->templateversion;
     }
 }

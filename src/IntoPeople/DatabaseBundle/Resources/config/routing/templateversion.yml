@@ -1,0 +1,30 @@
+templateversion:
+    path:     /
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Templateversion:index" }
+
+templateversion_show:
+    path:     /{id}/show
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Templateversion:show" }
+
+templateversion_new:
+    path:     /new
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Templateversion:new" }
+
+templateversion_create:
+    path:     /create
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Templateversion:create" }
+    methods:  POST
+
+templateversion_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Templateversion:edit" }
+
+templateversion_update:
+    path:     /{id}/update
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Templateversion:update" }
+    methods:  [POST, PUT]
+
+templateversion_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Templateversion:delete" }
+    methods:  [POST, DELETE]
