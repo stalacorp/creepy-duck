@@ -514,7 +514,7 @@ class SupervisorController extends Controller
         ));
     }
 
-    public function dashboardAction()
+    public function dashboardAction(Request $request)
     {
 
         $form = $this->createFormBuilder()
@@ -526,9 +526,7 @@ class SupervisorController extends Controller
                 },
             ))
             ->add('cycle', 'choice', array(
-                'choices'  => array('cdp' => 'Cdp')
-
-            ))
+                'choices'  => array('cdp' => 'Cdp')))
             ->getForm();
 
 
@@ -545,6 +543,7 @@ class SupervisorController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $feedbackcycles = $em->getRepository('IntoPeopleDatabaseBundle:Feedbackcycle')->findByGeneralcycle($generalcycleid);
+        $supervisor = $this->getUser();
 
         $entities = array();
 
@@ -556,16 +555,15 @@ class SupervisorController extends Controller
             }else if($cycle == "endyear"){
                 $chosencycle = $feedbackcycle->getEndyear();
             }
-            if ($chosencycle->getFeedbackcycle()->getUser()->getSupervisor() == $this->getUser()) {
+            if ($chosencycle->getSupervisor() == $supervisor){
                 array_push($entities, $chosencycle);
             }
         }
 
-        $showlink = $cycle . '_show';
 
-        return $this->render('IntoPeopleDatabaseBundle:Supervisor:getcyclesview.html.twig', array(
+        return $this->render('IntoPeopleDatabaseBundle:HR:getcyclesview.html.twig', array(
             'entities' => $entities,
-            'showlink' => $showlink,
+            'cycle' => $cycle,
         ));
     }
 
@@ -574,6 +572,7 @@ class SupervisorController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $feedbackcycles = $em->getRepository('IntoPeopleDatabaseBundle:Feedbackcycle')->findByGeneralcycle($generalcycleid);
+        $supervisor = $this->getUser();
 
         $formcounts = array();
 
@@ -585,7 +584,7 @@ class SupervisorController extends Controller
             }else if($cycle == "endyear"){
                 $chosencycle = $feedbackcycle->getEndyear();
             }
-            if ($chosencycle->getSupervisor() == $this->getUser()) {
+            if ($chosencycle->getSupervisor() == $supervisor) {
                 array_push($formcounts, $chosencycle->getFormstatus()->getId());
             }
         }
@@ -635,6 +634,33 @@ class SupervisorController extends Controller
         }
 
         return new JsonResponse($generalcycledates);
+
+    }
+
+    public function pdfAction($cycle, Request $request)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $chosencycleids = json_decode($request->get('ids'));
+
+        $query = $em->getRepository('IntoPeopleDatabaseBundle:' . ucfirst($cycle))->createQueryBuilder('c')
+            ->where('c.id IN (:ids)')
+            ->andWhere('c.supervisor = :supervisor')
+            ->setParameter('ids', $chosencycleids)
+            ->setParameter('supervisor', $this->getUser())
+            ->getQuery();
+
+        $cycles = $query->getResult();
+
+        $facade = $this->get('ps_pdf.facade');
+        $response = new Response();
+        $this->render('IntoPeopleDatabaseBundle:HR:' . $cycle . '.pdf.twig', array("entities" => $cycles), $response);
+
+        $xml = $response->getContent();
+
+        $content = $facade->render($xml);
+
+        return new Response($content, 200, array('content-type' => 'application/pdf'));
+
 
     }
 }

@@ -27,15 +27,15 @@
                 </tr>
                 <tr>
                     <th>User status</th>
-                    <td>{{ entity.userstatus }}</td>
+                    <td>{% if entity.enabled == 1 %}{{ 'user.enabled' | trans }}{% else %}{{ 'user.disabled' | trans }}{% endif %}</td>
                 </tr>
                 <tr>
                     <th>Team</th>
                     <td>{{ entity.team }}</td>
                 </tr>
                 <tr>
-                    <th>Function</th>
-                    <td>{{ entity.function }}</td>
+                    <th>Jobtitle</th>
+                    <td>{{ entity.jobtitle }}</td>
                 </tr>
                 <tr>
                     <th>Hiredate</th>
@@ -54,7 +54,7 @@
             </table>
 
 
-            <a href="{{ path('user') }}" type="button" class="btn btn-default btn-cons"> Back to the list </a>
+            <a href="{{ path('user') }}" type="button" class="btn btn-default btn-cons"> {{ 'button.back' | trans }} </a>
             <a href="{{ path('user_edit', { 'id': entity.id }) }}" type="button" class="btn btn-default btn-cons">
                 Edit </a>
 
