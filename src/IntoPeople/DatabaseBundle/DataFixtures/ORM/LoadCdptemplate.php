@@ -73,6 +73,8 @@ class LoadCdptemplate extends AbstractFixture implements OrderedFixtureInterface
         $cdptemplate->setSignatureSupervisor("Date & supervisor's Signature");
         $cdptemplate->setSignatureEmployee("Date & Employee's Signature");
         $cdptemplate->setLanguage($this->getReference('english'));
+
+        $cdptemplate->setTemplateversion($this->getReference('Templateversion2015'));
         
         $dt = new \DateTime();
         $cdptemplate->setDate($dt);
@@ -88,6 +90,6 @@ class LoadCdptemplate extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 3;
+        return 5;
     }
 }
