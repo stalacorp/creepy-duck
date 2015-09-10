@@ -1,53 +1,11 @@
 {% extends '::base.html.twig' %} {% block body -%}
-
-
+    <div class="row">
+    <div class="col-lg-3 col-md-4">
     {{ form(form) }}
-
-
+    </div>
+    </div>
     <div id="result"></div>
 
-
-    <!-- Modal -->
-    <div class="modal fade" id="corequalitiesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">{{ 'cdp.corequalitiesmodal.title' }}</h4>
-                </div>
-                <div class="modal-body">
-                    <p class="bg-danger" id="qualityerror"></p>
-                            <div class="table-responsive">
-                            {% set teller = 0 %}
-                            <table class="table borderless" id="corequalitiesmodaltable">
-                                <tr>
-                                {% for corequality in corequalities %}
-                                            <td><button class="btn qualityoption btn-default btn-block">{{ corequality.corequality }}</button></td>
-                                    {% if teller % 5 == 4 %}
-                                    </tr>
-                                    <tr>
-                                        {% endif %}
-                                        {% set teller = (teller + 1) %}
-                                {% endfor %}
-                                </tr>
-                            </table>
-                                </div>
-                            <div class="form-group text-center">
-                                <input type="text" id="custom" /> <button id="custombutton" class="btn btn-primary">{{ 'cdp.corequalitiesmodal.addcustom' }}</button>
-                            </div>
-
-                </div>
-
-
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'modal.cancel' | trans }}</button>
-                    <button type="button" class="btn btn-default" id="corequalityok">{{ 'modal.ok' | trans }}</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 {% endblock %}
 
@@ -77,7 +35,6 @@
 
 
             $(document).on('click', '.qualityoption' , function(){
-                alert(count);
                 if ($(this).hasClass('btn-default')){
                     if (count != 5){
                         $(this).toggleClass('btn-default');
@@ -91,10 +48,9 @@
                     $(this).toggleClass('btn-success');
                     count--;
                 }
-
             });
 
-            $('#corequalityok').click(function(){
+            $(document).on('click', '#corequalityok', function(){
                 if (count >= 3){
                     $('#corequalitiesModal').modal('hide');
                     $.each( $('.btn-success'), function( key, value ) {
@@ -111,7 +67,7 @@
                 }
             });
 
-            $('#custombutton').click(function(){
+            $(document).on('click', '#custombutton', function(){
                 var text = $('#custom').val();
                 if (text != '') {
                     if (count != 5) {
@@ -120,7 +76,9 @@
                             $('#corequalitiesmodaltable').append('<tr></tr>');
                         }
 
-                        $('#corequalitiesmodaltable').find('tr:last').append('<td>' + '<button class="btn qualityoption btn-block btn-default">' + text + '</button>' + '</td>');
+                        $('#corequalitiesmodaltable').find('tr:last').append('<td>' + '<button class="btn qualityoption btn-block btn-success">' + text + '</button>' + '</td>');
+
+                        count++;
 
                     } else {
                         $('#qualityerror').html('{{ 'cdp.modal.max5error' | trans }}');
@@ -131,12 +89,12 @@
 
 
 
-            $('.addButton').click(function () {
+            $(document).on('click', '.addButton', function () {
                 $(this).parent().parent().parent().find('.hidden').first().removeClass('hidden');
 
             });
 
-            $('.removeButton').click(function () {
+            $(document).on('click', '.removeButton', function () {
                 $(this).parent().parent().addClass('hidden');
             });
         });

@@ -8,6 +8,7 @@ use IntoPeople\DatabaseBundle\Form\CdpType;
 use IntoPeople\DatabaseBundle\Entity\Feedbackcycle;
 use IntoPeople\DatabaseBundle\Entity\Developmentneeds;
 use IntoPeople\DatabaseBundle\Entity\Cdphistory;
+use Doctrine\ORM\EntityRepository;
 
 /**
  * My cdp controller.
@@ -70,7 +71,7 @@ class MyCdpController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('IntoPeopleDatabaseBundle:Cdp')->find($id);
-        $corequalities = $em->getRepository('IntoPeopleDatabaseBundle:Corequality')->findByLanguage($this->getUser()->getLanguage());
+        $corequalities = $em->getRepository('IntoPeopleDatabaseBundle:Corequality')->findByLanguage($languageId);
         $user = $this->getUser();
         if (! $entity) {
             throw $this->createNotFoundException('Unable to find Cdp entity.');
