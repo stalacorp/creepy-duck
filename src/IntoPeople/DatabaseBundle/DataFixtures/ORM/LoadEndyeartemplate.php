@@ -70,7 +70,7 @@ class LoadEndyeartemplate extends AbstractFixture implements OrderedFixtureInter
         $endyeartemplate->setSignatureEmployee("Date & Employee's Signature");
         $endyeartemplate->setLanguage($this->getReference('english'));
 
-        $endyeartemplate->setTemplateversion($this->getReference('Templateversion2015'));
+        $endyeartemplate->setTemplateversion($this->getReference('Templates2015'));
 
         $dt = new \DateTime();
         $endyeartemplate->setDate($dt);

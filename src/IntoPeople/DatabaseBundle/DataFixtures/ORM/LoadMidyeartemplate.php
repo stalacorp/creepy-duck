@@ -68,7 +68,7 @@ class LoadMidyeartemplate extends AbstractFixture implements OrderedFixtureInter
         $midyeartemplate->setSignatureEmployee("Date & Employee's Signature");
         $midyeartemplate->setLanguage($this->getReference('english'));
 
-        $midyeartemplate->setTemplateversion($this->getReference('Templateversion2015'));
+        $midyeartemplate->setTemplateversion($this->getReference('Templates2015'));
 
         $dt = new \DateTime();
         $midyeartemplate->setDate($dt);

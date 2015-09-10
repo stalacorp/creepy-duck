@@ -76,7 +76,7 @@ class LoadCdptemplate extends AbstractFixture implements OrderedFixtureInterface
         $cdptemplate->setSignatureEmployee("Date & Employee's Signature");
         $cdptemplate->setLanguage($this->getReference('english'));
 
-        $cdptemplate->setTemplateversion($this->getReference('Templateversion2015'));
+        $cdptemplate->setTemplateversion($this->getReference('Templates2015'));
         
         $dt = new \DateTime();
         $cdptemplate->setDate($dt);
@@ -142,7 +142,7 @@ class LoadCdptemplate extends AbstractFixture implements OrderedFixtureInterface
         $cdptemplatenl->setSignatureEmployee("Gelezen en goedgekeurd door medewerker");
         $cdptemplatenl->setLanguage($this->getReference('nederlands'));
 
-        $cdptemplatenl->setTemplateversion($this->getReference('Templateversion2015'));
+        $cdptemplatenl->setTemplateversion($this->getReference('Templates2015'));
 
         $dt = new \DateTime();
         $cdptemplatenl->setDate($dt);
