@@ -66,7 +66,7 @@ class MyCdpController extends Controller
     /**
      * Displays a form to edit an existing Cdp entity.
      */
-    public function editAction($id)
+    public function editAction($id, $languageId)
     {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('IntoPeopleDatabaseBundle:Cdp')->find($id);
