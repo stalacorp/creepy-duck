@@ -41,9 +41,11 @@ class LoadCdptemplate extends AbstractFixture implements OrderedFixtureInterface
 
         $cdptemplate->setTable2Col1Descr("What are you good at?");
         $cdptemplate->setTable2Col2Descr("So what is your challenge?");
-        $cdptemplate->setTable2Col3Descr("How are you going to take on this challenge?");
-        $cdptemplate->setTable2Col4Descr("How will you know if you succeeded?");
-        $cdptemplate->setTable2Col5Descr("What do you need to complete your challenge?");
+        $cdptemplate->setTable2Col3Descr("What is my pitfall?");
+        $cdptemplate->setTable2Col4Descr("How are you going to take on this challenge?");
+        $cdptemplate->setTable2Col5Descr("How will you know if you succeeded?");
+        $cdptemplate->setTable2Col6Descr("What do you need to complete your challenge?");
+
 
         $cdptemplate->setTitle3('Development Needs for your Job');
         $cdptemplate->setTitle3Description('Read your Job Description carefully.');
@@ -81,7 +83,74 @@ class LoadCdptemplate extends AbstractFixture implements OrderedFixtureInterface
 
         $cdptemplate->setOrganization($this->getReference('organization'));
 
+
+
+        $cdptemplatenl = new Cdptemplate();
+
+        $cdptemplatenl->setMainTitle('Persoonlijk Ontwikkel Plan');
+        $cdptemplatenl->setTitle1('Persoonlijke gegevens');
+
+        $cdptemplatenl->setName('Naam');
+        $cdptemplatenl->setSupervisor('Leidinggevende');
+        $cdptemplatenl->setDateDiscussion('Datum bespreking');
+        $cdptemplatenl->setTeam('Team');
+        $cdptemplatenl->setFunction('Functie');
+
+        $cdptemplatenl->setTitle2("Moment van zelfreflectie");
+        $cdptemplatenl->setTitle2Description("Werk minimum drie maximum vijf van je sterktes en talenten verder uit.");
+
+        $cdptemplatenl->setTable2Col1("Talenten");
+        $cdptemplatenl->setTable2Col2("Uitdagingen");
+        $cdptemplatenl->setTable2Col3("Valkuilen");
+        $cdptemplatenl->setTable2Col4("Hoe");
+        $cdptemplatenl->setTable2Col5("Succes");
+        $cdptemplatenl->setTable2Col6("Noden");
+
+        $cdptemplatenl->setTable2Col1Descr("Waar ben ik goed in?");
+        $cdptemplatenl->setTable2Col2Descr("Wat is mijn uitdaging?");
+        $cdptemplatenl->setTable2Col3Descr("Te veel van het goede vormt een valkuil. Wat is die valkuil voor mij en hoe vertaalt zich dit in de praktijk?");
+        $cdptemplatenl->setTable2Col4Descr("Hoe ga ik deze uitdaging aan?");
+        $cdptemplatenl->setTable2Col5Descr("Hoe weet ik dat ik geslaagd ben in het realiseren van mijn doelstelling?");
+        $cdptemplatenl->setTable2Col6Descr("Welke hulp(middelen) heb je hiervoor nodig?");
+
+        $cdptemplatenl->setTitle3('Ontwikkeldoelstellingen voor jouw functie');
+        $cdptemplatenl->setTitle3Description('Neem je functiebeschrijving en bijhorende competenties bij de hand voor deze oefening en neem deze aandacht door.');
+
+        $cdptemplatenl->setTable3Col1("Wat en Waarom");
+        $cdptemplatenl->setTable3Col2("Hoe");
+        $cdptemplatenl->setTable3Col3("Succes");
+        $cdptemplatenl->setTable3Col4("Noden");
+
+        $cdptemplatenl->setTable3Col1Descr("Waar moet je nog in groeien en wat ga je extra doen dit jaar?");
+        $cdptemplatenl->setTable3Col2Descr("Hoe ga je dit realiseren?");
+        $cdptemplatenl->setTable3Col3Descr("Hoe weet je dat je geslaagd zal zijn in je vooropgestelde doel?");
+        $cdptemplatenl->setTable3Col4Descr("Welke hulp(middelen) heb je hiervoor nodig?");
+
+        $cdptemplatenl->setTable3Title1('Functiegebonden resultaatsgebieden en verantwoordelijkheden');
+        $cdptemplatenl->setTable3Title2('Functiegebonden competenties');
+        $cdptemplatenl->setTable3Title3('Bedrijfsspecifieke competenties');
+
+        $cdptemplatenl->setTitle4("Loopbaan objectieven");
+        $cdptemplatenl->setQuestion1("Waar zie je jezelf over drie jaren?");
+
+        $cdptemplatenl->setTitle5("Bijkomende informatie");
+        $cdptemplatenl->setQuestion2("Beschrijf bijkomende informatie die relevant is voor jouw Persoonlijke Ontwikkeling het komende jaar. Dit kan gaan over gebeurtenissen die impact kunnen hebben op de werk/privé balans, speciale wensen, etc.");
+
+        $cdptemplatenl->setSupervisorComment("Commentaar leidinggevende");
+        $cdptemplatenl->setFeedback("Feedback MT");
+        $cdptemplatenl->setSignatureSupervisor("Gelezen en goedgekeurd door leidinggevende");
+        $cdptemplatenl->setSignatureEmployee("Gelezen en goedgekeurd door medewerker");
+        $cdptemplatenl->setLanguage($this->getReference('nederlands'));
+
+        $cdptemplatenl->setTemplateversion($this->getReference('Templateversion2015'));
+
+        $dt = new \DateTime();
+        $cdptemplatenl->setDate($dt);
+
+        $cdptemplatenl->setOrganization($this->getReference('organization'));
+
         $manager->persist($cdptemplate);
+        $manager->persist($cdptemplatenl);
         $manager->flush();
     }
     
