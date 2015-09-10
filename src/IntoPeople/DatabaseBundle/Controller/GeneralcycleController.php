@@ -119,6 +119,14 @@ class GeneralcycleController extends Controller
             $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:User');
               
             $users = $repository->findAll();
+
+            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Templateversion');
+
+            $query = $repository->createQueryBuilder('t')
+                ->orderBy('t.date', 'desc')
+                ->getQuery();
+
+            $templateversion = $query->setMaxResults(1)->getOneOrNullResult();
             
             $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Formstatus');
             
@@ -138,18 +146,21 @@ class GeneralcycleController extends Controller
                     $cdp = new Cdp();
                     $cdp->setDevelopmentneeds($developmentneeds);
                     $cdp->setFormstatus($available);
+                    $cdp->setTemplateversion($templateversion);
 
                     $feedbackcycle->setCdp($cdp);
 
                     $midyear = new Midyear();
                     $midyear->setDevelopmentneeds($developmentneeds);
                     $midyear->setFormstatus($unavailable);
+                    $midyear->setTemplateversion($templateversion);
 
                     $feedbackcycle->setMidyear($midyear);
 
                     $endyear = new Endyear();
                     $endyear->setDevelopmentneeds($developmentneeds);
                     $endyear->setFormstatus($unavailable);
+                    $endyear->setTemplateversion($templateversion);
 
                     $feedbackcycle->setEndyear($endyear);
 
