@@ -35,6 +35,8 @@ class CdptemplateType extends AbstractType
             ->add('table2Col4Descr')
             ->add('table2Col5')
             ->add('table2Col5Descr')
+            ->add('table2Col6')
+            ->add('table2Col6Descr')
             ->add('title3')
             ->add('title3Description')
             ->add('table3Col1')

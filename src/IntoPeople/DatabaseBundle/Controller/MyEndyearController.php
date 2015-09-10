@@ -2,6 +2,7 @@
 namespace IntoPeople\DatabaseBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use IntoPeople\DatabaseBundle\Entity\Endyear;
 use IntoPeople\DatabaseBundle\Form\EndyearType;
@@ -13,6 +14,32 @@ use IntoPeople\DatabaseBundle\Entity\Feedbackcycle;
  */
 class MyEndyearController extends Controller
 {
+
+    /**
+     * Choose language template
+     *
+     */
+    public function languageAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('IntoPeopleDatabaseBundle:Endyear')->find($id);
+
+        $form = $this->createFormBuilder()
+            ->add('language', 'entity', array(
+                'class' => 'IntoPeopleDatabaseBundle:Language',
+                'query_builder' => function (EntityRepository $er) use ($entity) {
+                    return $er->createQueryBuilder('l')->join('l.endyeartemplates','e')->where('e.templateversion = :version')->setParameter('version', $entity->getTemplateversion());
+                },
+            ))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        return $this->render('IntoPeopleDatabaseBundle:Endyear:new.html.twig', array(
+            'form' => $form->createView(),
+            'entity' => $entity
+        ));
+    }
     
     /**
      * Creates a form to create a endyear entity.
@@ -36,7 +63,7 @@ class MyEndyearController extends Controller
         return $form;
     }
 
-    public function editAction($id)
+    public function editAction($id, $languageId)
     {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('IntoPeopleDatabaseBundle:Endyear')->find($id);
@@ -55,15 +82,25 @@ class MyEndyearController extends Controller
             
             $form = $this->createEditForm($entity);
 
+            $devneeds = $entity->getDevelopmentNeeds();
+
+            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Endyeartemplate');
+
+            $query = $repository->createQueryBuilder('e')
+                ->where('e.templateversion = :endyeartemplateversion')
+                ->andWhere('e.language = :language')
+                ->setParameter('endyeartemplateversion', $entity->getTemplateversion())
+                ->setParameter('language', $languageId)
+                ->getQuery();
+
+            $template = $query->setMaxResults(1)->getOneOrNullResult();
+
             
-            // Send CDP template
-            
-            $template = $entity->getEndyeartemplate();
-            
-            return $this->render('IntoPeopleDatabaseBundle:Endyear:new.html.twig', array(
-                'template' => $template,
+            return $this->render('IntoPeopleDatabaseBundle:Endyear:getform.html.twig', array(
                 'entity' => $entity,
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'devneeds' => $devneeds,
+                'template' => $template
             ));
         }
         
@@ -164,14 +201,9 @@ class MyEndyearController extends Controller
         if($this->getUser() != $entity->getFeedbackcycle()->getUser() & !$securityContext->isGranted('ROLE_HR')){
             throw new \Exception($this->get('translator')->trans('noaccesserror'));
         }
-    
-        $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Endyeartemplate');
-    
-        $template = $repository->find(1);
-    
+
         return $this->render('IntoPeopleDatabaseBundle:Endyear:show.html.twig', array(
-            'entity'      => $entity,
-            'template' => $template
+            'entity'      => $entity
         ));
     }
 }

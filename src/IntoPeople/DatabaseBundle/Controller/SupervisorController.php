@@ -85,15 +85,8 @@ class SupervisorController extends Controller
             $form = $this->createEditForm($entity);
             $user = $this->getUser();
 
-            // Send CDP template
-
-            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
-
-            $template = $entity->getCdptemplate();
-
             return $this->render('IntoPeopleDatabaseBundle:Supervisor:feedback.html.twig', array(
                 'entity' => $entity,
-                'template' => $template,
                 'form' => $form->createView()
             ));
         }
@@ -264,25 +257,8 @@ class SupervisorController extends Controller
             $form = $this->createMidyearEditForm($entity);
             $user = $this->getUser();
 
-            // Send CDP template
-
-            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Midyeartemplate');
-
-            // createQueryBuilder automatically selects FROM IntoPeopleDatabaseBundle:Cdptemplate
-            // and aliases it to "c"
-            $query = $repository->createQueryBuilder('c')
-            ->where('c.organization = :id')
-            ->setParameter('id', $user->getOrganization()
-                ->getId())
-                ->getQuery();
-
-            $template = $query->setMaxResults(1)->getOneOrNullResult();
-            // to get just one result:
-            // $product = $query->setMaxResults(1)->getOneOrNullResult();
-
             return $this->render('IntoPeopleDatabaseBundle:Supervisor:feedbackMidyear.html.twig', array(
                 'entity' => $entity,
-                'template' => $template,
                 'form' => $form->createView()
             ));
         }
@@ -421,25 +397,8 @@ class SupervisorController extends Controller
             $form = $this->createEndyearEditForm($entity);
             $user = $this->getUser();
 
-            // Send CDP template
-
-            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Endyeartemplate');
-
-            // createQueryBuilder automatically selects FROM IntoPeopleDatabaseBundle:Cdptemplate
-            // and aliases it to "c"
-            $query = $repository->createQueryBuilder('c')
-            ->where('c.organization = :id')
-            ->setParameter('id', $user->getOrganization()->getId())
-            ->orderby('c.date','DESC')
-            ->getQuery();
-
-            $template = $query->setMaxResults(1)->getOneOrNullResult();
-            // to get just one result:
-            // $product = $query->setMaxResults(1)->getOneOrNullResult();
-
             return $this->render('IntoPeopleDatabaseBundle:Supervisor:feedbackEndyear.html.twig', array(
                 'entity' => $entity,
-                'template' => $template,
                 'form' => $form->createView()
             ));
         }

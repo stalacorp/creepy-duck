@@ -4,9 +4,15 @@ cdp_update:
     methods:  [POST, PUT]
     
 cdp_edit:
-    path:     /{id}/edit
+    path:     /{id}/{languageId}/edit
     defaults: { _controller: "IntoPeopleDatabaseBundle:MyCdp:edit" }
+    options:
+      expose: true
     
 cdp_show:
     path:     /{id}/show
     defaults: { _controller: "IntoPeopleDatabaseBundle:MyCdp:show" }
+
+cdp_language:
+    path:     /{id}/language
+    defaults: { _controller: "IntoPeopleDatabaseBundle:MyCdp:language" }

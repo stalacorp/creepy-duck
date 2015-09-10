@@ -124,25 +124,6 @@ class GeneralcycleController extends Controller
             
             $available = $repository->find(1);
             $unavailable = $repository->find(9);
-                    
-            // FIND NEWEST CDP TEMPLATE
-            // ---
-            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
-              
-            $cdptemplate = $repository->findNewest();
-            
-            // FIND NEWEST MID YEAR TEMPLATE
-            // ---            
-            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Midyeartemplate');
-            
-            $midyeartemplate = $repository->findNewest();
-            
-            // FIND NEWEST END YEAR TEMPLATE
-            // ---           
-            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Endyeartemplate');
-            
-            $endyeartemplate = $repository->findNewest();
-            
             
             foreach ($users as $user) {
 
@@ -157,21 +138,18 @@ class GeneralcycleController extends Controller
                     $cdp = new Cdp();
                     $cdp->setDevelopmentneeds($developmentneeds);
                     $cdp->setFormstatus($available);
-                    $cdp->setCdptemplate($cdptemplate);
 
                     $feedbackcycle->setCdp($cdp);
 
                     $midyear = new Midyear();
                     $midyear->setDevelopmentneeds($developmentneeds);
                     $midyear->setFormstatus($unavailable);
-                    $midyear->setMidyeartemplate($midyeartemplate);
 
                     $feedbackcycle->setMidyear($midyear);
 
                     $endyear = new Endyear();
                     $endyear->setDevelopmentneeds($developmentneeds);
                     $endyear->setFormstatus($unavailable);
-                    $endyear->setEndyeartemplate($endyeartemplate);
 
                     $feedbackcycle->setEndyear($endyear);
 

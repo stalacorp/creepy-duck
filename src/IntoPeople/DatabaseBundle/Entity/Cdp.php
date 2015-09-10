@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Cdp
  *
- * @ORM\Table(name="CDP", indexes={@ORM\Index(name="FormStatusId", columns={"FormStatusId"}), @ORM\Index(name="SupervisorId", columns={"SupervisorId"}), @ORM\Index(name="DevelopmentNeedsId", columns={"DevelopmentNeedsId"}), @ORM\Index(name="CDPTemplateId", columns={"CDPTemplateId"})})
+ * @ORM\Table(name="CDP", indexes={@ORM\Index(name="FormStatusId", columns={"FormStatusId"}), @ORM\Index(name="SupervisorId", columns={"SupervisorId"}), @ORM\Index(name="DevelopmentNeedsId", columns={"DevelopmentNeedsId"})})
  * @ORM\Entity
  */
 class Cdp
@@ -65,6 +65,16 @@ class Cdp
     private $feedbackhr;
 
     /**
+     * @var \IntoPeople\DatabaseBundle\Entity\Templateversion
+     *
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Templateversion", inversedBy="cdps")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="TemplateversionId", referencedColumnName="Id")
+     * })
+     */
+    private $templateversion;
+
+    /**
      * @var \IntoPeople\DatabaseBundle\Entity\Developmentneeds
      *
      * @ORM\OneToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Developmentneeds", cascade={"persist"}, inversedBy="cdp")
@@ -94,16 +104,6 @@ class Cdp
      * })
      */
     private $formstatus;
-
-    /**
-     * @var \IntoPeople\DatabaseBundle\Entity\Cdptemplate
-     *
-     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Cdptemplate", inversedBy="cdps")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="CDPTemplateId", referencedColumnName="Id")
-     * })
-     */
-    private $cdptemplate;
 
     /**
      * @ORM\OneToMany(targetEntity="IntoPeople\DatabaseBundle\Entity\Cdphistory", cascade={"persist"}, mappedBy="cdp")
@@ -289,6 +289,41 @@ class Cdp
      * @ORM\Column(name="ChallengeWhy5", type="text", length=65535, nullable=true)
      */
     private $challengeWhy5;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Pitfall1", type="text", length=65535, nullable=true)
+     */
+    private $pitfall1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Pitfall2", type="text", length=65535, nullable=true)
+     */
+    private $pitfall2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Pitfall3", type="text", length=65535, nullable=true)
+     */
+    private $pitfall3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Pitfall4", type="text", length=65535, nullable=true)
+     */
+    private $pitfall4;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Pitfall5", type="text", length=65535, nullable=true)
+     */
+    private $pitfall5;
 
     /**
      * @var string
@@ -2999,5 +3034,143 @@ class Cdp
     public function getChallenge5()
     {
         return $this->challenge5;
+    }
+
+    /**
+     * Set pitfall1
+     *
+     * @param string $pitfall1
+     * @return Cdp
+     */
+    public function setPitfall1($pitfall1)
+    {
+        $this->pitfall1 = $pitfall1;
+
+        return $this;
+    }
+
+    /**
+     * Get pitfall1
+     *
+     * @return string 
+     */
+    public function getPitfall1()
+    {
+        return $this->pitfall1;
+    }
+
+    /**
+     * Set pitfall2
+     *
+     * @param string $pitfall2
+     * @return Cdp
+     */
+    public function setPitfall2($pitfall2)
+    {
+        $this->pitfall2 = $pitfall2;
+
+        return $this;
+    }
+
+    /**
+     * Get pitfall2
+     *
+     * @return string 
+     */
+    public function getPitfall2()
+    {
+        return $this->pitfall2;
+    }
+
+    /**
+     * Set pitfall3
+     *
+     * @param string $pitfall3
+     * @return Cdp
+     */
+    public function setPitfall3($pitfall3)
+    {
+        $this->pitfall3 = $pitfall3;
+
+        return $this;
+    }
+
+    /**
+     * Get pitfall3
+     *
+     * @return string 
+     */
+    public function getPitfall3()
+    {
+        return $this->pitfall3;
+    }
+
+    /**
+     * Set pitfall4
+     *
+     * @param string $pitfall4
+     * @return Cdp
+     */
+    public function setPitfall4($pitfall4)
+    {
+        $this->pitfall4 = $pitfall4;
+
+        return $this;
+    }
+
+    /**
+     * Get pitfall4
+     *
+     * @return string 
+     */
+    public function getPitfall4()
+    {
+        return $this->pitfall4;
+    }
+
+    /**
+     * Set pitfall5
+     *
+     * @param string $pitfall5
+     * @return Cdp
+     */
+    public function setPitfall5($pitfall5)
+    {
+        $this->pitfall5 = $pitfall5;
+
+        return $this;
+    }
+
+    /**
+     * Get pitfall5
+     *
+     * @return string 
+     */
+    public function getPitfall5()
+    {
+        return $this->pitfall5;
+    }
+
+    /**
+     * Set templateversion
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Templateversion $templateversion
+     * @return Cdp
+     */
+    public function setTemplateversion(\IntoPeople\DatabaseBundle\Entity\Templateversion $templateversion = null)
+    {
+        $this->templateversion = $templateversion;
+
+        return $this;
+    }
+
+    /**
+     * Get templateversion
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Templateversion 
+     */
+    public function getTemplateversion()
+    {
+        return $this->templateversion;
     }
 }

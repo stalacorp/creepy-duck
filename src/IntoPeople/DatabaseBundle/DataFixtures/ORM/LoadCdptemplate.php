@@ -34,9 +34,10 @@ class LoadCdptemplate extends AbstractFixture implements OrderedFixtureInterface
 
         $cdptemplate->setTable2Col1("Talents");
         $cdptemplate->setTable2Col2("Challenges");
-        $cdptemplate->setTable2Col3("How");
-        $cdptemplate->setTable2Col4("Success");
-        $cdptemplate->setTable2Col5("Needs");
+        $cdptemplate->setTable2Col3("Pitfall");
+        $cdptemplate->setTable2Col4("How");
+        $cdptemplate->setTable2Col5("Success");
+        $cdptemplate->setTable2Col6("Needs");
 
         $cdptemplate->setTable2Col1Descr("What are you good at?");
         $cdptemplate->setTable2Col2Descr("So what is your challenge?");
@@ -68,7 +69,7 @@ class LoadCdptemplate extends AbstractFixture implements OrderedFixtureInterface
         $cdptemplate->setQuestion2("List any additional information that is relevant to your Career Development Plan (CDP) for the coming year. Such information could include your interest in special assignments, considerations related to work / life balance, etc.");
 
         $cdptemplate->setSupervisorComment("Supervisor Comments");
-        $cdptemplate->setFeedback("Feedback BOD");
+        $cdptemplate->setFeedback("Feedback MT");
         $cdptemplate->setSignatureSupervisor("Date & supervisor's Signature");
         $cdptemplate->setSignatureEmployee("Date & Employee's Signature");
         $cdptemplate->setLanguage($this->getReference('english'));

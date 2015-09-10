@@ -2,6 +2,7 @@
 namespace IntoPeople\DatabaseBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use IntoPeople\DatabaseBundle\Entity\Midyear;
 use IntoPeople\DatabaseBundle\Form\MidyearType;
@@ -13,7 +14,32 @@ use IntoPeople\DatabaseBundle\Entity\Feedbackcycle;
  */
 class MyMidyearController extends Controller
 {
-    
+    /**
+     * Choose language template
+     *
+     */
+    public function languageAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('IntoPeopleDatabaseBundle:Midyear')->find($id);
+
+        $form = $this->createFormBuilder()
+            ->add('language', 'entity', array(
+                'class' => 'IntoPeopleDatabaseBundle:Language',
+                'query_builder' => function (EntityRepository $er) use ($entity) {
+                    return $er->createQueryBuilder('l')->join('l.midyeartemplates','m')->where('m.templateversion = :version')->setParameter('version', $entity->getTemplateversion());
+                },
+            ))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        return $this->render('IntoPeopleDatabaseBundle:Midyear:new.html.twig', array(
+            'form' => $form->createView(),
+            'entity' => $entity
+        ));
+    }
+
     /**
      * Creates a form to create a midyear entity.
      *
@@ -37,7 +63,7 @@ class MyMidyearController extends Controller
         return $form;
     }
 
-    public function editAction($id)
+    public function editAction($id, $languageId)
     {
         
         $em = $this->getDoctrine()->getManager();
@@ -55,18 +81,25 @@ class MyMidyearController extends Controller
         if ($entity->getFormstatus()->getId() == 1 || $entity->getFormstatus()->getId() == 2 || $entity->getFormstatus()->getId() == 4 || $entity->getFormstatus()->getId() == 7) {
         
             $form = $this->createEditForm($entity);
-        
-            // Send CDP template
-        
-            $template = $entity->getMidyeartemplate();
-            
+
             $devneeds = $entity->getDevelopmentNeeds();
+
+            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Midyeartemplate');
+
+            $query = $repository->createQueryBuilder('m')
+                ->where('m.templateversion = :midyeartemplateversion')
+                ->andWhere('m.language = :language')
+                ->setParameter('midyeartemplateversion', $entity->getTemplateversion())
+                ->setParameter('language', $languageId)
+                ->getQuery();
+
+            $template = $query->setMaxResults(1)->getOneOrNullResult();
         
-            return $this->render('IntoPeopleDatabaseBundle:Midyear:new.html.twig', array(
-                'template' => $template,
+            return $this->render('IntoPeopleDatabaseBundle:Midyear:getform.html.twig', array(
                 'entity' => $entity,
                 'form' => $form->createView(),
-                'devneeds' => $devneeds
+                'devneeds' => $devneeds,
+                'template' => $template
             ));
         }
         
@@ -178,14 +211,10 @@ class MyMidyearController extends Controller
         if($this->getUser() != $entity->getFeedbackcycle()->getUser() & !$securityContext->isGranted('ROLE_HR')){
             throw new \Exception($this->get('translator')->trans('noaccesserror'));
         }
-    
-        $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Midyeartemplate');
-    
-        $template = $repository->find(1);
+
     
         return $this->render('IntoPeopleDatabaseBundle:Midyear:show.html.twig', array(
-            'entity'      => $entity,
-            'template' => $template
+            'entity'      => $entity
         ));
     }
 }
