@@ -1,0 +1,61 @@
+<h3>{{ cycle }}</h3>
+
+<table class="table borderless">
+
+    <thead>
+    <tr>
+        <th>{{ 'templates.index.tabe.date' | trans }}</th>
+        <th>{{ 'templates.index.table.language' | trans }}</th>
+        <th>{{ 'templates.index.table.actions' | trans }}</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for template in templates %}
+
+        <tr>
+            <td>{{ template.date | localizeddate('medium', 'none', app.request.locale ) }}</td>
+            <td>{{ template.language }}</td>
+            <td>
+                {% if cycle == "cdp" %}
+
+                    <a href="{{ path('cdptemplate_show', { 'id': template.id }) }}" type="button" class="btn btn-default btn-sm">show</a>
+
+                    <a href="{{ path('cdptemplate_edit', { 'id': template.id }) }}" type="button" class="btn btn-default btn-sm">edit</a>
+
+                {% elseif cycle == "midyear" %}
+
+                    <a href="{{ path('midyeartemplate_show', { 'id': template.id }) }}" type="button" class="btn btn-default btn-sm">show</a>
+
+                    <a href="{{ path('midyeartemplate_edit', { 'id': template.id }) }}" type="button" class="btn btn-default btn-sm">edit</a>
+
+                {% elseif cycle == "endyear" %}
+
+                    <a href="{{ path('endyeartemplate_show', { 'id': template.id }) }}" type="button" class="btn btn-default btn-sm">show</a>
+
+                    <a href="{{ path('endyeartemplate_edit', { 'id': template.id }) }}" type="button" class="btn btn-default btn-sm">edit</a>
+
+                {% endif %}
+
+            </td>
+
+        </tr>
+
+    {% endfor %}
+    </tbody>
+
+</table>
+
+{% if cycle == "cdp" %}
+
+    <a href="{{ path('cdptemplate_new') }}" type="button" class="btn btn-default">{{ 'button.create' | trans }}</a>
+
+{% elseif cycle == "midyear" %}
+
+    <a href="{{ path('midyeartemplate_new') }}" type="button" class="btn btn-default">{{ 'button.create' | trans }}</a>
+
+{% elseif cycle == "endyear" %}
+
+    <a href="{{ path('endyeartemplate_new') }}" type="button" class="btn btn-default">{{ 'button.create' | trans }}</a>
+
+{% endif %}
