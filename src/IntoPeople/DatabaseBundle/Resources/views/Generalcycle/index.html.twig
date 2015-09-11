@@ -70,12 +70,21 @@
 
                                     <tr>
                                         <th>{{ 'generalcycle.index.startdate' | trans }}</th>
-                                        <td>{{ entity.startdatemidyear | localizeddate('medium', 'none', app.request.locale ) }}</td>
+                                        <td>{% if entity.startdatemidyear != null %}
+                                            {{ entity.startdatemidyear | localizeddate('medium', 'none', app.request.locale ) }}
+                                            {% else %}
+                                            {{ 'Unavailable' | trans }}
+                                            {% endif %}
+                                        </td>
                                     </tr>
 
                                     <tr>
                                         <th>{{ 'generalcycle.index.enddate' | trans }}</th>
-                                        <td>{{ entity.enddatemidyear | localizeddate('medium', 'none', app.request.locale ) }}</td>
+                                        <td>{% if entity.enddatemidyear != null %}
+                                                {{ entity.enddatemidyear | localizeddate('medium', 'none', app.request.locale ) }}
+                                            {% else %}
+                                                {{ 'Unavailable' | trans }}
+                                            {% endif %}</td>
                                     </tr>
 
 

@@ -15,11 +15,11 @@ class CdpType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('coreQuality1')
-            ->add('coreQuality2')
-            ->add('coreQuality3')
-            ->add('coreQuality4')
-            ->add('coreQuality5')
+            ->add('coreQuality1', 'hidden', array('mapped' => false))
+            ->add('coreQuality2', 'hidden', array('mapped' => false))
+            ->add('coreQuality3', 'hidden', array('mapped' => false))
+            ->add('coreQuality4', 'hidden', array('mapped' => false))
+            ->add('coreQuality5', 'hidden', array('mapped' => false))
             ->add('coreQuality1Why')
             ->add('coreQuality2Why')
             ->add('coreQuality3Why')

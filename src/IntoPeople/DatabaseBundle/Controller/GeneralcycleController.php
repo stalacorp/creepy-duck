@@ -113,6 +113,12 @@ class GeneralcycleController extends Controller
             // Generalcycle started by current user
             $user = $this->getUser();       
             $entity->setStartedby($user);
+
+            // midyearnull
+            if ($entity->getStartdatemidyear() == '' | $entity->getEnddatemidyear() == ''){
+                $entity->setStartdatemidyear(null);
+                $entity->setEnddatemidyear(null);
+            }
             
             
             // Foreach user in organization create feedbackcycle for generalcycle      

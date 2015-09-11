@@ -23,26 +23,32 @@ class LoadCorequality extends AbstractFixture implements OrderedFixtureInterface
         $accurate = new Corequality();
         $accurate->setCoreQuality("Accurate");
         $accurate->setLanguage($english);
+        $accurate->setIsStandard(true);
 
         $adaptibility = new Corequality();
         $adaptibility->setCoreQuality("Adaptibility");
         $adaptibility->setLanguage($english);
+        $adaptibility->setIsStandard(true);
 
         $alert = new Corequality();
         $alert->setCoreQuality("Alert");
         $alert->setLanguage($english);
+        $alert->setIsStandard(true);
 
         $ambitious = new Corequality();
         $ambitious->setCoreQuality("Ambitious");
         $ambitious->setLanguage($english);
+        $ambitious->setIsStandard(true);
 
         $attentive = new Corequality();
         $attentive->setCoreQuality("Attentive");
         $attentive->setLanguage($english);
+        $attentive->setIsStandard(true);
 
         $balanced = new Corequality();
         $balanced->setCoreQuality("Balanced");
         $balanced->setLanguage($english);
+        $balanced->setIsStandard(true);
 
 
         $manager->persist($accurate);

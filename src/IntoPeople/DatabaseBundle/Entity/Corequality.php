@@ -40,6 +40,13 @@ class Corequality
     private $language;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="isStandard", type="boolean", nullable=true)
+     */
+    private $isStandard;
+
+    /**
      * @ORM\OneToMany(targetEntity="IntoPeople\DatabaseBundle\Entity\Cdp", cascade={"persist"}, mappedBy="corequality1")
      */
     protected $corequalities1;
@@ -146,6 +153,30 @@ class Corequality
     public function __toString()
     {
         return $this->getCoreQuality();
+    }
+
+    /**
+     * Set isStandard
+     *
+     * @param boolean $isStandard
+     *
+     * @return Mailtype
+     */
+    public function setIsStandard($isStandard)
+    {
+        $this->isStandard = $isStandard;
+
+        return $this;
+    }
+
+    /**
+     * Get isStandard
+     *
+     * @return boolean
+     */
+    public function getIsStandard()
+    {
+        return $this->isStandard;
     }
 
 
