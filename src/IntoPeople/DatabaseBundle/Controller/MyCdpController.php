@@ -2,6 +2,7 @@
 namespace IntoPeople\DatabaseBundle\Controller;
 
 use IntoPeople\DatabaseBundle\Entity\Corequality;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use IntoPeople\DatabaseBundle\Entity\Cdp;
@@ -35,7 +36,7 @@ class MyCdpController extends Controller
             ))
             ->getForm();
 
-        $form->handleRequest($request);
+
 
         return $this->render('IntoPeopleDatabaseBundle:Cdp:new.html.twig', array(
             'form' => $form->createView(),
@@ -221,6 +222,7 @@ class MyCdpController extends Controller
 
                            
             $em->flush();
+            return new JsonResponse($entity->getId());
                                   
             return $this->redirect($this->generateUrl('myfeedbackcycle', array(
                 'id' => $entity->getId()

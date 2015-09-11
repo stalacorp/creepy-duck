@@ -22,27 +22,7 @@
                 }),
                 success: function (result) {
                     $("#result").html(result);
-                    $('form[name="intopeople_databasebundle_cdp"]').submit(function(e){
 
-                        var url = $(this).attr("action");
-
-                        $.ajax({
-                            type: "POST",
-                            url: url, // Or your url generator like Routing.generate('discussion_create')
-                            data: $(this).serialize(),
-                            method: $(this).attr('method'),
-                            dataType: "html",
-                            success: function(msg){
-
-                                alert("Success!");
-
-                            }
-                        });
-
-                        return false;
-
-
-                    });
                 }
             });
         }
@@ -54,10 +34,57 @@
                 getform();
             });
 
+            $('.submit-button').on('click', function(){
+                
+            });
 
+
+            $(document).on('click', '#intopeople_databasebundle_cdp_saveAndAdd', function(){
+                alert('test');
+                var form = $('form[name="intopeople_databasebundle_cdp"]');
+                var data = form.serializeArray();
+                data.push( {'name':$(this).attr('name')});
+                $.ajax({
+                    type: 'POST',
+                    url: form.attr('action'),
+                    dataType: 'html',
+                    data : data,
+                    success: function(answer) {
+                        location.href= Routing.generate('myfeedbackcycle', {
+                            id: answer,
+                            _locale:locale
+                        });
+                    },
+                    error: function() {
+                    },
+                    complete: function() {
+                    }
+                });
+                return false;
+            });
 
             $(document).on('click', '#intopeople_databasebundle_cdp_save', function(){
-                $('form[name="intopeople_databasebundle_cdp"]').submit();
+                var form = $('form[name="intopeople_databasebundle_cdp"]');
+                var data = form.serializeArray();
+                data.push( {'name':$(this).attr('name')});
+                $.ajax({
+                    type: 'POST',
+                    url: form.attr('action'),
+                    dataType: 'html',
+                    data : data,
+                    success: function(answer) {
+                        location.href= Routing.generate('myfeedbackcycle', {
+                            id: answer,
+                            _locale:locale
+                        });
+
+                    },
+                    error: function() {
+                    },
+                    complete: function() {
+                    }
+                });
+                return false;
             });
 
             $(document).on('click', '.qualityoption' , function(){
