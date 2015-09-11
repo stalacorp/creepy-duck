@@ -51,28 +51,28 @@ class TemplateversionController extends Controller
         ));
     }
 
-    public function getcyclesAction($templateversionId, $cycle){
+    public function getcyclesAction($templateversionId, $cycle)
+    {
 
         $em = $this->getDoctrine()->getManager();
-        $feedbackcycles = $em->getRepository('IntoPeopleDatabaseBundle:Feedbackcycle')->findByGeneralcycle($generalcycleid);
+        $templateversion = $em->getRepository('IntoPeopleDatabaseBundle:Templateversion')->find($templateversionId);
 
-        $entities = array();
+        #$entities = array();
 
-        foreach ($feedbackcycles as $feedbackcycle){
-            if ($cycle == "cdp"){
-                $chosencycle = $feedbackcycle->getCdp();
-            }else if ($cycle == "midyear"){
-                $chosencycle = $feedbackcycle->getMidyear();
-            }else if($cycle == "endyear"){
-                $chosencycle = $feedbackcycle->getEndyear();
-            }
-
-            array_push($entities, $chosencycle);
+        if ($cycle == "cdp") {
+            $templates = $templateversion->getCdptemplates();
+        } else if ($cycle == "midyear") {
+            $templates = $templateversion->getMidyeartemplates();
+        } else if ($cycle == "endyear") {
+            $templates = $templateversion->getEndyeartemplates();
         }
 
+        #array_push($entities, $chosencycle);
 
-        return $this->render('IntoPeopleDatabaseBundle:HR:getcyclesview.html.twig', array(
-            'cycle' => $cycle,
+
+        return $this->render('IntoPeopleDatabaseBundle:Templateversion:gettemplates.html.twig', array(
+            'templates' => $templates,
+            'cycle' => $cycle
         ));
     }
 
@@ -96,7 +96,7 @@ class TemplateversionController extends Controller
 
         return $this->render('IntoPeopleDatabaseBundle:Templateversion:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
@@ -126,11 +126,11 @@ class TemplateversionController extends Controller
     public function newAction()
     {
         $entity = new Templateversion();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('IntoPeopleDatabaseBundle:Templateversion:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
@@ -151,7 +151,7 @@ class TemplateversionController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('IntoPeopleDatabaseBundle:Templateversion:show.html.twig', array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -174,19 +174,19 @@ class TemplateversionController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('IntoPeopleDatabaseBundle:Templateversion:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-    * Creates a form to edit a Templateversion entity.
-    *
-    * @param Templateversion $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Templateversion entity.
+     *
+     * @param Templateversion $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Templateversion $entity)
     {
         $form = $this->createForm(new TemplateversionType(), $entity, array(
@@ -198,6 +198,7 @@ class TemplateversionController extends Controller
 
         return $form;
     }
+
     /**
      * Edits an existing Templateversion entity.
      *
@@ -223,11 +224,12 @@ class TemplateversionController extends Controller
         }
 
         return $this->render('IntoPeopleDatabaseBundle:Templateversion:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
     /**
      * Deletes a Templateversion entity.
      *
@@ -265,7 +267,6 @@ class TemplateversionController extends Controller
             ->setAction($this->generateUrl('templateversion_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

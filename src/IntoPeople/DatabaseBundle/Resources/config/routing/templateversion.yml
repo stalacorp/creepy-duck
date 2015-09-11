@@ -28,3 +28,9 @@ templateversion_delete:
     path:     /{id}/delete
     defaults: { _controller: "IntoPeopleDatabaseBundle:Templateversion:delete" }
     methods:  [POST, DELETE]
+
+templateversion_getcycles:
+    path:     /getcycles/{templateversionId}/{cycle}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Templateversion:getcycles" }
+    options:
+      expose: true
