@@ -108,7 +108,7 @@
                     $('#corequalitiesModal').modal('hide');
                     var teller = 1;
                     $.each( $('.btn-success'), function() {
-                        $('#intopeople_databasebundle_cdp_coreQuality' + teller).parent().append($(this).text());
+                        $('#corequality' + teller).html($(this).text());
                         $('#intopeople_databasebundle_cdp_coreQuality' + teller).val($(this).text());
                         teller++;
                     });

@@ -127,6 +127,7 @@ class MyCdpController extends Controller
         }
         
         $form = $this->createEditForm($entity);
+
         $form->handleRequest($request);
         
         if ($form->isValid()) {
@@ -193,6 +194,7 @@ class MyCdpController extends Controller
             array_push($corequalities, $form['coreQuality3']->getData());
             array_push($corequalities, $form['coreQuality4']->getData());
             array_push($corequalities, $form['coreQuality5']->getData());
+            $teller = 0;
 
             foreach ($corequalities as $corequality){
                 if ($corequality != '') {
@@ -202,11 +204,13 @@ class MyCdpController extends Controller
                         $newcorequality->setCoreQuality($corequality);
                         $newcorequality->setIsStandard(false);
                         $em->persist($newcorequality);
+                        $corequalities[$teller] = $newcorequality;
 
                     } else {
-                        $corequality = $corequalityx;
+                        $corequalities[$teller] = $corequalityx;
                     }
                 }
+                $teller++;
             }
 
             $entity->setCoreQuality1($corequalities[0]);
