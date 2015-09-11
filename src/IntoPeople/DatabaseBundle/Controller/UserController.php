@@ -436,9 +436,7 @@ class UserController extends Controller
                 'mapped' => false,
                 'invalid_message' => $this->get('translator')->trans('passwordmatch'),
                 'options' => array('attr' => array('class' => 'password-field')),
-                'required' => false,
-                'first_options' => array('label' => 'Set new Password'),
-                'second_options' => array('label' => 'Repeat new Password')))
+                'required' => false))
             ->add('language', 'entity',array(
                 'class' => 'IntoPeopleDatabaseBundle:Language'))
             ->add('Save', 'submit')
