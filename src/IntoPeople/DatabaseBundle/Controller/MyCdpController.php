@@ -1,6 +1,7 @@
 <?php
 namespace IntoPeople\DatabaseBundle\Controller;
 
+use IntoPeople\DatabaseBundle\Entity\Corequality;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use IntoPeople\DatabaseBundle\Entity\Cdp;
@@ -125,7 +126,7 @@ class MyCdpController extends Controller
         }
         
         $form = $this->createEditForm($entity);
-        $form->handleRequest($request);       
+        $form->handleRequest($request);
         
         if ($form->isValid()) {
             
@@ -183,6 +184,41 @@ class MyCdpController extends Controller
             }
             
             $entity->setFormstatus($formstatus);
+
+            $corequalities = array();
+
+            array_push($corequalities, $form['coreQuality1']->getData());
+            array_push($corequalities, $form['coreQuality2']->getData());
+            array_push($corequalities, $form['coreQuality3']->getData());
+            array_push($corequalities, $form['coreQuality4']->getData());
+            array_push($corequalities, $form['coreQuality5']->getData());
+
+            foreach ($corequalities as $corequality){
+                if ($corequality != '') {
+                    $corequalityx = $em->getRepository('IntoPeopleDatabaseBundle:Corequality')->findOneByCoreQuality($corequality);
+                    if ($corequalityx == null) {
+                        $newcorequality = new Corequality();
+                        $newcorequality->setCoreQuality($corequality);
+                        $newcorequality->setIsStandard(false);
+                        $em->persist($newcorequality);
+
+                    } else {
+                        $corequality = $corequalityx;
+                    }
+                }
+            }
+
+            $entity->setCoreQuality1($corequalities[0]);
+            $entity->setCoreQuality2($corequalities[1]);
+            $entity->setCoreQuality3($corequalities[2]);
+            if ($corequalities[3] != ''){
+                $entity->setCoreQuality5($corequalities[3]);
+            }
+            if ($corequalities[4] != ''){
+                $entity->setCoreQuality5($corequalities[4]);
+            }
+
+
                            
             $em->flush();
                                   

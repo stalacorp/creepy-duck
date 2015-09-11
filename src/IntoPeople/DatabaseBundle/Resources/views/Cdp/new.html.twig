@@ -22,6 +22,27 @@
                 }),
                 success: function (result) {
                     $("#result").html(result);
+                    $('form[name="intopeople_databasebundle_cdp"]').submit(function(e){
+
+                        var url = $(this).attr("action");
+
+                        $.ajax({
+                            type: "POST",
+                            url: url, // Or your url generator like Routing.generate('discussion_create')
+                            data: $(this).serialize(),
+                            method: $(this).attr('method'),
+                            dataType: "html",
+                            success: function(msg){
+
+                                alert("Success!");
+
+                            }
+                        });
+
+                        return false;
+
+
+                    });
                 }
             });
         }
@@ -33,6 +54,11 @@
                 getform();
             });
 
+
+
+            $(document).on('click', '#intopeople_databasebundle_cdp_save', function(){
+                $('form[name="intopeople_databasebundle_cdp"]').submit();
+            });
 
             $(document).on('click', '.qualityoption' , function(){
                 if ($(this).hasClass('btn-default')){
@@ -53,7 +79,11 @@
             $(document).on('click', '#corequalityok', function(){
                 if (count >= 3){
                     $('#corequalitiesModal').modal('hide');
-                    $.each( $('.btn-success'), function( key, value ) {
+                    var teller = 1;
+                    $.each( $('.btn-success'), function() {
+                        $('#intopeople_databasebundle_cdp_coreQuality' + teller).parent().append($(this).text());
+                        $('#intopeople_databasebundle_cdp_coreQuality' + teller).val($(this).text());
+                        teller++;
                     });
                     $('#qualityerror').html('');
                     if (count == 4){
