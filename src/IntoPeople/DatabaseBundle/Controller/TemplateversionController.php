@@ -72,7 +72,8 @@ class TemplateversionController extends Controller
 
         return $this->render('IntoPeopleDatabaseBundle:Templateversion:gettemplates.html.twig', array(
             'templates' => $templates,
-            'cycle' => $cycle
+            'cycle' => $cycle,
+            'templateversionId' => $templateversionId
         ));
     }
 

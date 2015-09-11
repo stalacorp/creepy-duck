@@ -85,7 +85,7 @@ class CdptemplateController extends Controller
      * Displays a form to create a new Cdptemplate entity.
      *
      */
-    public function newAction()
+    public function newAction($templateversionId)
     {
         $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
             
@@ -99,6 +99,12 @@ class CdptemplateController extends Controller
         if ($entity == null) {
             $entity = new Cdptemplate();
         }
+
+        $em = $this->getDoctrine()->getManager();
+
+        $templateversion = $em->getRepository('IntoPeopleDatabaseBundle:Templateversion')->find($templateversionId);
+
+        $entity->setTemplateversion($templateversion);
         
         $form   = $this->createCreateForm($entity);
 

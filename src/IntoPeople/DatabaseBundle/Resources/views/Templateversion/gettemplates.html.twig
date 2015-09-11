@@ -48,7 +48,7 @@
 
 {% if cycle == "cdp" %}
 
-    <a href="{{ path('cdptemplate_new') }}" type="button" class="btn btn-default">{{ 'button.create' | trans }}</a>
+    <a href="{{ path('cdptemplate_new', { 'templateversionId': templateversionId }) }}" type="button" class="btn btn-default">{{ 'button.create' | trans }}</a>
 
 {% elseif cycle == "midyear" %}
 

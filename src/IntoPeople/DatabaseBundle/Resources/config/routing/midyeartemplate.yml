@@ -7,7 +7,7 @@ midyeartemplate_show:
     defaults: { _controller: "IntoPeopleDatabaseBundle:Midyeartemplate:show" }
 
 midyeartemplate_new:
-    path:     /new
+    path:     /{templateversionId}/new
     defaults: { _controller: "IntoPeopleDatabaseBundle:Midyeartemplate:new" }
 
 midyeartemplate_create:

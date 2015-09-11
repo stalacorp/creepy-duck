@@ -15,6 +15,7 @@ class CdptemplateType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('templateversion')
             ->add('mainTitle')
             ->add('title1')
             ->add('title1Description')
