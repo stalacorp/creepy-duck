@@ -88,11 +88,12 @@ class UserController extends Controller
                     $email = $worksheet->getCell('A' . $i)->getValue();
                     $firstname = $worksheet->getCell('B' . $i)->getValue();
                     $lastname = $worksheet->getCell('C' . $i)->getValue();
-                    $languagekey = $worksheet->getCell('D' . $i)->getValue();
-                    $addtoactivecycle = $worksheet->getCell('E' . $i)->getValue();
-                    $supervisormail = $worksheet->getCell('F' . $i)->getValue();
-                    $issupervisor = $worksheet->getCell('G' . $i)->getValue();
-                    $ishr = $worksheet->getCell('H' . $i)->getValue();
+                    $jobtitle = $worksheet->getCell('D' . $i)->getValue();
+                    $languagekey = $worksheet->getCell('E' . $i)->getValue();
+                    $addtoactivecycle = $worksheet->getCell('F' . $i)->getValue();
+                    $supervisormail = $worksheet->getCell('G' . $i)->getValue();
+                    $issupervisor = $worksheet->getCell('H' . $i)->getValue();
+                    $ishr = $worksheet->getCell('I' . $i)->getValue();
 
                     $emailConstraint = new EmailConstraint();
                     $emailConstraint->message = 'Your customized error message';
@@ -118,92 +119,108 @@ class UserController extends Controller
 
                             $language = $em->getRepository('IntoPeopleDatabaseBundle:Language')->findOneByName($languagekey);
                             if ($language != null) {
+                                if ($jobtitle != '') {
 
-                                $user->setLanguage($language);
+                                    $jobtitleentity = $em->getRepository('IntoPeopleDatabaseBundle:Jobtitle')->findOneByName($jobtitle);
 
-                                if ($issupervisor == 'x') {
-                                    $user->addRole('ROLE_SUPERVISOR');
-                                }
-                                if ($ishr == 'x') {
-                                    $user->addRole('ROLE_HR');
-                                }
+                                    if ($jobtitleentity == null){
+                                        $jobtitleentity = new Jobtitle();
+                                        $jobtitleentity->setName($jobtitle);
+                                        $em->persist($jobtitleentity);
+                                    }
 
+                                    $user->setJobtitle($jobtitleentity);
 
-                                $em->persist($user);
-                                $em->flush();
+                                    $user->setLanguage($language);
 
-
-                                $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Formstatus');
-
-                                $available = $repository->find(1);
-                                $unavailable = $repository->find(9);
-
-                                // FIND NEWEST CDP TEMPLATE
-                                // ---
-                                $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
-
-                                $cdptemplate = $repository->findNewest();
-
-                                // FIND NEWEST MID YEAR TEMPLATE
-                                // ---
-                                $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Midyeartemplate');
-
-                                $midyeartemplate = $repository->findNewest();
-
-                                // FIND NEWEST END YEAR TEMPLATE
-                                // ---
-                                $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Endyeartemplate');
-
-                                $endyeartemplate = $repository->findNewest();
-                                if ($addtoactivecycle == 'x') {
-
-                                    $feedbackcycle = new Feedbackcycle();
-                                    $feedbackcycle->setUser($user);
-                                    $feedbackcycle->setGeneralcycle($generalcycle);
-
-                                    $developmentneeds = new Developmentneeds();
-
-                                    $cdp = new Cdp();
-                                    $cdp->setDevelopmentneeds($developmentneeds);
-                                    $cdp->setFormstatus($available);
-                                    $cdp->setCdptemplate($cdptemplate);
-
-                                    $feedbackcycle->setCdp($cdp);
-
-                                    $midyear = new Midyear();
-                                    $midyear->setDevelopmentneeds($developmentneeds);
-                                    $midyear->setFormstatus($unavailable);
-                                    $midyear->setMidyeartemplate($midyeartemplate);
-
-                                    $feedbackcycle->setMidyear($midyear);
-
-                                    $endyear = new Endyear();
-                                    $endyear->setDevelopmentneeds($developmentneeds);
-                                    $endyear->setFormstatus($unavailable);
-                                    $endyear->setEndyeartemplate($endyeartemplate);
-
-                                    $feedbackcycle->setEndyear($endyear);
-
-                                    $em = $this->getDoctrine()->getManager();
-                                    $em->persist($feedbackcycle);
-                                }
-
-                                $systemmail = $mails[$user->getLanguage()->getName()];
-                                $message = \Swift_Message::newInstance()
-                                    ->setSubject($systemmail->getSubject())
-                                    ->setFrom($systemmail->getSender())
-                                    ->setTo($user->getEmail())
-                                    ->setBody(str_replace(array('$url', '$username', '$password'), array('https://' . $request->getHttpHost() . $this->generateUrl('user_firstlogin', array('token' => $password, 'id' => $user->getId())), $user->getEmail(), $password), $systemmail->getBody()));
-
-                                $this->get('mailer')->send($message);
+                                    if ($issupervisor == 'x') {
+                                        $user->addRole('ROLE_SUPERVISOR');
+                                    }
+                                    if ($ishr == 'x') {
+                                        $user->addRole('ROLE_HR');
+                                    }
 
 
+                                    $em->persist($user);
+                                    $em->flush();
 
-                                if ($supervisormail != '') {
-                                    $unsuperviseduser = new \stdClass();
-                                    $unsuperviseduser->supervisormail = $supervisormail;
-                                    $unsuperviseduser->usermail = $user->getEmail();
-                                    array_push($unsupervisedusers, $unsuperviseduser);
+
+                                    $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Formstatus');
+
+                                    $available = $repository->find(1);
+                                    $unavailable = $repository->find(9);
+
+                                    // FIND NEWEST CDP TEMPLATE
+                                    // ---
+                                    $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
+
+                                    $cdptemplate = $repository->findNewest();
+
+                                    // FIND NEWEST MID YEAR TEMPLATE
+                                    // ---
+                                    $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Midyeartemplate');
+
+                                    $midyeartemplate = $repository->findNewest();
+
+                                    // FIND NEWEST END YEAR TEMPLATE
+                                    // ---
+                                    $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Endyeartemplate');
+
+                                    $endyeartemplate = $repository->findNewest();
+                                    if ($addtoactivecycle == 'x') {
+
+                                        $feedbackcycle = new Feedbackcycle();
+                                        $feedbackcycle->setUser($user);
+                                        $feedbackcycle->setGeneralcycle($generalcycle);
+
+                                        $developmentneeds = new Developmentneeds();
+
+                                        $cdp = new Cdp();
+                                        $cdp->setDevelopmentneeds($developmentneeds);
+                                        $cdp->setFormstatus($available);
+                                        $cdp->setCdptemplate($cdptemplate);
+
+                                        $feedbackcycle->setCdp($cdp);
+
+                                        $midyear = new Midyear();
+                                        $midyear->setDevelopmentneeds($developmentneeds);
+                                        $midyear->setFormstatus($unavailable);
+                                        $midyear->setMidyeartemplate($midyeartemplate);
+
+                                        $feedbackcycle->setMidyear($midyear);
+
+                                        $endyear = new Endyear();
+                                        $endyear->setDevelopmentneeds($developmentneeds);
+                                        $endyear->setFormstatus($unavailable);
+                                        $endyear->setEndyeartemplate($endyeartemplate);
+
+                                        $feedbackcycle->setEndyear($endyear);
+
+                                        $em = $this->getDoctrine()->getManager();
+                                        $em->persist($feedbackcycle);
+                                    }
+
+                                    $systemmail = $mails[$user->getLanguage()->getName()];
+                                    $message = \Swift_Message::newInstance()
+                                        ->setSubject($systemmail->getSubject())
+                                        ->setFrom($systemmail->getSender())
+                                        ->setTo($user->getEmail())
+                                        ->setBody(str_replace(array('$url', '$username', '$password'), array('https://' . $request->getHttpHost() . $this->generateUrl('user_firstlogin', array('token' => $password, 'id' => $user->getId())), $user->getEmail(), $password), $systemmail->getBody()));
+
+                                    $this->get('mailer')->send($message);
+
+
+                                    if ($supervisormail != '') {
+                                        $unsuperviseduser = new \stdClass();
+                                        $unsuperviseduser->supervisormail = $supervisormail;
+                                        $unsuperviseduser->usermail = $user->getEmail();
+                                        array_push($unsupervisedusers, $unsuperviseduser);
+                                    }
+                                }else {
+                                    $this->addFlash(
+                                        'warning',
+                                        $this->get('translator')->trans('user.emptyjobtitlerrror')
+                                    );
                                 }
                             } else {
                                 $this->addFlash(
@@ -255,6 +272,145 @@ class UserController extends Controller
             'entities' => $entities,
             'formtemplate' => $form->createView(),
         ));
+    }
+
+    public function excelAction(){
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $jobtitles = $em->getRepository('IntoPeopleDatabaseBundle:Jobtitle')->findAll();
+
+
+        $path = $this->get('kernel')->getRootDir() . '/../web/assets/excel/templateenglish.xls';
+        $formulajobtitle = '"';
+
+        foreach ($jobtitles as $jobtitle){
+            $formulajobtitle .= $jobtitle->getName() . ',';
+        }
+
+        $formulajobtitle = substr_replace($formulajobtitle, '', strrpos($formulajobtitle, ','), strlen(',')) . '"';
+
+        $languages = $em->getRepository('IntoPeopleDatabaseBundle:Language')->findAll();
+
+        $formulalanguage = '"';
+
+        foreach ($languages as $language){
+            $formulalanguage .= $language->getName() . ',';
+        }
+
+        $formulalanguage = substr_replace($formulalanguage, '', strrpos($formulalanguage, ','), strlen(',')) . '"';
+
+        $supervisors = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:User')->createQueryBuilder('u')
+            ->where('u.roles like :role')
+            ->setParameter('role', '%ROLE_SUPERVISOR%')
+            ->getQuery()->getResult();
+
+        $formulasupervisor = '"';
+
+        foreach ($supervisors as $supervisor){
+            $formulasupervisor .= $supervisor->getEmail() . ',';
+        }
+
+        $formulasupervisor = substr_replace($formulasupervisor, '', strrpos($formulasupervisor, ','), strlen(',')) . '"';
+
+
+        $inputFileType = \PHPExcel_IOFactory::identify($path);
+        $objReader = \PHPExcel_IOFactory::createReader($inputFileType);
+        $objPHPExcel = $objReader->load($path);
+
+
+        $objPHPExcel->setActiveSheetIndex(0);
+
+        for ($i=2;$i<=250;$i++){
+
+
+            $objValidation = $objPHPExcel->getActiveSheet()->getCell('D' . $i)->getDataValidation();
+            $objValidation->setType( \PHPExcel_Cell_DataValidation::TYPE_LIST );
+            $objValidation->setErrorStyle( \PHPExcel_Cell_DataValidation::STYLE_INFORMATION );
+            $objValidation->setAllowBlank(false);
+            $objValidation->setShowInputMessage(true);
+            $objValidation->setShowErrorMessage(false);
+            $objValidation->setShowDropDown(true);
+            $objValidation->setErrorTitle('Input error');
+            $objValidation->setError('Value is not in list.');
+            $objValidation->setPromptTitle('Pick from list');
+            $objValidation->setPrompt('Please pick a value from the drop-down list or enter your own value.');
+            $objValidation->setFormula1($formulajobtitle);
+
+            $objValidation = $objPHPExcel->getActiveSheet()->getCell('E' . $i)->getDataValidation();
+            $objValidation->setType( \PHPExcel_Cell_DataValidation::TYPE_LIST );
+            $objValidation->setErrorStyle( \PHPExcel_Cell_DataValidation::STYLE_INFORMATION );
+            $objValidation->setAllowBlank(false);
+            $objValidation->setShowInputMessage(true);
+            $objValidation->setShowErrorMessage(true);
+            $objValidation->setShowDropDown(true);
+            $objValidation->setErrorTitle('Input error');
+            $objValidation->setError('Value is not in list.');
+            $objValidation->setPromptTitle('Pick from list');
+            $objValidation->setPrompt('Please pick a value from the drop-down list.');
+            $objValidation->setFormula1($formulalanguage);
+
+            $objValidation = $objPHPExcel->getActiveSheet()->getCell('G' . $i)->getDataValidation();
+            $objValidation->setType( \PHPExcel_Cell_DataValidation::TYPE_LIST );
+            $objValidation->setErrorStyle( \PHPExcel_Cell_DataValidation::STYLE_INFORMATION );
+            $objValidation->setAllowBlank(true);
+            $objValidation->setShowInputMessage(true);
+            $objValidation->setShowErrorMessage(false);
+            $objValidation->setShowDropDown(true);
+            $objValidation->setErrorTitle('Input error');
+            $objValidation->setError('Value is not in list.');
+            $objValidation->setPromptTitle('Pick from list');
+            $objValidation->setPrompt('Please pick a value from the drop-down list or enter your own value.');
+            $objValidation->setFormula1($formulasupervisor);
+
+            $objValidation = $objPHPExcel->getActiveSheet()->getCell('F' . $i)->getDataValidation();
+            $objValidation->setType( \PHPExcel_Cell_DataValidation::TYPE_LIST );
+            $objValidation->setErrorStyle( \PHPExcel_Cell_DataValidation::STYLE_INFORMATION );
+            $objValidation->setAllowBlank(true);
+            $objValidation->setShowInputMessage(true);
+            $objValidation->setShowErrorMessage(true);
+            $objValidation->setShowDropDown(false);
+            $objValidation->setErrorTitle('Input error');
+            $objValidation->setError('Value is not allowed.');
+            $objValidation->setPromptTitle('x or blank');
+            $objValidation->setPrompt('Please enter x or leave blank');
+            $objValidation->setFormula1('"x"');
+
+            $objValidation = $objPHPExcel->getActiveSheet()->getCell('H' . $i)->getDataValidation();
+            $objValidation->setType( \PHPExcel_Cell_DataValidation::TYPE_LIST );
+            $objValidation->setErrorStyle( \PHPExcel_Cell_DataValidation::STYLE_INFORMATION );
+            $objValidation->setAllowBlank(true);
+            $objValidation->setShowInputMessage(true);
+            $objValidation->setShowErrorMessage(true);
+            $objValidation->setShowDropDown(false);
+            $objValidation->setErrorTitle('Input error');
+            $objValidation->setError('Value is not allowed.');
+            $objValidation->setPromptTitle('x or blank');
+            $objValidation->setPrompt('Please enter x or leave blank');
+            $objValidation->setFormula1('"x"');
+
+            $objValidation = $objPHPExcel->getActiveSheet()->getCell('I' . $i)->getDataValidation();
+            $objValidation->setType( \PHPExcel_Cell_DataValidation::TYPE_LIST );
+            $objValidation->setErrorStyle( \PHPExcel_Cell_DataValidation::STYLE_INFORMATION );
+            $objValidation->setAllowBlank(true);
+            $objValidation->setShowInputMessage(true);
+            $objValidation->setShowErrorMessage(true);
+            $objValidation->setShowDropDown(false);
+            $objValidation->setErrorTitle('Input error');
+            $objValidation->setError('Value is not allowed.');
+            $objValidation->setPromptTitle('x or blank');
+            $objValidation->setPrompt('Please enter x or leave blank');
+            $objValidation->setFormula1('"x"');
+
+        }
+
+        $writer = $this->get('phpexcel')->createWriter($objPHPExcel, 'Excel5');
+        $response = $this->get('phpexcel')->createStreamedResponse($writer);
+        $response->headers->set('Content-Type', 'text/vnd.ms-excel; charset=utf-8');
+        $response->headers->set('Content-Disposition', 'attachment;filename=' . 'useruploadtemplate' . '.xls');
+        $response->headers->set('Pragma', 'public');
+        $response->headers->set('Cache-Control', 'maxage=1');
+
+        return $response;
     }
 
     /**
