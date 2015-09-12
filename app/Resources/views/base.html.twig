@@ -88,7 +88,7 @@
                     <ul class="dropdown-menu">
                         {% for upload in uploads %}
 
-                            <li><a href="{{ app.request.basePath }}{{ vich_uploader_asset(upload, 'uploadFile') }}">Templates</a></li>
+                            <li><a href="{{ app.request.basePath }}{{ vich_uploader_asset(upload, 'uploadFile') }}">{{ upload.name }}</a></li>
 
                         {% endfor %}
 
