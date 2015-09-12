@@ -4,15 +4,9 @@ midyear_update:
     methods:  [POST, PUT]
     
 midyear_edit:
-    path:     /{id}/{languageId}/edit
+    path:     /{id}/edit
     defaults: { _controller: "IntoPeopleDatabaseBundle:MyMidyear:edit" }
-    options:
-      expose: true
 
 midyear_show:
     path:     /{id}/show
     defaults: { _controller: "IntoPeopleDatabaseBundle:MyMidyear:show" }
-
-midyear_language:
-    path:     /{id}/language
-    defaults: { _controller: "IntoPeopleDatabaseBundle:MyMidyear:language" }

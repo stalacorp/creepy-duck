@@ -19,32 +19,6 @@ class MyCdpController extends Controller
 {
 
     /**
-     * Choose language template
-     *
-     */
-    public function languageAction(Request $request, $id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('IntoPeopleDatabaseBundle:Cdp')->find($id);
-
-        $form = $this->createFormBuilder()
-            ->add('language', 'entity', array(
-                'class' => 'IntoPeopleDatabaseBundle:Language',
-                'query_builder' => function (EntityRepository $er) use ($entity) {
-                    return $er->createQueryBuilder('l')->join('l.cdptemplates','c')->where('c.templateversion = :version')->setParameter('version', $entity->getTemplateversion());
-                },
-            ))
-            ->getForm();
-
-
-
-        return $this->render('IntoPeopleDatabaseBundle:Cdp:new.html.twig', array(
-            'form' => $form->createView(),
-            'entity' => $entity
-        ));
-    }
-
-    /**
      * Creates a form to edit a cdp entity.
      *
      * @param Cdp $entity
@@ -69,11 +43,13 @@ class MyCdpController extends Controller
     /**
      * Displays a form to edit an existing Cdp entity.
      */
-    public function editAction($id, $languageId)
+    public function editAction($id)
     {
+        $user = $this->getUser();
+
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('IntoPeopleDatabaseBundle:Cdp')->find($id);
-        $corequalities = $em->getRepository('IntoPeopleDatabaseBundle:Corequality')->findByLanguage($languageId);
+        $corequalities = $em->getRepository('IntoPeopleDatabaseBundle:Corequality')->findByLanguage($user->getLanguage());
         $user = $this->getUser();
         if (! $entity) {
             throw $this->createNotFoundException('Unable to find Cdp entity.');
@@ -93,14 +69,12 @@ class MyCdpController extends Controller
 
             $query = $repository->createQueryBuilder('c')
                 ->where('c.templateversion = :cdptemplateversion')
-                ->andWhere('c.language = :language')
                 ->setParameter('cdptemplateversion', $entity->getTemplateversion())
-                ->setParameter('language', $languageId)
                 ->getQuery();
 
             $template = $query->setMaxResults(1)->getOneOrNullResult();
             
-            return $this->render('IntoPeopleDatabaseBundle:Cdp:getform.html.twig', array(
+            return $this->render('IntoPeopleDatabaseBundle:Cdp:new.html.twig', array(
                 'template' => $template,
                 'entity' => $entity,
                 'form' => $form->createView(),
@@ -226,7 +200,7 @@ class MyCdpController extends Controller
 
                            
             $em->flush();
-            return new JsonResponse($entity->getId());
+            #return new JsonResponse($entity->getId());
                                   
             return $this->redirect($this->generateUrl('myfeedbackcycle', array(
                 'id' => $entity->getId()

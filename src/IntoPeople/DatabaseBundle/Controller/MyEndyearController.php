@@ -63,7 +63,7 @@ class MyEndyearController extends Controller
         return $form;
     }
 
-    public function editAction($id, $languageId)
+    public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('IntoPeopleDatabaseBundle:Endyear')->find($id);
@@ -90,13 +90,13 @@ class MyEndyearController extends Controller
                 ->where('e.templateversion = :endyeartemplateversion')
                 ->andWhere('e.language = :language')
                 ->setParameter('endyeartemplateversion', $entity->getTemplateversion())
-                ->setParameter('language', $languageId)
+                ->setParameter('language', $user->getLanguage())
                 ->getQuery();
 
             $template = $query->setMaxResults(1)->getOneOrNullResult();
 
             
-            return $this->render('IntoPeopleDatabaseBundle:Endyear:getform.html.twig', array(
+            return $this->render('IntoPeopleDatabaseBundle:Endyear:new.html.twig', array(
                 'entity' => $entity,
                 'form' => $form->createView(),
                 'devneeds' => $devneeds,

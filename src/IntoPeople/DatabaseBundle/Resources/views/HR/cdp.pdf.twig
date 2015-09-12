@@ -1,8 +1,215 @@
 <pdf>
-    <dynamic-page page-size="letter-landscape">
-        Hello cdp!
+    <dynamic-page page-size="a4-landscape">
         {% for entity in entities %}
-        {{ entity.id }}
+
+            {% set cdptemplates = entity.templateversion.cdptemplates %}
+
+            {% for template in cdptemplates %}
+
+                {% if template.language == app.user.language %}
+
+                    <h1>{{ template.mainTitle }}</h1>
+
+                    <div width="40%">
+
+                        <h2>{{ template.title1 }}</h2>
+
+                        <p>{{ template.title1Description }}</p>
+
+                        <table>
+                            <tr>
+                                <td>{{ template.name }}</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ template.supervisor }}</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ template.dateDiscussion }}</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ template.team }}</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ template.function }}</td>
+                                <td></td>
+                            </tr>
+                        </table>
+
+                    </div>
+
+                    <div>
+
+                        <h2>{{ template.title2 }}</h2>
+
+                        <p>{{ template.title2Description }}</p>
+
+                        <table>
+                            <tr>
+                                <td>{{ template.table2Col1 }}</td>
+                                <td>{{ template.table2Col2 }}</td>
+                                <td>{{ template.table2Col3 }}</td>
+                                <td>{{ template.table2Col4 }}</td>
+                                <td>{{ template.table2Col5 }}</td>
+                                <td>{{ template.table2Col6 }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ template.table2Col1Descr }}</td>
+                                <td>{{ template.table2Col2Descr }}</td>
+                                <td>{{ template.table2Col3Descr }}</td>
+                                <td>{{ template.table2Col4Descr }}</td>
+                                <td>{{ template.table2Col5Descr }}</td>
+                                <td>{{ template.table2Col6Descr }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ entity.corequality1Why }}</td>
+                                <td>{{ entity.challengeWhy1 }}</td>
+                                <td>{{ entity.pitfall1 }}</td>
+                                <td>{{ entity.challengeHow1 }}</td>
+                                <td>{{ entity.challengeSuccess1 }}</td>
+                                <td>{{ entity.challengeNeeds1 }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ entity.corequality2Why }}</td>
+                                <td>{{ entity.challengeWhy2 }}</td>
+                                <td>{{ entity.pitfall2 }}</td>
+                                <td>{{ entity.challengeHow2 }}</td>
+                                <td>{{ entity.challengeSuccess2 }}</td>
+                                <td>{{ entity.challengeNeeds2 }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ entity.corequality3Why }}</td>
+                                <td>{{ entity.challengeWhy3 }}</td>
+                                <td>{{ entity.pitfall3 }}</td>
+                                <td>{{ entity.challengeHow3 }}</td>
+                                <td>{{ entity.challengeSuccess3 }}</td>
+                                <td>{{ entity.challengeNeeds3 }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ entity.corequality4Why }}</td>
+                                <td>{{ entity.challengeWhy4 }}</td>
+                                <td>{{ entity.pitfall4 }}</td>
+                                <td>{{ entity.challengeHow4 }}</td>
+                                <td>{{ entity.challengeSuccess4 }}</td>
+                                <td>{{ entity.challengeNeeds4 }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ entity.corequality5Why }}</td>
+                                <td>{{ entity.challengeWhy5 }}</td>
+                                <td>{{ entity.pitfall5}}</td>
+                                <td>{{ entity.challengeHow5 }}</td>
+                                <td>{{ entity.challengeSuccess5 }}</td>
+                                <td>{{ entity.challengeNeeds5 }}</td>
+                            </tr>
+
+
+                        </table>
+
+
+                    </div>
+
+                    <div>
+
+                        <h2>{{ template.title3 }}</h2>
+
+                        <p>{{ template.title3Description }}</p>
+
+                        <h3>{{ template.table3Title1 }}</h3>
+
+                        <table>
+
+                            <tr>
+                                <td>{{ template.table3Col1 }}</td>
+                                <td>{{ template.table3Col2 }}</td>
+                                <td>{{ template.table3Col3 }}</td>
+                                <td>{{ template.table3Col4 }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ template.table3Col1Descr }}</td>
+                                <td>{{ template.table3Col2Descr }}</td>
+                                <td>{{ template.table3Col3Descr }}</td>
+                                <td>{{ template.table3Col4Descr }}</td>
+                            </tr>
+
+
+                        </table>
+
+                        <h3>{{ template.table3Title2 }}</h3>
+
+                        <table>
+
+                            <tr>
+                                <td>{{ template.table3Col1 }}</td>
+                                <td>{{ template.table3Col2 }}</td>
+                                <td>{{ template.table3Col3 }}</td>
+                                <td>{{ template.table3Col4 }}</td>
+                            </tr>
+
+
+                        </table>
+
+                        <h3>{{ template.table3Title3 }}</h3>
+
+                        <table>
+
+                            <tr>
+                                <td>{{ template.table3Col1 }}</td>
+                                <td>{{ template.table3Col2 }}</td>
+                                <td>{{ template.table3Col3 }}</td>
+                                <td>{{ template.table3Col4 }}</td>
+                            </tr>
+
+
+                        </table>
+
+                    </div>
+
+                    <div>
+
+                        <h2>{{ template.title4 }}</h2>
+
+                        <p>{{ template.question1 }}</p>
+
+                        <h2>{{ template.title5 }}</h2>
+
+                        <p>{{ template.question2 }}</p>
+
+                    </div>
+
+                    <div>
+                        {{ template.supervisorComment }}
+                    </div>
+
+                    <div>
+                        {{ template.feedback }}
+                    </div>
+
+
+
+
+
+
+
+                {% endif %}
+
+            {% endfor %}
+
+
+
         {% endfor %}
     </dynamic-page>
 </pdf>
