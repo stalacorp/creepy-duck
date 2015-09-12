@@ -20,7 +20,7 @@ class LoadEndyeartemplate extends AbstractFixture implements OrderedFixtureInter
     {
         $endyeartemplate = new Endyeartemplate();
 
-        $endyeartemplate->setMainTitle('Career Development Plan');
+        $endyeartemplate->setMainTitle('Year End');
         $endyeartemplate->setTitle1('Personalia');
 
         $endyeartemplate->setName('Name');

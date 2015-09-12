@@ -1,35 +1,454 @@
 {% extends '::base.html.twig' %} {% block body -%}
 
+    {% set cdp = entity.feedbackcycle.cdp %}
 
-    {{ form(form) }}
+    <h2>{{ template.mainTitle }}</h2>
 
 
-    <div id="result"></div>
+    {% if entity.formstatus.id > 3 %}
+
+        <div class="row margin-top-50">
+            <div class="col-md-6">
+
+                <h3>Comments supervisor</h3>
+
+                {{ entity.commentSup }}
+
+            </div>
+        </div>
+
+    {% endif %}
+
+    {% if entity.formstatus.id > 5 %}
+
+        <div class="row margin-top-50">
+            <div class="col-md-6">
+
+                <h3>Feedback HR</h3>
+
+                {{ entity.feedbackHR }}
+
+            </div>
+        </div>
+
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <h3>{{ template.title1 }}</h3>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <table class="table borderless">
+
+                        <tr>
+                            <th>{{ template.name }}:
+                            <th>
+                            <td>{{ app.user.firstname }} {{ app.user.lastname }}</td>
+                        </tr>
+
+                        {% if app.user.supervisor != null %}
+                            <tr>
+                                <th>{{ template.supervisor }}:
+                                <th>
+                                <td>{{ app.user.supervisor.firstname }} {{ app.user.supervisor.lastname }}</td>
+                            </tr>
+                        {% endif %}
+
+                        <tr>
+                            <th>{{ template.dateDiscussion }}:
+                            <th>
+                            <td></td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <table class="table borderless">
+
+                        <tr>
+                            <th>{{ template.team }}:
+                            <th>
+                            <td></td>
+                        </tr>
+
+
+                        <tr>
+                            <th>{{ template.function }}:
+                            <th>
+                            <td></td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <h3>{{ template.title2 }}</h3>
+
+            <p class=""><em>{{ template.title2Description }}</em></p>
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <table class="table borderless">
+                <tr>
+                    <th style="width: 20%">{{ template.table2Col1 }}</th>
+                    <th style="width: 20%">{{ template.table2Col2 }}</th>
+                    <th style="width: 20%">{{ template.table2Col3 }}</th>
+                    <th style="width: 20%">{{ template.table2Col4 }}</th>
+                    <th style="width: 20%">{{ template.table2Col5 }}</th>
+                    <th style="width: 1%"></th>
+                </tr>
+
+                <tr>
+                    <td>{{ template.table2Col1Descr }}</td>
+                    <td>{{ template.table2Col2Descr }}</td>
+                    <td>{{ template.table2Col3Descr }}</td>
+                    <td>{{ template.table2Col4Descr }}</td>
+                    <td>{{ template.table2Col5Descr }}</td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>{{ cdp.coreQuality1 }}</p>
+
+                        <p>{{ cdp.coreQuality1Why }}</p>
+                    </td>
+                    <td>
+                        <p>{{ cdp.challenge1 }}</p>
+
+                        <p>{{ cdp.challengeWhy1 }}</p>
+                    </td>
+                    <td>{{ cdp.challengeHow1 }}</td>
+                    <td>{{ cdp.challengeSuccess1 }}</td>
+                    <td>{{ cdp.challengeNeeds1 }}</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>{{ cdp.coreQuality2 }}</p>
+
+                        <p>{{ cdp.coreQuality2Why }}</p>
+                    </td>
+                    <td>
+                        <p>{{ cdp.challenge2 }}</p>
+
+                        <p>{{ cdp.challengeWhy2 }}</p>
+                    </td>
+                    <td>{{ cdp.challengeHow2 }}</td>
+                    <td>{{ cdp.challengeSuccess2 }}</td>
+                    <td>{{ cdp.challengeNeeds2 }}</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>{{ cdp.coreQuality3 }}</p>
+
+                        <p>{{ cdp.coreQuality3Why }}</p>
+                    </td>
+                    <td>
+                        <p>{{ cdp.challenge3 }}</p>
+
+                        <p>{{ cdp.challengeWhy3 }}</p>
+                    </td>
+                    <td>{{ cdp.challengeHow3 }}</td>
+                    <td>{{ cdp.challengeSuccess3 }}</td>
+                    <td>{{ cdp.challengeNeeds3 }}</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>{{ cdp.coreQuality4 }}</p>
+
+                        <p>{{ cdp.coreQuality4Why }}</p>
+                    </td>
+                    <td>
+                        <p>{{ cdp.challenge4 }}</p>
+
+                        <p>{{ cdp.challengeWhy4 }}</p>
+                    </td>
+                    <td>{{ cdp.challengeHow4 }}</td>
+                    <td>{{ cdp.challengeSuccess4 }}</td>
+                    <td>{{ cdp.challengeNeeds4 }}</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>{{ cdp.coreQuality5 }}</p>
+
+                        <p>{{ cdp.coreQuality5Why }}</p>
+                    </td>
+                    <td>
+                        <p>{{ cdp.challenge5 }}</p>
+
+                        <p>{{ cdp.challengeWhy5 }}</p>
+                    </td>
+                    <td>{{ cdp.challengeHow5 }}</td>
+                    <td>{{ cdp.challengeSuccess5 }}</td>
+                    <td>{{ cdp.challengeNeeds5 }}</td>
+                </tr>
+
+            </table>
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <h3>{{ template.title3 }}</h3>
+
+            <p><em>{{ template.title3Description }}</em></p>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <table class="table borderless">
+
+                <thead>
+                <tr>
+                    <th style="width: 50%" colspan="2">{{ template.table3Col1 }}</th>
+                    <th style="width: 50%">{{ template.table3Col2 }}</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr>
+                    <td colspan="2">{{ template.table3Col1Descr }}</td>
+                    <td>{{ template.table3Col2Descr }}</td>
+                </tr>
+
+
+                <tr>
+                    <td colspan="3"><h5 class="text-center">{{ template.table3Title1 }}</h5></td>
+                </tr>
+
+
+                <tr>
+                    <td colspan="2">{{ devneeds.task1 }}</td>
+                    <td>{{ form_errors(form.evaluationtask1) }}
+                        {{ form_widget(form.evaluationtask1) }}</td>
+
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ devneeds.task2 }}</td>
+                    <td>{{ form_errors(form.evaluationtask2) }}
+                        {{ form_widget(form.evaluationtask2) }}</td>
+
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ devneeds.task3 }}</td>
+                    <td>{{ form_errors(form.evaluationtask3) }}
+                        {{ form_widget(form.evaluationtask3) }}</td>
+
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ devneeds.task4 }}</td>
+                    <td>{{ form_errors(form.evaluationtask4) }}
+                        {{ form_widget(form.evaluationtask4) }}</td>
+
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ devneeds.task5 }}</td>
+                    <td>{{ form_errors(form.evaluationtask5) }}
+                        {{ form_widget(form.evaluationtask5) }}</td>
+
+                </tr>
+
+                <tr>
+                    <td colspan="3"><h5 class="text-center">{{ template.table3Title2 }}</h5></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ template.table3Col1Descr }}</td>
+                    <td>{{ template.table3Col2Descr }}</td>
+
+                </tr>
+
+
+                <tr>
+                    <td colspan="2">{{ devneeds.skill1 }}</td>
+                    <td>{{ form_errors(form.evaluationskill1) }}
+                        {{ form_widget(form.evaluationskill1) }}</td>
+
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ devneeds.skill2 }}</td>
+                    <td>{{ form_errors(form.evaluationskill2) }}
+                        {{ form_widget(form.evaluationskill2) }}</td>
+
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ devneeds.skill3 }}</td>
+                    <td>{{ form_errors(form.evaluationskill3) }}
+                        {{ form_widget(form.evaluationskill3) }}</td>
+
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ devneeds.skill4 }}</td>
+                    <td>{{ form_errors(form.evaluationskill4) }}
+                        {{ form_widget(form.evaluationskill4) }}</td>
+
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ devneeds.skill5 }}</td>
+                    <td>{{ form_errors(form.evaluationskill5) }}
+                        {{ form_widget(form.evaluationskill5) }}</td>
+
+                </tr>
+
+
+                <tr>
+                    <td colspan="3"><h5 class="text-center">{{ template.table3Title3 }}</h5></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">{{ template.table3Col1Descr }}</td>
+                    <td>{{ template.table3Col2Descr }}</td>
+
+                </tr>
+
+
+                <tr>
+                    <td>{{ devneeds.OrganizationCompetence1 }}</td>
+                    <td>{{ devneeds.OrganizationDescription1 }}</td>
+
+                    <td>{{ form_errors(form.evaluationorganization1) }}
+                        {{ form_widget(form.evaluationorganization1) }}</td>
+
+                </tr>
+
+                <tr>
+                    <td>{{ devneeds.OrganizationCompetence2 }}</td>
+                    <td>{{ devneeds.OrganizationDescription2 }}</td>
+
+                    <td>{{ form_errors(form.evaluationorganization2) }}
+                        {{ form_widget(form.evaluationorganization2) }}</td>
+
+                </tr>
+
+                <tr>
+                    <td>{{ devneeds.OrganizationCompetence3 }}</td>
+                    <td>{{ devneeds.OrganizationDescription3 }}</td>
+
+                    <td>{{ form_errors(form.evaluationorganization3) }}
+                        {{ form_widget(form.evaluationorganization3) }}</td>
+
+                </tr>
+
+                <tr>
+                    <td>{{ devneeds.OrganizationCompetence4 }}</td>
+                    <td>{{ devneeds.OrganizationDescription4 }}</td>
+
+                    <td>{{ form_errors(form.evaluationorganization4) }}
+                        {{ form_widget(form.evaluationorganization4) }}</td>
+
+                </tr>
+
+                <tr>
+                    <td>{{ devneeds.OrganizationCompetence5 }}</td>
+                    <td>{{ devneeds.OrganizationDescription5 }}</td>
+
+                    <td>{{ form_errors(form.evaluationorganization5) }}
+                        {{ form_widget(form.evaluationorganization5) }}</td>
+
+                </tr>
+
+
+                </tbody>
+
+
+            </table>
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <h3>{{ template.title4 }}</h3>
+
+            <p>{{ template.question1 }}</p>
+
+            <div class="form-group">
+                {{ form_widget(form.feedbackorganization1) }}
+            </div>
+
+            <p>{{ template.question2 }}</p>
+
+            <div class="form-group">
+                {{ form_widget(form.feedbackorganization2) }}
+            </div>
+
+            <p>{{ template.question3 }}</p>
+
+            <div class="form-group">
+                {{ form_widget(form.feedbackorganization3) }}
+            </div>
+
+            <p>{{ template.question4 }}</p>
+
+            <div class="form-group">
+                {{ form_widget(form.feedbackorganization4) }}
+            </div>
+
+            <div class="buttons">
+                {{ form_widget(form.save) }}
+                {{ form_widget(form.saveAndAdd) }}
+
+                <a href="{{ app.request.headers.get('referer') }}" class="btn btn-default btn-cons"
+                   type="button">{{ 'button.back' | trans }}</a>
+            </div>
+
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+
+
+
+
+
 
 {% endblock %}
 
 {% block javascripts -%}
     {{ parent() }}
     <script>
-        function getform() {
-            $.ajax({
-                url: Routing.generate('endyear_edit', {
-                    languageId: $('#form_language').val(),
-                    id: {{ entity.id }},
-                    _locale:locale
-                }),
-                success: function (result) {
-                    $("#result").html(result);
-                }
-            });
-        }
-        $(function () {
-            getform();
-
-            $('#form_language').change(function () {
-                getform();
-            });
-        });
     </script>
 {% endblock %}
 

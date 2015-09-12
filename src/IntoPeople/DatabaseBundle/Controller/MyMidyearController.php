@@ -15,32 +15,6 @@ use IntoPeople\DatabaseBundle\Entity\Feedbackcycle;
 class MyMidyearController extends Controller
 {
     /**
-     * Choose language template
-     *
-     */
-    public function languageAction(Request $request, $id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('IntoPeopleDatabaseBundle:Midyear')->find($id);
-
-        $form = $this->createFormBuilder()
-            ->add('language', 'entity', array(
-                'class' => 'IntoPeopleDatabaseBundle:Language',
-                'query_builder' => function (EntityRepository $er) use ($entity) {
-                    return $er->createQueryBuilder('l')->join('l.midyeartemplates','m')->where('m.templateversion = :version')->setParameter('version', $entity->getTemplateversion());
-                },
-            ))
-            ->getForm();
-
-        $form->handleRequest($request);
-
-        return $this->render('IntoPeopleDatabaseBundle:Midyear:new.html.twig', array(
-            'form' => $form->createView(),
-            'entity' => $entity
-        ));
-    }
-
-    /**
      * Creates a form to create a midyear entity.
      *
      * @param Cdp $entity
@@ -63,9 +37,8 @@ class MyMidyearController extends Controller
         return $form;
     }
 
-    public function editAction($id, $languageId)
+    public function editAction($id)
     {
-        
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('IntoPeopleDatabaseBundle:Midyear')->find($id);
         $user = $this->getUser();
@@ -90,12 +63,12 @@ class MyMidyearController extends Controller
                 ->where('m.templateversion = :midyeartemplateversion')
                 ->andWhere('m.language = :language')
                 ->setParameter('midyeartemplateversion', $entity->getTemplateversion())
-                ->setParameter('language', $languageId)
+                ->setParameter('language', $user->getLanguage())
                 ->getQuery();
 
             $template = $query->setMaxResults(1)->getOneOrNullResult();
         
-            return $this->render('IntoPeopleDatabaseBundle:Midyear:getform.html.twig', array(
+            return $this->render('IntoPeopleDatabaseBundle:Midyear:new.html.twig', array(
                 'entity' => $entity,
                 'form' => $form->createView(),
                 'devneeds' => $devneeds,

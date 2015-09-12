@@ -52,10 +52,10 @@
 
 {% elseif cycle == "midyear" %}
 
-    <a href="{{ path('midyeartemplate_new') }}" type="button" class="btn btn-default">{{ 'button.create' | trans }}</a>
+    <a href="{{ path('midyeartemplate_new', { 'templateversionId': templateversionId }) }}" type="button" class="btn btn-default">{{ 'button.create' | trans }}</a>
 
 {% elseif cycle == "endyear" %}
 
-    <a href="{{ path('endyeartemplate_new') }}" type="button" class="btn btn-default">{{ 'button.create' | trans }}</a>
+    <a href="{{ path('endyeartemplate_new', { 'templateversionId': templateversionId }) }}" type="button" class="btn btn-default">{{ 'button.create' | trans }}</a>
 
 {% endif %}
