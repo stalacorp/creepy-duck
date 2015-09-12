@@ -14,3 +14,9 @@ services:
             class: Twig_Extensions_Extension_Intl
             tags:
                 - { name: twig.extension }
+    app.twig.upload_extension:
+         class: IntoPeople\DatabaseBundle\Twig\UploadExtension
+         arguments: [@doctrine.orm.entity_manager]
+         tags:
+             - { name: twig.extension }
+

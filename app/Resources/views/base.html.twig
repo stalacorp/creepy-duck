@@ -86,6 +86,11 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Uploads<span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                        {% for upload in uploads %}
+
+                            <li><a href="{{ app.request.basePath }}{{ vich_uploader_asset(upload, 'uploadFile') }}">Templates</a></li>
+
+                        {% endfor %}
 
                         <li role="separator" class="divider"></li>
                         <li><a href="{{ path('upload') }}">Uploads</a></li>
