@@ -1,3 +1,7 @@
+into_people_database_upload:
+    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/upload.yml"
+    prefix:   /upload
+
 into_people_database_templateversion:
     resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/templateversion.yml"
     prefix:   /templateversion

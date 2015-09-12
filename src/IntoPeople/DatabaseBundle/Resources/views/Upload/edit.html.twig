@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Upload edit</h1>
+
+    {{ form(edit_form) }}
+
+
+        <a href="{{ path('upload') }}" type="button" class="btn btn-default">Back to the list</a>
+
+    <li>{{ form(delete_form) }}</li>
+{% endblock %}

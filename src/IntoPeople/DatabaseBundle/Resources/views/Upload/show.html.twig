@@ -1,0 +1,38 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Upload</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <table class="table borderless">
+                <tbody>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ entity.name }}</td>
+                </tr>
+                <tr>
+                    <th>Uploadname</th>
+                    <td>{{ entity.uploadName }}</td>
+                </tr>
+                <tr>
+                    <th>Updatedat</th>
+                    <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                </tbody>
+            </table>
+
+
+            <a href="{{ path('upload_edit', { 'id': entity.id }) }}" type="button" class="btn btn-default">{{ 'button.edit' | trans }}</a>
+
+            <a href="{{ path('upload') }}" type="button" class="btn btn-default">{{ 'button.back' | trans }}</a>
+
+            {{ form(delete_form) }}
+
+
+        </div>
+    </div>
+
+
+{% endblock %}

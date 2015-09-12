@@ -1,0 +1,45 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+
+    <h2>{{ 'upload.index.title' | trans }}</h2>
+
+    <div class="row">
+        <div class="col-md-8">
+
+
+            <table class="table borderless">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Uploadname</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td>{{ entity.name }}</td>
+                        <td>{{ entity.uploadName }}</td>
+                        <td>{% if entity.updatedAt %}{{ entity.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>
+
+                            <a href="{{ path('upload_show', { 'id': entity.id }) }}" type="button" class="btn btn-default btn-sm">show</a>
+
+                            <a href="{{ path('upload_edit', { 'id': entity.id }) }}" type="button" class="btn btn-default btn-sm">edit</a>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+            <a href="{{ path('upload_new') }}" type="button" class="btn btn-default">{{ 'button.create' | trans }}</a>
+
+
+        </div>
+    </div>
+
+{% endblock %}
