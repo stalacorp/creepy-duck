@@ -217,7 +217,7 @@ class MyCdpController extends Controller
             $entity->setCoreQuality2($corequalities[1]);
             $entity->setCoreQuality3($corequalities[2]);
             if ($corequalities[3] != ''){
-                $entity->setCoreQuality5($corequalities[3]);
+                $entity->setCoreQuality4($corequalities[3]);
             }
             if ($corequalities[4] != ''){
                 $entity->setCoreQuality5($corequalities[4]);
