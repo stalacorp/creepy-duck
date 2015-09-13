@@ -7,6 +7,7 @@ use IntoPeople\DatabaseBundle\Entity\Cdp;
 use IntoPeople\DatabaseBundle\Entity\Midyear;
 use IntoPeople\DatabaseBundle\Entity\Endyear;
 use IntoPeople\DatabaseBundle\Entity\Developmentneeds;
+use IntoPeople\DatabaseBundle\Form\ProfileFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use IntoPeople\DatabaseBundle\Entity\User;
@@ -573,31 +574,8 @@ class UserController extends Controller
         $encoder_service = $this->get('security.encoder_factory');
         $encoder = $encoder_service->getEncoder($user);
 
-
-        $entities = $em->getRepository('IntoPeopleDatabaseBundle:Jobtitle')->findAll();
-        $jobtitles = array_map(create_function('$o', 'return $o->getName();'), $entities);
-
-
-
-        $form = $this->createFormBuilder($user)
-            ->add('firstname')
-            ->add('lastname')
-            ->add('jobtitle', 'text', array('mapped' => false,
-                'attr'   =>  array('class'   => 'typeahead')
-            ))
-            ->add('oldpassword', 'password', array('mapped' => false,
-                'required' => false))
-            ->add('newpassword', 'repeated', array(
-                'type' => 'password',
-                'mapped' => false,
-                'invalid_message' => $this->get('translator')->trans('passwordmatch'),
-                'options' => array('attr' => array('class' => 'password-field')),
-                'required' => false))
-            ->add('language', 'entity',array(
-                'class' => 'IntoPeopleDatabaseBundle:Language'))
-            ->add('Save', 'submit')
-            ->getForm();
-        $form['jobtitle']->setData($user->getJobtitle()->getName());
+        $form = $this->createForm(new ProfileFormType(), $user);
+        $test = 0;
         $form->handleRequest($request);
         if ($form->isValid()) {
             $userManager = $this->get('fos_user.user_manager');
@@ -608,38 +586,36 @@ class UserController extends Controller
                 if ($user->getPassword() == $encoded_pass){
                     $user->setPlainPassword($newpassword);
                     $userManager->updateUser($user);
+                }else {
+                    $test = 1;
+                    $tr = $this->get('translator');
+                    $message = $tr->trans('user.profile.oldpasswordwrong');
+
+                    $this->addFlash(
+                        'warning',
+                        $message
+                    );
                 }
 
             }
 
-            $jobtitle = $em->getRepository('IntoPeopleDatabaseBundle:Jobtitle')->findOneByName($form->get('jobtitle')->getData());
+            if ($test == 0) {
+                $tr = $this->get('translator');
+                $message = $tr->trans('notification.user.profile');
 
-            if ($jobtitle == null) {
-                $jobtitle = new Jobtitle();
-                $jobtitle->setName($form->get('jobtitle')->getData());
-                $em->persist($jobtitle);
+                $this->addFlash(
+                    'success',
+                    $message
+                );
             }
-
-            $user->setJobtitle($jobtitle);
-
-
-            // Notification message after Core Quality has been created
-            //
-            $tr = $this->get('translator');
-            $message = $tr->trans('notification.user.profile');
-
-            $this->addFlash(
-                'success',
-                $message
-            );
 
             $em->flush();
 
 
         }
+
         return $this->render('IntoPeopleDatabaseBundle:User:profile.html.twig', array(
             'form' => $form->createView(),
-            'jobtitles' => $jobtitles
         ));
     }
 

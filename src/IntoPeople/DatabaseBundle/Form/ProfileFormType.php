@@ -11,26 +11,28 @@ class ProfileFormType extends AbstractType
     {
         
         $builder
-        ->add('language')
-        ->add('photo', 'vich_image', array(
-                'required'      => false,
-                'allow_delete'  => true, // not mandatory, default is true
-                'download_link' => true, // not mandatory, default is true
-            ))
-        ;
+            ->add('firstname')
+            ->add('lastname')
+            ->add('oldpassword', 'password', array('mapped' => false,
+                'required' => false))
+            ->add('newpassword', 'repeated', array(
+                'type' => 'password',
+                'mapped' => false,
+                'invalid_message' => 'user.profile.passwordmatch',
+                'options' => array('attr' => array('class' => 'password-field')),
+                'required' => false))
+            ->add('language', 'entity',array(
+                'class' => 'IntoPeopleDatabaseBundle:Language'))
+            ->add('Save', 'submit');
 
     }
- 
-    
-    public function getParent()
-    {
-        return 'fos_user_profile';
-    }
+
+
 
 
     public function getName()
     {
-        return 'app_user_profile';
+        return 'user_profile';
     }
 
 
