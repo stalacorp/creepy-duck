@@ -63,6 +63,41 @@ class Midyear
     /**
      * @var string
      *
+     * @ORM\Column(name="ProgressChallenge1", type="text", length=65535, nullable=true)
+     */
+    private $progressChallenge1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ProgressChallenge2", type="text", length=65535, nullable=true)
+     */
+    private $progressChallenge2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ProgressChallenge3", type="text", length=65535, nullable=true)
+     */
+    private $progressChallenge3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ProgressChallenge4", type="text", length=65535, nullable=true)
+     */
+    private $progressChallenge4;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ProgressChallenge5", type="text", length=65535, nullable=true)
+     */
+    private $progressChallenge5;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="ProgressTask1", type="text", length=65535, nullable=true)
      */
     private $progresstask1;
@@ -993,5 +1028,120 @@ class Midyear
     public function getTemplateversion()
     {
         return $this->templateversion;
+    }
+
+    /**
+     * Set progressChallenge1
+     *
+     * @param string $progressChallenge1
+     * @return Midyear
+     */
+    public function setProgressChallenge1($progressChallenge1)
+    {
+        $this->progressChallenge1 = $progressChallenge1;
+
+        return $this;
+    }
+
+    /**
+     * Get progressChallenge1
+     *
+     * @return string 
+     */
+    public function getProgressChallenge1()
+    {
+        return $this->progressChallenge1;
+    }
+
+    /**
+     * Set progressChallenge2
+     *
+     * @param string $progressChallenge2
+     * @return Midyear
+     */
+    public function setProgressChallenge2($progressChallenge2)
+    {
+        $this->progressChallenge2 = $progressChallenge2;
+
+        return $this;
+    }
+
+    /**
+     * Get progressChallenge2
+     *
+     * @return string 
+     */
+    public function getProgressChallenge2()
+    {
+        return $this->progressChallenge2;
+    }
+
+    /**
+     * Set progressChallenge3
+     *
+     * @param string $progressChallenge3
+     * @return Midyear
+     */
+    public function setProgressChallenge3($progressChallenge3)
+    {
+        $this->progressChallenge3 = $progressChallenge3;
+
+        return $this;
+    }
+
+    /**
+     * Get progressChallenge3
+     *
+     * @return string 
+     */
+    public function getProgressChallenge3()
+    {
+        return $this->progressChallenge3;
+    }
+
+    /**
+     * Set progressChallenge4
+     *
+     * @param string $progressChallenge4
+     * @return Midyear
+     */
+    public function setProgressChallenge4($progressChallenge4)
+    {
+        $this->progressChallenge4 = $progressChallenge4;
+
+        return $this;
+    }
+
+    /**
+     * Get progressChallenge4
+     *
+     * @return string 
+     */
+    public function getProgressChallenge4()
+    {
+        return $this->progressChallenge4;
+    }
+
+    /**
+     * Set progressChallenge5
+     *
+     * @param string $progressChallenge5
+     * @return Midyear
+     */
+    public function setProgressChallenge5($progressChallenge5)
+    {
+        $this->progressChallenge5 = $progressChallenge5;
+
+        return $this;
+    }
+
+    /**
+     * Get progressChallenge5
+     *
+     * @return string 
+     */
+    public function getProgressChallenge5()
+    {
+        return $this->progressChallenge5;
     }
 }
