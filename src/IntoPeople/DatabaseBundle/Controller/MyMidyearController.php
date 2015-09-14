@@ -158,10 +158,27 @@ class MyMidyearController extends Controller
                 'id' => $entity->getId()
             )));
         }
+
+        $user = $this->getUser();
+
+        $devneeds = $entity->getDevelopmentNeeds();
+
+        $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Midyeartemplate');
+
+        $query = $repository->createQueryBuilder('m')
+            ->where('m.templateversion = :midyeartemplateversion')
+            ->andWhere('m.language = :language')
+            ->setParameter('midyeartemplateversion', $entity->getTemplateversion())
+            ->setParameter('language', $user->getLanguage())
+            ->getQuery();
+
+        $template = $query->setMaxResults(1)->getOneOrNullResult();
         
         return $this->render('IntoPeopleDatabaseBundle:Midyear:new.html.twig', array(
             'entity' => $entity,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'devneeds' => $devneeds,
+            'template' => $template
         ));
     }
     

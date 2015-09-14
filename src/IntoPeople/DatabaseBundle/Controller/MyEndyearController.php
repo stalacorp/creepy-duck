@@ -174,10 +174,27 @@ class MyEndyearController extends Controller
                 'id' => $entity->getId()
             )));
         }
+
+        $user = $this->getUser();
+
+        $devneeds = $entity->getDevelopmentNeeds();
+
+        $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Endyeartemplate');
+
+        $query = $repository->createQueryBuilder('e')
+            ->where('e.templateversion = :endyeartemplateversion')
+            ->andWhere('e.language = :language')
+            ->setParameter('endyeartemplateversion', $entity->getTemplateversion())
+            ->setParameter('language', $user->getLanguage())
+            ->getQuery();
+
+        $template = $query->setMaxResults(1)->getOneOrNullResult();
         
         return $this->render('IntoPeopleDatabaseBundle:Endyear:new.html.twig', array(
             'entity' => $entity,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'devneeds' => $devneeds,
+            'template' => $template
         ));
     }
     
