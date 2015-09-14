@@ -185,9 +185,19 @@ class MyMidyearController extends Controller
             throw new \Exception($this->get('translator')->trans('noaccesserror'));
         }
 
+        $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Midyeartemplate');
+
+        $query = $repository->createQueryBuilder('m')
+            ->where('m.templateversion = :midyeartemplateversion')
+            ->setParameter('midyeartemplateversion', $entity->getTemplateversion())
+            ->getQuery();
+
+        $template = $query->setMaxResults(1)->getOneOrNullResult();
+
     
         return $this->render('IntoPeopleDatabaseBundle:Midyear:show.html.twig', array(
-            'entity'      => $entity
+            'entity'      => $entity,
+            'template' => $template
         ));
     }
 }

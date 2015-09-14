@@ -231,9 +231,19 @@ class MyCdpController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Person entity.');
         }
+
+        $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
+
+        $query = $repository->createQueryBuilder('c')
+            ->where('c.templateversion = :cdptemplateversion')
+            ->setParameter('cdptemplateversion', $entity->getTemplateversion())
+            ->getQuery();
+
+        $template = $query->setMaxResults(1)->getOneOrNullResult();
         
         return $this->render('IntoPeopleDatabaseBundle:Cdp:show.html.twig', array(
-            'entity'      => $entity
+            'entity'      => $entity,
+            'template' => $template
         ));
     }
 }

@@ -202,8 +202,18 @@ class MyEndyearController extends Controller
             throw new \Exception($this->get('translator')->trans('noaccesserror'));
         }
 
+        $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Endyeartemplate');
+
+        $query = $repository->createQueryBuilder('e')
+            ->where('e.templateversion = :endyeartemplateversion')
+            ->setParameter('endyeartemplateversion', $entity->getTemplateversion())
+            ->getQuery();
+
+        $template = $query->setMaxResults(1)->getOneOrNullResult();
+
         return $this->render('IntoPeopleDatabaseBundle:Endyear:show.html.twig', array(
-            'entity'      => $entity
+            'entity'      => $entity,
+            'template' => $template
         ));
     }
 }
