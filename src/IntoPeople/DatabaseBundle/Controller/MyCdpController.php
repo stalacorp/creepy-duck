@@ -206,8 +206,23 @@ class MyCdpController extends Controller
                 'id' => $entity->getId()
             )));
         }
-        
+
+        $user = $this->getUser();
+
+        $corequalities = $em->getRepository('IntoPeopleDatabaseBundle:Corequality')->findByLanguage($user->getLanguage());
+
+        $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
+
+        $query = $repository->createQueryBuilder('c')
+            ->where('c.templateversion = :cdptemplateversion')
+            ->setParameter('cdptemplateversion', $entity->getTemplateversion())
+            ->getQuery();
+
+        $template = $query->setMaxResults(1)->getOneOrNullResult();
+
         return $this->render('IntoPeopleDatabaseBundle:Cdp:new.html.twig', array(
+            'corequalities' => $corequalities,
+            'template' => $template,
             'entity' => $entity,
             'form' => $form->createView()
         ));
