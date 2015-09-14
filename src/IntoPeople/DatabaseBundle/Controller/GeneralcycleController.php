@@ -141,7 +141,7 @@ class GeneralcycleController extends Controller
             
             foreach ($users as $user) {
 
-                if($user->getUserstatus()->getId() == 1) {
+                if($user->isEnabled()) {
 
                     $feedbackcycle = new Feedbackcycle();
                     $feedbackcycle->setUser($user);

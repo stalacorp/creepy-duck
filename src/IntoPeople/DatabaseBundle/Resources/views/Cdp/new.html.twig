@@ -105,8 +105,8 @@
     <div class="row">
         <div class="col-md-12">
 
-            {{ form_start(form) }} {{ form_errors(form) }}
-            {{ form_row (form._token) }}
+            {{ form_start(form) }}
+            {{ form_row (form._token) }}{{ form_errors(form) }}
 
             <table class="table borderless" id="corequalitytable">
                 <tr>
@@ -135,7 +135,8 @@
                 </tr>
                 <tr>
                     <td>
-                        <p>{{ form_widget(form.coreQuality1) }}<span id="corequality1">{% if entity.coreQuality1 != null %}{{ entity.coreQuality1.coreQuality }}{% endif %}</span></p>
+                        <p class="qualityrequired">{{ form_widget(form.coreQuality1) }}<span id="corequality1">{% if entity.coreQuality1 != null %}{{ entity.coreQuality1.coreQuality }}{% endif %}</span></p>
+
 
                         <p>{{ form_widget(form.coreQuality1Why) }}</p>
                     </td>
@@ -153,7 +154,7 @@
 
                 <tr>
                     <td>
-                        <p>{{ form_widget(form.coreQuality2) }}<span id="corequality2">{% if entity.coreQuality2 != null %}{{ entity.coreQuality2.coreQuality }}{% endif %}</span></p>
+                        <p class="qualityrequired">{{ form_widget(form.coreQuality2) }}<span id="corequality2">{% if entity.coreQuality2 != null %}{{ entity.coreQuality2.coreQuality }}{% endif %}</span></p>
 
                         <p>{{ form_widget(form.coreQuality2Why) }}</p>
                     </td>
@@ -171,7 +172,7 @@
 
                 <tr>
                     <td>
-                        <p>{{ form_widget(form.coreQuality3) }}<span id="corequality3">{% if entity.coreQuality3 != null %}{{ entity.coreQuality3.coreQuality }}{% endif %}</span></p>
+                        <p class="qualityrequired">{{ form_widget(form.coreQuality3) }}<span id="corequality3">{% if entity.coreQuality3 != null %}{{ entity.coreQuality3.coreQuality }}{% endif %}</span></p>
 
                         <p>{{ form_widget(form.coreQuality3Why) }}</p>
                     </td>
@@ -587,8 +588,22 @@
     {{ parent() }}
     <script>
         var count = 0;
-
+        var clicked = '';
         $(function () {
+
+            $("form").submit(function(e){
+                alert(clicked);
+                if (true == true){
+                    return false;
+                }
+            });
+
+
+            $("[type=submit]").click(function() {
+                alert('test');
+                clicked = $(this).text();
+
+            });
 
             $(document).on('click', '.qualityoption' , function(){
                 if ($(this).hasClass('btn-default')){

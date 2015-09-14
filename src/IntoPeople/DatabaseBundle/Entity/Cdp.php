@@ -4,7 +4,6 @@ namespace IntoPeople\DatabaseBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Cdp
@@ -123,7 +122,7 @@ class Cdp
 
     /**
      * @var \IntoPeople\DatabaseBundle\Entity\Corequality
-     * @Assert\NotBlank()
+     *
      * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Corequality", inversedBy="corequality1")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="CoreQuality1Id", referencedColumnName="Id")

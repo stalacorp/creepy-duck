@@ -63,7 +63,7 @@ class Generalcycle
 
     /**
      * @var \DateTime
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="StartDateCDP", type="date", nullable=true)
      */
     private $startdatecdp;
@@ -77,7 +77,7 @@ class Generalcycle
 
     /**
      * @var \DateTime
-     * @Assert\NotBlank()
+     *
      * @ORM\Column(name="StartDateMidYear", type="date", nullable=true)
      */
     private $startdatemidyear;
@@ -91,7 +91,7 @@ class Generalcycle
 
     /**
      * @var \DateTime
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="StartDateYearEnd", type="date", nullable=true)
      */
     private $startdateyearend;
@@ -105,7 +105,7 @@ class Generalcycle
 
     /**
      * @var integer
-     * @Assert\NotBlank()
+     *
      * @ORM\Column(name="Id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")

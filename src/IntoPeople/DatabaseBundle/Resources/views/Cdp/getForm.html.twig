@@ -134,7 +134,7 @@
             </tr>
             <tr>
                 <td>
-                    <p>{{ form_widget(form.coreQuality1) }}<span id="corequality1">{% if entity.coreQuality1 != null %}{{ entity.coreQuality1.coreQuality }}{% endif %}</span></p>
+                    <p>{{ form_widget(form.coreQuality1) }}<span id="corequality1">{% if entity.coreQuality1 != null %}{{ entity.coreQuality1.coreQuality }}{% endif %}</span>{{ form_error(form.coreQuality1) }}</p>
 
                     <p>{{ form_widget(form.coreQuality1Why) }}</p>
                 </td>
