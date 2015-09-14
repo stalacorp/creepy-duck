@@ -94,6 +94,16 @@ class Cdp
      */
     private $supervisor;
 
+    /**
+     * @var \IntoPeople\DatabaseBundle\Entity\Jobtitle
+     *
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Jobtitle")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="JobtitleId", referencedColumnName="Id")
+     * })
+     */
+    private $jobtitle;
+
 
     /**
      * @var \IntoPeople\DatabaseBundle\Entity\Formstatus
@@ -3172,5 +3182,28 @@ class Cdp
     public function getTemplateversion()
     {
         return $this->templateversion;
+    }
+
+    /**
+     * Set jobtitle
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Jobtitle $jobtitle
+     * @return Cdp
+     */
+    public function setJobtitle(\IntoPeople\DatabaseBundle\Entity\Jobtitle $jobtitle = null)
+    {
+        $this->jobtitle = $jobtitle;
+
+        return $this;
+    }
+
+    /**
+     * Get jobtitle
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Jobtitle 
+     */
+    public function getJobtitle()
+    {
+        return $this->jobtitle;
     }
 }

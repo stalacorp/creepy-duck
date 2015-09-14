@@ -10,6 +10,8 @@
 
                     {% set cdp = entity.feedbackcycle.cdp %}
 
+                    {% set devneeds = entity.developmentneeds %}
+
                     <h1>{{ template.mainTitle }}</h1>
 
                     <div width="40%">
@@ -143,6 +145,36 @@
                                 <td>{{ template.table3Col2Descr }}</td>
                             </tr>
 
+                            <tr>
+                                <td>{{ devneeds.task1 }}</td>
+                                <td>{{ entity.progresstask1 }}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>{{ devneeds.task2 }}</td>
+                                <td>{{ entity.progresstask2 }}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>{{ devneeds.task3 }}</td>
+                                <td>{{ entity.progresstask3 }}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>{{ devneeds.task4 }}</td>
+                                <td>{{ entity.progresstask4 }}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>{{ devneeds.task5 }}</td>
+                                <td>{{ entity.progresstask5 }}</td>
+
+                            </tr>
+
 
                         </table>
 
@@ -155,6 +187,36 @@
                                 <td>{{ template.table3Col2 }}</td>
                             </tr>
 
+                            <tr>
+                                <td>{{ devneeds.skill1 }}</td>
+                                <td>{{ entity.progressskill1 }}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>{{ devneeds.skill2 }}</td>
+                                <td>{{ entity.progressskill2 }}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>{{ devneeds.skill3 }}</td>
+                                <td>{{ entity.progressskill3 }}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>{{ devneeds.skill4 }}</td>
+                                <td>{{ entity.progressskill4 }}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>{{ devneeds.skill5 }}</td>
+                                <td>{{ entity.progressskill5 }}</td>
+
+                            </tr>
+
 
                         </table>
 
@@ -164,7 +226,48 @@
 
                             <tr>
                                 <td>{{ template.table3Col1 }}</td>
+                                <td></td>
                                 <td>{{ template.table3Col2 }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ devneeds.OrganizationCompetence1 }}</td>
+                                <td>{{ devneeds.OrganizationDescription1 }}</td>
+
+                                <td>{{ entity.progressorganization1 }}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>{{ devneeds.OrganizationCompetence2 }}</td>
+                                <td>{{ devneeds.OrganizationDescription2 }}</td>
+
+                                <td>{{ entity.progressorganization2 }}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>{{ devneeds.OrganizationCompetence3 }}</td>
+                                <td>{{ devneeds.OrganizationDescription3 }}</td>
+
+                                <td>{{ entity.progressorganization3 }}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>{{ devneeds.OrganizationCompetence4 }}</td>
+                                <td>{{ devneeds.OrganizationDescription4 }}</td>
+
+                                <td>{{ entity.progressorganization4 }}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>{{ devneeds.OrganizationCompetence5 }}</td>
+                                <td>{{ devneeds.OrganizationDescription5 }}</td>
+
+                                <td>{{ entity.progressorganization5 }}</td>
+
                             </tr>
 
 
