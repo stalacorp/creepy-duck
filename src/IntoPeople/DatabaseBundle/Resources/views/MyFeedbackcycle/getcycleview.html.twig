@@ -147,12 +147,20 @@
         <table class="table borderless">
             <tr>
                 <th>{{ 'myfeedbackcycle.midyear.startdate' | trans }}</th>
-                <td>{{ feedbackcycle.generalcycle.startdatemidyear | localizeddate('medium', 'none', app.request.locale ) }}</td>
+                <td>{% if feedbackcycle.generalcycle.startdatemidyear != null %}
+                        {{ feedbackcycle.generalcycle.startdatemidyear | localizeddate('medium', 'none', app.request.locale ) }}
+                    {% else %}
+                        {{ 'Unavailable' | trans }}
+                    {% endif %}</td>
             </tr>
 
             <tr>
                 <th>{{ 'myfeedbackcycle.midyear.enddate' | trans }}</th>
-                <td>{{ feedbackcycle.generalcycle.enddatemidyear | localizeddate('medium', 'none', app.request.locale ) }}</td>
+                <td>{% if feedbackcycle.generalcycle.enddatemidyear != null %}
+                        {{ feedbackcycle.generalcycle.enddatemidyear | localizeddate('medium', 'none', app.request.locale ) }}
+                    {% else %}
+                        {{ 'Unavailable' | trans }}
+                    {% endif %}</td>
             </tr>
 
             <tr>

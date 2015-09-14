@@ -60,6 +60,9 @@ security:
         - { path: ^/[a-z]+/user/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/[a-z]+/user/upload/\W*, role: [ROLE_HR,ROLE_SUPERVISOR]}
         - { path: ^/[a-z]+/user/hr/\W*, role: ROLE_HR }
+        - { path: ^/[a-z]+/user/templateversion/\W*, role: ROLE_HR }
+        - { path: ^/[a-z]+/user/corequality/\W*, role: ROLE_HR }
+        - { path: ^/[a-z]+/user/generalcycle/\W*, role: ROLE_HR }
         - { path: ^/[a-z]+/user/systemmail/\W*, role: ROLE_HR }
         - { path: ^/[a-z]+/user/organization/\W*, role: ROLE_HR }
         - { path: ^/[a-z]+/user/cdptemplate/\W*, role: ROLE_HR }

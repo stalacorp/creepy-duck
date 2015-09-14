@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cc0769a2cc9d2a28db44fc81df8ea097",
+    "hash": "7871843cc5cb6b17a39465bcaa08e3c8",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -861,7 +861,7 @@
                     "homepage": "https://github.com/friendsofsymfony/FOSJsRoutingBundle/contributors"
                 },
                 {
-                    "name": "William DURAND",
+                    "name": "William Durand",
                     "email": "william.durand1@gmail.com"
                 }
             ],
@@ -1095,6 +1095,78 @@
             "time": "2014-07-12 07:13:19"
         },
         {
+            "name": "jms/translation-bundle",
+            "version": "dev-master",
+            "target-dir": "JMS/TranslationBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/schmittjoh/JMSTranslationBundle.git",
+                "reference": "8eff56746b73762dfe06414faf0fb609bfe51754"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/schmittjoh/JMSTranslationBundle/zipball/8eff56746b73762dfe06414faf0fb609bfe51754",
+                "reference": "8eff56746b73762dfe06414faf0fb609bfe51754",
+                "shasum": ""
+            },
+            "require": {
+                "nikic/php-parser": "0.9.4",
+                "symfony/console": "*",
+                "symfony/framework-bundle": "~2.1"
+            },
+            "conflict": {
+                "twig/twig": "1.10.2"
+            },
+            "require-dev": {
+                "jms/di-extra-bundle": ">=1.1",
+                "sensio/framework-extra-bundle": "*",
+                "symfony/browser-kit": "*",
+                "symfony/class-loader": "*",
+                "symfony/css-selector": "*",
+                "symfony/finder": "*",
+                "symfony/form": "*",
+                "symfony/process": "*",
+                "symfony/security": "*",
+                "symfony/twig-bundle": "*",
+                "symfony/validator": "*",
+                "symfony/yaml": "*"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "JMS\\TranslationBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes M. Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "Puts the Symfony2 Translation Component on steroids",
+            "homepage": "http://jmsyst.com/bundles/JMSTranslationBundle",
+            "keywords": [
+                "extract",
+                "extraction",
+                "i18n",
+                "interface",
+                "multilanguage",
+                "translation",
+                "ui",
+                "webinterface"
+            ],
+            "time": "2014-10-29 13:23:47"
+        },
+        {
             "name": "kriswallsmith/assetic",
             "version": "v1.3.0",
             "source": {
@@ -1313,6 +1385,50 @@
             "time": "2015-08-31 09:17:37"
         },
         {
+            "name": "nikic/php-parser",
+            "version": "v0.9.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nikic/PHP-Parser.git",
+                "reference": "1e5e280ae88a27effa2ae4aa2bd088494ed8594f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/1e5e280ae88a27effa2ae4aa2bd088494ed8594f",
+                "reference": "1e5e280ae88a27effa2ae4aa2bd088494ed8594f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.9-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "PHPParser": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Nikita Popov"
+                }
+            ],
+            "description": "A PHP parser written in PHP",
+            "keywords": [
+                "parser",
+                "php"
+            ],
+            "time": "2013-08-25 17:11:40"
+        },
+        {
             "name": "ocramius/proxy-manager",
             "version": "0.5.2",
             "source": {
@@ -1434,24 +1550,24 @@
         },
         {
             "name": "psliwa/pdf-bundle",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "target-dir": "Ps/PdfBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/psliwa/PdfBundle.git",
-                "reference": "1dec2d7fa4cf61488893dcaafa720cb2b53affe7"
+                "reference": "23c925ba76d7fa2bd23ff5c1558dc88537a68d7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/psliwa/PdfBundle/zipball/1dec2d7fa4cf61488893dcaafa720cb2b53affe7",
-                "reference": "1dec2d7fa4cf61488893dcaafa720cb2b53affe7",
+                "url": "https://api.github.com/repos/psliwa/PdfBundle/zipball/23c925ba76d7fa2bd23ff5c1558dc88537a68d7f",
+                "reference": "23c925ba76d7fa2bd23ff5c1558dc88537a68d7f",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0",
-                "psliwa/php-pdf": ">=1.1.5",
-                "sensio/framework-extra-bundle": ">=2.0",
-                "symfony/symfony": ">=2.0"
+                "psliwa/php-pdf": "^1.1.5",
+                "sensio/framework-extra-bundle": ">=2.0 <4.0.0",
+                "symfony/symfony": "~2.0"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -1466,8 +1582,8 @@
             "authors": [
                 {
                     "name": "Piotr Śliwa",
-                    "email": "peter.pl7@gmail.com",
-                    "homepage": "http://ohey.pl"
+                    "email": "me@psliwa.org",
+                    "homepage": "http://psliwa.org"
                 }
             ],
             "description": "This bundle integrates Symfony2 with PHPPdf library.",
@@ -1475,7 +1591,7 @@
                 "PHPPdf",
                 "pdf"
             ],
-            "time": "2013-12-17 18:59:11"
+            "time": "2015-09-12 20:01:25"
         },
         {
             "name": "psliwa/php-pdf",
@@ -1692,7 +1808,6 @@
                 "dependency container",
                 "rollerworks"
             ],
-            "abandoned": true,
             "time": "2014-03-12 08:31:34"
         },
         {
@@ -2264,16 +2379,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.21.2",
+            "version": "v1.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "ddce1136beb8db29b9cd7dffa8ab518b978c9db3"
+                "reference": "204a6c94907c2c2225322c267e09adbb2b1c04fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/ddce1136beb8db29b9cd7dffa8ab518b978c9db3",
-                "reference": "ddce1136beb8db29b9cd7dffa8ab518b978c9db3",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/204a6c94907c2c2225322c267e09adbb2b1c04fd",
+                "reference": "204a6c94907c2c2225322c267e09adbb2b1c04fd",
                 "shasum": ""
             },
             "require": {
@@ -2286,7 +2401,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.21-dev"
+                    "dev-master": "1.22-dev"
                 }
             },
             "autoload": {
@@ -2321,7 +2436,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-09-09 05:28:51"
+            "time": "2015-09-13 17:12:38"
         },
         {
             "name": "vich/uploader-bundle",
@@ -3004,7 +3119,8 @@
     "stability-flags": {
         "rollerworks/multi-user-bundle": 20,
         "friendsofsymfony/user-bundle": 20,
-        "twig/extensions": 20
+        "twig/extensions": 20,
+        "jms/translation-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

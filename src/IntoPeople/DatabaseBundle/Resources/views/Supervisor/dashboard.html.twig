@@ -1,4 +1,7 @@
 {% extends '::base.html.twig' %}
+{% block title %}
+    Supervisor dashboard
+{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <link href="{{ asset('assets/vendor/datatables/media/css/dataTables.bootstrap.min.css') }}" rel="stylesheet"
@@ -217,7 +220,7 @@
 
         function getforms() {
             $.ajax({
-                url: Routing.generate('hr_getforms', {generalcycleid: $('#form_generalcycle').val(), _locale:locale}),
+                url: Routing.generate('supervisor_getforms', {generalcycleid: $('#form_generalcycle').val(), _locale:locale}),
                 success: function (result) {
                     var select = $('#form_cycle');
                     select.empty().append('<option value="cdp">Cdp ' + result[0] + '</option>');
