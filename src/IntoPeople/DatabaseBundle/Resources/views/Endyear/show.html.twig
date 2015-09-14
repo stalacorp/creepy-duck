@@ -381,46 +381,65 @@
         </div>
     </div>
 
+    <div class="row">
 
 
+        {% if entity.formstatus.id > 3 %}
 
-    {% if entity.formstatus.id > 3 %}
-
-        <div class="row margin-top-50">
             <div class="col-md-6">
 
-                <h3>Comments supervisor</h3>
+                <div class="panel panel-default">
+                    <div class="panel-body">
 
-                {{ entity.commentSup }}
+                        <h3>Comments supervisor</h3>
+
+                        {{ entity.commentSup }}
+                    </div>
+                </div>
 
             </div>
-        </div>
 
-    {% endif %}
+        {% else %}
 
-    {% if entity.formstatus.id > 5 %}
-
-        <div class="row margin-top-50">
             <div class="col-md-6">
 
-                <h3>Feedback HR</h3>
-
-                {{ entity.feedbackHR }}
+                {% block comment %}
+                {% endblock %}
 
             </div>
-        </div>
 
-    {% endif %}
+        {% endif %}
+
+        {% if entity.formstatus.id > 5 %}
+
+            <div class="col-md-6">
+
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        <h3>Feedback HR</h3>
+
+                        {{ entity.feedbackHR }}
+
+                    </div>
+                </div>
+
+            </div>
+
+        {% else %}
+
+            <div class="col-md-6">
+
+                {% block feedback %}
+                {% endblock %}
+
+            </div>
 
 
-    {% block comment %}
-    {% endblock %}
+        {% endif %}
 
 
-    <a href="{{ path('feedbackcycle') }}" class="btn btn-default btn-cons" type="button"> Back to the list </a>
-
-
-
+    </div>
 
 {% endblock %}
 
