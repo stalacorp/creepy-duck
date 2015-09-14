@@ -2,18 +2,11 @@ body {
     font-family: 'Roboto', sans-serif;
     /*background-color:#68C170;*/
 
-
-
-
     background: -webkit-linear-gradient(90deg, #085078 10%, #85D8CE 90%); /* Chrome 10+, Saf5.1+ */
     background:    -moz-linear-gradient(90deg, #085078 10%, #85D8CE 90%); /* FF3.6+ */
     background:     -ms-linear-gradient(90deg, #085078 10%, #85D8CE 90%); /* IE10 */
     background:      -o-linear-gradient(90deg, #085078 10%, #85D8CE 90%); /* Opera 11.10+ */
     background:         linear-gradient(90deg, #085078 10%, #85D8CE 90%); /* W3C */
-
-
-
-
 }
 
 h2 {
@@ -23,16 +16,16 @@ h2 {
 }
 
 .panel-heading {
-    padding: 10px;
+
 }
 
 .panel-body {
-    padding:50px 100px 100px 100px;
+
 
 }
 
 
 
 #loginbox {
-    margin-top:15%;
+    margin-top:10%;
 }
