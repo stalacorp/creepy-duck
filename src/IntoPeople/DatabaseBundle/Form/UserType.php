@@ -52,78 +52,14 @@ class UserType extends AbstractType
             ->add('supervisor')
             ->add('jobtitle')
             ->add('enabled', 'checkbox', array('required' => false))
+            ->add('roles', 'choice', array(
+                'choices' => array(
+                    'ROLE_HR' => 'HR / Management',
+                    'ROLE_SUPERVISOR' => 'Supervisor',
+                ), 'multiple' => true))
             //->add('employeefunction')
-            
-            
              ;
-            
-            
-            $user = $this->tokenStorage->getToken()->getUser();
-            
-            if(!$user) {
-                throw new \LogicException('You have to be authenticated!');
-            }
-            
-            $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) use ($user) {
-                $form = $event->getForm();
-                $entity = $event->getData();
-                
-                if ($user->hasRole('ROLE_SUPER_ADMIN')) {
-                    $form
-                    ->add('roles', 'choice', array(
-                        'choices' => array(
-                            'ROLE_HR' => 'HR / Management',
-                            'ROLE_SUPERVISOR' => 'Supervisor',
-                        ), 'multiple' => true));
-                    
-                    if (!$entity || null === $entity->getId()) {
-                        $form->add('supervisor');
-                        //$form->add('plainpassword', 'password', array('label' => 'Password'));
-                    }
 
-                } else {
-                    
-                    $form->add('roles', 'choice', array(
-                        'choices' => array(
-                            'ROLE_HR' => 'HR / Management',
-                            'ROLE_SUPERVISOR' => 'Supervisor',
-                        ), 'multiple' => true));
-                    
-                    if (!$entity || null === $entity->getId()) {
-                    
-                        //$form->add('plainpassword', 'password', array('label' => 'Password'));
-                    
-                     $formOptions = array(
-                        'class' => 'IntoPeople\DatabaseBundle\Entity\User',
-                        'query_builder' => function (EntityRepository $er) use ($user) {
-
-                            return $er->createQueryBuilder('p')->where('p.organization = :organization')->setParameter('organization',$user->getOrganization());
-                        },
-                    );
-                    
-                    $form
-                    ->add('supervisor', 'entity', $formOptions);
-                                       
-
-                    }
-                }
-                                                
-                if ($entity->getId() != null) {
-                    
-                    $formOptions = array(
-                        'class' => 'IntoPeople\DatabaseBundle\Entity\User',
-                        'query_builder' => function (EntityRepository $er) use ($entity) {
-
-                            return $er->createQueryBuilder('p')->where('p.organization = :organization')->setParameter('organization',$entity->getOrganization());
-                        },
-                    );
-                    
-                    $form->add('supervisor', 'entity', $formOptions);
-                    
-                }               
-                             
-            });
-            
             
             
     }

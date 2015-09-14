@@ -41,6 +41,13 @@ class Organization
     private $email;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="About", type="text", length=65535, nullable=true)
+     */
+    private $about;
+
+    /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
      * @Vich\UploadableField(mapping="organization_logo", fileNameProperty="logoName")
@@ -508,5 +515,28 @@ class Organization
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Set about
+     *
+     * @param string $about
+     * @return Organization
+     */
+    public function setAbout($about)
+    {
+        $this->about = $about;
+
+        return $this;
+    }
+
+    /**
+     * Get about
+     *
+     * @return string 
+     */
+    public function getAbout()
+    {
+        return $this->about;
     }
 }
