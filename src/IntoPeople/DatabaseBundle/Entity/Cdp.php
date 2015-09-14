@@ -132,7 +132,7 @@ class Cdp
 
     /**
      * @var \IntoPeople\DatabaseBundle\Entity\Corequality
-     *
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Corequality", inversedBy="corequality2")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="CoreQuality2Id", referencedColumnName="Id")
