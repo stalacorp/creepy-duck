@@ -200,6 +200,7 @@ class MyCdpController extends Controller
 
                            
             $em->flush();
+
             #return new JsonResponse($entity->getId());
                                   
             return $this->redirect($this->generateUrl('myfeedbackcycle', array(
