@@ -14,7 +14,18 @@ class EndyearType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        if ($options['data']->getFeedbackcycle()->getCdp()->getCoreQuality4() != null) {
+            $builder->add('progressChallenge4');
+        }
+
+        if ($options['data']->getFeedbackcycle()->getCdp()->getCoreQuality5() != null) {
+            $builder->add('progressChallenge5');
+        }
+
         $builder
+            ->add('progressChallenge1')
+            ->add('progressChallenge2')
+            ->add('progressChallenge3')
             ->add('evaluationtask1')
             ->add('evaluationtask2')
             ->add('evaluationtask3')

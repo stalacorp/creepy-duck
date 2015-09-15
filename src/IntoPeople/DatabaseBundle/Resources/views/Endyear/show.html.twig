@@ -88,16 +88,12 @@
                     <th style="width: 20%">{{ template.table2Col1 }}</th>
                     <th style="width: 20%">{{ template.table2Col2 }}</th>
                     <th style="width: 20%">{{ template.table2Col3 }}</th>
-                    <th style="width: 20%">{{ template.table2Col4 }}</th>
-                    <th style="width: 20%">{{ template.table2Col5 }}</th>
                 </tr>
 
                 <tr>
                     <td>{{ template.table2Col1Descr }}</td>
                     <td>{{ template.table2Col2Descr }}</td>
                     <td>{{ template.table2Col3Descr }}</td>
-                    <td>{{ template.table2Col4Descr }}</td>
-                    <td>{{ template.table2Col5Descr }}</td>
                 </tr>
 
                 <tr>
@@ -111,9 +107,7 @@
 
                         <p>{{ cdp.challengeWhy1 }}</p>
                     </td>
-                    <td>{{ cdp.challengeHow1 }}</td>
-                    <td>{{ cdp.challengeSuccess1 }}</td>
-                    <td>{{ cdp.challengeNeeds1 }}</td>
+                    <td>{{ entity.progressChallenge1 }}</td>
                 </tr>
 
                 <tr>
@@ -127,9 +121,7 @@
 
                         <p>{{ cdp.challengeWhy2 }}</p>
                     </td>
-                    <td>{{ cdp.challengeHow2 }}</td>
-                    <td>{{ cdp.challengeSuccess2 }}</td>
-                    <td>{{ cdp.challengeNeeds2 }}</td>
+                    <td>{{ entity.progressChallenge2 }}</td>
                 </tr>
 
                 <tr>
@@ -143,42 +135,44 @@
 
                         <p>{{ cdp.challengeWhy3 }}</p>
                     </td>
-                    <td>{{ cdp.challengeHow3 }}</td>
-                    <td>{{ cdp.challengeSuccess3 }}</td>
-                    <td>{{ cdp.challengeNeeds3 }}</td>
+                    <td>{{ entity.progressChallenge3 }}</td>
                 </tr>
 
-                <tr>
-                    <td>
-                        <p>{{ cdp.coreQuality4 }}</p>
+                {% if cdp.coreQuality4 != null %}
 
-                        <p>{{ cdp.coreQuality4Why }}</p>
-                    </td>
-                    <td>
-                        <p>{{ cdp.challenge4 }}</p>
+                    <tr>
+                        <td>
+                            <p>{{ cdp.coreQuality4 }}</p>
 
-                        <p>{{ cdp.challengeWhy4 }}</p>
-                    </td>
-                    <td>{{ cdp.challengeHow4 }}</td>
-                    <td>{{ cdp.challengeSuccess4 }}</td>
-                    <td>{{ cdp.challengeNeeds4 }}</td>
-                </tr>
+                            <p>{{ cdp.coreQuality4Why }}</p>
+                        </td>
+                        <td>
+                            <p>{{ cdp.challenge4 }}</p>
 
-                <tr>
-                    <td>
-                        <p>{{ cdp.coreQuality5 }}</p>
+                            <p>{{ cdp.challengeWhy4 }}</p>
+                        </td>
+                        <td>{{ entity.progressChallenge4 }}</td>
+                    </tr>
 
-                        <p>{{ cdp.coreQuality5Why }}</p>
-                    </td>
-                    <td>
-                        <p>{{ cdp.challenge5 }}</p>
+                {% endif %}
 
-                        <p>{{ cdp.challengeWhy5 }}</p>
-                    </td>
-                    <td>{{ cdp.challengeHow5 }}</td>
-                    <td>{{ cdp.challengeSuccess5 }}</td>
-                    <td>{{ cdp.challengeNeeds5 }}</td>
-                </tr>
+                {% if cdp.coreQuality5 != null %}
+
+                    <tr>
+                        <td>
+                            <p>{{ cdp.coreQuality5 }}</p>
+
+                            <p>{{ cdp.coreQuality5Why }}</p>
+                        </td>
+                        <td>
+                            <p>{{ cdp.challenge5 }}</p>
+
+                            <p>{{ cdp.challengeWhy5 }}</p>
+                        </td>
+                        <td>{{ entity.progressChallenge5 }}</td>
+                    </tr>
+
+                {% endif %}
 
             </table>
 

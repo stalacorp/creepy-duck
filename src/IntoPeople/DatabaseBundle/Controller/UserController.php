@@ -429,6 +429,7 @@ class UserController extends Controller
         $form->handleRequest($request);
         
         $entity->setEnabled(true);
+        $entity->setUsername($entity->getEmail());
         
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
@@ -485,9 +486,11 @@ class UserController extends Controller
      */
     private function createCreateForm(User $entity)
     {
+        $locale = $this->get('request')->getLocale();
+
         $tokenStorage = $this->container->get('security.token_storage');
         
-        $form = $this->createForm(new UserType($tokenStorage), $entity, array(
+        $form = $this->createForm(new UserType($tokenStorage, $locale), $entity, array(
             'action' => $this->generateUrl('user_create'),
             'method' => 'POST'
         ));

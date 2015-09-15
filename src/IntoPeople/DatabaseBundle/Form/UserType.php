@@ -14,8 +14,12 @@ class UserType extends AbstractType
 {
 
     private $tokenStorage;
+    private $locale;
+    public function __construct($locale) {
+        $this->locale = $locale;
+    }
     
-    public function __construct(TokenStorageInterface $tokenStorage) {
+    public function __construct2(TokenStorageInterface $tokenStorage) {
         $this->tokenStorage = $tokenStorage;
     }
     
@@ -26,6 +30,11 @@ class UserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $format = "MM/dd/yyyy";
+
+        if ($this->locale == 'nl'){
+            $format = 'dd-MM-yyyy';
+        }
         
         $builder
             ->add('photo', 'vich_image', array(
@@ -40,12 +49,12 @@ class UserType extends AbstractType
             ->add('hiredate', 'date', array(
                 'widget' => 'single_text',
                 'required' => false,
-                'format' => 'dd-MM-yyyy',
+                'format' => $format,
             ))
             ->add('datelastpromotion', 'date', array(
                 'widget' => 'single_text',
                 'required' => false,
-                'format' => 'dd-MM-yyyy',
+                'format' => $format,
             ))
             ->add('team')
             ->add('language')
@@ -57,7 +66,6 @@ class UserType extends AbstractType
                     'ROLE_HR' => 'HR / Management',
                     'ROLE_SUPERVISOR' => 'Supervisor',
                 ), 'multiple' => true))
-            //->add('employeefunction')
              ;
 
             
