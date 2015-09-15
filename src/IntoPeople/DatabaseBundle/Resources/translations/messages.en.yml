@@ -23,12 +23,12 @@ Unavailable: Unavailable
 Update: Update
 Year End: Year End
 actions: actions
-app.user.profile.firstname: app.user.profile.firstname
-app.user.profile.language: app.user.profile.language
-app.user.profile.lastname: app.user.profile.lastname
-app.user.profile.newpassword.first: app.user.profile.newpassword.first
-app.user.profile.newpassword.second: app.user.profile.newpassword.second
-app.user.profile.oldpassword: app.user.profile.oldpassword
+app.user.profile.firstname: Firstname
+app.user.profile.language: Language
+app.user.profile.lastname: Lastname
+app.user.profile.newpassword.first: New password
+app.user.profile.newpassword.second: Repeat password
+app.user.profile.oldpassword: Old Password
 button.back: Back
 button.create: Create
 button.edit: Edit
@@ -142,7 +142,7 @@ cdp.tasksucces4: cdp.tasksucces4
 cdp.tasksucces5: cdp.tasksucces5
 cdptemplate.edit.title: Edit CDP Template
 cdptemplate.feedback: cdptemplate.feedback
-cdptemplate.index.title: __cdptemplate.index.title
+cdptemplate.index.title: CDP Template
 cdptemplate.language: cdptemplate.language
 cdptemplate.mainTitle: cdptemplate.mainTitle
 cdptemplate.new.title: __cdptemplate.new.title
@@ -166,16 +166,16 @@ cdptemplate.title4: cdptemplate.title4
 cdptemplate.title5: cdptemplate.title5
 corequality.coreQuality: corequality.coreQuality
 corequality.edit.title: __corequality.edit.title
-corequality.index.title: __corequality.index.title
+corequality.index.title: Core Qualities
 corequality.language: corequality.language
 corequality.new.title: __corequality.new.title
 corequality.show.title: __corequality.show.title
 dashboard.charttitle: Chart
 dashboard.clearsearch: Clear
 dashboard.cycletitle: Options
-dashboard.dropdown.exportexcel: __dashboard.dropdown.exportexcel
-dashboard.dropdown.exportpdf: __dashboard.dropdown.exportpdf
-dashboard.dropdown.remindermail: __dashboard.dropdown.remindermail
+dashboard.dropdown.exportexcel: Export Excel
+dashboard.dropdown.exportpdf: Export PDF
+dashboard.dropdown.remindermail: Send Reminder
 dashboard.modal.mailssent.body: __dashboard.modal.mailssent.body
 dashboard.modal.mailssent.title: __dashboard.modal.mailssent.title
 endyear.show.title: __endyear.show.title
@@ -257,47 +257,47 @@ midyeartemplate.title2Description: midyeartemplate.title2Description
 midyeartemplate.title3: midyeartemplate.title3
 midyeartemplate.title3Description: midyeartemplate.title3Description
 midyeartemplate.title4: midyeartemplate.title4
-modal.cancel: modal.cancel
-modal.ok: modal.ok
+modal.cancel: Cancel
+modal.ok: Ok
 myfeedbackcycle.cdp.description: __myfeedbackcycle.cdp.description
-myfeedbackcycle.cdp.enddate: 'End date'
-myfeedbackcycle.cdp.formhistory: 'Form history'
-myfeedbackcycle.cdp.formstatus: 'Form status'
-myfeedbackcycle.cdp.startdate: 'Start date'
-myfeedbackcycle.cdp.title: 'CDP'
+myfeedbackcycle.cdp.enddate: End date
+myfeedbackcycle.cdp.formhistory: Form history
+myfeedbackcycle.cdp.formstatus: Form status
+myfeedbackcycle.cdp.startdate: Start date
+myfeedbackcycle.cdp.title: CDP
 myfeedbackcycle.endyear.description: __myfeedbackcycle.endyear.description
-myfeedbackcycle.endyear.enddate: 'End date'
-myfeedbackcycle.endyear.formhistory: 'Form history'
-myfeedbackcycle.endyear.formstatus: 'Form status'
-myfeedbackcycle.endyear.startdate: 'Start date'
-myfeedbackcycle.endyear.title: 'Year End'
-myfeedbackcycle.index.title: 'My feedbackcycle'
+myfeedbackcycle.endyear.enddate: End date
+myfeedbackcycle.endyear.formhistory: Form history
+myfeedbackcycle.endyear.formstatus: Form status
+myfeedbackcycle.endyear.startdate: Start date
+myfeedbackcycle.endyear.title: Year End
+myfeedbackcycle.index.title: My feedbackcycle
 myfeedbackcycle.midyear.description: __myfeedbackcycle.midyear.description
-myfeedbackcycle.midyear.enddate: 'End date'
-myfeedbackcycle.midyear.formhistory: 'Form history'
-myfeedbackcycle.midyear.formstatus: 'Form status'
-myfeedbackcycle.midyear.startdate: 'Start date'
-myfeedbackcycle.midyear.title: 'Mid Year'
-notification.create.generalcycle: notification.create.generalcycle
+myfeedbackcycle.midyear.enddate: End date
+myfeedbackcycle.midyear.formhistory: Form history
+myfeedbackcycle.midyear.formstatus: Form status
+myfeedbackcycle.midyear.startdate: Start date
+myfeedbackcycle.midyear.title: Mid Year
+notification.create.generalcycle: You've successfully created a new generalcycle.
 notification.user.profile: notification.user.profile
 organization.edit.title: __organization.edit.title
-organization.index.title: __organization.index.title
-supervisor.cycletitle: supervisor.cycletitle
-supervisor.dashboard.title: __supervisor.dashboard.title
+organization.index.title: Organization
+supervisor.cycletitle: Options
+supervisor.dashboard.title: Dashboard Supervisor
 supervisor.index.title: __supervisor.index.title
-systemmail.header: __systemmail.header
+systemmail.header: Systemmails
 systemmail.toggledisable: __systemmail.toggledisable
 systemmail.toggleenable: __systemmail.toggleenable
 systemmail.urlinstruction: __systemmail.urlinstruction
 table.formstatus: Form status
-table.isactive: __table.isactive
-table.name: __table.name
+table.isactive: Active
+table.name: Name
 table.supervisor: Supervisor
 table.user: User
-templates.index.tabe.date: templates.index.tabe.date
-templates.index.table.actions: templates.index.table.actions
-templates.index.table.language: templates.index.table.language
-templates.index.title: templates.index.title
+templates.index.tabe.date: Date
+templates.index.table.actions: Actions
+templates.index.table.language: Language
+templates.index.title: Templates
 upload.index.title: upload.index.title
 upload.name: upload.name
 upload.new.title: upload.new.title
@@ -326,8 +326,8 @@ user.profile.oldpasswordwrong: user.profile.oldpasswordwrong
 user.profile.title: __user.profile.title
 user.roles: user.roles
 user.show.title: __user.show.title
-user.status: user.status
-user.supervisor: user.supervisor
-user.team: user.team
-user.templatedownload: __user.templatedownload
-user.templateexplanation: __user.templateexplanation
+user.status: Status
+user.supervisor: Supervisor
+user.team: Team
+user.templatedownload: Download Template
+user.templateexplanation: Download the template, add all users and upload it to add users.
