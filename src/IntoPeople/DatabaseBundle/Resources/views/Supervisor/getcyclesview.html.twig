@@ -33,14 +33,14 @@
                     {% if entity.formstatus.id == 2 %}
                         {% set disabled = 'disabled' %}
                         {% endif %}
-                    <button class="btn btn-primary" {{ disabled }} href="{{ path(cycle ~ '_show', { 'id': entity.id }) }}">{{ "button.show" | trans}}</button>
+                    <a class="btn btn-primary" {{ disabled }} href="{{ path(cycle ~ '_show', { 'id': entity.id }) }}">{{ "button.show" | trans}}</a>
                 {% else %}
                     {% if cycle == 'cdp' %}
                         {% set link = 'supervisor_addComment' %}
                     {% else %}
                         {% set link = 'supervisor_add' ~ (cycle|capitalize) ~ 'Comment' %}
                     {% endif %}
-                    <button class="btn btn-success" href="{{ path(link, { 'id': entity.id }) }}">{{ "button.addcomment" | trans}}</button>
+                    <a class="btn btn-success" href="{{ path(link, { 'id': entity.id }) }}">{{ "button.addcomment" | trans}}</a>
                 {% endif %}
 
             </td>

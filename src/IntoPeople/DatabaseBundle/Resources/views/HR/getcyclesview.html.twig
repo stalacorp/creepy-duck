@@ -33,14 +33,14 @@
                     {% if entity.formstatus.id == 2 %}
                         {% set disabled = 'disabled' %}
                         {% endif %}
-                    <button class="btn btn-primary" {{ disabled }} href="{{ path(cycle ~ '_show', { 'id': entity.id }) }}">{{ "button.show" | trans}}</button>
+                    <a class="btn btn-primary" {{ disabled }} href="{{ path(cycle ~ '_show', { 'id': entity.id }) }}">{{ "button.show" | trans}}</a>
                 {% else %}
                     {% if cycle == 'cdp' %}
                         {% set link = 'hr_addFeedback' %}
                     {% else %}
                         {% set link = 'hr_add' ~ (cycle|capitalize) ~ 'Feedback' %}
                     {% endif %}
-                    <button class="btn btn-success" href="{{ path(link, { 'id': entity.id }) }}">{{ "button.addfeedback" | trans}}</button>
+                    <a class="btn btn-success" href="{{ path(link, { 'id': entity.id }) }}">{{ "button.addfeedback" | trans}}</a>
                 {% endif %}
 
             </td>
