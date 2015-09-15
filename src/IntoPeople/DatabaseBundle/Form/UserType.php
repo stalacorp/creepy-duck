@@ -65,7 +65,8 @@ class UserType extends AbstractType
                 'choices' => array(
                     'ROLE_HR' => 'HR / Management',
                     'ROLE_SUPERVISOR' => 'Supervisor',
-                ), 'multiple' => true))
+                ), 'multiple' => true,
+                    'required' => false))
              ;
 
             

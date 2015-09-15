@@ -442,6 +442,9 @@ class UserController extends Controller
                 $entity->setOrganization($user->getOrganization());
             }
 
+            $em->persist($entity);
+            $em->flush();
+
             $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
                 ->join('s.mailtype', 'm')
                 ->where('s.language = :id')
@@ -457,13 +460,12 @@ class UserController extends Controller
                     ->setSubject($systemmail->getSubject())
                     ->setFrom($systemmail->getSender())
                     ->setTo($entity->getEmail())
-                    ->setBody(str_replace(array('$url', '$username', '$password'), array('https://' . $request->getHttpHost() . $this->generateUrl('user_firstlogin', array('token' => $password, 'id' => $user->getId())), $user->getEmail(), $password), $systemmail->getBody()));
+                    ->setBody(str_replace(array('$url', '$username', '$password'), array('https://' . $request->getHttpHost() . $this->generateUrl('user_firstlogin', array('token' => $password, 'id' => $entity->getId())), $entity->getEmail(), $password), $systemmail->getBody()));
 
                 $this->get('mailer')->send($message);
             }
 
-            $em->persist($entity);
-            $em->flush();
+
             
             return $this->redirect($this->generateUrl('user_show', array(
                 'id' => $entity->getId()
