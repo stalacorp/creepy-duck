@@ -1,16 +1,21 @@
 {% extends 'IntoPeopleDatabaseBundle:Cdp:show.html.twig' %} 
 {% block feedback -%}
 
-    <h3>Feedback HR</h3>
+    <div class="panel panel-default">
+        <div class="panel-body">
 
-    {{ form_start(form) }}
-    
-    {{ form_row(form.feedbackHR) }}
-    
-    {{ form_widget(form.save) }} {{ form_widget(form.approve) }} {{ form_widget(form.disapprove) }} {{ form_widget(form.onhold) }}
-    
-    {{ form_end(form) }}
+            <h3>Feedback HR</h3>
 
+            {{ form_start(form) }}
+
+            {{ form_row(form.feedbackHR, { 'attr': {'rows': '4'} }) }}
+
+            {{ form_widget(form.save) }} {{ form_widget(form.approve) }} {{ form_widget(form.disapprove) }} {{ form_widget(form.onhold) }}
+
+            {{ form_end(form) }}
+
+        </div>
+    </div>
 
 {% endblock %}
 

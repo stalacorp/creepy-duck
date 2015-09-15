@@ -18,23 +18,23 @@
                     <table class="table borderless">
 
                         <tr>
-                            <th>Name:
+                            <th>{{ template.name }}:
                             <th>
-                            <td>{{ entity.feedbackcycle.firstname }} {{ entity.feedbackcycle.lastname }}</td>
+                            <td>{{ entity.feedbackcycle.user }}</td>
                         </tr>
 
-                        {% if app.user.supervisor != null %}
-                            <tr>
-                                <th>Supervisor:
-                                <th>
-                                <td>{{ entity.supervisor.firstname }} {{ entity.supervisor.lastname }}</td>
-                            </tr>
-                        {% endif %}
+
+                        <tr>
+                            <th>Supervisor:
+                            <th>
+                            <td>{{ entity.supervisor }}</td>
+                        </tr>
+
 
                         <tr>
                             <th>Date discussion:
                             <th>
-                            <td></td>
+                            <td>{{ entity.feedbackdate | localizeddate('medium', 'none', app.request.locale ) }}</td>
                         </tr>
 
                     </table>
@@ -46,13 +46,15 @@
                     <table class="table borderless">
 
                         <tr>
-                            <th>Team:<th>
+                            <th>Team:
+                            <th>
                             <td></td>
                         </tr>
 
 
                         <tr>
-                            <th>Functie:<th>
+                            <th>Functie:
+                            <th>
                             <td></td>
                         </tr>
 
@@ -61,7 +63,6 @@
                 </div>
 
             </div>
-
 
 
         </div>
@@ -101,10 +102,12 @@
                 <tr>
                     <td>
                         <p>{{ cdp.coreQuality1 }}</p>
+
                         <p>{{ cdp.coreQuality1Why }}</p>
                     </td>
                     <td>
                         <p>{{ cdp.challenge1 }}</p>
+
                         <p>{{ cdp.challengeWhy1 }}</p>
                     </td>
                     <td>{{ cdp.challengeHow1 }}</td>
@@ -115,10 +118,12 @@
                 <tr>
                     <td>
                         <p>{{ cdp.coreQuality2 }}</p>
+
                         <p>{{ cdp.coreQuality2Why }}</p>
                     </td>
                     <td>
                         <p>{{ cdp.challenge2 }}</p>
+
                         <p>{{ cdp.challengeWhy2 }}</p>
                     </td>
                     <td>{{ cdp.challengeHow2 }}</td>
@@ -129,10 +134,12 @@
                 <tr>
                     <td>
                         <p>{{ cdp.coreQuality3 }}</p>
+
                         <p>{{ cdp.coreQuality3Why }}</p>
                     </td>
                     <td>
                         <p>{{ cdp.challenge3 }}</p>
+
                         <p>{{ cdp.challengeWhy3 }}</p>
                     </td>
                     <td>{{ cdp.challengeHow3 }}</td>
@@ -143,10 +150,12 @@
                 <tr>
                     <td>
                         <p>{{ cdp.coreQuality4 }}</p>
+
                         <p>{{ cdp.coreQuality4Why }}</p>
                     </td>
                     <td>
                         <p>{{ cdp.challenge4 }}</p>
+
                         <p>{{ cdp.challengeWhy4 }}</p>
                     </td>
                     <td>{{ cdp.challengeHow4 }}</td>
@@ -157,10 +166,12 @@
                 <tr>
                     <td>
                         <p>{{ cdp.coreQuality5 }}</p>
+
                         <p>{{ cdp.coreQuality5Why }}</p>
                     </td>
                     <td>
                         <p>{{ cdp.challenge5 }}</p>
+
                         <p>{{ cdp.challengeWhy5 }}</p>
                     </td>
                     <td>{{ cdp.challengeHow5 }}</td>
@@ -336,7 +347,7 @@
 
             </table>
 
-                    </div>
+        </div>
     </div>
 
     <div class="row">
@@ -361,7 +372,6 @@
 
 
     <div class="row">
-
 
         {% if entity.formstatus.id > 3 %}
 
@@ -389,7 +399,7 @@
 
         {% endif %}
 
-        {% if entity.formstatus.id > 5 %}
+        {% if entity.formstatus.id > 6 %}
 
             <div class="col-md-6">
 

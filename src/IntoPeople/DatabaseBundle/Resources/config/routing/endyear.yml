@@ -6,8 +6,6 @@ endyear_update:
 endyear_edit:
     path:     /{id}/edit
     defaults: { _controller: "IntoPeopleDatabaseBundle:MyEndyear:edit" }
-    options:
-      expose: true
     
 endyear_show:
     path:     /{id}/show

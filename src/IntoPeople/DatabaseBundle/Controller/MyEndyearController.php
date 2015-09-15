@@ -16,32 +16,6 @@ class MyEndyearController extends Controller
 {
 
     /**
-     * Choose language template
-     *
-     */
-    public function languageAction(Request $request, $id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('IntoPeopleDatabaseBundle:Endyear')->find($id);
-
-        $form = $this->createFormBuilder()
-            ->add('language', 'entity', array(
-                'class' => 'IntoPeopleDatabaseBundle:Language',
-                'query_builder' => function (EntityRepository $er) use ($entity) {
-                    return $er->createQueryBuilder('l')->join('l.endyeartemplates','e')->where('e.templateversion = :version')->setParameter('version', $entity->getTemplateversion());
-                },
-            ))
-            ->getForm();
-
-        $form->handleRequest($request);
-
-        return $this->render('IntoPeopleDatabaseBundle:Endyear:new.html.twig', array(
-            'form' => $form->createView(),
-            'entity' => $entity
-        ));
-    }
-    
-    /**
      * Creates a form to create a endyear entity.
      *
      * @param Endyear $entity

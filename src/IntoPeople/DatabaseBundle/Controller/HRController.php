@@ -40,8 +40,20 @@ class HRController extends Controller
             $form = $this->createEditForm($entity);
             $user = $this->getUser();
 
+            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
+
+            $query = $repository->createQueryBuilder('c')
+                ->where('c.templateversion = :cdptemplateversion')
+                ->andWhere('c.language = :language')
+                ->setParameter('cdptemplateversion', $entity->getTemplateversion())
+                ->setParameter('language', $user->getLanguage())
+                ->getQuery();
+
+            $template = $query->setMaxResults(1)->getOneOrNullResult();
+
             return $this->render('IntoPeopleDatabaseBundle:HR:feedback.html.twig', array(
                 'entity' => $entity,
+                'template' => $template,
                 'form' => $form->createView()
             ));
         }
@@ -183,7 +195,7 @@ class HRController extends Controller
             $entity->setFormstatus($formstatus);
             $em->flush();
             
-            return $this->redirect($this->generateUrl('feedbackcycle', array(
+            return $this->redirect($this->generateUrl('hr_dashboard', array(
                 
             )));
         }
@@ -214,8 +226,20 @@ class HRController extends Controller
             $form = $this->createMidyearEditForm($entity);
             $user = $this->getUser();
 
+            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Midyeartemplate');
+
+            $query = $repository->createQueryBuilder('m')
+                ->where('m.templateversion = :midyeartemplateversion')
+                ->andWhere('m.language = :language')
+                ->setParameter('midyeartemplateversion', $entity->getTemplateversion())
+                ->setParameter('language', $user->getLanguage())
+                ->getQuery();
+
+            $template = $query->setMaxResults(1)->getOneOrNullResult();
+
             return $this->render('IntoPeopleDatabaseBundle:HR:feedbackMidyear.html.twig', array(
                 'entity' => $entity,
+                'template' => $template,
                 'form' => $form->createView()
             ));
         }
@@ -357,7 +381,7 @@ class HRController extends Controller
             $entity->setFormstatus($formstatus);
             $em->flush();
     
-            return $this->redirect($this->generateUrl('feedbackcycle', array(
+            return $this->redirect($this->generateUrl('hr_dashboard', array(
                 'id' => $entity->getId()
             )));
         }
@@ -388,8 +412,20 @@ class HRController extends Controller
             $form = $this->createEndyearEditForm($entity);
             $user = $this->getUser();
 
+            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Endyeartemplate');
+
+            $query = $repository->createQueryBuilder('e')
+                ->where('e.templateversion = :endyeartemplateversion')
+                ->andWhere('e.language = :language')
+                ->setParameter('endyeartemplateversion', $entity->getTemplateversion())
+                ->setParameter('language', $user->getLanguage())
+                ->getQuery();
+
+            $template = $query->setMaxResults(1)->getOneOrNullResult();
+
             return $this->render('IntoPeopleDatabaseBundle:HR:feedbackEndyear.html.twig', array(
                 'entity' => $entity,
+                'template' => $template,
                 'form' => $form->createView()
             ));
         }
@@ -531,7 +567,7 @@ class HRController extends Controller
             $entity->setFormstatus($formstatus);
             $em->flush();
     
-            return $this->redirect($this->generateUrl('feedbackcycle', array(
+            return $this->redirect($this->generateUrl('hr_dashboard', array(
                 'id' => $entity->getId()
             )));
         }

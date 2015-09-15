@@ -235,6 +235,7 @@ class MyCdpController extends Controller
      */
     public function showAction($id)
     {
+        $user = $this->getUser();
         
         $em = $this->getDoctrine()->getManager();
     
@@ -252,14 +253,16 @@ class MyCdpController extends Controller
 
         $query = $repository->createQueryBuilder('c')
             ->where('c.templateversion = :cdptemplateversion')
+            ->andWhere('c.language = :language')
             ->setParameter('cdptemplateversion', $entity->getTemplateversion())
+            ->setParameter('language', $user->getLanguage())
             ->getQuery();
 
         $template = $query->setMaxResults(1)->getOneOrNullResult();
         
         return $this->render('IntoPeopleDatabaseBundle:Cdp:show.html.twig', array(
-            'entity'      => $entity,
-            'template' => $template
+            'template' => $template,
+            'entity' => $entity,
         ));
     }
 }

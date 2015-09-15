@@ -27,7 +27,7 @@
                         <tr>
                             <th>{{ template.dateDiscussion }}:
                             <th>
-                            <td>{{ entity.feedbackdate }}</td>
+                            <td>{{ entity.feedbackdate | localizeddate('medium', 'none', app.request.locale ) }}}</td>
                         </tr>
 
                     </table>

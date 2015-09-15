@@ -47,7 +47,7 @@
                         <tr>
                             <th>{{ template.name }}:
                             <th>
-                            <td>{{ app.user.firstname }} {{ app.user.lastname }}</td>
+                            <td>{{ entity.feedbackcycle.user }}</td>
                         </tr>
 
                         {% if app.user.supervisor != null %}
@@ -61,7 +61,7 @@
                         <tr>
                             <th>{{ template.dateDiscussion }}:
                             <th>
-                            <td></td>
+                            <td>{{ entity.feedbackdate | localizeddate('medium', 'none', app.request.locale ) }}</td>
                         </tr>
 
                     </table>
@@ -212,6 +212,8 @@
 
         </div>
     </div>
+
+    {{ form_start(form) }}
 
 
     <div class="row">
@@ -438,11 +440,6 @@
 
         </div>
     </div>
-
-
-
-
-
 
 {% endblock %}
 
