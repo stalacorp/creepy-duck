@@ -420,56 +420,70 @@ class UserController extends Controller
     public function createAction(Request $request)
     {
         $userManager = $this->container->get('into_people_database.user_manager');
-        
+
+
+
         $user = $this->getUser();
         
         $entity = $userManager->createUser();
         
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
-        
-        $entity->setEnabled(true);
+
         $entity->setUsername($entity->getEmail());
         
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
 
-            $tokenGenerator = $this->get('fos_user.util.token_generator');
-            $password = substr($tokenGenerator->generateToken(), 0, 10);
-            $entity->setPlainPassword($password);
+            $userexists = $em->getRepository('IntoPeopleDatabaseBundle:User')->findOneByEmail_canonical(strtolower($entity->getEmail()));
 
-            if($entity->getOrganization() == null) {
-                $entity->setOrganization($user->getOrganization());
+            if ($userexists == null) {
+
+
+                $tokenGenerator = $this->get('fos_user.util.token_generator');
+                $password = substr($tokenGenerator->generateToken(), 0, 10);
+                $entity->setPlainPassword($password);
+
+                if ($entity->getOrganization() == null) {
+                    $entity->setOrganization($user->getOrganization());
+                }
+
+                $em->persist($entity);
+                $em->flush();
+
+                $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
+                    ->join('s.mailtype', 'm')
+                    ->where('s.language = :id')
+                    ->andWhere('m.name = :name')
+                    ->setParameter('id', $entity->getLanguage())
+                    ->setParameter('name', 'usercreated')
+                    ->getQuery();
+
+                $systemmail = $query->setMaxResults(1)->getOneOrNullResult();
+
+                if ($systemmail->getMailtype()->getIsActive()) {
+                    $message = \Swift_Message::newInstance()
+                        ->setSubject($systemmail->getSubject())
+                        ->setFrom($systemmail->getSender())
+                        ->setTo($entity->getEmail())
+                        ->setBody(str_replace(array('$url', '$username', '$password'), array('https://' . $request->getHttpHost() . $this->generateUrl('user_firstlogin', array('token' => $password, 'id' => $entity->getId())), $entity->getEmail(), $password), $systemmail->getBody()));
+
+                    $this->get('mailer')->send($message);
+                }
+
+
+                return $this->redirect($this->generateUrl('user_show', array(
+                    'id' => $entity->getId()
+                )));
+            }else {
+                $tr = $this->get('translator');
+                $message = $tr->trans('user.emailalreadyexists');
+
+                $this->addFlash(
+                    'danger',
+                    $message
+                );
             }
-
-            $em->persist($entity);
-            $em->flush();
-
-            $query = $em->getRepository('IntoPeopleDatabaseBundle:Systemmail')->createQueryBuilder('s')
-                ->join('s.mailtype', 'm')
-                ->where('s.language = :id')
-                ->andWhere('m.name = :name')
-                ->setParameter('id', $user->getLanguage())
-                ->setParameter('name', 'usercreated')
-                ->getQuery();
-
-            $systemmail = $query->setMaxResults(1)->getOneOrNullResult();
-
-            if ($systemmail->getMailtype()->getIsActive()) {
-                $message = \Swift_Message::newInstance()
-                    ->setSubject($systemmail->getSubject())
-                    ->setFrom($systemmail->getSender())
-                    ->setTo($entity->getEmail())
-                    ->setBody(str_replace(array('$url', '$username', '$password'), array('https://' . $request->getHttpHost() . $this->generateUrl('user_firstlogin', array('token' => $password, 'id' => $entity->getId())), $entity->getEmail(), $password), $systemmail->getBody()));
-
-                $this->get('mailer')->send($message);
-            }
-
-
-            
-            return $this->redirect($this->generateUrl('user_show', array(
-                'id' => $entity->getId()
-            )));
         }
         
         return $this->render('IntoPeopleDatabaseBundle:User:new.html.twig', array(
@@ -491,6 +505,7 @@ class UserController extends Controller
         $locale = $this->get('request')->getLocale();
 
         $tokenStorage = $this->container->get('security.token_storage');
+        $entity->setEnabled(true);
         
         $form = $this->createForm(new UserType($tokenStorage, $locale), $entity, array(
             'action' => $this->generateUrl('user_create'),

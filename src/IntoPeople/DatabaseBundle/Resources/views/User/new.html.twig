@@ -4,6 +4,14 @@
 
     <div class="row">
         <div class="col-md-6">
+            {% for flashMessage in app.session.flashbag.get('danger') %}
+
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{ flashMessage }}
+                </div>
+
+            {% endfor %}
 
             {{ form_start(form) }}
 

@@ -57,7 +57,8 @@ class UserType extends AbstractType
                 'format' => $format,
             ))
             ->add('team')
-            ->add('language')
+            ->add('language', 'entity',array(
+                'class' => 'IntoPeopleDatabaseBundle:Language'))
             ->add('supervisor')
             ->add('jobtitle')
             ->add('enabled', 'checkbox', array('required' => false))
