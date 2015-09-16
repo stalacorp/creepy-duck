@@ -28,6 +28,10 @@ textarea {
     resize:none;
 }
 
+.panel-dashboard {
+    height:410px;
+}
+
 /* .borderless thead tr th */
 
 .borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {

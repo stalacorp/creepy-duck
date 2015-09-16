@@ -22,26 +22,60 @@
     {% endfor %}
 
     <div class="row">
-        <div class="col-lg-3 col-md-4">
 
-            <h4>{{ 'supervisor.cycletitle' | trans }}</h4>
+        <div class="col-lg-6 col-md-6">
 
-            {{ form_start(form) }}
+            <div class="panel panel-default panel-dashboard">
+                <div class="panel-body">
 
-            {{ form_widget(form) }}
+                    <h4>{{ 'supervisor.cycletitle' | trans }}</h4>
 
-            {{ form_end(form) }}
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            {{ form_start(form) }}
+
+                            {{ form_widget(form) }}
+
+                            {{ form_end(form) }}
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
-        <div class="col-lg-offset-3 col-md-offset-2 col-lg-6 col-md-6">
-            <h4>{{ 'dashboard.charttitle' | trans }}</h4>
-            <canvas id="countChart"></canvas>
-            <div id="legend"></div>
+
+        <div class="col-lg-6 col-md-6">
+
+            <div class="panel panel-default panel-dashboard">
+                <div class="panel-body">
+
+                    <h4>{{ 'dashboard.charttitle' | trans }}</h4>
+                    <canvas id="countChart"></canvas>
+                    <div id="legend"></div>
+
+                </div>
+            </div>
+
         </div>
+
     </div>
+
     <div class="row">
+
         <div class="col-md-12">
-            <div id="result"></div>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <div id="result"></div>
+
+                </div>
+            </div>
+
         </div>
+
     </div>
 
     <div id="historymodal"></div>
@@ -129,15 +163,19 @@
                 url: Routing.generate('supervisor_getcycles', {
                     generalcycleid: $('#form_generalcycle').val(),
                     cycle: $('#form_cycle').val(),
-                    _locale:locale
+                    _locale: locale
                 }),
                 success: function (result) {
                     drawchart();
                     $("#result").html(result);
 
-                    $('.history').click(function(){
+                    $('.history').click(function () {
                         $.ajax({
-                            url: Routing.generate('supervisor_history', {cycle: $('#form_cycle').val(), id: $(this).data('id'), _locale:locale }),
+                            url: Routing.generate('supervisor_history', {
+                                cycle: $('#form_cycle').val(),
+                                id: $(this).data('id'),
+                                _locale: locale
+                            }),
                             success: function (result) {
                                 $('#historymodal').html(result);
                                 $('#myHistoryModal').modal('show');
@@ -190,7 +228,10 @@
                         });
                         var myJsonString = JSON.stringify(array);
                         var form = $('#form_cycle').val();
-                        window.open(Routing.generate('supervisor_pdf', {cycle: form, _locale:locale}) + '?ids=' + myJsonString);
+                        window.open(Routing.generate('supervisor_pdf', {
+                                    cycle: form,
+                                    _locale: locale
+                                }) + '?ids=' + myJsonString);
 
                     });
 
@@ -217,7 +258,7 @@
                     });
 
 
-                    var clearSearch = $('<button class="btn btn-default" style="margin-left:5px;cursor:pointer;">' + {{ 'dashboard.clearsearch' | trans |json_encode() | raw}} + '</button>');
+                    var clearSearch = $('<button class="btn btn-default" style="margin-left:5px;cursor:pointer;">' + {{ 'dashboard.clearsearch' | trans |json_encode() | raw}} +'</button>');
                     $(clearSearch).click(function () {
                         table.search('');
                         table.draw();
@@ -230,7 +271,10 @@
 
         function getforms() {
             $.ajax({
-                url: Routing.generate('supervisor_getforms', {generalcycleid: $('#form_generalcycle').val(), _locale:locale}),
+                url: Routing.generate('supervisor_getforms', {
+                    generalcycleid: $('#form_generalcycle').val(),
+                    _locale: locale
+                }),
                 success: function (result) {
                     var select = $('#form_cycle');
                     select.empty().append('<option value="cdp">Cdp ' + result[0] + '</option>');
@@ -249,7 +293,7 @@
                 url: Routing.generate('supervisor_getformstatuscount', {
                     generalcycleid: $('#form_generalcycle').val(),
                     cycle: $('#form_cycle').val(),
-                    _locale:locale
+                    _locale: locale
                 }),
                 success: function (result) {
                     var data = [

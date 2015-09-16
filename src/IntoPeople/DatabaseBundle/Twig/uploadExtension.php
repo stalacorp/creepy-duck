@@ -10,7 +10,7 @@ namespace IntoPeople\DatabaseBundle\Twig;
 
 use Doctrine\ORM\EntityManager;
 
-class UploadExtension extends \Twig_Extension
+class uploadExtension extends \Twig_Extension
 {
     protected $em;
 
