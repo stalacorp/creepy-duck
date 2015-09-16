@@ -160,7 +160,7 @@ class CronjobController extends Controller
                                     ->setSubject($systemmail->getSubject())
                                     ->setFrom($systemmail->getSender())
                                     ->setTo($mailuser->getEmail())
-                                    ->setBody('$url', 'https://' . $request->getHttpHost() . $this->generateUrl($url, array('id' => $chosencycle->getId())), $systemmail->getBody());
+                                    ->setBody('$url', 'http://' . $request->getHttpHost() . $this->generateUrl($url, array('id' => $chosencycle->getId())), $systemmail->getBody());
 
                                 $this->get('mailer')->send($message);
                             }

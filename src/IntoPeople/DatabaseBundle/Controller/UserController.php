@@ -206,7 +206,7 @@ class UserController extends Controller
                                         ->setSubject($systemmail->getSubject())
                                         ->setFrom($systemmail->getSender())
                                         ->setTo($user->getEmail())
-                                        ->setBody(str_replace(array('$url', '$username', '$password'), array('https://' . $request->getHttpHost() . $this->generateUrl('user_firstlogin', array('token' => $password, 'id' => $user->getId())), $user->getEmail(), $password), $systemmail->getBody()));
+                                        ->setBody(str_replace(array('$url', '$username', '$password'), array('http://' . $request->getHttpHost() . $this->generateUrl('user_firstlogin', array('token' => $password, 'id' => $user->getId())), $user->getEmail(), $password), $systemmail->getBody()));
 
                                     $this->get('mailer')->send($message);
 
@@ -466,7 +466,7 @@ class UserController extends Controller
                         ->setSubject($systemmail->getSubject())
                         ->setFrom($systemmail->getSender())
                         ->setTo($entity->getEmail())
-                        ->setBody(str_replace(array('$url', '$username', '$password'), array('https://' . $request->getHttpHost() . $this->generateUrl('user_firstlogin', array('token' => $password, 'id' => $entity->getId())), $entity->getEmail(), $password), $systemmail->getBody()));
+                        ->setBody(str_replace(array('$url', '$username', '$password'), array('http://' . $request->getHttpHost() . $this->generateUrl('user_firstlogin', array('token' => $password, 'id' => $entity->getId())), $entity->getEmail(), $password), $systemmail->getBody()));
 
                     $this->get('mailer')->send($message);
                 }
