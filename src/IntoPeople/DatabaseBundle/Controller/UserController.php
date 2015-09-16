@@ -422,7 +422,6 @@ class UserController extends Controller
         $userManager = $this->container->get('into_people_database.user_manager');
 
 
-
         $user = $this->getUser();
         
         $entity = $userManager->createUser();
@@ -434,6 +433,19 @@ class UserController extends Controller
         
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
+
+            $jobtitletext = $form['jobtitle']->getData();
+            if ($jobtitletext != null) {
+
+                $jobtitle = $em->getRepository('IntoPeopleDatabaseBundle:Jobtitle')->findOneByName($jobtitletext);
+                if ($jobtitle == null) {
+                    $jobtitle = new Jobtitle();
+                    $jobtitle->setName($jobtitletext);
+                    $em->persist($jobtitle);
+                }
+
+                $entity->setJobtitle($jobtitle);
+            }
 
             $userexists = $em->getRepository('IntoPeopleDatabaseBundle:User')->findOneByEmail_canonical(strtolower($entity->getEmail()));
 
@@ -488,7 +500,7 @@ class UserController extends Controller
         
         return $this->render('IntoPeopleDatabaseBundle:User:new.html.twig', array(
             'entity' => $entity,
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ));
     }
 
@@ -526,22 +538,17 @@ class UserController extends Controller
     {
         $entity = new User();
         $form = $this->createCreateForm($entity);
+
+        $jobtitles = $this->getDoctrine()->getManager()->getRepository('IntoPeopleDatabaseBundle:Jobtitle')->findAll();
+        $jobtitles = array_map(function($o) { return $o->getName(); }, $jobtitles);
         
         return $this->render('IntoPeopleDatabaseBundle:User:new.html.twig', array(
             'entity' => $entity,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'jobtitles' => $jobtitles
         ));
     }
 
-    public function csvAction(Request $request)
-    {
-
-        return $this->render('IntoPeopleDatabaseBundle:User:csv.html.twig', array(
-
-        ));
-
-
-    }
 
     public function firstloginAction(Request $request, $token, $id){
         $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:User');
@@ -688,6 +695,8 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $jobtitles = $em->getRepository('IntoPeopleDatabaseBundle:Jobtitle')->findAll();
+        $jobtitles = array_map(function($o) { return $o->getName(); }, $jobtitles);
         $entity = $em->getRepository('IntoPeopleDatabaseBundle:User')->find($id);
 
         if (! $entity) {
@@ -695,12 +704,16 @@ class UserController extends Controller
         }
 
         $editForm = $this->createEditForm($entity);
+        if ($entity->getJobtitle() != null){
+            $editForm->get('jobtitle')->setData($entity->getJobtitle()->getName());
+        }
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('IntoPeopleDatabaseBundle:User:edit.html.twig', array(
             'entity' => $entity,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView()
+            'delete_form' => $deleteForm->createView(),
+            'jobtitles' => $jobtitles
         ));
     }
 
@@ -745,9 +758,26 @@ class UserController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
+
         $editForm->handleRequest($request);
 
+
         if ($editForm->isValid()) {
+            $em = $this->getDoctrine()->getEntityManager();
+
+            $jobtitletext = $editForm['jobtitle']->getData();
+            if ($jobtitletext != null) {
+
+                $jobtitle = $em->getRepository('IntoPeopleDatabaseBundle:Jobtitle')->findOneByName($jobtitletext);
+                if ($jobtitle == null) {
+                    $jobtitle = new Jobtitle();
+                    $jobtitle->setName($jobtitletext);
+                    $em->persist($jobtitle);
+                }
+
+                $entity->setJobtitle($jobtitle);
+            }
+
             $em->flush();
 
             return $this->redirect($this->generateUrl('user_edit', array(

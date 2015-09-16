@@ -60,7 +60,7 @@ class UserType extends AbstractType
             ->add('language', 'entity',array(
                 'class' => 'IntoPeopleDatabaseBundle:Language'))
             ->add('supervisor')
-            ->add('jobtitle')
+            ->add('jobtitle', 'text' , array('mapped' => false))
             ->add('enabled', 'checkbox', array('required' => false))
             ->add('roles', 'choice', array(
                 'choices' => array(
