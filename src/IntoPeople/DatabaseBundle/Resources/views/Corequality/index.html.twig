@@ -7,7 +7,7 @@
 
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
 
 
             {% for flashMessage in app.session.flashbag.get('success') %}
@@ -20,7 +20,7 @@
             {% endfor %}
 
 
-            <table class="table borderless">
+            <table id="mytable" class="table">
                 <thead>
                 <tr>
                     <th>Corequality</th>
@@ -48,5 +48,25 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts -%}
+    {{ parent() }}
+
+    <script src="{{ asset('assets/vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/datatables/media/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dataTables.select.min.js') }}"></script>
+
+
+    <script>
+
+        $(document).ready(function(){
+            $('#mytable').DataTable({
+            });
+        });
+
+
+
+    </script>
 {% endblock %}
 

@@ -210,28 +210,28 @@ form.generalcycle: Generalcycle
 form.language: Language
 form.template: Template
 generalcycle.edit.title: Edit Generalcycle
-generalcycle.index.active: Active Generalcycle
-generalcycle.index.cdp.description: __generalcycle.index.cdp.description
-generalcycle.index.cdp: __generalcycle.index.cdp
-generalcycle.index.enddate: __generalcycle.index.enddate
-generalcycle.index.endyear.description: __generalcycle.index.endyear.description
-generalcycle.index.endyear: __generalcycle.index.endyear
-generalcycle.index.finished: __generalcycle.index.finished
-generalcycle.index.inactive: __generalcycle.index.inactive
-generalcycle.index.midyear.description: __generalcycle.index.midyear.description
-generalcycle.index.midyear: __generalcycle.index.midyear
-generalcycle.index.startdate: __generalcycle.index.startdate
-generalcycle.index.title: __generalcycle.index.title
-generalcycle.new.description1: __generalcycle.new.description1
-generalcycle.new.description2: __generalcycle.new.description2
-generalcycle.new.description3: __generalcycle.new.description3
-generalcycle.new.description4: __generalcycle.new.description4
-generalcycle.new.subtitle1: __generalcycle.new.subtitle1
-generalcycle.new.subtitle2: __generalcycle.new.subtitle2
-generalcycle.new.subtitle3: __generalcycle.new.subtitle3
-generalcycle.new.subtitle4: __generalcycle.new.subtitle4
-generalcycle.new.title: __generalcycle.new.title
-generalcycle.year: generalcycle.year
+generalcycle.index.active: Active General Cycle
+generalcycle.index.cdp.description: Career Development Plan
+generalcycle.index.cdp: CDP
+generalcycle.index.enddate: End date
+generalcycle.index.endyear.description: How have you progressed this year?
+generalcycle.index.endyear: Year End
+generalcycle.index.finished: Finished General Cycle
+generalcycle.index.inactive: Inactive General Cycle
+generalcycle.index.midyear.description: How are your challenges / goals going?
+generalcycle.index.midyear: Mid Year
+generalcycle.index.startdate: Start date
+generalcycle.index.title: General Cycle
+generalcycle.new.description1: General information about the new general cycle.
+generalcycle.new.description2: When will your CDP start and end?
+generalcycle.new.description3: When will your Mid Year start and end?
+generalcycle.new.description4: When will your Year End start and end?
+generalcycle.new.subtitle1: General Information
+generalcycle.new.subtitle2: CDP
+generalcycle.new.subtitle3: Mid Year
+generalcycle.new.subtitle4: Year End
+generalcycle.new.title: New General Cycle
+generalcycle.year: Name
 hr.dashboard.title: HR dashboard
 language.index.title: Languages
 midyear.show.title: __midyear.show.title
@@ -259,20 +259,20 @@ midyeartemplate.title3Description: midyeartemplate.title3Description
 midyeartemplate.title4: midyeartemplate.title4
 modal.cancel: Cancel
 modal.ok: Ok
-myfeedbackcycle.cdp.description: __myfeedbackcycle.cdp.description
+myfeedbackcycle.cdp.description: Career Development Plan
 myfeedbackcycle.cdp.enddate: End date
 myfeedbackcycle.cdp.formhistory: Form history
 myfeedbackcycle.cdp.formstatus: Form status
 myfeedbackcycle.cdp.startdate: Start date
 myfeedbackcycle.cdp.title: CDP
-myfeedbackcycle.endyear.description: __myfeedbackcycle.endyear.description
+myfeedbackcycle.endyear.description: How are your challenges / goals going?
 myfeedbackcycle.endyear.enddate: End date
 myfeedbackcycle.endyear.formhistory: Form history
 myfeedbackcycle.endyear.formstatus: Form status
 myfeedbackcycle.endyear.startdate: Start date
 myfeedbackcycle.endyear.title: Year End
 myfeedbackcycle.index.title: My feedbackcycle
-myfeedbackcycle.midyear.description: __myfeedbackcycle.midyear.description
+myfeedbackcycle.midyear.description: How have you progressed this year?
 myfeedbackcycle.midyear.enddate: End date
 myfeedbackcycle.midyear.formhistory: Form history
 myfeedbackcycle.midyear.formstatus: Form status
@@ -309,8 +309,8 @@ user.email: user.email
 user.enabled: user.enabled
 user.firstname: user.firstname
 user.hiredate: user.hiredate
-user.index.title2: __user.index.title2
-user.index.title: __user.index.title
+user.index.title2: Upload
+user.index.title: Users
 user.jobtitle: user.jobtitle
 user.language: user.language
 user.lastname: user.lastname

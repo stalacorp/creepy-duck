@@ -107,7 +107,7 @@ vich_uploader:
 
     mappings:
         user_photo:
-            uri_prefix:         /user/photos
+            uri_prefix:         /images/users
             upload_destination: %kernel.root_dir%/../web/images/users
         organization_logo:
             uri_prefix:         /organization/logos

@@ -25,7 +25,7 @@
             <h3>{{ 'user.index.title3' }}</h3>
 
 
-            <table class="table" id="table">
+            <table class="table" id="mytable">
                 <thead>
                 <tr>
                     <th>{{ 'user.firstname' | trans }}</th>
@@ -69,6 +69,26 @@
     </div>
 
 
+{% endblock %}
+
+{% block javascripts -%}
+    {{ parent() }}
+
+    <script src="{{ asset('assets/vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/datatables/media/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dataTables.select.min.js') }}"></script>
+
+
+    <script>
+
+        $(document).ready(function(){
+            $('#mytable').DataTable({
+            });
+        });
+
+
+
+    </script>
 {% endblock %}
 
 
