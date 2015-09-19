@@ -460,6 +460,64 @@ class UserController extends Controller
                     $entity->setOrganization($user->getOrganization());
                 }
 
+                if ($form['addtocycle']->getData()){
+
+                    $generalcycleactivestatus = $em->getRepository('IntoPeopleDatabaseBundle:Generalcyclestatus')->findOneByName('Active');
+                    $generalcycle = $em->getRepository('IntoPeopleDatabaseBundle:Generalcycle')->findOneByGeneralcyclestatus($generalcycleactivestatus);
+
+                    $repository = $em->getRepository('IntoPeopleDatabaseBundle:Formstatus');
+
+                    $available = $repository->find(1);
+                    $unavailable = $repository->find(9);
+
+                    // FIND NEWEST CDP TEMPLATE
+                    // ---
+                    $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
+
+                    $cdptemplate = $repository->findNewest();
+
+                    // FIND NEWEST MID YEAR TEMPLATE
+                    // ---
+                    $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Midyeartemplate');
+
+                    $midyeartemplate = $repository->findNewest();
+
+                    // FIND NEWEST END YEAR TEMPLATE
+                    // ---
+                    $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Endyeartemplate');
+
+                    $endyeartemplate = $repository->findNewest();
+
+                    $feedbackcycle = new Feedbackcycle();
+                    $feedbackcycle->setUser($entity);
+                    $feedbackcycle->setGeneralcycle($generalcycle);
+
+                    $developmentneeds = new Developmentneeds();
+
+                    $cdp = new Cdp();
+                    $cdp->setDevelopmentneeds($developmentneeds);
+                    $cdp->setFormstatus($available);
+                    $cdp->setCdptemplate($cdptemplate);
+
+                    $feedbackcycle->setCdp($cdp);
+
+                    $midyear = new Midyear();
+                    $midyear->setDevelopmentneeds($developmentneeds);
+                    $midyear->setFormstatus($unavailable);
+                    $midyear->setMidyeartemplate($midyeartemplate);
+
+                    $feedbackcycle->setMidyear($midyear);
+
+                    $endyear = new Endyear();
+                    $endyear->setDevelopmentneeds($developmentneeds);
+                    $endyear->setFormstatus($unavailable);
+                    $endyear->setEndyeartemplate($endyeartemplate);
+
+                    $feedbackcycle->setEndyear($endyear);
+
+                    $em->persist($feedbackcycle);
+                }
+
                 $em->persist($entity);
                 $em->flush();
 
@@ -526,7 +584,9 @@ class UserController extends Controller
         
         $form->add('submit', 'submit', array(
             'label' => 'Create'
-        ));
+        ))
+             ->add('addtocycle','checkbox', array('required'=> false,
+             'mapped'=> false));
         
         return $form;
     }
