@@ -1,5 +1,13 @@
 {% extends '::base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('assets/vendor/datatables/media/css/dataTables.bootstrap.min.css') }}" rel="stylesheet"
+          type="text/css" media="screen">
+    <link href="{{ asset('assets/css/select.bootstrap.min.css') }}" rel="stylesheet" type="text/css" media="screen">
+
+{% endblock %}
+
 {% block body -%}
 
 
@@ -33,9 +41,7 @@
                     <tr>
                         <td>{{ entity.coreQuality }}</td>
                         <td>{{ entity.language }}</td>
-                        <td>
-                            <a href="{{ path('corequality_edit', { 'id': entity.id }) }}" role="button" class="btn btn-default">{{ 'button.edit' | trans }}</a>
-                        </td>
+                        <td><a href="{{ path('corequality_edit', { 'id': entity.id }) }}" role="button" class="btn btn-default">{{ 'button.edit' | trans }}</a></td>
                     </tr>
                 {% endfor %}
                 </tbody>

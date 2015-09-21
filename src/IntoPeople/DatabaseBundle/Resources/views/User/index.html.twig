@@ -1,4 +1,12 @@
-{% extends '::base.html.twig' %} 
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('assets/vendor/datatables/media/css/dataTables.bootstrap.min.css') }}" rel="stylesheet"
+          type="text/css" media="screen">
+    <link href="{{ asset('assets/css/select.bootstrap.min.css') }}" rel="stylesheet" type="text/css" media="screen">
+
+{% endblock %}
 
 {% block body -%}
 
@@ -83,6 +91,8 @@
 
         $(document).ready(function(){
             $('#mytable').DataTable({
+                "info":     false,
+                "bLengthChange": false
             });
         });
 
