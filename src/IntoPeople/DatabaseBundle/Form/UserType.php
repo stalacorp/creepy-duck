@@ -56,13 +56,14 @@ class UserType extends AbstractType
                 'required' => false,
                 'format' => $format,
             ))
-            ->add('team')
+            ->add('team', 'text', array('required' => false))
             ->add('language', 'entity',array(
                 'class' => 'IntoPeopleDatabaseBundle:Language'))
             ->add('supervisor')
             ->add('jobtitle', 'text' , array('mapped' => false,
                 'attr'   =>  array(
-                    'class'   => 'typeahead')
+                    'class'   => 'typeahead'),
+                'required' => false,
             ))
             ->add('enabled', 'checkbox', array('required' => false))
             ->add('roles', 'choice', array(

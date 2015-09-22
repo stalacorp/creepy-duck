@@ -18,6 +18,7 @@ use Symfony\Component\EventDispatcher\EventDispatcher,
     Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken,
     Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\Validator\Constraints\Email as EmailConstraint;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * User controller.
@@ -32,10 +33,11 @@ class UserController extends Controller
     {
         $defaultData = array();
         $form = $this->createFormBuilder($defaultData)
-            ->add('template', 'file', array('constraints' => new File(array('maxSize' => "10M",
+            ->add('template', 'file', array('constraints' => array(new File(array('maxSize' => "10M",
                 'mimeTypes' => array('application/vnd.ms-office', 'application/vnd.ms-excel'),
 
             )),
+                new NotBlank(array('message' => 'nofileerror'))),
                 'required'=> true ))
             ->add('create users', 'submit')
             ->getForm();
@@ -428,6 +430,9 @@ class UserController extends Controller
         
         $entity = $userManager->createUser();
 
+        $jobtitles = $this->getDoctrine()->getManager()->getRepository('IntoPeopleDatabaseBundle:Jobtitle')->findAll();
+        $jobtitles = array_map(function($o) { return $o->getName(); }, $jobtitles);
+
         
         $form = $this->createCreateForm($entity);
 
@@ -565,6 +570,7 @@ class UserController extends Controller
         return $this->render('IntoPeopleDatabaseBundle:User:new.html.twig', array(
             'entity' => $entity,
             'form' => $form->createView(),
+            'jobtitles' => $jobtitles
         ));
     }
 

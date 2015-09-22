@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -23,6 +24,13 @@ class User extends BaseUser
     protected $id;
 
     /**
+     *
+     * @Assert\NotBlank()
+     *
+     */
+    protected $email;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="FirstName", type="string", length=250, nullable=true)
@@ -31,14 +39,14 @@ class User extends BaseUser
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="LastName", type="string", length=250, nullable=true)
      */
     private $lastname;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="Team", type="string", length=250, nullable=true)
      */
     private $team;
