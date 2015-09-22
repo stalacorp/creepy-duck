@@ -32,9 +32,11 @@ class UserController extends Controller
     {
         $defaultData = array();
         $form = $this->createFormBuilder($defaultData)
-            ->add('template', 'file',array('constraints' => new File(array('maxSize' => "10M",
-                'mimeTypes' => array('application/vnd.ms-office'),
-            ))))
+            ->add('template', 'file', array('constraints' => new File(array('maxSize' => "10M",
+                'mimeTypes' => array('application/vnd.ms-office', 'application/vnd.ms-excel'),
+
+            )),
+                'required'=> true ))
             ->add('create users', 'submit')
             ->getForm();
 
@@ -425,8 +427,10 @@ class UserController extends Controller
         $user = $this->getUser();
         
         $entity = $userManager->createUser();
+
         
         $form = $this->createCreateForm($entity);
+
         $form->handleRequest($request);
 
         $entity->setUsername($entity->getEmail());
@@ -435,6 +439,7 @@ class UserController extends Controller
             $em = $this->getDoctrine()->getEntityManager();
 
             $jobtitletext = $form['jobtitle']->getData();
+
             if ($jobtitletext != null) {
 
                 $jobtitle = $em->getRepository('IntoPeopleDatabaseBundle:Jobtitle')->findOneByName($jobtitletext);
@@ -446,6 +451,7 @@ class UserController extends Controller
 
                 $entity->setJobtitle($jobtitle);
             }
+
 
             $userexists = $em->getRepository('IntoPeopleDatabaseBundle:User')->findOneByEmail_canonical(strtolower($entity->getEmail()));
 
@@ -840,10 +846,9 @@ class UserController extends Controller
 
             $em->flush();
 
-            return $this->redirect($this->generateUrl('user_edit', array(
-                'id' => $id
-            )));
+            return $this->redirect($this->generateUrl('user'));
         }
+
 
         return $this->render('IntoPeopleDatabaseBundle:User:edit.html.twig', array(
             'entity' => $entity,

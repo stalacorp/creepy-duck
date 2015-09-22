@@ -44,6 +44,11 @@
                     <table class="table borderless">
 
                         <tr>
+                            <th>{{ 'user.profile.email' | trans }}</th>
+                            <td>{{ app.user.email }}</td>
+                        </tr>
+
+                        <tr>
                             <th>Jobtitle</th>
                             <td>{{ app.user.jobtitle.name }}</td>
                         </tr>
@@ -61,11 +66,6 @@
                         <tr>
                             <th>Hiredate</th>
                             <td>{{ app.user.hiredate }}</td>
-                        </tr>
-
-                        <tr>
-                            <th>Team</th>
-                            <td></td>
                         </tr>
 
                     </table>
