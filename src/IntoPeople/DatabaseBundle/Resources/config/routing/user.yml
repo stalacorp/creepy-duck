@@ -44,3 +44,9 @@ user_profile:
 user_excel:
     path:   /excel
     defaults: { _controller: "IntoPeopleDatabaseBundle:User:excel" }
+
+user_deleteable:
+    path: /{id}/deleteable
+    defaults: { _controller: "IntoPeopleDatabaseBundle:User:deleteable" }
+    options:
+      expose: true

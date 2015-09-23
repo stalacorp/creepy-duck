@@ -19,6 +19,7 @@ use Symfony\Component\EventDispatcher\EventDispatcher,
     Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\Validator\Constraints\Email as EmailConstraint;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * User controller.
@@ -884,5 +885,31 @@ class UserController extends Controller
         }
 
         return $this->redirect($this->generateUrl('user'));
+    }
+
+    public function deleteableAction($id)
+    {
+        $locale = $this->get('request')->getLocale();
+        $ok = 'ok';
+        $translator = $this->get('translator');
+
+        $user = $this->getDoctrine()->getManager()->getRepository('IntoPeopleDatabaseBundle:User')->find($id);
+        $teller = 0;
+        $userstext = '';
+        foreach ($user->getUsers() as $superviseduser){
+            $userstext .= $superviseduser->getFirstname() . $superviseduser->getLastname() . ', ';
+            $teller++;
+        }
+
+        if ($teller > 0){
+            $userstext = substr($userstext, 0, strlen($userstext) - 2);
+            $ok = $translator->trans('user.deleteerror.stillsupervisor') . ' ' . $userstext;
+        }
+
+        if (count($user->getFeedbackcycles())> 0){
+            $ok = $translator->trans('user.deleteerror.stillfeedbackcycles');
+        }
+
+        return new JsonResponse($ok);
     }
 }
