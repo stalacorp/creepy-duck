@@ -32,7 +32,7 @@ class User extends BaseUser
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="FirstName", type="string", length=250, nullable=true)
      */
     private $firstname;
@@ -46,7 +46,7 @@ class User extends BaseUser
 
     /**
      * @var string
-     * @Assert\NotBlank()
+     *
      * @ORM\Column(name="Team", type="string", length=250, nullable=true)
      */
     private $team;

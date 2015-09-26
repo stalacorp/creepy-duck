@@ -114,6 +114,8 @@
 
             {{ form_row(form.addtocycle) }}
 
+            <div class="hidden" id="version">{{ form_row(form.templateversion) }}</div>
+
 
             <div class="buttons">
 
@@ -138,6 +140,9 @@
     <script src="{{ asset('assets/vendor/typeahead.js/dist/typeahead.bundle.min.js') }}"></script>
     <script>
         $(function() {
+            $('#intopeople_databasebundle_user_addtocycle').change(function(){
+                $('#version').toggleClass('hidden');
+            });
 
             var jobtitles = {{ jobtitles | json_encode() | raw}};
             var titles = new Bloodhound({

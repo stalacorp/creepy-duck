@@ -473,6 +473,8 @@ class UserController extends Controller
                 }
 
                 if ($form['addtocycle']->getData()){
+                    $templateversion = $form['templateversion']->getData();
+
 
                     $generalcycleactivestatus = $em->getRepository('IntoPeopleDatabaseBundle:Generalcyclestatus')->findOneByName('Active');
                     $generalcycle = $em->getRepository('IntoPeopleDatabaseBundle:Generalcycle')->findOneByGeneralcyclestatus($generalcycleactivestatus);
@@ -510,6 +512,7 @@ class UserController extends Controller
                     $cdp->setDevelopmentneeds($developmentneeds);
                     $cdp->setFormstatus($available);
                     $cdp->setCdptemplate($cdptemplate);
+                    $cdp->setTemplateversion($templateversion);
 
                     $feedbackcycle->setCdp($cdp);
 
@@ -517,6 +520,7 @@ class UserController extends Controller
                     $midyear->setDevelopmentneeds($developmentneeds);
                     $midyear->setFormstatus($unavailable);
                     $midyear->setMidyeartemplate($midyeartemplate);
+                    $midyear->setTemplateversion($templateversion);
 
                     $feedbackcycle->setMidyear($midyear);
 
@@ -524,6 +528,7 @@ class UserController extends Controller
                     $endyear->setDevelopmentneeds($developmentneeds);
                     $endyear->setFormstatus($unavailable);
                     $endyear->setEndyeartemplate($endyeartemplate);
+                    $endyear->setTemplateversion($templateversion);
 
                     $feedbackcycle->setEndyear($endyear);
 
@@ -590,7 +595,7 @@ class UserController extends Controller
         $tokenStorage = $this->container->get('security.token_storage');
         $entity->setEnabled(true);
         
-        $form = $this->createForm(new UserType($tokenStorage, $locale), $entity, array(
+        $form = $this->createForm(new UserType($this->get('request')->getLocale()), $entity, array(
             'action' => $this->generateUrl('user_create'),
             'method' => 'POST'
         ));
@@ -599,6 +604,9 @@ class UserController extends Controller
             'label' => 'Create'
         ))
              ->add('addtocycle','checkbox', array('required'=> false,
+             'mapped'=> false))
+             ->add('templateversion', 'entity', array(
+        'class' => 'IntoPeopleDatabaseBundle:Templateversion',
              'mapped'=> false));
         
         return $form;
@@ -800,9 +808,8 @@ class UserController extends Controller
      */
     private function createEditForm(User $entity)
     {
-        $tokenStorage = $this->container->get('security.token_storage');
 
-        $form = $this->createForm(new UserType($tokenStorage), $entity, array(
+        $form = $this->createForm(new UserType($this->get('request')->getLocale()), $entity, array(
             'action' => $this->generateUrl('user_update', array(
                 'id' => $entity->getId()
             )),

@@ -4,24 +4,18 @@ namespace IntoPeople\DatabaseBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Doctrine\ORM\EntityRepository;
+
 
 
 class UserType extends AbstractType
 {
 
-    private $tokenStorage;
+
     private $locale;
     public function __construct($locale) {
         $this->locale = $locale;
     }
-    
-    public function __construct2(TokenStorageInterface $tokenStorage) {
-        $this->tokenStorage = $tokenStorage;
-    }
+
     
     /**
      *
@@ -35,7 +29,8 @@ class UserType extends AbstractType
         if ($this->locale == 'nl'){
             $format = 'dd-MM-yyyy';
         }
-        
+
+
         $builder
             ->add('photo', 'vich_image', array(
                 'required'      => false,

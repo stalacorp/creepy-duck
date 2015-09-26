@@ -20,19 +20,19 @@
                         <tr>
                             <th>{{ template.name }}:
                             <th>
-                            <td>{{ entity.feedbackcycle.user }}</td>
+                            <td>{{ entity.feedbackcycle.user.firstname }} {{ entity.feedbackcycle.user.lastname }}</td>
                         </tr>
 
+                        {% if entity.supervisor != null %}
+                            <tr>
+                                <th>{{ template.supervisor }}:
+                                <th>
+                                <td>{{ entity.supervisor.firstname }} {{ entity.supervisor.lastname }}</td>
+                            </tr>
+                        {% endif %}
 
                         <tr>
-                            <th>Supervisor:
-                            <th>
-                            <td>{{ entity.supervisor }}</td>
-                        </tr>
-
-
-                        <tr>
-                            <th>Date discussion:
+                            <th>{{ template.dateDiscussion }}:
                             <th>
                             <td>{{ entity.feedbackdate | localizeddate('medium', 'none', app.request.locale ) }}</td>
                         </tr>
@@ -46,16 +46,16 @@
                     <table class="table borderless">
 
                         <tr>
-                            <th>Team:
+                            <th>{{ template.team }}:
                             <th>
-                            <td></td>
+                            <td>{{ entity.feedbackcycle.user.team }}</td>
                         </tr>
 
 
                         <tr>
-                            <th>Functie:
+                            <th>{{ template.function }}:
                             <th>
-                            <td></td>
+                            <td>{{ entity.feedbackcycle.user.jobtitle }}</td>
                         </tr>
 
                     </table>
