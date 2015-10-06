@@ -99,8 +99,8 @@ swiftmailer:
 
 rollerworks_multi_user:
     from_email:
-        address: webmaster@example.com
-        sender_name: webmaster
+        address: intopeoplemail@gmail.com
+        sender_name: intopeople
 
 vich_uploader:
     db_driver: orm # or mongodb or propel or phpcr

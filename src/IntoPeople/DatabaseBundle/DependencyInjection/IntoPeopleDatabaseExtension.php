@@ -148,8 +148,8 @@ class IntoPeopleDatabaseExtension extends Extension
                     'token_ttl' => 86400,
                     'email' => array(
                         'from_email' => array(
-                            'address' => null,
-                            'sender_name' => null,
+                            'address' => "intopeoplemail@gmail.com",
+                            'sender_name' => "Into People",
                         ),
                     ),
                     'form' => array(
