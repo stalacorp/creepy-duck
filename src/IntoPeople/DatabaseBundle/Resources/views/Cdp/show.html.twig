@@ -1,7 +1,5 @@
 {% extends '::base.html.twig' %} {% block body -%}
 
-    {% set template = entity.cdptemplate %}
-
     <h2>{{ template.mainTitle }}</h2>
 
     <div class="row">
@@ -18,21 +16,21 @@
                         <tr>
                             <th>{{ template.name }}:
                             <th>
-                            <td>{{ app.user.firstname }} {{ app.user.lastname }}</td>
+                            <td>{{ entity.feedbackcycle.user.firstname }} {{ entity.feedbackcycle.user.lastname }}</td>
                         </tr>
 
-                        {% if app.user.supervisor != null %}
+                        {% if entity.supervisor != null %}
                             <tr>
                                 <th>{{ template.supervisor }}:
                                 <th>
-                                <td>{{ app.user.supervisor.firstname }} {{ app.user.supervisor.lastname }}</td>
+                                <td>{{ entity.supervisor.firstname }} {{ entity.supervisor.lastname }}</td>
                             </tr>
                         {% endif %}
 
                         <tr>
                             <th>{{ template.dateDiscussion }}:
                             <th>
-                            <td></td>
+                            <td>{{ entity.feedbackdate | localizeddate('medium', 'none', app.request.locale ) }}</td>
                         </tr>
 
                     </table>
@@ -46,14 +44,14 @@
                         <tr>
                             <th>{{ template.team }}:
                             <th>
-                            <td>{{ app.user.team }}</td>
+                            <td>{{ entity.feedbackcycle.user.team }}</td>
                         </tr>
 
 
                         <tr>
                             <th>{{ template.function }}:
                             <th>
-                            <td>{{ app.user.jobtitle }}</td>
+                            <td>{{ entity.feedbackcycle.user.jobtitle }}</td>
                         </tr>
 
                     </table>
@@ -220,8 +218,7 @@
                 </tr>
 
                 <tr>
-                    <td colspan="2">
-                        {{ entity.developmentneeds.task1 }}</td>
+                    <td colspan="2">{{ entity.developmentneeds.task1 }}</td>
                     <td>{{ entity.taskhow1 }}</td>
                     <td>{{ entity.tasksucces1 }}</td>
                     <td>{{ entity.taskneeds1 }}</td>

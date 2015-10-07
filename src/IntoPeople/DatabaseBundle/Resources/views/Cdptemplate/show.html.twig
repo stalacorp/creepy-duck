@@ -96,11 +96,12 @@
 
             <table class="table borderless">
                 <tr>
-                    <th style="width: 20%">{{ entity.table2Col1 }}</th>
-                    <th style="width: 20%">{{ entity.table2Col2 }}</th>
-                    <th style="width: 20%">{{ entity.table2Col3 }}</th>
-                    <th style="width: 20%">{{ entity.table2Col4 }}</th>
-                    <th style="width: 20%">{{ entity.table2Col5 }}</th>
+                    <th style="width: 16%">{{ entity.table2Col1 }}</th>
+                    <th style="width: 16%">{{ entity.table2Col2 }}</th>
+                    <th style="width: 16%">{{ entity.table2Col3 }}</th>
+                    <th style="width: 16%">{{ entity.table2Col4 }}</th>
+                    <th style="width: 16%">{{ entity.table2Col5 }}</th>
+                    <th style="width: 16%">{{ entity.table2Col6 }}</th>
                 </tr>
 
                 <tr>
@@ -109,6 +110,7 @@
                     <td>{{ entity.table2Col3Descr }}</td>
                     <td>{{ entity.table2Col4Descr }}</td>
                     <td>{{ entity.table2Col5Descr }}</td>
+                    <td>{{ entity.table2Col6Descr }}</td>
                 </tr>
 
                 <tr>
@@ -298,9 +300,8 @@
     <div class="buttons">
 
         <a href="{{ path('cdptemplate_edit', { 'id': entity.id }) }}" type="button" class="btn btn-default btn-cons">{{ "button.edit" | trans }} </a>
-        <a href="{{ path('cdptemplate') }}" type="button" class="btn btn-default btn-cons">{{ "button.back" | trans }}</a>
+        <a href="{{ path('templateversion') }}" type="button" class="btn btn-default btn-cons">{{ "button.back" | trans }}</a>
 
-        {{ form(delete_form) }}
 
     </div>
 

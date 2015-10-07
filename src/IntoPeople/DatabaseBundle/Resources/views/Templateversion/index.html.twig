@@ -1,0 +1,85 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h2>{{ 'templates.index.title' | trans }}</h2>
+
+    <div class="row">
+        <div class="col-md-3">
+
+            <h3>{{ 'templates.index.menu' }}</h3>
+
+            {{ form_start(form) }}
+
+            <div class="input-group">
+
+                {{ form_widget(form.templateversion) }}
+
+
+                <span class="input-group-btn">
+                    <a href="{{ path('templateversion_new') }}" type="button" class="btn btn-default">{{ 'button.create' | trans }}</a>
+                </span>
+
+            </div>
+
+
+            {{ form_row(form.cycle) }}
+
+
+
+            {{ form_end(form) }}
+
+            <a href="{{ path('templateversion_new') }}" type="button" class="btn btn-default">{{ 'button.create' | trans }}</a>
+
+        </div>
+
+        <div class="col-md-offset-1 col-md-8">
+
+            <div id="result"></div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block javascripts -%}
+    {{ parent() }}
+
+
+    <script>
+
+        function gettemplates() {
+            $.ajax({
+                url: Routing.generate('templateversion_getcycles', {
+                    templateversionId: $('#form_templateversion').val(),
+                    cycle: $('#form_cycle').val(),
+                    _locale: locale
+                }),
+                success: function (result) {
+                    $("#result").html(result);
+
+                }
+            });
+        }
+
+        $(function () {
+            gettemplates();
+
+            $('#form_templateversion').change(function () {
+                gettemplates();
+            });
+
+            $('#form_cycle').change(function () {
+                gettemplates();
+            });
+        });
+
+    </script>
+{% endblock %}

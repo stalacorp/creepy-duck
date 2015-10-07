@@ -1,20 +1,51 @@
 <table class="table" id="datatable">
     <thead>
     <tr>
+        <th class="no-sort"></th>
+        <th class="no-sort"><div class="checkbox">
+                <input type="checkbox" id="selectallbox">
+                <label for="selectallbox" ></label>
+            </div></th>
         <th>{{ "table.user" | trans }}</th>
         <th>{{ "table.supervisor" | trans }}</th>
         <th>{{ "table.formstatus" | trans }}</th>
         <th class="no-sort"></th>
+        <th class="no-sort"></th>
     </tr>
     </thead>
     <tbody>
+    {% set teller = 0 %}
     {% for entity in entities %}
+
         <tr>
+            <td>{{entity.id }}</td>
+            <td><div class="checkbox">
+                    <input class="inputcheck" type="checkbox" id="checkbox{{ teller }}">
+                    <label for="checkbox{{ teller }}" ></label>
+                </div></td>
             <td>{{ entity.feedbackcycle.user.firstname }} {{ entity.feedbackcycle.user.lastname }}</td>
             <td>{% if entity.supervisor is not empty %} {{ entity.supervisor.firstname }} {{ entity.supervisor.lastname }} {% endif %}</td>
             <td>{{ entity.formstatus.name }}</td>
-            <td><a class="btn btn-primary" href="{{ path(showlink, { 'id': entity.id }) }}">{{ "button.show" | trans}}</a></td>
+            <td><button data-id="{{ entity.id }}"  class="btn btn-default history">{{ 'button.history' | trans }}</button></td>
+            <td>
+                {% if entity.formstatus.id != 3 %}
+                    {% set disabled = '' %}
+                    {% if entity.formstatus.id == 2 %}
+                        {% set disabled = 'disabled' %}
+                        {% endif %}
+                    <a class="btn btn-primary" {{ disabled }} href="{{ path(cycle ~ '_show', { 'id': entity.id }) }}">{{ "button.show" | trans}}</a>
+                {% else %}
+                    {% if cycle == 'cdp' %}
+                        {% set link = 'supervisor_addComment' %}
+                    {% else %}
+                        {% set link = 'supervisor_add' ~ (cycle|capitalize) ~ 'Comment' %}
+                    {% endif %}
+                    <a class="btn btn-success" href="{{ path(link, { 'id': entity.id }) }}">{{ "button.addcomment" | trans}}</a>
+                {% endif %}
+
+            </td>
         </tr>
+        {% set teller = teller + 1 %}
     {% endfor %}
     </tbody>
 </table>

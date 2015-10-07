@@ -1,5 +1,186 @@
 <pdf>
-    <dynamic-page>
-        Hello endyear!
+    <dynamic-page page-size="a4-landscape">
+        {% for entity in entities %}
+
+            {% set endyeartemplates = entity.templateversion.endyeartemplates %}
+
+            {% for template in endyeartemplates %}
+
+                {% if template.language == app.user.language %}
+
+                    {% set cdp = entity.feedbackcycle.cdp %}
+
+                    <h1>{{ template.mainTitle }}</h1>
+
+                    <div width="40%">
+
+                        <h2>{{ template.title1 }}</h2>
+
+                        <p>{{ template.title1Description }}</p>
+
+                        <table>
+                            <tr>
+                                <td>{{ template.name }}</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ template.supervisor }}</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ template.dateDiscussion }}</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ template.team }}</td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ template.function }}</td>
+                                <td></td>
+                            </tr>
+                        </table>
+
+                    </div>
+
+                    <div>
+
+                        <h2>{{ template.title2 }}</h2>
+
+                        <p>{{ template.title2Description }}</p>
+
+                        <table>
+                            <tr>
+                                <td>{{ template.table2Col1 }}</td>
+                                <td>{{ template.table2Col2 }}</td>
+                                <td>{{ template.table2Col3 }}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>{{ template.table2Col1Descr }}</td>
+                                <td>{{ template.table2Col2Descr }}</td>
+                                <td>{{ template.table2Col3Descr }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ cdp.corequality1Why }}</td>
+                                <td>{{ cdp.challengeWhy1 }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ cdp.corequality2Why }}</td>
+                                <td>{{ cdp.challengeWhy2 }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ cdp.corequality3Why }}</td>
+                                <td>{{ cdp.challengeWhy3 }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ cdp.corequality4Why }}</td>
+                                <td>{{ cdp.challengeWhy4 }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ cdp.corequality5Why }}</td>
+                                <td>{{ cdp.challengeWhy5 }}</td>
+                            </tr>
+
+
+                        </table>
+
+
+                    </div>
+
+                    <div>
+
+                        <h2>{{ template.title3 }}</h2>
+
+                        <p>{{ template.title3Description }}</p>
+
+                        <h3>{{ template.table3Title1 }}</h3>
+
+                        <table>
+
+                            <tr>
+                                <td>{{ template.table3Col1 }}</td>
+                                <td>{{ template.table3Col2 }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ template.table3Col1Descr }}</td>
+                                <td>{{ template.table3Col2Descr }}</td>
+                            </tr>
+
+
+                        </table>
+
+                        <h3>{{ template.table3Title2 }}</h3>
+
+                        <table>
+
+                            <tr>
+                                <td>{{ template.table3Col1 }}</td>
+                                <td>{{ template.table3Col2 }}</td>
+                            </tr>
+
+
+                        </table>
+
+                        <h3>{{ template.table3Title3 }}</h3>
+
+                        <table>
+
+                            <tr>
+                                <td>{{ template.table3Col1 }}</td>
+                                <td>{{ template.table3Col2 }}</td>
+                            </tr>
+
+
+                        </table>
+
+                    </div>
+
+                    <div>
+
+                        <h2>{{ template.title4 }}</h2>
+
+                        <p>{{ template.question1 }}</p>
+
+                        <p>{{ template.question2 }}</p>
+
+                        <p>{{ template.question3 }}</p>
+
+                        <p>{{ template.question4 }}</p>
+
+                    </div>
+
+                    <div>
+                        {{ template.supervisorComment }}
+                    </div>
+
+                    <div>
+                        {{ template.feedback }}
+                    </div>
+
+
+
+
+
+
+
+                {% endif %}
+
+            {% endfor %}
+
+
+
+        {% endfor %}
     </dynamic-page>
 </pdf>

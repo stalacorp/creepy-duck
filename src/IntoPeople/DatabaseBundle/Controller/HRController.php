@@ -40,8 +40,20 @@ class HRController extends Controller
             $form = $this->createEditForm($entity);
             $user = $this->getUser();
 
+            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
+
+            $query = $repository->createQueryBuilder('c')
+                ->where('c.templateversion = :cdptemplateversion')
+                ->andWhere('c.language = :language')
+                ->setParameter('cdptemplateversion', $entity->getTemplateversion())
+                ->setParameter('language', $user->getLanguage())
+                ->getQuery();
+
+            $template = $query->setMaxResults(1)->getOneOrNullResult();
+
             return $this->render('IntoPeopleDatabaseBundle:HR:feedback.html.twig', array(
                 'entity' => $entity,
+                'template' => $template,
                 'form' => $form->createView()
             ));
         }
@@ -122,7 +134,7 @@ class HRController extends Controller
                         ->setSubject($systemmail->getSubject())
                         ->setFrom($systemmail->getSender())
                         ->setTo($user->getEmail())
-                        ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('cdp_show', array('id' => $entity->getId())), $systemmail->getBody()));
+                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('cdp_show', array('id' => $entity->getId())), $systemmail->getBody()));
 
                     $this->get('mailer')->send($message);
                 }
@@ -152,7 +164,7 @@ class HRController extends Controller
                         ->setSubject($systemmail->getSubject())
                         ->setFrom($systemmail->getSender())
                         ->setTo($user->getEmail())
-                        ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('cdp_edit', array('id' => $entity->getId())), $systemmail->getBody()));
+                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('cdp_edit', array('id' => $entity->getId())), $systemmail->getBody()));
 
                     $this->get('mailer')->send($message);
                 }
@@ -183,7 +195,7 @@ class HRController extends Controller
             $entity->setFormstatus($formstatus);
             $em->flush();
             
-            return $this->redirect($this->generateUrl('feedbackcycle', array(
+            return $this->redirect($this->generateUrl('hr_dashboard', array(
                 
             )));
         }
@@ -214,8 +226,20 @@ class HRController extends Controller
             $form = $this->createMidyearEditForm($entity);
             $user = $this->getUser();
 
+            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Midyeartemplate');
+
+            $query = $repository->createQueryBuilder('m')
+                ->where('m.templateversion = :midyeartemplateversion')
+                ->andWhere('m.language = :language')
+                ->setParameter('midyeartemplateversion', $entity->getTemplateversion())
+                ->setParameter('language', $user->getLanguage())
+                ->getQuery();
+
+            $template = $query->setMaxResults(1)->getOneOrNullResult();
+
             return $this->render('IntoPeopleDatabaseBundle:HR:feedbackMidyear.html.twig', array(
                 'entity' => $entity,
+                'template' => $template,
                 'form' => $form->createView()
             ));
         }
@@ -296,7 +320,7 @@ class HRController extends Controller
                         ->setSubject($systemmail->getSubject())
                         ->setFrom($systemmail->getSender())
                         ->setTo($user->getEmail())
-                        ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('midyear_show', array('id' => $entity->getId())), $systemmail->getBody()));
+                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('midyear_show', array('id' => $entity->getId())), $systemmail->getBody()));
 
                     $this->get('mailer')->send($message);
                 }
@@ -326,7 +350,7 @@ class HRController extends Controller
                         ->setSubject($systemmail->getSubject())
                         ->setFrom($systemmail->getSender())
                         ->setTo($user->getEmail())
-                        ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('midyear_edit', array('id' => $entity->getId())), $systemmail->getBody()));
+                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('midyear_edit', array('id' => $entity->getId())), $systemmail->getBody()));
 
                     $this->get('mailer')->send($message);
                 }
@@ -357,7 +381,7 @@ class HRController extends Controller
             $entity->setFormstatus($formstatus);
             $em->flush();
     
-            return $this->redirect($this->generateUrl('feedbackcycle', array(
+            return $this->redirect($this->generateUrl('hr_dashboard', array(
                 'id' => $entity->getId()
             )));
         }
@@ -388,8 +412,20 @@ class HRController extends Controller
             $form = $this->createEndyearEditForm($entity);
             $user = $this->getUser();
 
+            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Endyeartemplate');
+
+            $query = $repository->createQueryBuilder('e')
+                ->where('e.templateversion = :endyeartemplateversion')
+                ->andWhere('e.language = :language')
+                ->setParameter('endyeartemplateversion', $entity->getTemplateversion())
+                ->setParameter('language', $user->getLanguage())
+                ->getQuery();
+
+            $template = $query->setMaxResults(1)->getOneOrNullResult();
+
             return $this->render('IntoPeopleDatabaseBundle:HR:feedbackEndyear.html.twig', array(
                 'entity' => $entity,
+                'template' => $template,
                 'form' => $form->createView()
             ));
         }
@@ -470,7 +506,7 @@ class HRController extends Controller
                         ->setSubject($systemmail->getSubject())
                         ->setFrom($systemmail->getSender())
                         ->setTo($user->getEmail())
-                        ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('endyear_show', array('id' => $entity->getId())), $systemmail->getBody()));
+                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('endyear_show', array('id' => $entity->getId())), $systemmail->getBody()));
 
                     $this->get('mailer')->send($message);
                 }
@@ -500,7 +536,7 @@ class HRController extends Controller
                         ->setSubject($systemmail->getSubject())
                         ->setFrom($systemmail->getSender())
                         ->setTo($user->getEmail())
-                        ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('endyear_edit', array('id' => $entity->getId())), $systemmail->getBody()));
+                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('endyear_edit', array('id' => $entity->getId())), $systemmail->getBody()));
 
                     $this->get('mailer')->send($message);
                 }
@@ -531,7 +567,7 @@ class HRController extends Controller
             $entity->setFormstatus($formstatus);
             $em->flush();
     
-            return $this->redirect($this->generateUrl('feedbackcycle', array(
+            return $this->redirect($this->generateUrl('hr_dashboard', array(
                 'id' => $entity->getId()
             )));
         }
@@ -812,7 +848,7 @@ class HRController extends Controller
                     ->setSubject($systemmail->getSubject())
                     ->setFrom($systemmail->getSender())
                     ->setTo($mailuser->getEmail())
-                    ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl($url, array('id' => $form->getId())), $systemmail->getBody()));
+                    ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl($url, array('id' => $form->getId())), $systemmail->getBody()));
 
                 $this->get('mailer')->send($message);
 

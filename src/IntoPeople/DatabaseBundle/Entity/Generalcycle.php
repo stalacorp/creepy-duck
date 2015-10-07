@@ -5,6 +5,7 @@ namespace IntoPeople\DatabaseBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use IntoPeople\DatabaseBundle\Validator\Constraints as IntoPeopleAssert;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Generalcycle
@@ -62,14 +63,14 @@ class Generalcycle
 
     /**
      * @var \DateTime
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="StartDateCDP", type="date", nullable=true)
      */
     private $startdatecdp;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="EndDateCDP", type="date", nullable=true)
      */
     private $enddatecdp;
@@ -90,14 +91,14 @@ class Generalcycle
 
     /**
      * @var \DateTime
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="StartDateYearEnd", type="date", nullable=true)
      */
     private $startdateyearend;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="EndDateYearEnd", type="date", nullable=true)
      */
     private $enddateyearend;

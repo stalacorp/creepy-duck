@@ -141,6 +141,10 @@
 {# Labels #}
 
 {% block form_label -%}
+
+    {% if label is empty %}
+        {% set label = id | replace({'intopeople_databasebundle_':''}) | replace({'_':'.'})  %}
+    {% endif %}
     {%- set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' control-label')|trim}) -%}
     {{- parent() -}}
 {%- endblock form_label %}
@@ -171,8 +175,8 @@
         {% if label is not sameas(false) and label is empty %}
             {% set label = name|humanize %}
         {% endif %}
-        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-            {{- widget|raw -}}
+        {{- widget|raw -}}
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %} for="{{ id }}">
             {{- label is not sameas(false) ? (translation_domain is sameas(false) ? label : label|trans({}, translation_domain)) -}}
         </label>
     {% endif %}

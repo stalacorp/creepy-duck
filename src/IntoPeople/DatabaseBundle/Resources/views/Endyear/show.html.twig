@@ -3,7 +3,7 @@
 
 
     {% set devneeds = entity.developmentneeds %}
-    {% set template = entity.endyeartemplate %}
+    {% set cdp = entity.feedbackcycle.cdp %}
 
     <h2>{{ template.mainTitle }}</h2>
 
@@ -21,21 +21,21 @@
                         <tr>
                             <th>{{ template.name }}:
                             <th>
-                            <td>{{ app.user.firstname }} {{ app.user.lastname }}</td>
+                            <td>{{ entity.feedbackcycle.user.firstname }} {{ entity.feedbackcycle.user.lastname }}</td>
                         </tr>
 
-                        {% if app.user.supervisor != null %}
+                        {% if entity.supervisor != null %}
                             <tr>
                                 <th>{{ template.supervisor }}:
                                 <th>
-                                <td>{{ app.user.supervisor.firstname }} {{ app.user.supervisor.lastname }}</td>
+                                <td>{{ entity.supervisor.firstname }} {{ entity.supervisor.lastname }}</td>
                             </tr>
                         {% endif %}
 
                         <tr>
                             <th>{{ template.dateDiscussion }}:
                             <th>
-                            <td></td>
+                            <td>{{ entity.feedbackdate | localizeddate('medium', 'none', app.request.locale ) }}</td>
                         </tr>
 
                     </table>
@@ -49,14 +49,14 @@
                         <tr>
                             <th>{{ template.team }}:
                             <th>
-                            <td></td>
+                            <td>{{ entity.feedbackcycle.user.team }}</td>
                         </tr>
 
 
                         <tr>
                             <th>{{ template.function }}:
                             <th>
-                            <td></td>
+                            <td>{{ entity.feedbackcycle.user.jobtitle }}</td>
                         </tr>
 
                     </table>
@@ -88,16 +88,12 @@
                     <th style="width: 20%">{{ template.table2Col1 }}</th>
                     <th style="width: 20%">{{ template.table2Col2 }}</th>
                     <th style="width: 20%">{{ template.table2Col3 }}</th>
-                    <th style="width: 20%">{{ template.table2Col4 }}</th>
-                    <th style="width: 20%">{{ template.table2Col5 }}</th>
                 </tr>
 
                 <tr>
                     <td>{{ template.table2Col1Descr }}</td>
                     <td>{{ template.table2Col2Descr }}</td>
                     <td>{{ template.table2Col3Descr }}</td>
-                    <td>{{ template.table2Col4Descr }}</td>
-                    <td>{{ template.table2Col5Descr }}</td>
                 </tr>
 
                 <tr>
@@ -111,9 +107,7 @@
 
                         <p>{{ cdp.challengeWhy1 }}</p>
                     </td>
-                    <td>{{ cdp.challengeHow1 }}</td>
-                    <td>{{ cdp.challengeSuccess1 }}</td>
-                    <td>{{ cdp.challengeNeeds1 }}</td>
+                    <td>{{ entity.progressChallenge1 }}</td>
                 </tr>
 
                 <tr>
@@ -127,9 +121,7 @@
 
                         <p>{{ cdp.challengeWhy2 }}</p>
                     </td>
-                    <td>{{ cdp.challengeHow2 }}</td>
-                    <td>{{ cdp.challengeSuccess2 }}</td>
-                    <td>{{ cdp.challengeNeeds2 }}</td>
+                    <td>{{ entity.progressChallenge2 }}</td>
                 </tr>
 
                 <tr>
@@ -143,42 +135,44 @@
 
                         <p>{{ cdp.challengeWhy3 }}</p>
                     </td>
-                    <td>{{ cdp.challengeHow3 }}</td>
-                    <td>{{ cdp.challengeSuccess3 }}</td>
-                    <td>{{ cdp.challengeNeeds3 }}</td>
+                    <td>{{ entity.progressChallenge3 }}</td>
                 </tr>
 
-                <tr>
-                    <td>
-                        <p>{{ cdp.coreQuality4 }}</p>
+                {% if cdp.coreQuality4 != null %}
 
-                        <p>{{ cdp.coreQuality4Why }}</p>
-                    </td>
-                    <td>
-                        <p>{{ cdp.challenge4 }}</p>
+                    <tr>
+                        <td>
+                            <p>{{ cdp.coreQuality4 }}</p>
 
-                        <p>{{ cdp.challengeWhy4 }}</p>
-                    </td>
-                    <td>{{ cdp.challengeHow4 }}</td>
-                    <td>{{ cdp.challengeSuccess4 }}</td>
-                    <td>{{ cdp.challengeNeeds4 }}</td>
-                </tr>
+                            <p>{{ cdp.coreQuality4Why }}</p>
+                        </td>
+                        <td>
+                            <p>{{ cdp.challenge4 }}</p>
 
-                <tr>
-                    <td>
-                        <p>{{ cdp.coreQuality5 }}</p>
+                            <p>{{ cdp.challengeWhy4 }}</p>
+                        </td>
+                        <td>{{ entity.progressChallenge4 }}</td>
+                    </tr>
 
-                        <p>{{ cdp.coreQuality5Why }}</p>
-                    </td>
-                    <td>
-                        <p>{{ cdp.challenge5 }}</p>
+                {% endif %}
 
-                        <p>{{ cdp.challengeWhy5 }}</p>
-                    </td>
-                    <td>{{ cdp.challengeHow5 }}</td>
-                    <td>{{ cdp.challengeSuccess5 }}</td>
-                    <td>{{ cdp.challengeNeeds5 }}</td>
-                </tr>
+                {% if cdp.coreQuality5 != null %}
+
+                    <tr>
+                        <td>
+                            <p>{{ cdp.coreQuality5 }}</p>
+
+                            <p>{{ cdp.coreQuality5Why }}</p>
+                        </td>
+                        <td>
+                            <p>{{ cdp.challenge5 }}</p>
+
+                            <p>{{ cdp.challengeWhy5 }}</p>
+                        </td>
+                        <td>{{ entity.progressChallenge5 }}</td>
+                    </tr>
+
+                {% endif %}
 
             </table>
 
@@ -381,46 +375,65 @@
         </div>
     </div>
 
+    <div class="row">
 
 
+        {% if entity.formstatus.id > 3 %}
 
-    {% if entity.formstatus.id > 3 %}
-
-        <div class="row margin-top-50">
             <div class="col-md-6">
 
-                <h3>Comments supervisor</h3>
+                <div class="panel panel-default">
+                    <div class="panel-body">
 
-                {{ entity.commentSup }}
+                        <h3>Comments supervisor</h3>
+
+                        {{ entity.commentSup }}
+                    </div>
+                </div>
 
             </div>
-        </div>
 
-    {% endif %}
+        {% else %}
 
-    {% if entity.formstatus.id > 5 %}
-
-        <div class="row margin-top-50">
             <div class="col-md-6">
 
-                <h3>Feedback HR</h3>
-
-                {{ entity.feedbackHR }}
+                {% block comment %}
+                {% endblock %}
 
             </div>
-        </div>
 
-    {% endif %}
+        {% endif %}
+
+        {% if entity.formstatus.id > 5 %}
+
+            <div class="col-md-6">
+
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        <h3>Feedback HR</h3>
+
+                        {{ entity.feedbackHR }}
+
+                    </div>
+                </div>
+
+            </div>
+
+        {% else %}
+
+            <div class="col-md-6">
+
+                {% block feedback %}
+                {% endblock %}
+
+            </div>
 
 
-    {% block comment %}
-    {% endblock %}
+        {% endif %}
 
 
-    <a href="{{ path('feedbackcycle') }}" class="btn btn-default btn-cons" type="button"> Back to the list </a>
-
-
-
+    </div>
 
 {% endblock %}
 

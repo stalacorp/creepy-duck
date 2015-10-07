@@ -7,7 +7,7 @@ endyeartemplate_show:
     defaults: { _controller: "IntoPeopleDatabaseBundle:Endyeartemplate:show" }
 
 endyeartemplate_new:
-    path:     /new
+    path:     /{templateversionId}/new
     defaults: { _controller: "IntoPeopleDatabaseBundle:Endyeartemplate:new" }
 
 endyeartemplate_create:

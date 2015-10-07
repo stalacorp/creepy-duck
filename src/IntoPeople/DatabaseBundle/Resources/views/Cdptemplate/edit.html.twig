@@ -98,11 +98,12 @@
 
             <table class="table borderless">
                 <tr>
-                    <th style="width: 20%">{{ form_widget(edit_form.table2Col1) }}</th>
-                    <th style="width: 20%">{{ form_widget(edit_form.table2Col2) }}</th>
-                    <th style="width: 20%">{{ form_widget(edit_form.table2Col3) }}</th>
-                    <th style="width: 20%">{{ form_widget(edit_form.table2Col4) }}</th>
-                    <th style="width: 20%">{{ form_widget(edit_form.table2Col5) }}</th>
+                    <th style="width: 16%">{{ form_widget(edit_form.table2Col1) }}</th>
+                    <th style="width: 16%">{{ form_widget(edit_form.table2Col2) }}</th>
+                    <th style="width: 16%">{{ form_widget(edit_form.table2Col3) }}</th>
+                    <th style="width: 16%">{{ form_widget(edit_form.table2Col4) }}</th>
+                    <th style="width: 16%">{{ form_widget(edit_form.table2Col5) }}</th>
+                    <th style="width: 16%">{{ form_widget(edit_form.table2Col6) }}</th>
                 </tr>
 
                 <tr>
@@ -111,6 +112,7 @@
                     <td>{{ form_widget(edit_form.table2Col3Descr) }}</td>
                     <td>{{ form_widget(edit_form.table2Col4Descr) }}</td>
                     <td>{{ form_widget(edit_form.table2Col5Descr) }}</td>
+                    <td>{{ form_widget(edit_form.table2Col6Descr) }}</td>
                 </tr>
 
                 <tr>
@@ -305,12 +307,10 @@
     <div class="buttons">
         {{ form_widget(edit_form.submit) }}
 
-        <a href="{{ path('cdptemplate') }}" type="button" class="btn btn-default btn-cons">{{ "button.back" | trans }}</a>
+        <a href="{{ path('templateversion') }}" type="button" class="btn btn-default btn-cons">{{ "button.back" | trans }}</a>
     </div>
 
     {{ form_end(edit_form) }}
-
-    {{ form(delete_form) }}
 
 
 {% endblock %}

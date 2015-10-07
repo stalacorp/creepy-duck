@@ -4,7 +4,24 @@
     <h2>{{ 'user.show.title' | trans }}</h2>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-3">
+
+            {% if entity.photoname != null %}
+
+            <p><img src="{{ app.request.basePath }}{{ vich_uploader_asset(entity, 'photo') }}"
+                    alt="{{ entity.photoname }}" width="252px"/></p>
+
+            {% else %}
+
+            <p><img src="{{ app.request.basePath }}/images/users/placeholder.png"
+                    alt="placeholder" width="252px"/></p>
+
+            {% endif %}
+
+
+        </div>
+
+        <div class="col-md-offset-1 col-md-5">
 
 
             <table class="table borderless">
@@ -19,23 +36,23 @@
                 </tr>
                 <tr>
                     <th>Email</th>
-                    <td>{{ entity.email }}</td>
+                    <td><a href="mailto:{{ entity.email }}">{{ entity.email }}</a></td>
                 </tr>
                 <tr>
                     <th>Supervisor</th>
-                    <td>{{ entity.supervisor }}</td>
+                    <td>{% if entity.supervisor != null %}<a href="{{ path('user_show', {'id': entity.supervisor.id}) }}">{{ entity.supervisor }}</a>{% endif %}</td>
                 </tr>
                 <tr>
                     <th>User status</th>
-                    <td>{{ entity.userstatus }}</td>
+                    <td>{% if entity.enabled == 1 %}{{ 'user.enabled' | trans }}{% else %}{{ 'user.disabled' | trans }}{% endif %}</td>
                 </tr>
                 <tr>
                     <th>Team</th>
                     <td>{{ entity.team }}</td>
                 </tr>
                 <tr>
-                    <th>Function</th>
-                    <td>{{ entity.function }}</td>
+                    <th>Jobtitle</th>
+                    <td>{{ entity.jobtitle }}</td>
                 </tr>
                 <tr>
                     <th>Hiredate</th>
@@ -45,16 +62,12 @@
                     <th>Datelastpromotion</th>
                     <td>{% if entity.datelastpromotion != null %}{{ entity.datelastpromotion | localizeddate('medium', 'none', app.request.locale ) }}{% endif %}</td>
                 </tr>
-                <tr>
-                    <th>Photo</th>
-                    <td><img src="{{ app.request.basePath }}{{ vich_uploader_asset(entity, 'photo') }}"
-                             alt="{{ entity.photoname }}"/></td>
-                </tr>
+
                 </tbody>
             </table>
 
 
-            <a href="{{ path('user') }}" type="button" class="btn btn-default btn-cons"> Back to the list </a>
+            <a href="{{ path('user') }}" type="button" class="btn btn-default btn-cons"> {{ 'button.back' | trans }} </a>
             <a href="{{ path('user_edit', { 'id': entity.id }) }}" type="button" class="btn btn-default btn-cons">
                 Edit </a>
 
@@ -64,8 +77,47 @@
         </div>
     </div>
 
+    <div class="modal fade" id="errorModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{{ 'user.deleteerrormodal.title' | trans }}</h4>
+                </div>
+                <div class="modal-body">
+                    <p><span id="errortext"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'modal.ok' | trans }}</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
+{% endblock %}
 
+{% block javascripts -%}
+    {{ parent() }}
+    <script>
+        $(function(){
+
+            $('form[name="form"]').bind('submit', function(e){
+                $.ajax({
+                    url: Routing.generate('user_deleteable', {id:{{ entity.id }} , _locale: locale}),
+                    async: false,
+                    success: function (result) {
+                        if (result != 'ok'){
+                            e.preventDefault();
+                            $('#errortext').html(result);
+                            $('#errorModal').modal('show');
+
+                        }
+                    }
+                });
+
+            });
+        })
+    </script>
 {% endblock %}
 
 

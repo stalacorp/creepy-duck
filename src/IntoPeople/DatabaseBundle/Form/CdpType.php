@@ -14,12 +14,34 @@ class CdpType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $entity = $options['data'];
+        $corequality1 = '';
+        if ($entity->getCoreQuality1() != null){
+            $corequality1 = $entity->getCoreQuality1()->getCoreQuality();
+        }
+        $corequality2 = '';
+        if ($entity->getCoreQuality2() != null){
+            $corequality2 = $entity->getCoreQuality2()->getCoreQuality();
+        }
+        $corequality3 = '';
+        if ($entity->getCoreQuality3() != null){
+            $corequality3 = $entity->getCoreQuality3()->getCoreQuality();
+        }
+        $corequality4 = '';
+        if ($entity->getCoreQuality4() != null){
+            $corequality4 = $entity->getCoreQuality4()->getCoreQuality();
+        }
+        $corequality5 = '';
+        if ($entity->getCoreQuality5() != null){
+            $corequality5 = $entity->getCoreQuality5()->getCoreQuality();
+        }
+
         $builder
-            ->add('coreQuality1')
-            ->add('coreQuality2')
-            ->add('coreQuality3')
-            ->add('coreQuality4')
-            ->add('coreQuality5')
+            ->add('coreQuality1', 'hidden', array('mapped' => false, 'data' => $corequality1))
+            ->add('coreQuality2', 'hidden', array('mapped' => false, 'data' => $corequality2))
+            ->add('coreQuality3', 'hidden', array('mapped' => false, 'data' => $corequality3))
+            ->add('coreQuality4', 'hidden', array('mapped' => false, 'data' => $corequality4))
+            ->add('coreQuality5', 'hidden', array('mapped' => false, 'data' => $corequality5))
             ->add('coreQuality1Why')
             ->add('coreQuality2Why')
             ->add('coreQuality3Why')
@@ -40,6 +62,11 @@ class CdpType extends AbstractType
             ->add('challengeHow3')
             ->add('challengeHow4')
             ->add('challengeHow5')
+            ->add('pitfall1')
+            ->add('pitfall2')
+            ->add('pitfall3')
+            ->add('pitfall4')
+            ->add('pitfall5')
             ->add('challengeSuccess1')
             ->add('challengeSuccess2')
             ->add('challengeSuccess3')

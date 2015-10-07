@@ -49,31 +49,6 @@ class CdptemplateController extends Controller
             $dt->format('Y-m-d');
             $entity->setDate($dt);
 
-            
-            // Find all cdps of the company and change cdptemplate 
-            // ---
-            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdp');
-            
-            $em = $this->getDoctrine()->getManager();
-            $qb = $em->createQueryBuilder();
-            
-            $qb = $repository->createQueryBuilder('c')
-            ->join('c.feedbackcycle', 'f')
-            ->join('f.generalcycle', 'g')
-            ->join('f.person', 'p')
-            ->where('g.organization = :organization')
-            ->andWhere('g.generalcyclestatus = :active')
-            ->andWhere($qb->expr()->orX($qb->expr()->eq('c.formstatus', 1),$qb->expr()->eq('c.formstatus', 8)))
-            ->setParameter('organization', $user->getOrganization())
-            ->setParameter('active', 1)
-            ->getQuery();
-            
-            $cdps = $qb->getResult();
-              
-            foreach($cdps as $cdp) {
-                $cdp->setCdptemplate($entity);
-            }
-            
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -110,7 +85,7 @@ class CdptemplateController extends Controller
      * Displays a form to create a new Cdptemplate entity.
      *
      */
-    public function newAction()
+    public function newAction($templateversionId)
     {
         $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
             
@@ -124,6 +99,12 @@ class CdptemplateController extends Controller
         if ($entity == null) {
             $entity = new Cdptemplate();
         }
+
+        $em = $this->getDoctrine()->getManager();
+
+        $templateversion = $em->getRepository('IntoPeopleDatabaseBundle:Templateversion')->find($templateversionId);
+
+        $entity->setTemplateversion($templateversion);
         
         $form   = $this->createCreateForm($entity);
 

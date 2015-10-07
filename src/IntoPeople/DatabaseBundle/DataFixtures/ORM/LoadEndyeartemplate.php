@@ -20,7 +20,7 @@ class LoadEndyeartemplate extends AbstractFixture implements OrderedFixtureInter
     {
         $endyeartemplate = new Endyeartemplate();
 
-        $endyeartemplate->setMainTitle('Career Development Plan');
+        $endyeartemplate->setMainTitle('Year End');
         $endyeartemplate->setTitle1('Personalia');
 
         $endyeartemplate->setName('Name');
@@ -70,6 +70,8 @@ class LoadEndyeartemplate extends AbstractFixture implements OrderedFixtureInter
         $endyeartemplate->setSignatureEmployee("Date & Employee's Signature");
         $endyeartemplate->setLanguage($this->getReference('english'));
 
+        $endyeartemplate->setTemplateversion($this->getReference('Templates2015'));
+
         $dt = new \DateTime();
         $endyeartemplate->setDate($dt);
 
@@ -84,6 +86,6 @@ class LoadEndyeartemplate extends AbstractFixture implements OrderedFixtureInter
      */
     public function getOrder()
     {
-        return 4;
+        return 5;
     }
 }

@@ -1,95 +1,333 @@
-cdptemplate.edit.title: __cdptemplate.edit.title
-button.back: 'Back'
-cdptemplate.index.title: __cdptemplate.index.title
+Addfeedback: Addfeedback
+Available: Available
+Cdp: Cdp
+Create users: Create users
+Create: Create
+Delete: Delete
+Enabled: Enabled
+End date: End date
+Finished: Finished
+HR / Management: HR / Management
+In Progress: In Progress
+Mid Year: Mid Year
+On hold: On hold
+Save and Submit: Save and Submit
+Save: Save
+Sent back by HR: Sent back by HR
+Sent back by supervisor: Sent back by supervisor
+Sent to HR: Sent to HR
+Sent to supervisor: Sent to supervisor
+Start date: Start date
+Supervisor: Supervisor
+Unavailable: Unavailable
+Update: Update
+Year End: Year End
+actions: actions
+app.user.profile.firstname: Firstname
+app.user.profile.language: Language
+app.user.profile.lastname: Lastname
+app.user.profile.newpassword.first: New password
+app.user.profile.newpassword.second: Repeat password
+app.user.profile.oldpassword: Old Password
+button.back: Back
+button.create: Create
+button.edit: Edit
+button.history: History
+button.show: Show
+cdp.additionalinformation: Additional information
+cdp.button.pickcorequalities: Core Qualities
+cdp.careerobjective: cdp.careerobjective
+cdp.challenge1: cdp.challenge1
+cdp.challenge2: cdp.challenge2
+cdp.challenge3: cdp.challenge3
+cdp.challenge4: cdp.challenge4
+cdp.challenge5: cdp.challenge5
+cdp.challengeHow1: cdp.challengeHow1
+cdp.challengeHow2: cdp.challengeHow2
+cdp.challengeHow3: cdp.challengeHow3
+cdp.challengeHow4: cdp.challengeHow4
+cdp.challengeHow5: cdp.challengeHow5
+cdp.challengeNeeds1: cdp.challengeNeeds1
+cdp.challengeNeeds2: cdp.challengeNeeds2
+cdp.challengeNeeds3: cdp.challengeNeeds3
+cdp.challengeNeeds4: cdp.challengeNeeds4
+cdp.challengeNeeds5: cdp.challengeNeeds5
+cdp.challengeSuccess1: cdp.challengeSuccess1
+cdp.challengeSuccess2: cdp.challengeSuccess2
+cdp.challengeSuccess3: cdp.challengeSuccess3
+cdp.challengeSuccess4: cdp.challengeSuccess4
+cdp.challengeSuccess5: cdp.challengeSuccess5
+cdp.challengeWhy1: cdp.challengeWhy1
+cdp.challengeWhy2: cdp.challengeWhy2
+cdp.challengeWhy3: cdp.challengeWhy3
+cdp.challengeWhy4: cdp.challengeWhy4
+cdp.challengeWhy5: cdp.challengeWhy5
+cdp.coreQuality1Why: cdp.coreQuality1Why
+cdp.coreQuality2Why: cdp.coreQuality2Why
+cdp.coreQuality3Why: cdp.coreQuality3Why
+cdp.coreQuality4Why: cdp.coreQuality4Why
+cdp.coreQuality5Why: cdp.coreQuality5Why
+cdp.developmentneeds.organizationcompetence1: cdp.developmentneeds.organizationcompetence1
+cdp.developmentneeds.organizationcompetence2: cdp.developmentneeds.organizationcompetence2
+cdp.developmentneeds.organizationcompetence3: cdp.developmentneeds.organizationcompetence3
+cdp.developmentneeds.organizationcompetence4: cdp.developmentneeds.organizationcompetence4
+cdp.developmentneeds.organizationcompetence5: cdp.developmentneeds.organizationcompetence5
+cdp.developmentneeds.organizationdescription1: cdp.developmentneeds.organizationdescription1
+cdp.developmentneeds.organizationdescription2: cdp.developmentneeds.organizationdescription2
+cdp.developmentneeds.organizationdescription3: cdp.developmentneeds.organizationdescription3
+cdp.developmentneeds.organizationdescription4: cdp.developmentneeds.organizationdescription4
+cdp.developmentneeds.organizationdescription5: cdp.developmentneeds.organizationdescription5
+cdp.developmentneeds.skill1: cdp.developmentneeds.skill1
+cdp.developmentneeds.skill2: cdp.developmentneeds.skill2
+cdp.developmentneeds.skill3: cdp.developmentneeds.skill3
+cdp.developmentneeds.skill4: cdp.developmentneeds.skill4
+cdp.developmentneeds.skill5: cdp.developmentneeds.skill5
+cdp.developmentneeds.task1: cdp.developmentneeds.task1
+cdp.developmentneeds.task2: cdp.developmentneeds.task2
+cdp.developmentneeds.task3: cdp.developmentneeds.task3
+cdp.developmentneeds.task4: cdp.developmentneeds.task4
+cdp.developmentneeds.task5: cdp.developmentneeds.task5
+cdp.developmentneeds: cdp.developmentneeds
+cdp.modal.max5error: cdp.modal.max5error
+cdp.modal.min3error: cdp.modal.min3error
+cdp.organizationhow1: cdp.organizationhow1
+cdp.organizationhow2: cdp.organizationhow2
+cdp.organizationhow3: cdp.organizationhow3
+cdp.organizationhow4: cdp.organizationhow4
+cdp.organizationhow5: cdp.organizationhow5
+cdp.organizationneeds1: cdp.organizationneeds1
+cdp.organizationneeds2: cdp.organizationneeds2
+cdp.organizationneeds3: cdp.organizationneeds3
+cdp.organizationneeds4: cdp.organizationneeds4
+cdp.organizationneeds5: cdp.organizationneeds5
+cdp.organizationsuccess1: cdp.organizationsuccess1
+cdp.organizationsuccess2: cdp.organizationsuccess2
+cdp.organizationsuccess3: cdp.organizationsuccess3
+cdp.organizationsuccess4: cdp.organizationsuccess4
+cdp.organizationsuccess5: cdp.organizationsuccess5
+cdp.pitfall1: cdp.pitfall1
+cdp.pitfall2: cdp.pitfall2
+cdp.pitfall3: cdp.pitfall3
+cdp.pitfall4: cdp.pitfall4
+cdp.pitfall5: cdp.pitfall5
+cdp.skillshow1: cdp.skillshow1
+cdp.skillshow2: cdp.skillshow2
+cdp.skillshow3: cdp.skillshow3
+cdp.skillshow4: cdp.skillshow4
+cdp.skillshow5: cdp.skillshow5
+cdp.skillsneeds1: cdp.skillsneeds1
+cdp.skillsneeds2: cdp.skillsneeds2
+cdp.skillsneeds3: cdp.skillsneeds3
+cdp.skillsneeds4: cdp.skillsneeds4
+cdp.skillsneeds5: cdp.skillsneeds5
+cdp.skillssucces2: cdp.skillssucces2
+cdp.skillssucces3: cdp.skillssucces3
+cdp.skillssucces4: cdp.skillssucces4
+cdp.skillssucces5: cdp.skillssucces5
+cdp.skillssuccess1: cdp.skillssuccess1
+cdp.taskhow1: cdp.taskhow1
+cdp.taskhow2: cdp.taskhow2
+cdp.taskhow3: cdp.taskhow3
+cdp.taskhow4: cdp.taskhow4
+cdp.taskhow5: cdp.taskhow5
+cdp.taskneeds1: cdp.taskneeds1
+cdp.taskneeds2: cdp.taskneeds2
+cdp.taskneeds3: cdp.taskneeds3
+cdp.taskneeds4: cdp.taskneeds4
+cdp.taskneeds5: cdp.taskneeds5
+cdp.tasksucces1: cdp.tasksucces1
+cdp.tasksucces2: cdp.tasksucces2
+cdp.tasksucces3: cdp.tasksucces3
+cdp.tasksucces4: cdp.tasksucces4
+cdp.tasksucces5: cdp.tasksucces5
+cdptemplate.edit.title: Edit CDP Template
+cdptemplate.feedback: cdptemplate.feedback
+cdptemplate.index.title: CDP Template
+cdptemplate.language: cdptemplate.language
+cdptemplate.mainTitle: cdptemplate.mainTitle
 cdptemplate.new.title: __cdptemplate.new.title
+cdptemplate.question1: cdptemplate.question1
+cdptemplate.question2: cdptemplate.question2
 cdptemplate.show.title: __cdptemplate.show.title
-button.edit: 'Edit'
+cdptemplate.signatureEmployee: cdptemplate.signatureEmployee
+cdptemplate.signatureSupervisor: cdptemplate.signatureSupervisor
+cdptemplate.supervisorComment: cdptemplate.supervisorComment
+cdptemplate.table3Title1: cdptemplate.table3Title1
+cdptemplate.table3Title2: cdptemplate.table3Title2
+cdptemplate.table3Title3: cdptemplate.table3Title3
+cdptemplate.templateversion: cdptemplate.templateversion
+cdptemplate.title1: cdptemplate.title1
+cdptemplate.title1Description: cdptemplate.title1Description
+cdptemplate.title2: cdptemplate.title2
+cdptemplate.title2Description: cdptemplate.title2Description
+cdptemplate.title3: cdptemplate.title3
+cdptemplate.title3Description: cdptemplate.title3Description
+cdptemplate.title4: cdptemplate.title4
+cdptemplate.title5: cdptemplate.title5
+corequality.coreQuality: corequality.coreQuality
 corequality.edit.title: __corequality.edit.title
-corequality.index.title: __corequality.index.title
-button.create: 'Create'
+corequality.index.title: Core Qualities
+corequality.language: corequality.language
 corequality.new.title: __corequality.new.title
 corequality.show.title: __corequality.show.title
-endyear.show.title: __endyear.show.title
-midyeartemplate.edit.title: __midyeartemplate.edit.title
-endyeartemplate.index.title: __endyeartemplate.index.title
-endyeartemplate.new.title: __endyeartemplate.new.title
-endyeartemplate.show.title: __endyeartemplate.show.title
-endyeartemplate.show.language: __endyeartemplate.show.language
-endyeartemplate.show.date: __endyeartemplate.show.date
-generalcycle.edit.title: __generalcycle.edit.title
-generalcycle.new.subtitle1: __generalcycle.new.subtitle1
-generalcycle.new.subtitle2: __generalcycle.new.subtitle2
-generalcycle.new.subtitle3: __generalcycle.new.subtitle3
-generalcycle.new.subtitle4: __generalcycle.new.subtitle4
-generalcycle.index.title: __generalcycle.index.title
-generalcycle.index.active: __generalcycle.index.active
-generalcycle.index.finished: __generalcycle.index.finished
-generalcycle.index.inactive: __generalcycle.index.inactive
-generalcycle.index.cdp: __generalcycle.index.cdp
-generalcycle.index.cdp.description: __generalcycle.index.cdp.description
-generalcycle.index.startdate: __generalcycle.index.startdate
-generalcycle.index.enddate: __generalcycle.index.enddate
-generalcycle.index.midyear: __generalcycle.index.midyear
-generalcycle.index.midyear.description: __generalcycle.index.midyear.description
-generalcycle.index.endyear: __generalcycle.index.endyear
-generalcycle.index.endyear.description: __generalcycle.index.endyear.description
-generalcycle.new.title: __generalcycle.new.title
-generalcycle.new.description1: __generalcycle.new.description1
-generalcycle.new.description2: __generalcycle.new.description2
-generalcycle.new.description3: __generalcycle.new.description3
-generalcycle.new.description4: __generalcycle.new.description4
-hr.dashboard.title: 'HR dashboard'
-dashboard.cycletitle: __dashboard.cycletitle
-dashboard.charttitle: __dashboard.charttitle
-dashboard.modal.mailssent.title: __dashboard.modal.mailssent.title
+dashboard.charttitle: Chart
+dashboard.clearsearch: Clear
+dashboard.cycletitle: Options
+dashboard.dropdown.exportexcel: Export Excel
+dashboard.dropdown.exportpdf: Export PDF
+dashboard.dropdown.remindermail: Send Reminder
 dashboard.modal.mailssent.body: __dashboard.modal.mailssent.body
-dashboard.dropdown.exportpdf: __dashboard.dropdown.exportpdf
-dashboard.dropdown.exportexcel: __dashboard.dropdown.exportexcel
-dashboard.dropdown.remindermail: __dashboard.dropdown.remindermail
-dashboard.clearsearch: __dashboard.clearsearch
-table.user: __table.user
-table.supervisor: __table.supervisor
-table.formstatus: __table.formstatus
-button.show: __button.show
-language.index.title: __language.index.title
+dashboard.modal.mailssent.title: __dashboard.modal.mailssent.title
+endyear.show.title: __endyear.show.title
+endyeartemplate.feedback: endyeartemplate.feedback
+endyeartemplate.index.title: __endyeartemplate.index.title
+endyeartemplate.language: endyeartemplate.language
+endyeartemplate.mainTitle: endyeartemplate.mainTitle
+endyeartemplate.new.title: __endyeartemplate.new.title
+endyeartemplate.question1: endyeartemplate.question1
+endyeartemplate.question2: endyeartemplate.question2
+endyeartemplate.question3: endyeartemplate.question3
+endyeartemplate.question4: endyeartemplate.question4
+endyeartemplate.show.date: __endyeartemplate.show.date
+endyeartemplate.show.language: __endyeartemplate.show.language
+endyeartemplate.show.title: __endyeartemplate.show.title
+endyeartemplate.signatureEmployee: endyeartemplate.signatureEmployee
+endyeartemplate.signatureSupervisor: endyeartemplate.signatureSupervisor
+endyeartemplate.supervisorComment: endyeartemplate.supervisorComment
+endyeartemplate.table3Title1: endyeartemplate.table3Title1
+endyeartemplate.table3Title2: endyeartemplate.table3Title2
+endyeartemplate.table3Title3: endyeartemplate.table3Title3
+endyeartemplate.title1: endyeartemplate.title1
+endyeartemplate.title1Description: endyeartemplate.title1Description
+endyeartemplate.title2: endyeartemplate.title2
+endyeartemplate.title2Description: endyeartemplate.title2Description
+endyeartemplate.title3: endyeartemplate.title3
+endyeartemplate.title3Description: endyeartemplate.title3Description
+endyeartemplate.title4: endyeartemplate.title4
+form.cycle: Form
+form.feedbackupload: Upload Feedback
+form.generalcycle: Generalcycle
+form.language: Language
+form.template: Template
+generalcycle.edit.title: Edit Generalcycle
+generalcycle.index.active: Active General Cycle
+generalcycle.index.cdp.description: Career Development Plan
+generalcycle.index.cdp: CDP
+generalcycle.index.enddate: End date
+generalcycle.index.endyear.description: How have you progressed this year?
+generalcycle.index.endyear: Year End
+generalcycle.index.finished: Finished General Cycle
+generalcycle.index.inactive: Inactive General Cycle
+generalcycle.index.midyear.description: How are your challenges / goals going?
+generalcycle.index.midyear: Mid Year
+generalcycle.index.startdate: Start date
+generalcycle.index.title: General Cycle
+generalcycle.new.description1: General information about the new general cycle.
+generalcycle.new.description2: When will your CDP start and end?
+generalcycle.new.description3: When will your Mid Year start and end?
+generalcycle.new.description4: When will your Year End start and end?
+generalcycle.new.subtitle1: General Information
+generalcycle.new.subtitle2: CDP
+generalcycle.new.subtitle3: Mid Year
+generalcycle.new.subtitle4: Year End
+generalcycle.new.title: New General Cycle
+generalcycle.year: Name
+hr.dashboard.title: HR dashboard
+language.index.title: Languages
 midyear.show.title: __midyear.show.title
-midyeartemplate.new.title: __midyeartemplate.new.title
+midyeartemplate.edit.title: __midyeartemplate.edit.title
+midyeartemplate.feedback: midyeartemplate.feedback
 midyeartemplate.index.title: __midyeartemplate.index.title
+midyeartemplate.language: midyeartemplate.language
+midyeartemplate.mainTitle: midyeartemplate.mainTitle
+midyeartemplate.new.title: __midyeartemplate.new.title
+midyeartemplate.question1: midyeartemplate.question1
+midyeartemplate.question2: midyeartemplate.question2
 midyeartemplate.show.title: __midyeartemplate.show.title
-myfeedbackcycle.cdp.description: __myfeedbackcycle.cdp.description
-myfeedbackcycle.cdp.startdate: 'Start date'
-myfeedbackcycle.cdp.enddate: 'End date'
-myfeedbackcycle.cdp.formstatus: 'Form status'
-myfeedbackcycle.cdp.formhistory: 'Form history'
-myfeedbackcycle.midyear.description: __myfeedbackcycle.midyear.description
-myfeedbackcycle.midyear.startdate: 'Start date'
-myfeedbackcycle.midyear.enddate: 'End date'
-myfeedbackcycle.midyear.formstatus: 'Form status'
-myfeedbackcycle.midyear.formhistory: 'Form history'
-myfeedbackcycle.endyear.description: __myfeedbackcycle.endyear.description
-myfeedbackcycle.endyear.startdate: 'Start date'
-myfeedbackcycle.endyear.enddate: 'End date'
-myfeedbackcycle.endyear.formstatus: 'Form status'
-myfeedbackcycle.endyear.formhistory: 'Form history'
-myfeedbackcycle.index.title: 'My feedbackcycle'
+midyeartemplate.signatureEmployee: midyeartemplate.signatureEmployee
+midyeartemplate.signatureSupervisor: midyeartemplate.signatureSupervisor
+midyeartemplate.supervisorComment: midyeartemplate.supervisorComment
+midyeartemplate.table3Title1: midyeartemplate.table3Title1
+midyeartemplate.table3Title2: midyeartemplate.table3Title2
+midyeartemplate.table3Title3: midyeartemplate.table3Title3
+midyeartemplate.title1: midyeartemplate.title1
+midyeartemplate.title1Description: midyeartemplate.title1Description
+midyeartemplate.title2: midyeartemplate.title2
+midyeartemplate.title2Description: midyeartemplate.title2Description
+midyeartemplate.title3: midyeartemplate.title3
+midyeartemplate.title3Description: midyeartemplate.title3Description
+midyeartemplate.title4: midyeartemplate.title4
+modal.cancel: Cancel
+modal.ok: Ok
+myfeedbackcycle.cdp.description: Career Development Plan
+myfeedbackcycle.cdp.enddate: End date
+myfeedbackcycle.cdp.formhistory: Form history
+myfeedbackcycle.cdp.formstatus: Form status
+myfeedbackcycle.cdp.startdate: Start date
+myfeedbackcycle.cdp.title: CDP
+myfeedbackcycle.endyear.description: How are your challenges / goals going?
+myfeedbackcycle.endyear.enddate: End date
+myfeedbackcycle.endyear.formhistory: Form history
+myfeedbackcycle.endyear.formstatus: Form status
+myfeedbackcycle.endyear.startdate: Start date
+myfeedbackcycle.endyear.title: Year End
+myfeedbackcycle.index.title: My feedbackcycle
+myfeedbackcycle.midyear.description: How have you progressed this year?
+myfeedbackcycle.midyear.enddate: End date
+myfeedbackcycle.midyear.formhistory: Form history
+myfeedbackcycle.midyear.formstatus: Form status
+myfeedbackcycle.midyear.startdate: Start date
+myfeedbackcycle.midyear.title: Mid Year
+notification.create.generalcycle: You've successfully created a new generalcycle.
+notification.user.profile: notification.user.profile
 organization.edit.title: __organization.edit.title
-organization.index.title: __organization.index.title
-supervisor.dashboard.title: __supervisor.dashboard.title
+organization.index.title: Organization
+supervisor.cycletitle: Options
+supervisor.dashboard.title: Dashboard Supervisor
 supervisor.index.title: __supervisor.index.title
-systemmail.urlinstruction: __systemmail.urlinstruction
-systemmail.header: __systemmail.header
-table.name: __table.name
-table.isactive: __table.isactive
-systemmail.toggleenable: __systemmail.toggleenable
+systemmail.header: Systemmails
 systemmail.toggledisable: __systemmail.toggledisable
+systemmail.toggleenable: __systemmail.toggleenable
+systemmail.urlinstruction: __systemmail.urlinstruction
+table.formstatus: Form status
+table.isactive: Active
+table.name: Name
+table.supervisor: Supervisor
+table.user: User
+templates.index.tabe.date: Date
+templates.index.table.actions: Actions
+templates.index.table.language: Language
+templates.index.title: Templates
+upload.index.title: upload.index.title
+upload.name: upload.name
+upload.new.title: upload.new.title
+upload.uploadFile.file: upload.uploadFile.file
+upload.uploadFile: upload.uploadFile
+user.datelastpromotion: user.datelastpromotion
 user.edit.title: __user.edit.title
-user.index.title: __user.index.title
-user.index.title2: __user.index.title2
-user.templateexplanation: __user.templateexplanation
-user.templatedownload: __user.templatedownload
+user.email: user.email
+user.enabled: user.enabled
+user.firstname: user.firstname
+user.hiredate: user.hiredate
+user.index.title2: Upload
+user.index.title: Users
+user.jobtitle: user.jobtitle
+user.language: user.language
+user.lastname: user.lastname
+user.photo.file: user.photo.file
+user.photo: user.photo
+user.profile.firstname: user.profile.firstname
+user.profile.language: user.profile.language
+user.profile.lastname: user.profile.lastname
+user.profile.newpassword.first: user.profile.newpassword.first
+user.profile.newpassword.second: user.profile.newpassword.second
+user.profile.oldpassword: user.profile.oldpassword
+user.profile.oldpasswordwrong: user.profile.oldpasswordwrong
 user.profile.title: __user.profile.title
+user.roles: user.roles
 user.show.title: __user.show.title
-button.history: __button.history
-myfeedbackcycle.cdp.title: 'CDP'
-myfeedbackcycle.midyear.title: 'Mid Year'
-myfeedbackcycle.endyear.title: 'Year End'
+user.status: Status
+user.supervisor: Supervisor
+user.team: Team
+user.templatedownload: Download Template
+user.templateexplanation: Download the template, add all users and upload it to add users.

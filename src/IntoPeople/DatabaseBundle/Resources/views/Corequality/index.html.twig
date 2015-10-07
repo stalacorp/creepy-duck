@@ -1,13 +1,22 @@
 {% extends '::base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('assets/vendor/datatables/media/css/dataTables.bootstrap.min.css') }}" rel="stylesheet"
+          type="text/css" media="screen">
+    <link href="{{ asset('assets/css/select.bootstrap.min.css') }}" rel="stylesheet" type="text/css" media="screen">
+
+{% endblock %}
+
 {% block body -%}
 
 
     <h2>{{ 'corequality.index.title' | trans }}</h2>
 
 
+
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
 
 
             {% for flashMessage in app.session.flashbag.get('success') %}
@@ -19,8 +28,10 @@
 
             {% endfor %}
 
+            <a href="{{ path('corequality_new') }}" role="button" class="btn btn-default">{{ 'button.corequality.create' | trans }}</a>
 
-            <table class="table borderless">
+
+            <table id="mytable" class="table">
                 <thead>
                 <tr>
                     <th>Corequality</th>
@@ -33,20 +44,38 @@
                     <tr>
                         <td>{{ entity.coreQuality }}</td>
                         <td>{{ entity.language }}</td>
-                        <td>
-                            <a href="{{ path('corequality_edit', { 'id': entity.id }) }}" role="button" class="btn btn-default">{{ 'button.edit' | trans }}</a>
-                        </td>
+                        <td><a href="{{ path('corequality_edit', { 'id': entity.id }) }}" role="button" class="btn btn-default">{{ 'button.edit' | trans }}</a></td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
 
 
-            <a href="{{ path('corequality_new') }}" role="button" class="btn btn-default">{{ 'button.create' | trans }}</a>
+
 
 
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts -%}
+    {{ parent() }}
+
+    <script src="{{ asset('assets/vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/datatables/media/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dataTables.select.min.js') }}"></script>
+
+
+    <script>
+
+        $(document).ready(function(){
+            $('#mytable').DataTable({
+            });
+        });
+
+
+
+    </script>
 {% endblock %}
 

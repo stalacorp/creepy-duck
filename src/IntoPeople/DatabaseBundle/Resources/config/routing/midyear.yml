@@ -6,7 +6,7 @@ midyear_update:
 midyear_edit:
     path:     /{id}/edit
     defaults: { _controller: "IntoPeopleDatabaseBundle:MyMidyear:edit" }
-    
+
 midyear_show:
     path:     /{id}/show
     defaults: { _controller: "IntoPeopleDatabaseBundle:MyMidyear:show" }

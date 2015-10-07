@@ -7,7 +7,7 @@ cdptemplate_show:
     defaults: { _controller: "IntoPeopleDatabaseBundle:Cdptemplate:show" }
 
 cdptemplate_new:
-    path:     /new
+    path:     /{templateversionId}/new
     defaults: { _controller: "IntoPeopleDatabaseBundle:Cdptemplate:new" }
 
 cdptemplate_create:

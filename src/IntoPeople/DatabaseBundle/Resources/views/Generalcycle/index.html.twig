@@ -38,71 +38,97 @@
                         <div class="row">
                             <div class="col-md-4">
 
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
 
-                                <h3>{{ 'generalcycle.index.cdp' | trans }}</h3>
+                                        <h3>{{ 'generalcycle.index.cdp' | trans }}</h3>
 
-                                <p>{{ 'generalcycle.index.cdp.description' | trans }}</p>
+                                        <p>{{ 'generalcycle.index.cdp.description' | trans }}</p>
 
-                                <table class="table borderless">
+                                        <table class="table borderless">
 
-                                    <tr>
-                                        <th>{{ 'generalcycle.index.startdate' | trans }}</th>
-                                        <td>{{ entity.startdatecdp | localizeddate('medium', 'none', app.request.locale ) }}</td>
-                                    </tr>
+                                            <tr>
+                                                <th>{{ 'generalcycle.index.startdate' | trans }}</th>
+                                                <td>{{ entity.startdatecdp | localizeddate('medium', 'none', app.request.locale ) }}</td>
+                                            </tr>
 
-                                    <tr>
-                                        <th>{{ 'generalcycle.index.enddate' | trans }}</th>
-                                        <td>{{ entity.enddatecdp | localizeddate('medium', 'none', app.request.locale ) }}</td>
-                                    </tr>
-
-
-                                </table>
-
-                            </div>
-
-                            <div class="col-md-4">
-
-                                <h3>{{ 'generalcycle.index.midyear' | trans }}</h3>
-
-                                <p>{{ 'generalcycle.index.midyear.description' | trans }}</p>
-
-                                <table class="table borderless">
-
-                                    <tr>
-                                        <th>{{ 'generalcycle.index.startdate' | trans }}</th>
-                                        <td>{{ entity.startdatemidyear | localizeddate('medium', 'none', app.request.locale ) }}</td>
-                                    </tr>
-
-                                    <tr>
-                                        <th>{{ 'generalcycle.index.enddate' | trans }}</th>
-                                        <td>{{ entity.enddatemidyear | localizeddate('medium', 'none', app.request.locale ) }}</td>
-                                    </tr>
+                                            <tr>
+                                                <th>{{ 'generalcycle.index.enddate' | trans }}</th>
+                                                <td>{{ entity.enddatecdp | localizeddate('medium', 'none', app.request.locale ) }}</td>
+                                            </tr>
 
 
-                                </table>
+                                        </table>
+
+                                    </div>
+                                </div>
 
                             </div>
 
                             <div class="col-md-4">
 
-                                <h3>{{ 'generalcycle.index.endyear' | trans }}</h3>
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
 
-                                <p>{{ 'generalcycle.index.endyear.description' | trans }}</p>
+                                        <h3>{{ 'generalcycle.index.midyear' | trans }}</h3>
 
-                                <table class="table borderless">
+                                        <p>{{ 'generalcycle.index.midyear.description' | trans }}</p>
 
-                                    <tr>
-                                        <th>{{ 'generalcycle.index.startdate' | trans }}</th>
-                                        <td>{{ entity.startdateyearend | localizeddate('medium', 'none', app.request.locale ) }}</td>
-                                    </tr>
+                                        <table class="table borderless">
 
-                                    <tr>
-                                        <th>{{ 'generalcycle.index.enddate' | trans }}</th>
-                                        <td>{{ entity.enddateyearend | localizeddate('medium', 'none', app.request.locale ) }}</td>
-                                    </tr>
+                                            <tr>
+                                                <th>{{ 'generalcycle.index.startdate' | trans }}</th>
+                                                <td>{% if entity.startdatemidyear != null %}
+                                                        {{ entity.startdatemidyear | localizeddate('medium', 'none', app.request.locale ) }}
+                                                    {% else %}
+                                                        {{ 'Unavailable' | trans }}
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <th>{{ 'generalcycle.index.enddate' | trans }}</th>
+                                                <td>{% if entity.enddatemidyear != null %}
+                                                        {{ entity.enddatemidyear | localizeddate('medium', 'none', app.request.locale ) }}
+                                                    {% else %}
+                                                        {{ 'Unavailable' | trans }}
+                                                    {% endif %}</td>
+                                            </tr>
 
 
-                                </table>
+                                        </table>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+
+                                        <h3>{{ 'generalcycle.index.endyear' | trans }}</h3>
+
+                                        <p>{{ 'generalcycle.index.endyear.description' | trans }}</p>
+
+                                        <table class="table borderless">
+
+                                            <tr>
+                                                <th>{{ 'generalcycle.index.startdate' | trans }}</th>
+                                                <td>{{ entity.startdateyearend | localizeddate('medium', 'none', app.request.locale ) }}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <th>{{ 'generalcycle.index.enddate' | trans }}</th>
+                                                <td>{{ entity.enddateyearend | localizeddate('medium', 'none', app.request.locale ) }}</td>
+                                            </tr>
+
+
+                                        </table>
+
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
@@ -110,7 +136,8 @@
                         <div class="row">
                             <div class="col-md-12">
 
-                                <a href="{{ path('generalcycle_new') }}" type="button" class="btn btn-default">{{ 'button.create' | trans }}</a>
+                                <a href="{{ path('generalcycle_new') }}" type="button"
+                                   class="btn btn-default">{{ 'button.create' | trans }}</a>
                                 <a href="{{ path('generalcycle_edit',{'id' : entity.id}) }}" class="btn btn-default"
                                    type="button">{{ 'button.edit' | trans }}</a>
 
@@ -167,7 +194,8 @@
                                                    class="btn btn-default btn-cons" type="button">show</a>
 
                                                 <a href="{{ path('generalcycle_edit', { 'id': entity.id }) }}"
-                                                   class="btn btn-default btn-cons" type="button">{{ 'button.edit' | trans }}</a>
+                                                   class="btn btn-default btn-cons"
+                                                   type="button">{{ 'button.edit' | trans }}</a>
 
                                             </td>
 
@@ -220,7 +248,9 @@
                                                    class="btn btn-default btn-cons" type="button">show</a>
 
                                                 <a href="{{ path('generalcycle_edit', { 'id': entity.id }) }}"
-                                                   class="btn btn-default btn-cons" type="button"><th>{{ 'button.edit' | trans }}</th></a>
+                                                   class="btn btn-default btn-cons" type="button">
+                                                    <th>{{ 'button.edit' | trans }}</th>
+                                                </a>
 
                                             </td>
 

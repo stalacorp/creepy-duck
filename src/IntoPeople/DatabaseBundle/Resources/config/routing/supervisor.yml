@@ -50,3 +50,15 @@ supervisor_getforms:
     defaults: { _controller: "IntoPeopleDatabaseBundle:Supervisor:getforms" }
     options:
       expose: true
+
+supervisor_history:
+    path:     /history/{cycle}/{id}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:history" }
+    options:
+      expose: true
+
+supervisor_pdf:
+    path:     /pdf/{cycle}
+    defaults: { _controller: "IntoPeopleDatabaseBundle:HR:pdf" }
+    options:
+      expose: true

@@ -1,0 +1,30 @@
+upload:
+    path:     /
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Upload:index" }
+
+upload_show:
+    path:     /{id}/show
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Upload:show" }
+
+upload_new:
+    path:     /new
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Upload:new" }
+
+upload_create:
+    path:     /create
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Upload:create" }
+    methods:  POST
+
+upload_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Upload:edit" }
+
+upload_update:
+    path:     /{id}/update
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Upload:update" }
+    methods:  [POST, PUT]
+
+upload_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "IntoPeopleDatabaseBundle:Upload:delete" }
+    methods:  [POST, DELETE]

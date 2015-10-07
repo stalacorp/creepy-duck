@@ -2,6 +2,7 @@
 namespace IntoPeople\DatabaseBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use IntoPeople\DatabaseBundle\Entity\Midyear;
 use IntoPeople\DatabaseBundle\Form\MidyearType;
@@ -13,7 +14,6 @@ use IntoPeople\DatabaseBundle\Entity\Feedbackcycle;
  */
 class MyMidyearController extends Controller
 {
-    
     /**
      * Creates a form to create a midyear entity.
      *
@@ -39,7 +39,6 @@ class MyMidyearController extends Controller
 
     public function editAction($id)
     {
-        
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('IntoPeopleDatabaseBundle:Midyear')->find($id);
         $user = $this->getUser();
@@ -55,18 +54,25 @@ class MyMidyearController extends Controller
         if ($entity->getFormstatus()->getId() == 1 || $entity->getFormstatus()->getId() == 2 || $entity->getFormstatus()->getId() == 4 || $entity->getFormstatus()->getId() == 7) {
         
             $form = $this->createEditForm($entity);
-        
-            // Send CDP template
-        
-            $template = $entity->getMidyeartemplate();
-            
+
             $devneeds = $entity->getDevelopmentNeeds();
+
+            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Midyeartemplate');
+
+            $query = $repository->createQueryBuilder('m')
+                ->where('m.templateversion = :midyeartemplateversion')
+                ->andWhere('m.language = :language')
+                ->setParameter('midyeartemplateversion', $entity->getTemplateversion())
+                ->setParameter('language', $user->getLanguage())
+                ->getQuery();
+
+            $template = $query->setMaxResults(1)->getOneOrNullResult();
         
             return $this->render('IntoPeopleDatabaseBundle:Midyear:new.html.twig', array(
-                'template' => $template,
                 'entity' => $entity,
                 'form' => $form->createView(),
-                'devneeds' => $devneeds
+                'devneeds' => $devneeds,
+                'template' => $template
             ));
         }
         
@@ -121,7 +127,7 @@ class MyMidyearController extends Controller
                             ->setSubject($systemmail->getSubject())
                             ->setFrom($systemmail->getSender())
                             ->setTo($supervisor->getEmail())
-                            ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('supervisor_addMidyearComment', array('id' => $entity->getId())), $systemmail->getBody()));
+                            ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('supervisor_addMidyearComment', array('id' => $entity->getId())), $systemmail->getBody()));
 
                         $this->get('mailer')->send($message);
                     }
@@ -152,10 +158,27 @@ class MyMidyearController extends Controller
                 'id' => $entity->getId()
             )));
         }
+
+        $user = $this->getUser();
+
+        $devneeds = $entity->getDevelopmentNeeds();
+
+        $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Midyeartemplate');
+
+        $query = $repository->createQueryBuilder('m')
+            ->where('m.templateversion = :midyeartemplateversion')
+            ->andWhere('m.language = :language')
+            ->setParameter('midyeartemplateversion', $entity->getTemplateversion())
+            ->setParameter('language', $user->getLanguage())
+            ->getQuery();
+
+        $template = $query->setMaxResults(1)->getOneOrNullResult();
         
         return $this->render('IntoPeopleDatabaseBundle:Midyear:new.html.twig', array(
             'entity' => $entity,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'devneeds' => $devneeds,
+            'template' => $template
         ));
     }
     
@@ -178,10 +201,16 @@ class MyMidyearController extends Controller
         if($this->getUser() != $entity->getFeedbackcycle()->getUser() & !$securityContext->isGranted('ROLE_HR')){
             throw new \Exception($this->get('translator')->trans('noaccesserror'));
         }
-    
+
         $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Midyeartemplate');
-    
-        $template = $repository->find(1);
+
+        $query = $repository->createQueryBuilder('m')
+            ->where('m.templateversion = :midyeartemplateversion')
+            ->setParameter('midyeartemplateversion', $entity->getTemplateversion())
+            ->getQuery();
+
+        $template = $query->setMaxResults(1)->getOneOrNullResult();
+
     
         return $this->render('IntoPeopleDatabaseBundle:Midyear:show.html.twig', array(
             'entity'      => $entity,

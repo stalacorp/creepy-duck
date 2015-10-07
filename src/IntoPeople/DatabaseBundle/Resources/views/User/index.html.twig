@@ -1,8 +1,25 @@
-{% extends '::base.html.twig' %} 
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('assets/vendor/datatables/media/css/dataTables.bootstrap.min.css') }}" rel="stylesheet"
+          type="text/css" media="screen">
+    <link href="{{ asset('assets/css/select.bootstrap.min.css') }}" rel="stylesheet" type="text/css" media="screen">
+
+{% endblock %}
 
 {% block body -%}
 
     <h2>{{ "user.index.title" | trans }}</h2>
+
+    {% for flashMessage in app.session.flashbag.get('warning') %}
+
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{ flashMessage }}
+        </div>
+
+    {% endfor %}
 
     <div class="row">
         <div class="col-md-3">
@@ -12,12 +29,7 @@
                 <p>{{ 'user.templateexplanation' | trans }}<p>
 
                 <p>
-                    {% if app.request.locale == 'nl' %}
-                        {% set asset_url = asset('assets/excel/templatenederlands.xls') %}
-                    {% else %}
-                        {% set asset_url = asset('assets/excel/templateenglish.xls') %}
-                    {% endif %}
-                    <a href="{{ asset_url }}">{{ 'user.templatedownload' | trans }}</a>
+                    <a href="{{ path('user_excel') }}">{{ 'user.templatedownload' | trans }}</a>
                 </p>
             </div>
             {{ form_start(formtemplate) }}
@@ -30,13 +42,13 @@
             <h3>{{ 'user.index.title3' }}</h3>
 
 
-            <table class="table" id="table">
+            <table class="table" id="mytable">
                 <thead>
                 <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Status</th>
-                    <th>Actions</th>
+                    <th>{{ 'user.firstname' | trans }}</th>
+                    <th>{{ 'user.lastname' | trans }}</th>
+                    <th>{{ 'user.status' | trans }}</th>
+                    <th>{{ 'actions' | trans }}</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -50,15 +62,15 @@
                     <tr>
                         <td>{{ entity.firstname }}</td>
                         <td>{{ entity.lastname }}</td>
-                        <td>{{ entity.userstatus }}</td>
+                        <td>{% if entity.enabled == 1 %}{{ 'user.enabled' | trans }}{% else %}{{ 'user.disabled' | trans }}{% endif %}</td>
 
                         <td>
                             <a href="{{ path('user_show', { 'id': entity.id }) }}" type="button"
-                               class="btn btn-default btn-sm btn-small">show</a>
+                               class="btn btn-default btn-sm btn-small">{{ 'button.show' | trans }}</a>
                         </td>
                         <td>
                             <a href="{{ path('user_edit', { 'id': entity.id }) }}" type="button"
-                               class="btn btn-default btn-sm btn-small">edit</a>
+                               class="btn btn-default btn-sm btn-small">{{ 'button.edit' | trans }}</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -74,6 +86,28 @@
     </div>
 
 
+{% endblock %}
+
+{% block javascripts -%}
+    {{ parent() }}
+
+    <script src="{{ asset('assets/vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/datatables/media/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dataTables.select.min.js') }}"></script>
+
+
+    <script>
+
+        $(document).ready(function(){
+            $('#mytable').DataTable({
+                "info":     false,
+                "bLengthChange": false
+            });
+        });
+
+
+
+    </script>
 {% endblock %}
 
 

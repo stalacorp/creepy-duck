@@ -54,19 +54,22 @@
                     </ul>
                 </li>
 
+                {% if is_granted('ROLE_SUPERVISOR') %}
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Supervisor<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ path('supervisor_dashboard') }}">Dashboard</a></li>
                     </ul>
                 </li>
+                {% endif %}
 
+                {% if is_granted('ROLE_HR') %}
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HR<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ path('hr_dashboard') }}">Dashboard</a></li>
                         <li><a href="{{ path('generalcycle') }}">Generalcycle</a></li>
-                        <li><a href="{{ path('feedbackcycle') }}">Feedbackcycles</a></li>
+                        <li><a href="{{ path('feedbackcycle') }}">Feedbackcycles ( enkel voor testen )</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="{{ path('user') }}">Users</a></li>
                         <li><a href="{{ path('organization') }}">Organization</a></li>
@@ -78,10 +81,25 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Templates<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ path('cdptemplate') }}">Cdp</a></li>
-                        <li><a href="{{ path('midyeartemplate') }}">Mid year</a></li>
-                        <li><a href="{{ path('endyeartemplate') }}">Year end</a></li>
+                        <li><a href="{{ path('templateversion') }}">Templates</a></li>
                         <li><a href="{{ path('corequality') }}">Core Qualities</a></li>
+                    </ul>
+                </li>
+                {% endif %}
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Employee Desk<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        {% for upload in uploads %}
+
+                            <li><a href="{{ app.request.basePath }}{{ vich_uploader_asset(upload, 'uploadFile') }}">{{ upload.name }}</a></li>
+
+                        {% endfor %}
+
+                        {% if is_granted('ROLE_SUPERVISOR') or is_granted('ROLE_HR') %}
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{ path('upload') }}">Uploads</a></li>
+                        {% endif %}
                     </ul>
                 </li>
 

@@ -8,17 +8,29 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class EndyearCommentType extends AbstractType
 {
+    private $locale;
+    public function __construct($locale) {
+        $this->locale = $locale;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $format = "MM/dd/yyyy";
+
+        if ($this->locale == 'nl'){
+            $format = 'dd-MM-yyyy';
+        }
+
         $builder
             ->add('commentSup', 'textarea')
             ->add('feedbackdate', 'date', array(
                 'widget' => 'single_text',
-                'required' => false
+                'required' => false,
+                'format' => $format
             ))
         ;
     }

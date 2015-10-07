@@ -1,9 +1,5 @@
-{% extends '::base.html.twig' %} 
-{% block body -%}
+{% extends '::base.html.twig' %} {% block body -%}
 
-
-    {% set devneeds = entity.developmentneeds %}
-    {% set template = entity.endyeartemplate %}
     {% set cdp = entity.feedbackcycle.cdp %}
 
     <h2>{{ template.mainTitle }}</h2>
@@ -51,7 +47,7 @@
                         <tr>
                             <th>{{ template.name }}:
                             <th>
-                            <td>{{ app.user.firstname }} {{ app.user.lastname }}</td>
+                            <td>{{ entity.feedbackcycle.user }}</td>
                         </tr>
 
                         {% if app.user.supervisor != null %}
@@ -65,7 +61,7 @@
                         <tr>
                             <th>{{ template.dateDiscussion }}:
                             <th>
-                            <td></td>
+                            <td>{{ entity.feedbackdate | localizeddate('medium', 'none', app.request.locale ) }}</td>
                         </tr>
 
                     </table>
@@ -109,7 +105,7 @@
         </div>
     </div>
 
-
+    {{ form_start(form) }}
 
 
     <div class="row">
@@ -120,18 +116,12 @@
                     <th style="width: 20%">{{ template.table2Col1 }}</th>
                     <th style="width: 20%">{{ template.table2Col2 }}</th>
                     <th style="width: 20%">{{ template.table2Col3 }}</th>
-                    <th style="width: 20%">{{ template.table2Col4 }}</th>
-                    <th style="width: 20%">{{ template.table2Col5 }}</th>
-                    <th style="width: 1%"></th>
                 </tr>
 
                 <tr>
                     <td>{{ template.table2Col1Descr }}</td>
                     <td>{{ template.table2Col2Descr }}</td>
                     <td>{{ template.table2Col3Descr }}</td>
-                    <td>{{ template.table2Col4Descr }}</td>
-                    <td>{{ template.table2Col5Descr }}</td>
-                    <td></td>
                 </tr>
 
                 <tr>
@@ -145,9 +135,7 @@
 
                         <p>{{ cdp.challengeWhy1 }}</p>
                     </td>
-                    <td>{{ cdp.challengeHow1 }}</td>
-                    <td>{{ cdp.challengeSuccess1 }}</td>
-                    <td>{{ cdp.challengeNeeds1 }}</td>
+                    <td>{{ form_widget(form.progressChallenge1) }}</td>
                 </tr>
 
                 <tr>
@@ -161,9 +149,7 @@
 
                         <p>{{ cdp.challengeWhy2 }}</p>
                     </td>
-                    <td>{{ cdp.challengeHow2 }}</td>
-                    <td>{{ cdp.challengeSuccess2 }}</td>
-                    <td>{{ cdp.challengeNeeds2 }}</td>
+                    <td>{{ form_widget(form.progressChallenge2) }}</td>
                 </tr>
 
                 <tr>
@@ -177,47 +163,51 @@
 
                         <p>{{ cdp.challengeWhy3 }}</p>
                     </td>
-                    <td>{{ cdp.challengeHow3 }}</td>
-                    <td>{{ cdp.challengeSuccess3 }}</td>
-                    <td>{{ cdp.challengeNeeds3 }}</td>
+                    <td>{{ form_widget(form.progressChallenge3) }}</td>
                 </tr>
 
-                <tr>
-                    <td>
-                        <p>{{ cdp.coreQuality4 }}</p>
+                {% if cdp.coreQuality4 != null %}
 
-                        <p>{{ cdp.coreQuality4Why }}</p>
-                    </td>
-                    <td>
-                        <p>{{ cdp.challenge4 }}</p>
+                    <tr>
+                        <td>
+                            <p>{{ cdp.coreQuality4 }}</p>
 
-                        <p>{{ cdp.challengeWhy4 }}</p>
-                    </td>
-                    <td>{{ cdp.challengeHow4 }}</td>
-                    <td>{{ cdp.challengeSuccess4 }}</td>
-                    <td>{{ cdp.challengeNeeds4 }}</td>
-                </tr>
+                            <p>{{ cdp.coreQuality4Why }}</p>
+                        </td>
+                        <td>
+                            <p>{{ cdp.challenge4 }}</p>
 
-                <tr>
-                    <td>
-                        <p>{{ cdp.coreQuality5 }}</p>
+                            <p>{{ cdp.challengeWhy4 }}</p>
+                        </td>
+                        <td>{{ form_widget(form.progressChallenge4) }}</td>
+                    </tr>
 
-                        <p>{{ cdp.coreQuality5Why }}</p>
-                    </td>
-                    <td>
-                        <p>{{ cdp.challenge5 }}</p>
+                {% endif %}
 
-                        <p>{{ cdp.challengeWhy5 }}</p>
-                    </td>
-                    <td>{{ cdp.challengeHow5 }}</td>
-                    <td>{{ cdp.challengeSuccess5 }}</td>
-                    <td>{{ cdp.challengeNeeds5 }}</td>
-                </tr>
+                {% if cdp.coreQuality5 != null %}
+
+                    <tr>
+                        <td>
+                            <p>{{ cdp.coreQuality5 }}</p>
+
+                            <p>{{ cdp.coreQuality5Why }}</p>
+                        </td>
+                        <td>
+                            <p>{{ cdp.challenge5 }}</p>
+
+                            <p>{{ cdp.challengeWhy5 }}</p>
+                        </td>
+                        <td>{{ form_widget(form.progressChallenge5) }}</td>
+                    </tr>
+
+                {% endif %}
 
             </table>
 
         </div>
     </div>
+
+
 
 
     <div class="row">
@@ -445,8 +435,11 @@
         </div>
     </div>
 
+{% endblock %}
 
-
-
+{% block javascripts -%}
+    {{ parent() }}
+    <script>
+    </script>
 {% endblock %}
 

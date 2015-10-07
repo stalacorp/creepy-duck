@@ -1,6 +1,8 @@
 <?php
 namespace IntoPeople\DatabaseBundle\Controller;
 
+use IntoPeople\DatabaseBundle\Entity\Corequality;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use IntoPeople\DatabaseBundle\Entity\Cdp;
@@ -8,6 +10,7 @@ use IntoPeople\DatabaseBundle\Form\CdpType;
 use IntoPeople\DatabaseBundle\Entity\Feedbackcycle;
 use IntoPeople\DatabaseBundle\Entity\Developmentneeds;
 use IntoPeople\DatabaseBundle\Entity\Cdphistory;
+use Doctrine\ORM\EntityRepository;
 
 /**
  * My cdp controller.
@@ -42,8 +45,11 @@ class MyCdpController extends Controller
      */
     public function editAction($id)
     {
+        $user = $this->getUser();
+
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('IntoPeopleDatabaseBundle:Cdp')->find($id);
+        $corequalities = $em->getRepository('IntoPeopleDatabaseBundle:Corequality')->findByLanguage($user->getLanguage());
         $user = $this->getUser();
         if (! $entity) {
             throw $this->createNotFoundException('Unable to find Cdp entity.');
@@ -59,15 +65,20 @@ class MyCdpController extends Controller
             
             $form = $this->createEditForm($entity);
 
-            
-            // Send CDP template
-            
-            $template = $entity->getCdptemplate();
+            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
+
+            $query = $repository->createQueryBuilder('c')
+                ->where('c.templateversion = :cdptemplateversion')
+                ->setParameter('cdptemplateversion', $entity->getTemplateversion())
+                ->getQuery();
+
+            $template = $query->setMaxResults(1)->getOneOrNullResult();
             
             return $this->render('IntoPeopleDatabaseBundle:Cdp:new.html.twig', array(
                 'template' => $template,
                 'entity' => $entity,
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'corequalities' => $corequalities
             ));
         }
         
@@ -90,7 +101,8 @@ class MyCdpController extends Controller
         }
         
         $form = $this->createEditForm($entity);
-        $form->handleRequest($request);       
+
+        $form->handleRequest($request);
         
         if ($form->isValid()) {
             
@@ -128,7 +140,7 @@ class MyCdpController extends Controller
                             ->setSubject($systemmail->getSubject())
                             ->setFrom($systemmail->getSender())
                             ->setTo($supervisor->getEmail())
-                            ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('supervisor_addComment', array('id' => $entity->getId())), $systemmail->getBody()));
+                            ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('supervisor_addComment', array('id' => $entity->getId())), $systemmail->getBody()));
 
                         $this->get('mailer')->send($message);
                     }
@@ -148,15 +160,70 @@ class MyCdpController extends Controller
             }
             
             $entity->setFormstatus($formstatus);
+
+            $corequalities = array();
+
+            array_push($corequalities, $form['coreQuality1']->getData());
+            array_push($corequalities, $form['coreQuality2']->getData());
+            array_push($corequalities, $form['coreQuality3']->getData());
+            array_push($corequalities, $form['coreQuality4']->getData());
+            array_push($corequalities, $form['coreQuality5']->getData());
+            $teller = 0;
+
+            foreach ($corequalities as $corequality){
+                if ($corequality != '') {
+                    $corequalityx = $em->getRepository('IntoPeopleDatabaseBundle:Corequality')->findOneByCoreQuality($corequality);
+                    if ($corequalityx == null) {
+                        $newcorequality = new Corequality();
+                        $newcorequality->setCoreQuality($corequality);
+                        $newcorequality->setIsStandard(false);
+                        $em->persist($newcorequality);
+                        $corequalities[$teller] = $newcorequality;
+
+                    } else {
+                        $corequalities[$teller] = $corequalityx;
+                    }
+                }
+                $teller++;
+            }
+
+            $entity->setCoreQuality1($corequalities[0]);
+            $entity->setCoreQuality2($corequalities[1]);
+            $entity->setCoreQuality3($corequalities[2]);
+            if ($corequalities[3] != ''){
+                $entity->setCoreQuality4($corequalities[3]);
+            }
+            if ($corequalities[4] != ''){
+                $entity->setCoreQuality5($corequalities[4]);
+            }
+
+
                            
             $em->flush();
+
+            #return new JsonResponse($entity->getId());
                                   
             return $this->redirect($this->generateUrl('myfeedbackcycle', array(
                 'id' => $entity->getId()
             )));
         }
-        
+
+        $user = $this->getUser();
+
+        $corequalities = $em->getRepository('IntoPeopleDatabaseBundle:Corequality')->findByLanguage($user->getLanguage());
+
+        $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
+
+        $query = $repository->createQueryBuilder('c')
+            ->where('c.templateversion = :cdptemplateversion')
+            ->setParameter('cdptemplateversion', $entity->getTemplateversion())
+            ->getQuery();
+
+        $template = $query->setMaxResults(1)->getOneOrNullResult();
+
         return $this->render('IntoPeopleDatabaseBundle:Cdp:new.html.twig', array(
+            'corequalities' => $corequalities,
+            'template' => $template,
             'entity' => $entity,
             'form' => $form->createView()
         ));
@@ -168,6 +235,7 @@ class MyCdpController extends Controller
      */
     public function showAction($id)
     {
+        $user = $this->getUser();
         
         $em = $this->getDoctrine()->getManager();
     
@@ -180,12 +248,21 @@ class MyCdpController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Person entity.');
         }
-        
-        $template = $entity->getCdptemplate();
+
+        $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
+
+        $query = $repository->createQueryBuilder('c')
+            ->where('c.templateversion = :cdptemplateversion')
+            ->andWhere('c.language = :language')
+            ->setParameter('cdptemplateversion', $entity->getTemplateversion())
+            ->setParameter('language', $user->getLanguage())
+            ->getQuery();
+
+        $template = $query->setMaxResults(1)->getOneOrNullResult();
         
         return $this->render('IntoPeopleDatabaseBundle:Cdp:show.html.twig', array(
-            'entity'      => $entity,
-            'template' => $template
+            'template' => $template,
+            'entity' => $entity,
         ));
     }
 }

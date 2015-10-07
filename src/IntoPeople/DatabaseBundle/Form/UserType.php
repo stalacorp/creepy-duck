@@ -4,20 +4,18 @@ namespace IntoPeople\DatabaseBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Doctrine\ORM\EntityRepository;
+
 
 
 class UserType extends AbstractType
 {
 
-    private $tokenStorage;
-    
-    public function __construct(TokenStorageInterface $tokenStorage) {
-        $this->tokenStorage = $tokenStorage;
+
+    private $locale;
+    public function __construct($locale) {
+        $this->locale = $locale;
     }
+
     
     /**
      *
@@ -26,7 +24,13 @@ class UserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        
+        $format = "MM/dd/yyyy";
+
+        if ($this->locale == 'nl'){
+            $format = 'dd-MM-yyyy';
+        }
+
+
         $builder
             ->add('photo', 'vich_image', array(
                 'required'      => false,
@@ -40,90 +44,31 @@ class UserType extends AbstractType
             ->add('hiredate', 'date', array(
                 'widget' => 'single_text',
                 'required' => false,
-                'format' => 'dd-MM-yyyy',
+                'format' => $format,
             ))
             ->add('datelastpromotion', 'date', array(
                 'widget' => 'single_text',
                 'required' => false,
-                'format' => 'dd-MM-yyyy',
+                'format' => $format,
             ))
-            ->add('team')
-            ->add('language')
+            ->add('team', 'text', array('required' => false))
+            ->add('language', 'entity',array(
+                'class' => 'IntoPeopleDatabaseBundle:Language'))
             ->add('supervisor')
-            ->add('jobtitle')
-            ->add('userstatus')
-            //->add('employeefunction')
-            
-            
+            ->add('jobtitle', 'text' , array('mapped' => false,
+                'attr'   =>  array(
+                    'class'   => 'typeahead'),
+                'required' => false,
+            ))
+            ->add('enabled', 'checkbox', array('required' => false))
+            ->add('roles', 'choice', array(
+                'choices' => array(
+                    'ROLE_HR' => 'HR / Management',
+                    'ROLE_SUPERVISOR' => 'Supervisor',
+                ), 'multiple' => true,
+                    'required' => false))
              ;
-            
-            
-            $user = $this->tokenStorage->getToken()->getUser();
-            
-            if(!$user) {
-                throw new \LogicException('You have to be authenticated!');
-            }
-            
-            $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) use ($user) {
-                $form = $event->getForm();
-                $entity = $event->getData();
-                
-                if ($user->hasRole('ROLE_SUPER_ADMIN')) {
-                    $form
-                    ->add('roles', 'choice', array(
-                        'choices' => array(
-                            'ROLE_HR' => 'HR / Management',
-                            'ROLE_SUPERVISOR' => 'Supervisor',
-                        ), 'multiple' => true));
-                    
-                    if (!$entity || null === $entity->getId()) {
-                        $form->add('supervisor');
-                        //$form->add('plainpassword', 'password', array('label' => 'Password'));
-                    }
 
-                } else {
-                    
-                    $form->add('roles', 'choice', array(
-                        'choices' => array(
-                            'ROLE_HR' => 'HR / Management',
-                            'ROLE_SUPERVISOR' => 'Supervisor',
-                        ), 'multiple' => true));
-                    
-                    if (!$entity || null === $entity->getId()) {
-                    
-                        //$form->add('plainpassword', 'password', array('label' => 'Password'));
-                    
-                     $formOptions = array(
-                        'class' => 'IntoPeople\DatabaseBundle\Entity\User',
-                        'query_builder' => function (EntityRepository $er) use ($user) {
-
-                            return $er->createQueryBuilder('p')->where('p.organization = :organization')->setParameter('organization',$user->getOrganization());
-                        },
-                    );
-                    
-                    $form
-                    ->add('supervisor', 'entity', $formOptions);
-                                       
-
-                    }
-                }
-                                                
-                if ($entity->getId() != null) {
-                    
-                    $formOptions = array(
-                        'class' => 'IntoPeople\DatabaseBundle\Entity\User',
-                        'query_builder' => function (EntityRepository $er) use ($entity) {
-
-                            return $er->createQueryBuilder('p')->where('p.organization = :organization')->setParameter('organization',$entity->getOrganization());
-                        },
-                    );
-                    
-                    $form->add('supervisor', 'entity', $formOptions);
-                    
-                }               
-                             
-            });
-            
             
             
     }

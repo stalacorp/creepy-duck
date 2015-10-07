@@ -13,20 +13,6 @@ into_people_database_security:
           _locale: "%app.locales%"
     defaults: { _locale: en }
 
-into_people_database_profile:
-    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/profile.yml"
-    prefix: /{_locale}/user/profile
-    requirements:
-      _locale: "%app.locales%"
-    defaults: { _locale: en }
-
-into_people_database_register:
-    resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/registration.yml"
-    prefix: /{_locale}/user/register
-    requirements:
-      _locale: "%app.locales%"
-    defaults: { _locale: en }
-
 into_people_database_resetting:
     resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/resetting.yml"
     prefix: /{_locale}/user/resetting

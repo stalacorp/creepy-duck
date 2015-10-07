@@ -1,23 +1,23 @@
 {% extends 'IntoPeopleDatabaseBundle:Midyear:show.html.twig' %} 
-{% block comment -%}
+{% block feedback -%}
 
-<div class="row">
-	<div class="col-md-12">
-
-
-				<h3>Feedback HR</h3>
-
-                {{ form_start(form) }}
-                
-                {{ form_row(form.feedbackHR) }}
-                
-                {{ form_widget(form.save) }} {{ form_widget(form.approve) }} {{ form_widget(form.disapprove) }} {{ form_widget(form.onhold) }}
-                
-                {{ form_end(form) }}
+    <div class="panel panel-default">
+        <div class="panel-body">
 
 
-	</div>
-</div>
+            <h3>Feedback HR</h3>
+
+            {{ form_start(form) }}
+
+            {{ form_row(form.feedbackHR,{ 'attr': {'rows': '4'} }) }}
+
+            {{ form_widget(form.save) }} {{ form_widget(form.approve) }} {{ form_widget(form.disapprove) }} {{ form_widget(form.onhold) }}
+
+            {{ form_end(form) }}
+
+
+        </div>
+    </div>
 
 {% endblock %}
 

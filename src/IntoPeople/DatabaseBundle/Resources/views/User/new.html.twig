@@ -1,87 +1,179 @@
 {% extends '::base.html.twig' %} {% block body -%}
-<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+    <style type="text/css">
+        span.twitter-typeahead {
+            width: 100%;
+
+        }
+        .input-group span.twitter-typeahead {
+            display: block !important;
+        }
+        .input-group span.twitter-typeahead .tt-dropdown-menu {
+            top: 32px !important;
+        }
+        .input-group.input-group-lg span.twitter-typeahead .tt-dropdown-menu {
+            top: 44px !important;
+        }
+        .input-group.input-group-sm span.twitter-typeahead .tt-dropdown-menu {
+            top: 28px !important;
+        }
+
+        .typeahead {
+            background-color: #FFFFFF;
+        }
+        .tt-query {
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+        }
+        .tt-hint {
+            color: #999999;
+        }
+        .tt-menu {
+            background-color: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 12px;
+            padding: 8px 0;
+            width: 100%;
+        }
+        .tt-suggestion {
+            line-height: 24px;
+            padding: 3px 20px;
+        }
+        .tt-suggestion {
+
+        }
+
+        .tt-suggestion:hover {
+            cursor:pointer;
+            background-color: #0097CF;
+            color: #FFFFFF;
+        }
+
+        .scrollable-dropdown-menu .tt-menu {
+            max-height: 160px;
+            overflow-y: auto;
+        }
 
 
-<div id="portlet-config" class="modal hide">
-	<div class="modal-header">
-		<button data-dismiss="modal" class="close" type="button"></button>
-		<h3>Widget Settings</h3>
-	</div>
-	<div class="modal-body">Widget settings form goes here</div>
-</div>
-<div class="clearfix"></div>
-<div class="container">
-	<div class="content">
 
-		<div class="page-title">
-			<i class="fa fa-user"></i>
-			<h3>
-				Create <span class="semi-bold">User</span>
-			</h3>
-		</div>
+    </style>
 
-		<div class="row">
-			<div class="col-md-8">
-				
-                        {{ form_start(form) }}
+    <h2>{{ 'user.new.title' | trans }}</h2>
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-md-6">
+            {% for flashMessage in app.session.flashbag.get('danger') %}
 
-                        
-                        {{ form_row(form.firstname) }}
-                        
-                        {{ form_row(form.lastname) }}
-                        
-                        {{ form_row(form.photo) }}
-                        
-                        
-                        <!-- HIDDEN FIELDS FOR CHROME WRONG AUTOFILL -->
-                        <input style="display:none" type="text" name="fakeusernameremembered"/>
-                        <input style="display:none" type="password" name="fakepasswordremembered"/>
-                        
-                        {{ form_row(form.email) }}
-                                               
-                        {#{{ form_row(form.plainpassword) }}#}
-                        
-                        {{ form_label(form.hiredate) }}
-                        {{ form_widget(form.hiredate) }}
-                        
-                        {{ form_label(form.datelastpromotion) }}
-                        {{ form_widget(form.datelastpromotion) }}
-                        
-                        {{ form_row(form.supervisor) }}
-                        
-                        {% if is_granted('ROLE_SUPER_ADMIN') %}
-                        
-                        {{ form_row(form.organization) }}
-                        
-                       
-                        
-                        {% endif %}
-                        
-                        {{ form_row(form.language) }}
-                        
-                        {{ form_row(form.roles) }}
-                                               						
-						
-						<p>	
-						
-						{{ form_widget(form.submit) }}	
-							
-					    <a href="{{ path('user') }}" type="button"
-							class="btn btn-primary btn-cons"> Back to the list </a>
-							
-							</p>
-							
-				
-						{{ form_end(form) }}
-						
-						
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{ flashMessage }}
+                </div>
+
+            {% endfor %}
 
 
-			</div>
-		</div>
-	</div>
-</div>
 
+            {{ form_row(form.firstname) }}
+
+            {{ form_row(form.lastname) }}
+
+            {{ form_row(form.email) }}
+
+            {{ form_row(form.photo) }}
+
+            {{ form_row(form.language) }}
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            {{ form_row(form.jobtitle)}}
+
+            {{ form_row(form.team) }}
+
+            {{ form_row(form.hiredate) }}
+
+            {{ form_row(form.datelastpromotion) }}
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-6">
+
+
+
+            {{ form_row(form.supervisor) }}
+
+            {{ form_row(form.roles) }}
+
+            {{ form_row(form.enabled) }}
+
+            {{ form_row(form.addtocycle) }}
+
+            <div class="hidden" id="version">{{ form_row(form.templateversion) }}</div>
+
+
+            <div class="buttons">
+
+                {{ form_widget(form.submit) }}
+
+                <a href="{{ path('user') }}" type="button"
+                   class="btn btn-default">{{ 'button.back' | trans }}</a>
+
+            </div>
+
+            {{ form_end(form) }}
+
+
+        </div>
+    </div>
 
 
 {% endblock %}
+
+{% block javascripts -%}
+    {{ parent() }}
+    <script src="{{ asset('assets/vendor/typeahead.js/dist/typeahead.bundle.min.js') }}"></script>
+    <script>
+        $(function() {
+            $('#intopeople_databasebundle_user_addtocycle').change(function(){
+                $('#version').toggleClass('hidden');
+            });
+
+            var jobtitles = {{ jobtitles | json_encode() | raw}};
+            var titles = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.whitespace,
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                identify: function (obj) {
+                    return obj;
+                },
+                local: jobtitles
+            });
+
+            function nflTeamsWithDefaults(q, sync) {
+                if (q === '') {
+                    sync(jobtitles);
+                }
+
+                else {
+                    titles.search(q, sync);
+                }
+            }
+
+            $('.typeahead').typeahead({
+                        minLength: 0,
+                        highlight: true
+                    },
+                    {
+                        limit: 40,
+                        name: 'titles',
+                        source: nflTeamsWithDefaults
+                    });
+        });
+    </script>
+{% endblock %}
+

@@ -1,6 +1,4 @@
 {% extends '::base.html.twig' %} {% block body -%}
-
-
     <h2>{{ template.mainTitle }}</h2>
 
     <div class="row">
@@ -17,20 +15,19 @@
                         <tr>
                             <th>{{ template.name }}:
                             <th>
-                            <td>{{ app.user.firstname }} {{ app.user.lastname }}</td>
+                            <td>{{ entity.feedbackcycle.user }}</td>
                         </tr>
 
-                        {% if app.user.supervisor != null %}
-                            <tr>
-                                <th>{{ template.supervisor }}:
-                                <th>
-                                <td>{{ app.user.supervisor.firstname }} {{ app.user.supervisor.lastname }}</td>
-                            </tr>
-                        {% endif %}
+                        <tr>
+                            <th>{{ template.supervisor }}:
+                            <th>
+                            <td>{{ entity.supervisor }}</td>
+                        </tr>
 
                         <tr>
-                            <th>{{ template.dateDiscussion }}:<th>
-                            <td></td>
+                            <th>{{ template.dateDiscussion }}:
+                            <th>
+                            <td>{{ entity.feedbackdate | localizeddate('medium', 'none', app.request.locale ) }}</td>
                         </tr>
 
                     </table>
@@ -44,14 +41,14 @@
                         <tr>
                             <th>{{ template.team }}:
                             <th>
-                            <td>{{ app.user.team }}</td>
+                            <td></td>
                         </tr>
 
 
                         <tr>
                             <th>{{ template.function }}:
                             <th>
-                            <td>{{ app.user.jobtitle }}</td>
+                            <td>{{ entity.jobtitle }}</td>
                         </tr>
 
                     </table>
@@ -106,15 +103,17 @@
     <div class="row">
         <div class="col-md-12">
 
-            {{ form_start(form) }} {{ form_errors(form) }}
+            {{ form_start(form) }}
+            {{ form_row (form._token) }}{{ form_errors(form) }}
 
-            <table class="table borderless">
+            <table class="table borderless" id="corequalitytable">
                 <tr>
-                    <th style="width: 20%">{{ template.table2Col1 }}</th>
-                    <th style="width: 20%">{{ template.table2Col2 }}</th>
-                    <th style="width: 20%">{{ template.table2Col3 }}</th>
-                    <th style="width: 20%">{{ template.table2Col4 }}</th>
-                    <th style="width: 20%">{{ template.table2Col5 }}</th>
+                    <th style="width: 16%">{{ template.table2Col1 }}</th>
+                    <th style="width: 16%">{{ template.table2Col2 }}</th>
+                    <th style="width: 16%">{{ template.table2Col3 }}</th>
+                    <th style="width: 16%">{{ template.table2Col4 }}</th>
+                    <th style="width: 16%">{{ template.table2Col5 }}</th>
+                    <th style="width: 16%">{{ template.table2Col6 }}</th>
                     <th style="width: 1%"></th>
                 </tr>
 
@@ -124,12 +123,23 @@
                     <td>{{ template.table2Col3Descr }}</td>
                     <td>{{ template.table2Col4Descr }}</td>
                     <td>{{ template.table2Col5Descr }}</td>
+                    <td>{{ template.table2Col6Descr }}</td>
                     <td></td>
                 </tr>
-
                 <tr>
                     <td>
-                        <p>{{ form_widget(form.coreQuality1) }}</p>
+                        <button type="button" id="corequalitiestoggle" class="btn btn-primary btn-lg"
+                                data-toggle="modal" data-target="#corequalitiesModal">
+                            {{ 'cdp.button.pickcorequalities' | trans }}
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="qualityrequired">{{ form_widget(form.coreQuality1) }}<span
+                                    id="corequality1">{% if entity.coreQuality1 != null %}{{ entity.coreQuality1.coreQuality }}{% endif %}</span><span
+                                    class="alert-error"></span></p>
+
 
                         <p>{{ form_widget(form.coreQuality1Why) }}</p>
                     </td>
@@ -138,6 +148,7 @@
 
                         <p>{{ form_widget(form.challengeWhy1) }}</p>
                     </td>
+                    <td>{{ form_widget(form.pitfall1,{ 'attr': {'rows': '4'} }) }}</td>
                     <td>{{ form_widget(form.challengeHow1, { 'attr': {'rows': '4'} }) }}</td>
                     <td>{{ form_widget(form.challengeSuccess1, { 'attr': {'rows': '4'} }) }}</td>
                     <td>{{ form_widget(form.challengeNeeds1, { 'attr': {'rows': '4'} }) }}</td>
@@ -146,7 +157,9 @@
 
                 <tr>
                     <td>
-                        <p>{{ form_widget(form.coreQuality2) }}</p>
+                        <p class="qualityrequired">{{ form_widget(form.coreQuality2) }}<span
+                                    id="corequality2">{% if entity.coreQuality2 != null %}{{ entity.coreQuality2.coreQuality }}{% endif %}</span><span
+                                    class="alert-error"></span></p>
 
                         <p>{{ form_widget(form.coreQuality2Why) }}</p>
                     </td>
@@ -155,6 +168,7 @@
 
                         <p>{{ form_widget(form.challengeWhy2) }}</p>
                     </td>
+                    <td>{{ form_widget(form.pitfall2,{ 'attr': {'rows': '4'} }) }}</td>
                     <td>{{ form_widget(form.challengeHow2, { 'attr': {'rows': '4'} }) }}</td>
                     <td>{{ form_widget(form.challengeSuccess2, { 'attr': {'rows': '4'} }) }}</td>
                     <td>{{ form_widget(form.challengeNeeds2, { 'attr': {'rows': '4'} }) }}</td>
@@ -163,7 +177,9 @@
 
                 <tr>
                     <td>
-                        <p>{{ form_widget(form.coreQuality3) }}</p>
+                        <p class="qualityrequired">{{ form_widget(form.coreQuality3) }}<span
+                                    id="corequality3">{% if entity.coreQuality3 != null %}{{ entity.coreQuality3.coreQuality }}{% endif %}</span><span
+                                    class="alert-error"></span></p>
 
                         <p>{{ form_widget(form.coreQuality3Why) }}</p>
                     </td>
@@ -172,6 +188,7 @@
 
                         <p>{{ form_widget(form.challengeWhy3) }}</p>
                     </td>
+                    <td>{{ form_widget(form.pitfall3,{ 'attr': {'rows': '4'} }) }}</td>
                     <td>{{ form_widget(form.challengeHow3, { 'attr': {'rows': '4'} }) }}</td>
                     <td>{{ form_widget(form.challengeSuccess3, { 'attr': {'rows': '4'} }) }}</td>
                     <td>{{ form_widget(form.challengeNeeds3, { 'attr': {'rows': '4'} }) }}</td>
@@ -180,9 +197,11 @@
                     </td>
                 </tr>
 
-                <tr class="hidden">
+                <tr {% if(entity.coreQuality4 == null) %} class="hidden" {% endif %}>
                     <td>
-                        <p>{{ form_widget(form.coreQuality4) }}</p>
+                        <p>{{ form_widget(form.coreQuality4) }}<span
+                                    id="corequality4">{% if entity.coreQuality4 != null %}{{ entity.coreQuality4.coreQuality }}{% endif %}</span>
+                        </p>
 
                         <p>{{ form_widget(form.coreQuality4Why) }}</p>
                     </td>
@@ -191,6 +210,7 @@
 
                         <p>{{ form_widget(form.challengeWhy4) }}</p>
                     </td>
+                    <td>{{ form_widget(form.pitfall4,{ 'attr': {'rows': '4'} }) }}</td>
                     <td>{{ form_widget(form.challengeHow4, { 'attr': {'rows': '4'} }) }}</td>
                     <td>{{ form_widget(form.challengeSuccess4, { 'attr': {'rows': '4'} }) }}</td>
                     <td>{{ form_widget(form.challengeNeeds4, { 'attr': {'rows': '4'} }) }}</td>
@@ -199,9 +219,11 @@
                     </td>
                 </tr>
 
-                <tr class="hidden">
+                <tr {% if(entity.coreQuality5 == null) %} class="hidden" {% endif %}>
                     <td>
-                        <p>{{ form_widget(form.coreQuality5) }}</p>
+                        <p>{{ form_widget(form.coreQuality5) }}<span
+                                    id="corequality5">{% if entity.coreQuality5 != null %}{{ entity.coreQuality5.coreQuality }}{% endif %}</span>
+                        </p>
 
                         <p>{{ form_widget(form.coreQuality5Why) }}</p>
                     </td>
@@ -210,6 +232,7 @@
 
                         <p>{{ form_widget(form.challengeWhy5) }}</p>
                     </td>
+                    <td>{{ form_widget(form.pitfall5,{ 'attr': {'rows': '4'} }) }}</td>
                     <td>{{ form_widget(form.challengeHow5, { 'attr': {'rows': '4'} }) }}</td>
                     <td>{{ form_widget(form.challengeSuccess5, { 'attr': {'rows': '4'} }) }}</td>
                     <td>{{ form_widget(form.challengeNeeds5, { 'attr': {'rows': '4'} }) }}</td>
@@ -260,7 +283,8 @@
                 </tr>
 
                 <tr>
-                    <td colspan="6"><h5 class="text-center"><span class="green">{{ template.table3Title1 }}</span></h5></td>
+                    <td colspan="6"><h5 class="text-center"><span class="green">{{ template.table3Title1 }}</span></h5>
+                    </td>
                 </tr>
 
 
@@ -293,7 +317,7 @@
                     </td>
                 </tr>
 
-                <tr class="hidden">
+                <tr {% if(entity.developmentneeds.task4 == null) %} class="hidden" {% endif %}>
                     <td colspan="2">{{ form_errors(form.developmentneeds.task4) }}
                         {{ form_widget(form.developmentneeds.task4) }}</td>
                     <td>{{ form_errors(form.taskhow4) }} {{ form_widget(form.taskhow4) }}</td>
@@ -304,7 +328,7 @@
                     </td>
                 </tr>
 
-                <tr class="hidden">
+                <tr {% if(entity.developmentneeds.task5 == null) %} class="hidden" {% endif %}>
                     <td colspan="2">{{ form_errors(form.developmentneeds.task5) }}
                         {{ form_widget(form.developmentneeds.task5) }}</td>
                     <td>{{ form_errors(form.taskhow5) }} {{ form_widget(form.taskhow5) }}</td>
@@ -324,7 +348,8 @@
                 <thead>
 
                 <tr>
-                    <td colspan="6"><h5 class="text-center"><span class="green">{{ template.table3Title2 }}</span></h5></td>
+                    <td colspan="6"><h5 class="text-center"><span class="green">{{ template.table3Title2 }}</span></h5>
+                    </td>
                 </tr>
 
 
@@ -367,7 +392,7 @@
                     </td>
                 </tr>
 
-                <tr class="hidden">
+                <tr {% if(entity.developmentneeds.skill4 == null) %} class="hidden" {% endif %}>
                     <td colspan="2">{{ form_errors(form.developmentneeds.skill4) }}
                         {{ form_widget(form.developmentneeds.skill4) }}</td>
                     <td>{{ form_errors(form.skillshow4) }} {{ form_widget(form.skillshow4) }}</td>
@@ -378,7 +403,7 @@
                     </td>
                 </tr>
 
-                <tr class="hidden">
+                <tr {% if(entity.developmentneeds.skill5 == null) %} class="hidden" {% endif %}>
                     <td colspan="2">{{ form_errors(form.developmentneeds.skill5) }}
                         {{ form_widget(form.developmentneeds.skill5) }}</td>
                     <td>{{ form_errors(form.skillshow5) }} {{ form_widget(form.skillshow5) }}</td>
@@ -397,7 +422,8 @@
                 <thead>
 
                 <tr>
-                    <td colspan="6"><h5 class="text-center"><span class="green">{{ template.table3Title3 }}</span></h5></td>
+                    <td colspan="6"><h5 class="text-center"><span class="green">{{ template.table3Title3 }}</span></h5>
+                    </td>
                 </tr>
 
                 <tr>
@@ -449,7 +475,7 @@
                     </td>
                 </tr>
 
-                <tr class="hidden">
+                <tr {% if(entity.developmentneeds.organizationcompetence4 == null) %} class="hidden" {% endif %}>
                     <td>{{ form_errors(form.developmentneeds.organizationcompetence4) }}
                         {{ form_widget(form.developmentneeds.organizationcompetence4) }}</td>
                     <td>{{ form_errors(form.developmentneeds.organizationdescription4) }}
@@ -463,7 +489,7 @@
                     </td>
                 </tr>
 
-                <tr class="hidden">
+                <tr {% if(entity.developmentneeds.organizationcompetence5 == null) %} class="hidden" {% endif %}>
                     <td>{{ form_errors(form.developmentneeds.organizationcompetence5) }}
                         {{ form_widget(form.developmentneeds.organizationcompetence5) }}</td>
                     <td>{{ form_errors(form.developmentneeds.organizationdescription5) }}
@@ -524,19 +550,163 @@
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="corequalitiesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ 'cdp.corequalitiesmodal.title' }}</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="bg-danger" id="qualityerror"></p>
+
+                    <div class="table-responsive">
+                        {% set teller = 0 %}
+                        <table class="table borderless" id="corequalitiesmodaltable">
+                            <tr>
+                                {% for corequality in corequalities %}
+                                <td>
+                                    <button class="btn qualityoption btn-default btn-block">{{ corequality.corequality }}</button>
+                                </td>
+                                {% if teller % 5 == 4 %}
+                            </tr>
+                            <tr>
+                                {% endif %}
+                                {% set teller = (teller + 1) %}
+                                {% endfor %}
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="form-group text-center">
+                        <input type="text" id="custom"/>
+                        <button id="custombutton"
+                                class="btn btn-primary">{{ 'cdp.corequalitiesmodal.addcustom' }}</button>
+                    </div>
+
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">{{ 'modal.cancel' | trans }}</button>
+                    <button type="button" class="btn btn-default" id="corequalityok">{{ 'modal.ok' | trans }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
 {% endblock %}
 
 {% block javascripts -%}
     {{ parent() }}
     <script>
-        $('.addButton').click(function () {
-            $(this).parent().parent().parent().find('.hidden').first().removeClass('hidden');
+        var count = 0;
+        var clicked = '';
+        $(function () {
 
-        })
+            $("form").submit(function (e) {
+                if (clicked == 'intopeople_databasebundle_cdp_saveAndAdd') {
 
-        $('.removeButton').click(function () {
-            $(this).parent().parent().addClass('hidden');
-        })
+                    var teller = 0;
+                    $('.qualityrequired').each(function () {
+                        var qualityspan = $(this).find('span:first');
+                        var span = $(this).find('.alert-error');
+                        span.text('');
+                        if (qualityspan.text() == '') {
+                            span.text('This corequality can not be blank');
+                            teller++;
+                        }
+                    });
+
+                    if (teller == 0) {
+
+                    } else {
+                        $('#corequalitiestoggle').focus();
+                        e.preventDefault();
+                    }
+
+                }
+
+            });
+
+
+            $("[type=submit]").click(function () {
+                clicked = this.id;
+            });
+
+            $(document).on('click', '.qualityoption', function () {
+                if ($(this).hasClass('btn-default')) {
+                    if (count != 5) {
+                        $(this).toggleClass('btn-default');
+                        $(this).toggleClass('btn-success');
+                        count++;
+                    } else {
+                        $('#qualityerror').html('{{ 'cdp.modal.max5error' | trans }}');
+                    }
+                } else {
+                    $(this).toggleClass('btn-default');
+                    $(this).toggleClass('btn-success');
+                    count--;
+                }
+            });
+
+            $(document).on('click', '#corequalityok', function () {
+                if (count >= 3) {
+                    $('#corequalitiesModal').modal('hide');
+                    var teller = 1;
+                    $.each($('.btn-success'), function () {
+                        $('#corequality' + teller).html($(this).text());
+                        $('#intopeople_databasebundle_cdp_coreQuality' + teller).val($(this).text());
+                        teller++;
+                    });
+                    $('#qualityerror').html('');
+                    if (count == 4) {
+                        $('#corequalitytable').find('.hidden').first().removeClass('hidden');
+                    }
+                    if (count == 5) {
+                        $('#corequalitytable').find('.hidden').removeClass('hidden');
+                    }
+                } else {
+                    $('#qualityerror').html('{{ 'cdp.modal.min3error' | trans }}');
+                }
+            });
+
+            $(document).on('click', '#custombutton', function () {
+                var text = $('#custom').val();
+                if (text != '') {
+                    if (count != 5) {
+                        var tr = $('#corequalitiesmodaltable').find('tr:last');
+                        if ($(tr).find('td').length == 5) {
+                            $('#corequalitiesmodaltable').append('<tr></tr>');
+                        }
+
+                        $('#corequalitiesmodaltable').find('tr:last').append('<td>' + '<button class="btn qualityoption btn-block btn-success">' + text + '</button>' + '</td>');
+
+                        count++;
+
+                    } else {
+                        $('#qualityerror').html('{{ 'cdp.modal.max5error' | trans }}');
+                    }
+                }
+            });
+
+
+            $(document).on('click', '.addButton', function () {
+                $(this).parent().parent().parent().find('.hidden').first().removeClass('hidden');
+
+            });
+
+            $(document).on('click', '.removeButton', function () {
+                $(this).parent().parent().addClass('hidden');
+            });
+        });
+
     </script>
 {% endblock %}
 

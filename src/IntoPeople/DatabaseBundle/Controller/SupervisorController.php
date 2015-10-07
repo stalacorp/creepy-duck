@@ -80,16 +80,23 @@ class SupervisorController extends Controller
         // CAN ONLY ADD COMMENT WHEN STATUS = 3
         //
 
+
+
         if ($entity->getFormstatus()->getId() == 3 ) {
 
             $form = $this->createEditForm($entity);
             $user = $this->getUser();
 
-            // Send CDP template
-
             $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
 
-            $template = $entity->getCdptemplate();
+            $query = $repository->createQueryBuilder('c')
+                ->where('c.templateversion = :cdptemplateversion')
+                ->andWhere('c.language = :language')
+                ->setParameter('cdptemplateversion', $entity->getTemplateversion())
+                ->setParameter('language', $user->getLanguage())
+                ->getQuery();
+
+            $template = $query->setMaxResults(1)->getOneOrNullResult();
 
             return $this->render('IntoPeopleDatabaseBundle:Supervisor:feedback.html.twig', array(
                 'entity' => $entity,
@@ -172,7 +179,7 @@ class SupervisorController extends Controller
                             ->setSubject($systemmail->getSubject())
                             ->setFrom($systemmail->getSender())
                             ->setTo($hr->getEmail())
-                            ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('cdp_edit', array('id' => $entity->getId())), $systemmail->getBody()));
+                            ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('cdp_edit', array('id' => $entity->getId())), $systemmail->getBody()));
 
                         $this->get('mailer')->send($message);
                     }
@@ -200,7 +207,7 @@ class SupervisorController extends Controller
                         ->setSubject($systemmail->getSubject())
                         ->setFrom($systemmail->getSender())
                         ->setTo($user->getEmail())
-                        ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('midyear_edit', array('id' => $entity->getId())), $systemmail->getBody()));
+                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('midyear_edit', array('id' => $entity->getId())), $systemmail->getBody()));
 
                     $this->get('mailer')->send($message);
                 }
@@ -225,7 +232,7 @@ class SupervisorController extends Controller
                    
             $em->flush();
     
-            return $this->redirect($this->generateUrl('supervisor', array(
+            return $this->redirect($this->generateUrl('supervisor_dashboard', array(
                 
             )));
         }
@@ -264,21 +271,16 @@ class SupervisorController extends Controller
             $form = $this->createMidyearEditForm($entity);
             $user = $this->getUser();
 
-            // Send CDP template
-
             $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Midyeartemplate');
 
-            // createQueryBuilder automatically selects FROM IntoPeopleDatabaseBundle:Cdptemplate
-            // and aliases it to "c"
-            $query = $repository->createQueryBuilder('c')
-            ->where('c.organization = :id')
-            ->setParameter('id', $user->getOrganization()
-                ->getId())
+            $query = $repository->createQueryBuilder('m')
+                ->where('m.templateversion = :midyeartemplateversion')
+                ->andWhere('m.language = :language')
+                ->setParameter('midyeartemplateversion', $entity->getTemplateversion())
+                ->setParameter('language', $user->getLanguage())
                 ->getQuery();
 
             $template = $query->setMaxResults(1)->getOneOrNullResult();
-            // to get just one result:
-            // $product = $query->setMaxResults(1)->getOneOrNullResult();
 
             return $this->render('IntoPeopleDatabaseBundle:Supervisor:feedbackMidyear.html.twig', array(
                 'entity' => $entity,
@@ -302,7 +304,9 @@ class SupervisorController extends Controller
      */
     private function createMidyearEditForm(Midyear $entity)
     {
-        $form = $this->createForm(new MidyearCommentType(), $entity, array(
+        $locale = $this->get('request')->getLocale();
+
+        $form = $this->createForm(new MidyearCommentType($locale), $entity, array(
             'action' => $this->generateUrl('supervisor_updateMidyear', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
@@ -360,7 +364,7 @@ class SupervisorController extends Controller
                         ->setSubject($systemmail->getSubject())
                         ->setFrom($systemmail->getSender())
                         ->setTo($user->getEmail())
-                        ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('midyear_edit', array('id' => $entity->getId())), $systemmail->getBody()));
+                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('midyear_edit', array('id' => $entity->getId())), $systemmail->getBody()));
 
                     $this->get('mailer')->send($message);
                 }
@@ -387,13 +391,28 @@ class SupervisorController extends Controller
     
             $em->flush();
     
-            return $this->redirect($this->generateUrl('supervisor', array(
+            return $this->redirect($this->generateUrl('supervisor_dashboard', array(
                 'id' => $entity->getId()
             )));
         }
-    
-        return $this->render('IntoPeopleDatabaseBundle:Midyear:show.html.twig', array(
+
+        $form = $this->createMidyearEditForm($entity);
+        $user = $this->getUser();
+
+        $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Midyeartemplate');
+
+        $query = $repository->createQueryBuilder('m')
+            ->where('m.templateversion = :midyeartemplateversion')
+            ->andWhere('m.language = :language')
+            ->setParameter('midyeartemplateversion', $entity->getTemplateversion())
+            ->setParameter('language', $user->getLanguage())
+            ->getQuery();
+
+        $template = $query->setMaxResults(1)->getOneOrNullResult();
+
+        return $this->render('IntoPeopleDatabaseBundle:Supervisor:feedbackMidyear.html.twig', array(
             'entity' => $entity,
+            'template' => $template,
             'form' => $form->createView()
         ));
     }
@@ -421,21 +440,16 @@ class SupervisorController extends Controller
             $form = $this->createEndyearEditForm($entity);
             $user = $this->getUser();
 
-            // Send CDP template
-
             $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Endyeartemplate');
 
-            // createQueryBuilder automatically selects FROM IntoPeopleDatabaseBundle:Cdptemplate
-            // and aliases it to "c"
-            $query = $repository->createQueryBuilder('c')
-            ->where('c.organization = :id')
-            ->setParameter('id', $user->getOrganization()->getId())
-            ->orderby('c.date','DESC')
-            ->getQuery();
+            $query = $repository->createQueryBuilder('e')
+                ->where('e.templateversion = :endyeartemplateversion')
+                ->andWhere('e.language = :language')
+                ->setParameter('endyeartemplateversion', $entity->getTemplateversion())
+                ->setParameter('language', $user->getLanguage())
+                ->getQuery();
 
             $template = $query->setMaxResults(1)->getOneOrNullResult();
-            // to get just one result:
-            // $product = $query->setMaxResults(1)->getOneOrNullResult();
 
             return $this->render('IntoPeopleDatabaseBundle:Supervisor:feedbackEndyear.html.twig', array(
                 'entity' => $entity,
@@ -459,7 +473,9 @@ class SupervisorController extends Controller
      */
     private function createEndyearEditForm(Endyear $entity)
     {
-        $form = $this->createForm(new EndyearCommentType(), $entity, array(
+        $locale = $this->get('request')->getLocale();
+
+        $form = $this->createForm(new EndyearCommentType($locale), $entity, array(
             'action' => $this->generateUrl('supervisor_updateEndyear', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
@@ -517,7 +533,7 @@ class SupervisorController extends Controller
                         ->setSubject($systemmail->getSubject())
                         ->setFrom($systemmail->getSender())
                         ->setTo($user->getEmail())
-                        ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('endyear_edit', array('id' => $entity->getId())), $systemmail->getBody()));
+                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('endyear_edit', array('id' => $entity->getId())), $systemmail->getBody()));
 
                     $this->get('mailer')->send($message);
                 }
@@ -544,7 +560,7 @@ class SupervisorController extends Controller
     
             $em->flush();
     
-            return $this->redirect($this->generateUrl('supervisor', array(
+            return $this->redirect($this->generateUrl('supervisor_dashboard', array(
                 'id' => $entity->getId()
             )));
         }
@@ -555,7 +571,7 @@ class SupervisorController extends Controller
         ));
     }
 
-    public function dashboardAction()
+    public function dashboardAction(Request $request)
     {
 
         $form = $this->createFormBuilder()
@@ -567,9 +583,7 @@ class SupervisorController extends Controller
                 },
             ))
             ->add('cycle', 'choice', array(
-                'choices'  => array('cdp' => 'Cdp')
-
-            ))
+                'choices'  => array('cdp' => 'Cdp')))
             ->getForm();
 
 
@@ -586,6 +600,7 @@ class SupervisorController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $feedbackcycles = $em->getRepository('IntoPeopleDatabaseBundle:Feedbackcycle')->findByGeneralcycle($generalcycleid);
+        $supervisor = $this->getUser();
 
         $entities = array();
 
@@ -597,16 +612,15 @@ class SupervisorController extends Controller
             }else if($cycle == "endyear"){
                 $chosencycle = $feedbackcycle->getEndyear();
             }
-            if ($chosencycle->getFeedbackcycle()->getUser()->getSupervisor() == $this->getUser()) {
+            if ($chosencycle->getSupervisor() == $supervisor){
                 array_push($entities, $chosencycle);
             }
         }
 
-        $showlink = $cycle . '_show';
 
         return $this->render('IntoPeopleDatabaseBundle:Supervisor:getcyclesview.html.twig', array(
             'entities' => $entities,
-            'showlink' => $showlink,
+            'cycle' => $cycle,
         ));
     }
 
@@ -615,6 +629,7 @@ class SupervisorController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $feedbackcycles = $em->getRepository('IntoPeopleDatabaseBundle:Feedbackcycle')->findByGeneralcycle($generalcycleid);
+        $supervisor = $this->getUser();
 
         $formcounts = array();
 
@@ -626,7 +641,7 @@ class SupervisorController extends Controller
             }else if($cycle == "endyear"){
                 $chosencycle = $feedbackcycle->getEndyear();
             }
-            if ($chosencycle->getSupervisor() == $this->getUser()) {
+            if ($chosencycle->getSupervisor() == $supervisor) {
                 array_push($formcounts, $chosencycle->getFormstatus()->getId());
             }
         }
@@ -676,6 +691,33 @@ class SupervisorController extends Controller
         }
 
         return new JsonResponse($generalcycledates);
+
+    }
+
+    public function pdfAction($cycle, Request $request)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $chosencycleids = json_decode($request->get('ids'));
+
+        $query = $em->getRepository('IntoPeopleDatabaseBundle:' . ucfirst($cycle))->createQueryBuilder('c')
+            ->where('c.id IN (:ids)')
+            ->andWhere('c.supervisor = :supervisor')
+            ->setParameter('ids', $chosencycleids)
+            ->setParameter('supervisor', $this->getUser())
+            ->getQuery();
+
+        $cycles = $query->getResult();
+
+        $facade = $this->get('ps_pdf.facade');
+        $response = new Response();
+        $this->render('IntoPeopleDatabaseBundle:HR:' . $cycle . '.pdf.twig', array("entities" => $cycles), $response);
+
+        $xml = $response->getContent();
+
+        $content = $facade->render($xml);
+
+        return new Response($content, 200, array('content-type' => 'application/pdf'));
+
 
     }
 }

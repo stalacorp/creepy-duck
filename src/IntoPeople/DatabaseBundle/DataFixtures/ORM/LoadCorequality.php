@@ -19,46 +19,50 @@ class LoadCorequality extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $english = $this->getReference('english');
+        $nederlands = $this->getReference('nederlands');
 
-        $accurate = new Corequality();
-        $accurate->setCoreQuality("Accurate");
-        $accurate->setLanguage($english);
+        $array = array('Accurate', 'Adaptibility', 'Alert', 'Ambitious', 'Attentive', 'Balanced', 'Bright', 'Carefree', 'Careful', 'Cheerful / Jolly', 'Confident', 'Confronting', 'Concise',
+            'Cooperative', 'Corteous', 'Creative', 'Daring', 'Decisiveness', 'Diplomatic', 'Disciplined', 'Easy going', 'Effective', 'Empathy', 'Enthousiast', 'Flexible', 'Friendly', 'Generous',
+            'Guts', 'Harmonious', 'Helpful', 'Honest', 'Humorous', 'Imaginative', 'Improvise', 'Independant', 'Loose', 'Loyal', 'Modest', 'Motivated', 'Normal', 'Objective', 'Open', 'Optimistic',
+            'Organised', 'Patient', 'Pragmatic', 'Present', 'Pro-active', 'Realist', 'Relaxed', 'Reserved', 'Responsible', 'Sensitive', 'Serious', 'Sharp', 'Sparse',
+            'Spontanious', 'Stylish', 'Sympathy', 'Tact', 'Tolerant', 'Unconditional');
 
-        $adaptibility = new Corequality();
-        $adaptibility->setCoreQuality("Adaptibility");
-        $adaptibility->setLanguage($english);
+        foreach ($array as $quality) {
 
-        $alert = new Corequality();
-        $alert->setCoreQuality("Alert");
-        $alert->setLanguage($english);
+            $core = new Corequality();
+            $core->setCoreQuality($quality);
+            $core->setLanguage($english);
+            $core->setIsStandard(true);
 
-        $ambitious = new Corequality();
-        $ambitious->setCoreQuality("Ambitious");
-        $ambitious->setLanguage($english);
+            $manager->persist($core);
 
-        $attentive = new Corequality();
-        $attentive->setCoreQuality("Attentive");
-        $attentive->setLanguage($english);
+        }
 
-        $balanced = new Corequality();
-        $balanced->setCoreQuality("Balanced");
-        $balanced->setLanguage($english);
+        $kernkwaliteiten = array('Aanpassingsvermogen', 'Aanwezig', 'Alert', 'Behulpzaam', 'Bescheiden', 'Betrouwbaar', 'Confronterend', 'Creatief', 'Daadkrachtig', 'Degelijk', 'Diplomatisch',
+            'Doeltreffend', 'Enthousiast', 'Evenwichtig', 'Flexibel', 'Gedisciplineerd', 'Gedreven', 'Geduld', 'Gereserveerd', 'Gevoelig', 'Gewoon', 'Harmonieus', 'Hoffelijk', 'Humor', 'Ijver',
+            'Improvisatie', 'Initiatief', 'Inlevingsvermogen', 'Lef', 'Los', 'Medelevend', 'Nuchter', 'Onbaatzuchtig', 'Ongedwongen', 'Open', 'Openhartig', 'Optimisme', 'Ordelijk', 'Pragmatisme',
+            'Realisme', 'Relaxed', 'Samenhorigheid', 'Scherpzinnigheid', 'Serieus', 'Spaarzaam', 'Spontaan', 'Stijl', 'Tact', 'Verdraagzaam', 'Voorzichtig', 'Vriendelijk', 'Vrijgevig', 'Vrolijk',
+            'Zakelijk', 'Zelfredzaam', 'Zelfstandig', 'Zelfzeker', 'Zorgeloos', 'Zorgvuldig', 'Zorgzaam');
 
+        foreach ($kernkwaliteiten as $kwaliteit) {
 
-        $manager->persist($accurate);
-        $manager->persist($adaptibility);
-        $manager->persist($alert);
-        $manager->persist($ambitious);
-        $manager->persist($attentive);
-        $manager->persist($balanced);
+            $core = new Corequality();
+            $core->setCoreQuality($kwaliteit);
+            $core->setLanguage($nederlands);
+            $core->setIsStandard(true);
+
+            $manager->persist($core);
+
+        }
+
         $manager->flush();
     }
-    
+
     /**
      * {@inheritDoc}
      */
     public function getOrder()
     {
-        return 8;
+        return 10;
     }
 }

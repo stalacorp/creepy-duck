@@ -3,58 +3,92 @@
     {{ parent() }}
     <link href="{{ asset('assets/vendor/datatables/media/css/dataTables.bootstrap.min.css') }}" rel="stylesheet"
           type="text/css" media="screen">
+    <link href="{{ asset('assets/css/select.bootstrap.min.css') }}" rel="stylesheet" type="text/css" media="screen">
+
 {% endblock %}
 {% block body -%}
-    <style>
-        .pie-legend li span {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            margin-right: 5px;
-        }
-
-        .pie-legend {
-            list-style-type: none;
-        }
-    </style>
-
     <h2>{{ 'supervisor.dashboard.title' | trans }}</h2>
 
-    <div class="row">
-        <div class="col-lg-3 col-md-4">
+    {% for flashMessage in app.session.flashbag.get('success') %}
 
-            <h4>{{ 'dashboard.cycletitle' | trans }}</h4>
-
-            {{ form_start(form) }}
-
-            {{ form_widget(form) }}
-
-            {{ form_end(form) }}
+        <div class="alert alert-success alert-dismissible">
+            <button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+            </button>
+            {{ flashMessage }}
         </div>
-        <div class="col-lg-offset-3 col-md-offset-2 col-lg-6 col-md-6">
-            <h4>{{ 'dashboard.charttitle' | trans }}</h4>
-            <canvas id="countChart"></canvas>
-            <div id="legend"></div>
-        </div>
-    </div>
+    {% endfor %}
+
     <div class="row">
-        <div class="col-md-12">
-            <div>
-                <div id="result"></div>
+
+        <div class="col-lg-6 col-md-6">
+
+            <div class="panel panel-default panel-dashboard">
+                <div class="panel-body">
+
+                    <h4>{{ 'supervisor.cycletitle' | trans }}</h4>
+
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            {{ form_start(form) }}
+
+                            {{ form_widget(form) }}
+
+                            {{ form_end(form) }}
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
+
+        <div class="col-lg-6 col-md-6">
+
+            <div class="panel panel-default panel-dashboard">
+                <div class="panel-body">
+
+                    <h4>{{ 'dashboard.charttitle' | trans }}</h4>
+                    <canvas id="countChart"></canvas>
+                    <div id="legend"></div>
+
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
+    <div class="row">
 
+        <div class="col-md-12">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <div id="result"></div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="historymodal"></div>
 {% endblock %}
 
 {% block javascripts -%}
     {{ parent() }}
+
     <script src="{{ asset('assets/vendor/Chart.js/Chart.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables/media/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dataTables.select.min.js') }}"></script>
+
 
     <script>
+        var teller = 0;
         var table;
         var nederlands = {
             "sProcessing": "Bezig...",
@@ -126,25 +160,38 @@
                 url: Routing.generate('supervisor_getcycles', {
                     generalcycleid: $('#form_generalcycle').val(),
                     cycle: $('#form_cycle').val(),
-                    _locale:locale
+                    _locale: locale
                 }),
                 success: function (result) {
                     drawchart();
                     $("#result").html(result);
+
+                    $('.history').click(function () {
+                        $.ajax({
+                            url: Routing.generate('supervisor_history', {
+                                cycle: $('#form_cycle').val(),
+                                id: $(this).data('id'),
+                                _locale: locale
+                            }),
+                            success: function (result) {
+                                $('#historymodal').html(result);
+                                $('#myHistoryModal').modal('show');
+                            }
+                        });
+                    });
+
+
                     var language;
-                    var clear;
-                    switch ($('#thelocale').val()) {
+
+                    switch (locale) {
                         case 'en':
                             language = english;
-                            clear = 'Clear';
                             break;
                         case 'nl':
                             language = nederlands;
-                            clear = 'Wissen';
                             break;
                         case 'it':
                             language = italiano;
-                            clear = 'Pulire';
                             break;
                     }
 
@@ -153,11 +200,62 @@
                         "order": [],
                         "columnDefs": [{
                             "targets": 'no-sort',
-                            "orderable": false
-                        }]
+                            "orderable": false,
+                            "searchable": false
+                        }, {
+                            "targets": [0],
+                            "visible": false
+                        }],
+                        select: {
+                            style: 'multi'
+                        }
+                    });
+                    table.select.selector('td:first-child input');
+
+
+                    var exportpdf = '<button id="exportpdf" class="btn btn-default"><i class="fa fa-file-text-o"></i> {{ 'supervisor.exportpdf' | trans }}</button>';
+                    $('#datatable_length').html(exportpdf);
+
+
+                    $('#exportpdf').click(function () {
+                        var array = [];
+                        var indexes = table.rows({selected: true}).data().toArray();
+                        $.each(indexes, function (i, val) {
+                            array.push(val[0]);
+                        });
+                        var myJsonString = JSON.stringify(array);
+                        var form = $('#form_cycle').val();
+                        window.open(Routing.generate('supervisor_pdf', {
+                                    cycle: form,
+                                    _locale: locale
+                                }) + '?ids=' + myJsonString);
+
                     });
 
-                    var clearSearch = $('<a class="btn btn-default" style="margin-left:5px;cursor:pointer;">' + clear + '</a>');
+                    $('.inputcheck').change(function () {
+                        var rowindex = $(this).closest('tr')[0].rowIndex - 1;
+                        if ($(this).is(':checked')) {
+                            table.rows(rowindex).select();
+                        } else {
+                            table.rows(rowindex).deselect();
+                        }
+
+                    });
+
+                    $('#selectallbox').click(function () {
+                        if (teller == 0) {
+                            table.rows().select();
+                            table.$('.inputcheck').prop('checked', true);
+                            teller++;
+                        } else {
+                            table.rows().deselect();
+                            table.$('.inputcheck').prop('checked', false);
+                            teller = 0;
+                        }
+                    });
+
+
+                    var clearSearch = $('<button class="btn btn-default" style="margin-left:5px;cursor:pointer;">' + {{ 'dashboard.clearsearch' | trans |json_encode() | raw}} +'</button>');
                     $(clearSearch).click(function () {
                         table.search('');
                         table.draw();
@@ -170,7 +268,10 @@
 
         function getforms() {
             $.ajax({
-                url: Routing.generate('supervisor_getforms', {generalcycleid: $('#form_generalcycle').val(), _locale:locale}),
+                url: Routing.generate('supervisor_getforms', {
+                    generalcycleid: $('#form_generalcycle').val(),
+                    _locale: locale
+                }),
                 success: function (result) {
                     var select = $('#form_cycle');
                     select.empty().append('<option value="cdp">Cdp ' + result[0] + '</option>');
@@ -189,7 +290,7 @@
                 url: Routing.generate('supervisor_getformstatuscount', {
                     generalcycleid: $('#form_generalcycle').val(),
                     cycle: $('#form_cycle').val(),
-                    _locale:locale
+                    _locale: locale
                 }),
                 success: function (result) {
                     var data = [
@@ -264,9 +365,10 @@
 
                     $('#countChart').click(function (evt) {
                         var activePoints = myPieChart.getSegmentsAtEvent(evt);
-
-                        table.search(activePoints[0].label);
-                        table.draw();
+                        if (typeof activePoints != 'undefined') {
+                            table.search(activePoints[0].label);
+                            table.draw();
+                        }
                     });
 
                 }
@@ -290,7 +392,6 @@
         });
 
     </script>
-
 {% endblock %}
 
 

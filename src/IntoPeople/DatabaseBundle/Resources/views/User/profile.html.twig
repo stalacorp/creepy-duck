@@ -1,90 +1,128 @@
 {% extends '::base.html.twig' %} 
 
 {% block body -%}
-    <style type="text/css">
-        span.twitter-typeahead {
-            width: 100%;
-
-        }
-        .input-group span.twitter-typeahead {
-            display: block !important;
-        }
-        .input-group span.twitter-typeahead .tt-dropdown-menu {
-            top: 32px !important;
-        }
-        .input-group.input-group-lg span.twitter-typeahead .tt-dropdown-menu {
-            top: 44px !important;
-        }
-        .input-group.input-group-sm span.twitter-typeahead .tt-dropdown-menu {
-            top: 28px !important;
-        }
-
-        .typeahead {
-            background-color: #FFFFFF;
-        }
-        .tt-query {
-            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-        }
-        .tt-hint {
-            color: #999999;
-        }
-        .tt-menu {
-            background-color: #FFFFFF;
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-            margin-top: 12px;
-            padding: 8px 0;
-            width: 100%;
-        }
-        .tt-suggestion {
-            line-height: 24px;
-            padding: 3px 20px;
-        }
-        .tt-suggestion {
-
-        }
-
-        .tt-suggestion:hover {
-            cursor:pointer;
-            background-color: #0097CF;
-            color: #FFFFFF;
-        }
-
-        .scrollable-dropdown-menu .tt-menu {
-            max-height: 160px;
-            overflow-y: auto;
-        }
-
-
-
-    </style>
     <h2>{{ 'user.profile.title' | trans }}</h2>
+
+    {% for flashMessage in app.session.flashbag.get('success') %}
+
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            {{ flashMessage }}
+        </div>
+
+    {% endfor %}
+
+    {% for flashMessage in app.session.flashbag.get('warning') %}
+
+        <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            {{ flashMessage }}
+        </div>
+
+    {% endfor %}
+
+
 
     <div class="row">
 
-        <div class="col-md-6">
+        <div class="col-md-4">
 
-            {% for flashMessage in app.session.flashbag.get('success') %}
+            <h4>{{ 'user.profile.information' }}</h4>
 
-                <div class="alert alert-success">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                    {{ flashMessage }}
+
+            <div class="panel panel-default">
+
+                <div class="panel-body">
+
+
+
+                    {% if app.user.photoname != null %}
+
+                    <p><img src="{{ app.request.basePath }}{{ vich_uploader_asset(app.user, 'photo') }}"
+                            alt="{{ app.user.photoname }}" width="252px"/></p>
+
+                    {% else %}
+
+                        <p><img src="{{ app.request.basePath }}/images/users/placeholder.png"
+                                alt="placeholder" width="252px"/></p>
+
+                    {% endif %}
+
+
+                    <table class="table borderless">
+
+                        <tr>
+                            <th>{{ 'user.profile.email' | trans }}</th>
+                            <td>{{ app.user.email }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>{{ 'user.profile.jobtitle' | trans }}</th>
+                            <td>{{ app.user.jobtitle.name }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>{{ 'user.profile.team' | trans }}</th>
+                            <td>{{ app.user.team }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>{{ 'user.profile.supervisor' | trans }}</th>
+                            <td>{{ app.user.supervisor }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>{{ 'user.profile.hiredate' | trans }}</th>
+                            <td>{{ app.user.hiredate }}</td>
+                        </tr>
+
+                    </table>
+
                 </div>
 
-            {% endfor %}
+            </div>
+
+        </div>
+
+        <div class="col-md-offset-1 col-md-5">
+
+            <h4>{{ 'user.profile.personalchange' }}</h4>
+
+            <div class="row">
+                <div class="col-md-12">
 
 
-            {{ form_start(form) }}
-            <div class="form-group">
-            {{ form_label(form.jobtitle) }}
-            <div class="scrollable-dropdown-menu">
-            {{ form_widget(form.jobtitle) }}
+                    {{ form_start(form) }}
+
+                    {{ form_row(form.firstname) }}
+
+                    {{ form_row(form.lastname) }}
+
+                    {{ form_row(form.language) }}
+
+                </div>
             </div>
+
+
+            <h4>{{ 'user.profile.passwordchange' }}</h4>
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    {{ form_row(form.oldpassword) }}
+
+                    {{ form_row(form.newpassword) }}
+
+                </div>
             </div>
+
+            {{ form_widget(form.Save) }}
+
 
             {{ form_end(form) }}
+
 
         </div>
 
@@ -93,39 +131,7 @@
 
 {% endblock %}
 
-{% block javascripts -%}
-    {{ parent() }}
-    <script src="{{ asset('assets/vendor/typeahead.js/dist/typeahead.bundle.min.js') }}"></script>
-    <script>
-        var jobtitles = {{ jobtitles | json_encode() | raw}};
-        var titles = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.whitespace,
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            identify: function(obj) { return obj; },
-            local: {{ jobtitles | json_encode() | raw}}
-        });
 
-        function nflTeamsWithDefaults(q, sync) {
-            if (q === '') {
-                sync(jobtitles);
-            }
-
-            else {
-                titles.search(q, sync);
-            }
-        }
-
-        $('.typeahead').typeahead( {
-                    minLength: 0,
-                    highlight: true
-                },
-                {
-                    limit: 40,
-                    name: 'titles',
-                    source: nflTeamsWithDefaults
-                });
-    </script>
-{% endblock %}
 
 
 

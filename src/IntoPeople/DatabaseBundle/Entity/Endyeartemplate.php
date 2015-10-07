@@ -23,14 +23,14 @@ class Endyeartemplate
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Endyear", mappedBy="endyeartemplate")
+     * @var \IntoPeople\DatabaseBundle\Entity\Templateversion
+     *
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Templateversion", inversedBy="endyeartemplates")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="TemplateversionId", referencedColumnName="Id")
+     * })
      */
-    protected $endyears;
-    
-    public function __construct()
-    {
-        $this->endyears = new ArrayCollection();
-    }
+    private $templateversion;
 
     /**
      * @var \DateTime
@@ -1321,5 +1321,28 @@ class Endyeartemplate
     public function getOrganization()
     {
         return $this->organization;
+    }
+
+    /**
+     * Set templateversion
+     *
+     * @param \IntoPeople\DatabaseBundle\Entity\Templateversion $templateversion
+     * @return Endyeartemplate
+     */
+    public function setTemplateversion(\IntoPeople\DatabaseBundle\Entity\Templateversion $templateversion = null)
+    {
+        $this->templateversion = $templateversion;
+
+        return $this;
+    }
+
+    /**
+     * Get templateversion
+     *
+     * @return \IntoPeople\DatabaseBundle\Entity\Templateversion 
+     */
+    public function getTemplateversion()
+    {
+        return $this->templateversion;
     }
 }

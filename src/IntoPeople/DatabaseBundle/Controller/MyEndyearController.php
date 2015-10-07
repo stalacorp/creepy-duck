@@ -2,6 +2,7 @@
 namespace IntoPeople\DatabaseBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use IntoPeople\DatabaseBundle\Entity\Endyear;
 use IntoPeople\DatabaseBundle\Form\EndyearType;
@@ -13,7 +14,7 @@ use IntoPeople\DatabaseBundle\Entity\Feedbackcycle;
  */
 class MyEndyearController extends Controller
 {
-    
+
     /**
      * Creates a form to create a endyear entity.
      *
@@ -55,15 +56,25 @@ class MyEndyearController extends Controller
             
             $form = $this->createEditForm($entity);
 
-            
-            // Send CDP template
-            
-            $template = $entity->getEndyeartemplate();
+            $devneeds = $entity->getDevelopmentNeeds();
+
+            $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Endyeartemplate');
+
+            $query = $repository->createQueryBuilder('e')
+                ->where('e.templateversion = :endyeartemplateversion')
+                ->andWhere('e.language = :language')
+                ->setParameter('endyeartemplateversion', $entity->getTemplateversion())
+                ->setParameter('language', $user->getLanguage())
+                ->getQuery();
+
+            $template = $query->setMaxResults(1)->getOneOrNullResult();
+
             
             return $this->render('IntoPeopleDatabaseBundle:Endyear:new.html.twig', array(
-                'template' => $template,
                 'entity' => $entity,
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'devneeds' => $devneeds,
+                'template' => $template
             ));
         }
         
@@ -114,7 +125,7 @@ class MyEndyearController extends Controller
                             ->setSubject($systemmail->getSubject())
                             ->setFrom($systemmail->getSender())
                             ->setTo($supervisor->getEmail())
-                            ->setBody(str_replace('$url', 'https://' . $request->getHttpHost() . $this->generateUrl('supervisor_addEndyearComment', array('id' => $entity->getId())), $systemmail->getBody()));
+                            ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('supervisor_addEndyearComment', array('id' => $entity->getId())), $systemmail->getBody()));
 
                         $this->get('mailer')->send($message);
                     }
@@ -137,10 +148,27 @@ class MyEndyearController extends Controller
                 'id' => $entity->getId()
             )));
         }
+
+        $user = $this->getUser();
+
+        $devneeds = $entity->getDevelopmentNeeds();
+
+        $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Endyeartemplate');
+
+        $query = $repository->createQueryBuilder('e')
+            ->where('e.templateversion = :endyeartemplateversion')
+            ->andWhere('e.language = :language')
+            ->setParameter('endyeartemplateversion', $entity->getTemplateversion())
+            ->setParameter('language', $user->getLanguage())
+            ->getQuery();
+
+        $template = $query->setMaxResults(1)->getOneOrNullResult();
         
         return $this->render('IntoPeopleDatabaseBundle:Endyear:new.html.twig', array(
             'entity' => $entity,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'devneeds' => $devneeds,
+            'template' => $template
         ));
     }
     
@@ -164,11 +192,16 @@ class MyEndyearController extends Controller
         if($this->getUser() != $entity->getFeedbackcycle()->getUser() & !$securityContext->isGranted('ROLE_HR')){
             throw new \Exception($this->get('translator')->trans('noaccesserror'));
         }
-    
+
         $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Endyeartemplate');
-    
-        $template = $repository->find(1);
-    
+
+        $query = $repository->createQueryBuilder('e')
+            ->where('e.templateversion = :endyeartemplateversion')
+            ->setParameter('endyeartemplateversion', $entity->getTemplateversion())
+            ->getQuery();
+
+        $template = $query->setMaxResults(1)->getOneOrNullResult();
+
         return $this->render('IntoPeopleDatabaseBundle:Endyear:show.html.twig', array(
             'entity'      => $entity,
             'template' => $template
