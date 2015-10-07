@@ -4,12 +4,12 @@ parameters:
 #    parameter_name: value
 
 services:
-    cc.database_switcher:
-        class:      IntoPeople\DatabaseBundle\EventListener\DatabaseSwitcherEventListener
-        arguments:  [@request, @doctrine.dbal.default_connection, @logger, @security.context]
-        scope:      request
-        tags:
-            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+#    cc.database_switcher:
+#        class:      IntoPeople\DatabaseBundle\EventListener\DatabaseSwitcherEventListener
+#        arguments:  [@request, @doctrine.dbal.default_connection, @logger, @security.context]
+#        scope:      request
+#        tags:
+#            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
     twig.extension.intl:
             class: Twig_Extensions_Extension_Intl
             tags:

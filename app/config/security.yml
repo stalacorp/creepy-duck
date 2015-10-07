@@ -56,6 +56,7 @@ security:
     access_control:
         - { path: ^/[a-z]+/user/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/[a-z]+/user/user/firstlogin/[0-9]+/[a-z0-9A-Z]+, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/[a-z]+/user/user/profile, role: IS_AUTHENTICATED_FULLY }
         - { path: ^/[a-z]+/user/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/[a-z]+/user/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/[a-z]+/user/upload/\W*, role: [ROLE_HR,ROLE_SUPERVISOR]}
