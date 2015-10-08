@@ -134,7 +134,7 @@ class HRController extends Controller
                         ->setSubject($systemmail->getSubject())
                         ->setFrom($systemmail->getSender())
                         ->setTo($user->getEmail())
-                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('cdp_show', array('id' => $entity->getId())), $systemmail->getBody()));
+                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('cdp_show', array('id' => $entity->getId())), $systemmail->getBody()), 'text/html');
 
                     $this->get('mailer')->send($message);
                 }
@@ -164,7 +164,7 @@ class HRController extends Controller
                         ->setSubject($systemmail->getSubject())
                         ->setFrom($systemmail->getSender())
                         ->setTo($user->getEmail())
-                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('cdp_edit', array('id' => $entity->getId())), $systemmail->getBody()));
+                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('cdp_edit', array('id' => $entity->getId())), $systemmail->getBody()), 'text/html');
 
                     $this->get('mailer')->send($message);
                 }
@@ -320,7 +320,7 @@ class HRController extends Controller
                         ->setSubject($systemmail->getSubject())
                         ->setFrom($systemmail->getSender())
                         ->setTo($user->getEmail())
-                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('midyear_show', array('id' => $entity->getId())), $systemmail->getBody()));
+                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('midyear_show', array('id' => $entity->getId())), $systemmail->getBody()), 'text/html');
 
                     $this->get('mailer')->send($message);
                 }
@@ -350,7 +350,7 @@ class HRController extends Controller
                         ->setSubject($systemmail->getSubject())
                         ->setFrom($systemmail->getSender())
                         ->setTo($user->getEmail())
-                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('midyear_edit', array('id' => $entity->getId())), $systemmail->getBody()));
+                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('midyear_edit', array('id' => $entity->getId())), $systemmail->getBody()), 'text/html');
 
                     $this->get('mailer')->send($message);
                 }
@@ -506,7 +506,7 @@ class HRController extends Controller
                         ->setSubject($systemmail->getSubject())
                         ->setFrom($systemmail->getSender())
                         ->setTo($user->getEmail())
-                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('endyear_show', array('id' => $entity->getId())), $systemmail->getBody()));
+                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('endyear_show', array('id' => $entity->getId())), $systemmail->getBody()), 'text/html');
 
                     $this->get('mailer')->send($message);
                 }
@@ -536,7 +536,7 @@ class HRController extends Controller
                         ->setSubject($systemmail->getSubject())
                         ->setFrom($systemmail->getSender())
                         ->setTo($user->getEmail())
-                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('endyear_edit', array('id' => $entity->getId())), $systemmail->getBody()));
+                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('endyear_edit', array('id' => $entity->getId())), $systemmail->getBody()), 'text/html');
 
                     $this->get('mailer')->send($message);
                 }
@@ -848,7 +848,7 @@ class HRController extends Controller
                     ->setSubject($systemmail->getSubject())
                     ->setFrom($systemmail->getSender())
                     ->setTo($mailuser->getEmail())
-                    ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl($url, array('id' => $form->getId())), $systemmail->getBody()));
+                    ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl($url, array('id' => $form->getId())), $systemmail->getBody()), 'text/html');
 
                 $this->get('mailer')->send($message);
 

@@ -125,7 +125,7 @@ class MyEndyearController extends Controller
                             ->setSubject($systemmail->getSubject())
                             ->setFrom($systemmail->getSender())
                             ->setTo($supervisor->getEmail())
-                            ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('supervisor_addEndyearComment', array('id' => $entity->getId())), $systemmail->getBody()));
+                            ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('supervisor_addEndyearComment', array('id' => $entity->getId())), $systemmail->getBody()), 'text/html');
 
                         $this->get('mailer')->send($message);
                     }

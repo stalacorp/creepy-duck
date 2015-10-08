@@ -179,7 +179,7 @@ class SupervisorController extends Controller
                             ->setSubject($systemmail->getSubject())
                             ->setFrom($systemmail->getSender())
                             ->setTo($hr->getEmail())
-                            ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('cdp_edit', array('id' => $entity->getId())), $systemmail->getBody()));
+                            ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('cdp_edit', array('id' => $entity->getId())), $systemmail->getBody()), 'text/html');
 
                         $this->get('mailer')->send($message);
                     }
@@ -207,7 +207,7 @@ class SupervisorController extends Controller
                         ->setSubject($systemmail->getSubject())
                         ->setFrom($systemmail->getSender())
                         ->setTo($user->getEmail())
-                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('midyear_edit', array('id' => $entity->getId())), $systemmail->getBody()));
+                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('midyear_edit', array('id' => $entity->getId())), $systemmail->getBody()), 'text/html');
 
                     $this->get('mailer')->send($message);
                 }
@@ -364,7 +364,7 @@ class SupervisorController extends Controller
                         ->setSubject($systemmail->getSubject())
                         ->setFrom($systemmail->getSender())
                         ->setTo($user->getEmail())
-                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('midyear_edit', array('id' => $entity->getId())), $systemmail->getBody()));
+                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('midyear_edit', array('id' => $entity->getId())), $systemmail->getBody()), 'text/html');
 
                     $this->get('mailer')->send($message);
                 }
@@ -533,7 +533,7 @@ class SupervisorController extends Controller
                         ->setSubject($systemmail->getSubject())
                         ->setFrom($systemmail->getSender())
                         ->setTo($user->getEmail())
-                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('endyear_edit', array('id' => $entity->getId())), $systemmail->getBody()));
+                        ->setBody(str_replace('$url', 'http://' . $request->getHttpHost() . $this->generateUrl('endyear_edit', array('id' => $entity->getId())), $systemmail->getBody()), 'text/html');
 
                     $this->get('mailer')->send($message);
                 }

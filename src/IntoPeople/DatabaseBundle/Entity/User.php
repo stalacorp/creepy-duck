@@ -28,6 +28,7 @@ class User extends BaseUser
     /**
      *
      * @Assert\NotBlank()
+     * @Assert\Email()
      *
      */
     protected $email;
