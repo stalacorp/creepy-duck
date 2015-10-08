@@ -19,14 +19,14 @@ class SystemmailType extends AbstractType
                 ->add('sender')
                 ->add('subject')
                 ->add('mailtype', new MailtypeType())
-                ->add('body')
-            ;
+                ->add('body', 'textarea', array(
+                'attr' => array('rows' => 10)));
         }else {
             $builder
                 ->add('sender')
                 ->add('subject')
-                ->add('body')
-            ;
+                ->add('body', 'textarea', array(
+                    'attr' => array('rows' => 10)));
         }
 
     }

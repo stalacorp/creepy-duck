@@ -97,8 +97,6 @@ class SystemmailController extends Controller
             throw $this->createNotFoundException('Unable to find Systemmail entity.');
         }
 
-
-
         return $this->render('IntoPeopleDatabaseBundle:Systemmail:show.html.twig', array(
             'entity'      => $entity,
         ));
