@@ -36,8 +36,7 @@
 
                 <div class="panel-body">
 
-
-
+                    
                     {% if app.user.photoname != null %}
 
                     <p><img src="{{ app.request.basePath }}{{ vich_uploader_asset(app.user, 'photo') }}"
@@ -60,7 +59,7 @@
 
                         <tr>
                             <th>{{ 'user.profile.jobtitle' | trans }}</th>
-                            <td>{{ app.user.jobtitle.name }}</td>
+                            <td>{{ app.user.jobtitle }}</td>
                         </tr>
 
                         <tr>
