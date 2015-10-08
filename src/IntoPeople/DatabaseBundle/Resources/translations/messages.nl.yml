@@ -336,9 +336,9 @@ navbar.employee: Employee
 
 # LOGIN
 
-login.title: Login
+login.title: Inloggen
 login.email: Email
-login.password: Password
-login.remember: Remember?
-password.forgot: Forgot your password?
-button.login: Login
+login.password: Wachtwoord
+login.remember: Wachtwoord onthouden?
+password.forgot: Wachtwoord vergeten?
+button.login: Inloggen

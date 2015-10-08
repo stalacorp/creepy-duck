@@ -48,47 +48,47 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Employee<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ 'navbar.employee' | trans }}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ path('myfeedbackcycle') }}">Feedbackcycle</a></li>
+                        <li><a href="{{ path('myfeedbackcycle') }}">{{ 'navbar.employee.feedbackcycle' | trans }}</a></li>
                     </ul>
                 </li>
 
                 {% if is_granted('ROLE_SUPERVISOR') %}
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Supervisor<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ 'navbar.supervisor' | trans }}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ path('supervisor_dashboard') }}">Dashboard</a></li>
+                        <li><a href="{{ path('supervisor_dashboard') }}">{{ 'navbar.supervisor.dashboard' | trans }}</a></li>
                     </ul>
                 </li>
                 {% endif %}
 
                 {% if is_granted('ROLE_HR') %}
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HR<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ 'navbar.hr' | trans }}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ path('hr_dashboard') }}">Dashboard</a></li>
-                        <li><a href="{{ path('generalcycle') }}">Generalcycle</a></li>
+                        <li><a href="{{ path('hr_dashboard') }}">{{ 'navbar.hr.dashboard' | trans }}</a></li>
+                        <li><a href="{{ path('generalcycle') }}">{{ 'navbar.hr.generalcycle' | trans }}</a></li>
                         <li><a href="{{ path('feedbackcycle') }}">Feedbackcycles ( enkel voor testen )</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="{{ path('user') }}">Users</a></li>
-                        <li><a href="{{ path('organization') }}">Organization</a></li>
-                        <li><a href="{{ path('systemmail') }}">Emails</a></li>
-                        <li><a href="{{ path('language') }}">Language</a></li>
+                        <li><a href="{{ path('user') }}">{{ 'navbar.hr.users' | trans }}</a></li>
+                        <li><a href="{{ path('organization') }}">{{ 'navbar.hr.organization' | trans }}</a></li>
+                        <li><a href="{{ path('systemmail') }}">{{ 'navbar.hr.emails' | trans }}</a></li>
+                        <li><a href="{{ path('language') }}">{{ 'navbar.hr.language' | trans }}</a></li>
                     </ul>
                 </li>
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Templates<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ 'navbar.templates' | trans }}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ path('templateversion') }}">Templates</a></li>
-                        <li><a href="{{ path('corequality') }}">Core Qualities</a></li>
+                        <li><a href="{{ path('templateversion') }}">{{ 'navbar.templates.templates' | trans }}</a></li>
+                        <li><a href="{{ path('corequality') }}">{{ 'navbar.templates.corequalities' | trans }}</a></li>
                     </ul>
                 </li>
                 {% endif %}
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Employee Desk<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ 'navbar.employeedesk' | trans }}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         {% for upload in uploads %}
 
@@ -98,7 +98,7 @@
 
                         {% if is_granted('ROLE_SUPERVISOR') or is_granted('ROLE_HR') %}
                         <li role="separator" class="divider"></li>
-                        <li><a href="{{ path('upload') }}">Uploads</a></li>
+                        <li><a href="{{ path('upload') }}">{{ 'navbar.employeedesk.uploads' | trans }}</a></li>
                         {% endif %}
                     </ul>
                 </li>
@@ -108,9 +108,9 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-lg"></i> {{ app.user.firstname }} {{ app.user.lastname }} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ path('user_profile') }}"><i class="fa fa-pencil"></i> Profile</a></li>
+                        <li><a href="{{ path('user_profile') }}"><i class="fa fa-pencil"></i> {{ 'navbar.profile' | trans }}</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="{{ path('into_people_database_security_logout') }}"><i class="fa fa-power-off"></i> Logout</a></li>
+                        <li><a href="{{ path('into_people_database_security_logout') }}"><i class="fa fa-power-off"></i> {{ 'navbar.logout' | trans }}</a></li>
                     </ul>
                 </li>
             </ul>
