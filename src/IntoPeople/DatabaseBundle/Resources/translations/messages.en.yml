@@ -332,7 +332,31 @@ user.team: Team
 user.templatedownload: Download Template
 user.templateexplanation: Download the template, add all users and upload it to add users.
 
+# NAVBAR
+
 navbar.employee: Employee
+navbar.employee.feedbackcycle: Feedbackcycle
+
+navbar.supervisor: Supervisor
+navbar.supervisor.dashboard: Dashboard
+
+navbar.hr: HR
+navbar.hr.dashboard: Dashboard
+navbar.hr.generalcycle: General cycle
+navbar.hr.users: Users
+navbar.hr.organization: Organization
+navbar.hr.emails: E-mails
+navbar.hr.language: Languages
+
+navbar.templates: Templates
+navbar.templates.templates: Templates
+navbar.templates.corequalities: Core qualities
+
+navbar.employeedesk: Employee Desk
+navbar.employeedesk.uploads: Uploads
+
+navbar.profile: Profile
+navbar.logout: Log-out
 
 # LOGIN
 

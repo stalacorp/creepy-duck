@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "hash": "cc0769a2cc9d2a28db44fc81df8ea097",
+    "content-hash": "2e8bf37b0f2d3609ef49939ada9c9569",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -884,7 +885,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/d5b28c367d393f9d9fbc48c4138b2a74d51c0c83",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/45d6f40178216a840885b4ca6d7de9e67068568a",
                 "reference": "d5b28c367d393f9d9fbc48c4138b2a74d51c0c83",
                 "shasum": ""
             },

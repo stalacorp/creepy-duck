@@ -10,76 +10,94 @@
 
 {% block body -%}
 
+
+
     <h2>{{ "user.index.title" | trans }}</h2>
 
     {% for flashMessage in app.session.flashbag.get('warning') %}
 
         <div class="alert alert-danger">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
             {{ flashMessage }}
         </div>
 
     {% endfor %}
 
     <div class="row">
+
+
         <div class="col-md-3">
-            <div>
-                <h3>{{ 'user.index.title2' | trans }}</h3>
 
-                <p>{{ 'user.templateexplanation' | trans }}<p>
+            <div class="panel panel-default">
+                <div class="panel-body">
 
-                <p>
-                    <a href="{{ path('user_excel') }}">{{ 'user.templatedownload' | trans }}</a>
-                </p>
+                    <div>
+                        <h3>{{ 'user.index.title2' | trans }}</h3>
+
+                        <p>{{ 'user.templateexplanation' | trans }}<p>
+
+                        <p>
+                            <a href="{{ path('user_excel') }}">{{ 'user.templatedownload' | trans }}</a>
+                        </p>
+                    </div>
+                    {{ form_start(formtemplate) }}
+                    {{ form_widget(formtemplate) }}
+                    {{ form_end(formtemplate) }}
+
+                </div>
             </div>
-            {{ form_start(formtemplate) }}
-            {{ form_widget(formtemplate) }}
-            {{ form_end(formtemplate) }}
         </div>
 
         <div class="col-md-9">
 
-            <h3>{{ 'user.index.title3' }}</h3>
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h3>{{ 'user.index.title3' }}</h3>
 
 
-            <table class="table" id="mytable">
-                <thead>
-                <tr>
-                    <th>{{ 'user.firstname' | trans }}</th>
-                    <th>{{ 'user.lastname' | trans }}</th>
-                    <th>{{ 'user.status' | trans }}</th>
-                    <th>{{ 'actions' | trans }}</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for entity in entities %}
+                    <table class="table" id="mytable">
+                        <thead>
+                        <tr>
+                            <th>{{ 'user.firstname' | trans }}</th>
+                            <th>{{ 'user.lastname' | trans }}</th>
+                            <th>{{ 'user.status' | trans }}</th>
+                            <th>{{ 'actions' | trans }}</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for entity in entities %}
 
-                    {% if entities == null %}
-                        <p>There are no users!</p>
-                    {% endif %}
+                            {% if entities == null %}
+                                <p>There are no users!</p>
+                            {% endif %}
 
-                    <tr>
-                        <td>{{ entity.firstname }}</td>
-                        <td>{{ entity.lastname }}</td>
-                        <td>{% if entity.enabled == 1 %}{{ 'user.enabled' | trans }}{% else %}{{ 'user.disabled' | trans }}{% endif %}</td>
+                            <tr>
+                                <td>{{ entity.firstname }}</td>
+                                <td>{{ entity.lastname }}</td>
+                                <td>{% if entity.enabled == 1 %}{{ 'user.enabled' | trans }}{% else %}{{ 'user.disabled' | trans }}{% endif %}</td>
 
-                        <td>
-                            <a href="{{ path('user_show', { 'id': entity.id }) }}" type="button"
-                               class="btn btn-default btn-sm btn-small">{{ 'button.show' | trans }}</a>
-                        </td>
-                        <td>
-                            <a href="{{ path('user_edit', { 'id': entity.id }) }}" type="button"
-                               class="btn btn-default btn-sm btn-small">{{ 'button.edit' | trans }}</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                                <td>
+                                    <a href="{{ path('user_show', { 'id': entity.id }) }}" type="button"
+                                       class="btn btn-default btn-sm btn-small">{{ 'button.show' | trans }}</a>
+                                </td>
+                                <td>
+                                    <a href="{{ path('user_edit', { 'id': entity.id }) }}" type="button"
+                                       class="btn btn-default btn-sm btn-small">{{ 'button.edit' | trans }}</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
 
 
-            <a href="{{ path('user_new') }}" type="button" class="btn btn-primary btn-cons"> Create a new
-                entry </a>
+                    <a href="{{ path('user_new') }}" type="button" class="btn btn-primary btn-cons"> Create a new
+                        entry </a>
+
+                </div>
+            </div>
 
 
         </div>
@@ -98,13 +116,12 @@
 
     <script>
 
-        $(document).ready(function(){
+        $(document).ready(function () {
             $('#mytable').DataTable({
-                "info":     false,
+                "info": false,
                 "bLengthChange": false
             });
         });
-
 
 
     </script>
