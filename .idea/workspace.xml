@@ -4,16 +4,8 @@
     <bookmark url="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Endyeartemplate/show.html.twig" line="7" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ffa20809-ee1b-4efe-b10c-cdd44237fa18" name="Default" comment="Merge remote-tracking branch 'origin/admin' into adminsection&#10;&#10;Conflicts:&#10;&#9;src/IntoPeople/DatabaseBundle/Controller/MyCdpController.php&#10;&#9;src/IntoPeople/DatabaseBundle/Resources/views/Cdp/new.html.twig&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/favicon.ico" afterPath="$PROJECT_DIR$/web/favicon.ico" />
+    <list default="true" id="ffa20809-ee1b-4efe-b10c-cdd44237fa18" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/CronjobController.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/CronjobController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadUserData.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadUserData.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Corequality/index.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Corequality/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Generalcycle/index.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Generalcycle/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Organization/index.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Organization/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Templateversion/index.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Templateversion/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Upload/index.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Upload/index.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="test.iws" />
@@ -39,28 +31,28 @@
       <file leaf-file-name="LoadUserData.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadUserData.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.653846">
+            <state vertical-scroll-proportion="-33.03846">
               <caret line="70" column="40" selection-start-line="70" selection-start-column="40" selection-end-line="70" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="parameters.yml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="parameters.yml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.073993474">
+              <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CronjobController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CronjobController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/CronjobController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.43889844">
-              <caret line="128" column="37" selection-start-line="128" selection-start-column="37" selection-end-line="128" selection-end-column="37" />
+            <state vertical-scroll-proportion="-135.34616">
+              <caret line="215" column="2" selection-start-line="215" selection-start-column="2" selection-end-line="215" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -148,8 +140,8 @@
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Corequality/index.html.twig" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Organization/index.html.twig" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadUserData.php" />
-        <option value="$PROJECT_DIR$/app/config/parameters.yml" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/CronjobController.php" />
+        <option value="$PROJECT_DIR$/app/config/parameters.yml" />
       </list>
     </option>
   </component>
@@ -658,12 +650,6 @@
       <option name="number" value="Default" />
       <updated>1440251429022</updated>
     </task>
-    <task id="LOCAL-00003" summary="Matthias idno">
-      <created>1440426755904</created>
-      <option name="number" value="00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1440426755904</updated>
-    </task>
     <task id="LOCAL-00004" summary="Fixtures">
       <created>1440430269442</created>
       <option name="number" value="00004" />
@@ -952,7 +938,13 @@
       <option name="project" value="LOCAL" />
       <updated>1447104633868</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Merge remote-tracking branch 'origin/admin' into adminsection&#10;&#10;Conflicts:&#10;&#9;src/IntoPeople/DatabaseBundle/Controller/MyCdpController.php&#10;&#9;src/IntoPeople/DatabaseBundle/Resources/views/Cdp/new.html.twig&#10;">
+      <created>1447613182719</created>
+      <option name="number" value="00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1447613182721</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -961,17 +953,17 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2171875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32946146" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28933474" sideWeight="0.50208336" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32946146" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32946146" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28933474" sideWeight="0.49791667" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32946146" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1246,14 +1238,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="101" column="41" selection-start-line="101" selection-start-column="41" selection-end-line="101" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.bowerrc">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1354,22 +1338,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadUserData.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.653846">
-          <caret line="70" column="40" selection-start-line="70" selection-start-column="40" selection-end-line="70" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/SupervisorController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="14.473322">
@@ -1410,6 +1378,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1664853">
+          <caret line="101" column="41" selection-start-line="101" selection-start-column="41" selection-end-line="101" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadUserData.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-33.03846">
+          <caret line="70" column="40" selection-start-line="70" selection-start-column="40" selection-end-line="70" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Mailtype.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1420,8 +1404,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/CronjobController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43889844">
-          <caret line="128" column="37" selection-start-line="128" selection-start-column="37" selection-end-line="128" selection-end-column="37" />
+        <state vertical-scroll-proportion="-135.34616">
+          <caret line="215" column="2" selection-start-line="215" selection-start-column="2" selection-end-line="215" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.073993474">
+          <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
           <folding />
         </state>
       </provider>
