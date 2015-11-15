@@ -50,58 +50,22 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $organization = $this->getReference('organization');
         $active = $this->getReference('active');
 
-        $supervisor = $userManager->createUser();
-        $supervisor->setJobtitle($java);
-        $supervisor->setEmail('birtpeeters@hotmail.com');
-        $supervisor->setUsername('birtpeeters@hotmail.com');
-        $supervisor->setPlainPassword('test');
-        $supervisor->setEnabled(true);
-        $supervisor->setOrganization($organization);
-        $supervisor->addRole('ROLE_SUPERVISOR');
-        $supervisor->setFirstname('Bart');
-        $supervisor->setLastname('Peeters');
-        $supervisor->setLanguage($this->getReference('english'));
-        $supervisor->setUsernameCanonical('birtpeeters@hotmail.com');
-        $supervisor->setEmailCanonical('birtpeeters@hotmail.com');
-        $supervisor->setUserstatus($active);
-
-        $userManager->updateUser($supervisor);
-
-        $hr = $userManager->createUser();
-        $hr->setJobtitle($php);
-        $hr->setEmail('bart_peeters@mail.com');
-        $hr->setUsername('bart_peeters@mail.com');
-        $hr->setPlainPassword('test');
-        $hr->setUsernameCanonical('bart_peeters@mail.com');
-        $hr->setEmailCanonical('bart_peeters@mail.com');
-        $hr->setEnabled(true);
-        $hr->addRole('ROLE_HR');
-        $hr->setOrganization($organization);
-        $hr->setFirstname('Matthias');
-        $hr->setLastname('Stala');
-        $hr->setLanguage($this->getReference('english'));
-        $hr->setUserstatus($active);
-        $userManager->updateUser($hr, true);
-
-        $userManager->updateUser($hr);
-
         // Create user and set details
         $user = $userManager->createUser();
-        $user->setJobtitle($sql);
-        $user->setUsername('admin');
-        $user->setEmail('admin@test.com');
+        $user->setUsername('queenie.dirkx@intopeople.be');
+        $user->setEmail('queenie.dirkx@intopeople.be');
         $user->setPlainPassword('admin');
         $user->addRole('ROLE_USER');
         $user->addRole('ROLE_HR');
         $user->addRole('ROLE_SUPERVISOR');
+        $user->addRole('ROLE_ADMIN');
         $user->setEnabled(true);
         $user->setFirstname('Queenie');
         $user->setLastname('Dirckx');
         $user->setLanguage($this->getReference('english'));
         $user->setOrganization($organization);
-        $user->setUsernameCanonical('admin');
-        $user->setEmailCanonical('admin@test.com');
-        $user->setSupervisor($supervisor);
+        $user->setUsernameCanonical('queenie.dirkx@intopeople.be');
+        $user->setEmailCanonical('queenie.dirkx@intopeople.be');
         $user->setUserstatus($active);
 
         $userManager->updateUser($user);

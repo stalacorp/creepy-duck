@@ -67,8 +67,53 @@ class CronjobController extends Controller
 
                             $this->get('mailer')->send($message);
 
+
+                            // Check startdate to make form available
+                            if ($generalcycle->getStartdatecdp() == $today) {
+
+                                $query = $em->getRepository('IntoPeopleDatabaseBundle:Cdp')->createQueryBuilder('c')
+                                    ->where('c.user = :user')
+                                    ->andWhere('c.generalcycle = :generalcycle')
+                                    ->setParameter('user', $user)
+                                    ->setParameter('generalcycle', $generalcycle)
+                                    ->getQuery();
+                                $cdp = $query->setMaxResults(1)->getOneOrNullResult();
+
+                                $cdp->setFormstatus($em->getReference('IntoPeopleDatabaseBundle:Formstatus', 1));
+
+                            }
+
+                            if ($generalcycle->getStartdatemidyear() == $today) {
+
+                                $query = $em->getRepository('IntoPeopleDatabaseBundle:Midyear')->createQueryBuilder('c')
+                                    ->where('c.user = :user')
+                                    ->andWhere('c.generalcycle = :generalcycle')
+                                    ->setParameter('user', $user)
+                                    ->setParameter('generalcycle', $generalcycle)
+                                    ->getQuery();
+                                $cdp = $query->setMaxResults(1)->getOneOrNullResult();
+
+                                $cdp->setFormstatus($em->getReference('IntoPeopleDatabaseBundle:Formstatus', 1));
+
+                            }
+
+                            if ($generalcycle->getStartdateyearend() == $today) {
+
+                                $query = $em->getRepository('IntoPeopleDatabaseBundle:Endyear')->createQueryBuilder('c')
+                                    ->where('c.user = :user')
+                                    ->andWhere('c.generalcycle = :generalcycle')
+                                    ->setParameter('user', $user)
+                                    ->setParameter('generalcycle', $generalcycle)
+                                    ->getQuery();
+                                $cdp = $query->setMaxResults(1)->getOneOrNullResult();
+
+                                $cdp->setFormstatus($em->getReference('IntoPeopleDatabaseBundle:Formstatus', 1));
+
+                            }
+
                         }
                     }
+
                 }
             }
 

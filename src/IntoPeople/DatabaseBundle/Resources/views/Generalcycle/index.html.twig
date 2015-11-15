@@ -23,9 +23,6 @@
                 <li role="presentation"><a href="#finished" aria-controls="finished" role="tab"
                                            data-toggle="tab">{{ 'generalcycle.index.finished' | trans }}</a>
                 </li>
-                <li role="presentation"><a href="#inactive" aria-controls="inactive" role="tab"
-                                           data-toggle="tab">{{ 'generalcycle.index.inactive' | trans }}</a>
-                </li>
             </ul>
 
             <div class="tab-content">
@@ -210,60 +207,6 @@
 
                     {% endif %}
 
-                </div>
-
-                <div class="tab-pane" id="inactive">
-
-                    {% if inactive != null %}
-
-                        <div class="row">
-                            <div class="col-md-12">
-
-
-                                <h3>
-                                    Inactive <span class="semi-bold">Generalcycles</span>
-                                </h3>
-
-                                <p></p>
-
-
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>Started by</th>
-                                        <th>Start date</th>
-                                        <th>Year</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% for entity in inactive %}
-                                        <tr>
-                                            <td>{{ entity.startedby }}</td>
-                                            <td>{% if entity.startdate %}{{ entity.startdate|date('d-m-Y') }}{% endif %}</td>
-                                            <td>{{ entity.year }}</td>
-                                            <td>
-
-                                                <a href="{{ path('generalcycle_show', { 'id': entity.id }) }}"
-                                                   class="btn btn-default btn-cons" type="button">show</a>
-
-                                                <a href="{{ path('generalcycle_edit', { 'id': entity.id }) }}"
-                                                   class="btn btn-default btn-cons" type="button">
-                                                    <th>{{ 'button.edit' | trans }}</th>
-                                                </a>
-
-                                            </td>
-
-                                        </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-
-
-                            </div>
-                        </div>
-
-                    {% endif %}
                 </div>
 
 

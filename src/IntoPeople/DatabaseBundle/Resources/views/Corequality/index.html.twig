@@ -18,40 +18,47 @@
     <div class="row">
         <div class="col-md-12">
 
+            <div class="panel panel-default">
+                <div class="panel-body">
 
-            {% for flashMessage in app.session.flashbag.get('success') %}
 
-                <div class="alert alert-success">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    {{ flashMessage }}
+                    {% for flashMessage in app.session.flashbag.get('success') %}
+
+                        <div class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                            {{ flashMessage }}
+                        </div>
+
+                    {% endfor %}
+
+                    <a href="{{ path('corequality_new') }}" role="button"
+                       class="btn btn-default">{{ 'button.corequality.create' | trans }}</a>
+
+
+                    <table id="mytable" class="table">
+                        <thead>
+                        <tr>
+                            <th>Corequality</th>
+                            <th>Language</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for entity in entities %}
+                            <tr>
+                                <td>{{ entity.coreQuality }}</td>
+                                <td>{{ entity.language }}</td>
+                                <td><a href="{{ path('corequality_edit', { 'id': entity.id }) }}" role="button"
+                                       class="btn btn-default">{{ 'button.edit' | trans }}</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+
                 </div>
-
-            {% endfor %}
-
-            <a href="{{ path('corequality_new') }}" role="button" class="btn btn-default">{{ 'button.corequality.create' | trans }}</a>
-
-
-            <table id="mytable" class="table">
-                <thead>
-                <tr>
-                    <th>Corequality</th>
-                    <th>Language</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for entity in entities %}
-                    <tr>
-                        <td>{{ entity.coreQuality }}</td>
-                        <td>{{ entity.language }}</td>
-                        <td><a href="{{ path('corequality_edit', { 'id': entity.id }) }}" role="button" class="btn btn-default">{{ 'button.edit' | trans }}</a></td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-
-
-
+            </div>
 
 
         </div>
@@ -69,11 +76,9 @@
 
     <script>
 
-        $(document).ready(function(){
-            $('#mytable').DataTable({
-            });
+        $(document).ready(function () {
+            $('#mytable').DataTable({});
         });
-
 
 
     </script>
