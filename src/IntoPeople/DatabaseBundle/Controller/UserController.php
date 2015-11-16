@@ -178,38 +178,42 @@ class UserController extends Controller
                                 $endyeartemplate = $repository->findNewest();
                                 if ($addtoactivecycle == 'x') {
 
-                                    $feedbackcycle = new Feedbackcycle();
-                                    $feedbackcycle->setUser($user);
-                                    $feedbackcycle->setGeneralcycle($generalcycle);
+                                    if ($generalcycle != null) {
 
-                                    $developmentneeds = new Developmentneeds();
+                                        $feedbackcycle = new Feedbackcycle();
+                                        $feedbackcycle->setUser($user);
+                                        $feedbackcycle->setGeneralcycle($generalcycle);
 
-                                    $cdp = new Cdp();
-                                    $cdp->setDevelopmentneeds($developmentneeds);
-                                    $cdp->setFormstatus($available);
-                                    $cdp->setCdptemplate($cdptemplate);
-                                    $cdp->setTemplateversion($version);
+                                        $developmentneeds = new Developmentneeds();
 
-                                    $feedbackcycle->setCdp($cdp);
+                                        $cdp = new Cdp();
+                                        $cdp->setDevelopmentneeds($developmentneeds);
+                                        $cdp->setFormstatus($available);
+                                        $cdp->setCdptemplate($cdptemplate);
+                                        $cdp->setTemplateversion($version);
 
-                                    $midyear = new Midyear();
-                                    $midyear->setDevelopmentneeds($developmentneeds);
-                                    $midyear->setFormstatus($unavailable);
-                                    $midyear->setMidyeartemplate($midyeartemplate);
-                                    $midyear->setTemplateversion($version);
+                                        $feedbackcycle->setCdp($cdp);
 
-                                    $feedbackcycle->setMidyear($midyear);
+                                        $midyear = new Midyear();
+                                        $midyear->setDevelopmentneeds($developmentneeds);
+                                        $midyear->setFormstatus($unavailable);
+                                        $midyear->setMidyeartemplate($midyeartemplate);
+                                        $midyear->setTemplateversion($version);
 
-                                    $endyear = new Endyear();
-                                    $endyear->setDevelopmentneeds($developmentneeds);
-                                    $endyear->setFormstatus($unavailable);
-                                    $endyear->setEndyeartemplate($endyeartemplate);
-                                    $endyear->setTemplateversion($version);
+                                        $feedbackcycle->setMidyear($midyear);
 
-                                    $feedbackcycle->setEndyear($endyear);
+                                        $endyear = new Endyear();
+                                        $endyear->setDevelopmentneeds($developmentneeds);
+                                        $endyear->setFormstatus($unavailable);
+                                        $endyear->setEndyeartemplate($endyeartemplate);
+                                        $endyear->setTemplateversion($version);
 
-                                    $em = $this->getDoctrine()->getManager();
-                                    $em->persist($feedbackcycle);
+                                        $feedbackcycle->setEndyear($endyear);
+
+                                        $em = $this->getDoctrine()->getManager();
+                                        $em->persist($feedbackcycle);
+
+                                    }
                                 }
 
                                 $systemmail = $mails[$user->getLanguage()->getName()];
@@ -913,12 +917,18 @@ class UserController extends Controller
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('IntoPeopleDatabaseBundle:User')->find($id);
 
-            if (! $entity) {
-                throw $this->createNotFoundException('Unable to find User entity.');
+            if($entity->feedbackcycles == null) {
+                if (! $entity) {
+                    throw $this->createNotFoundException('Unable to find User entity.');
+                }
+
+                $em->remove($entity);
+                $em->flush();
+            } else {
+                throw $this->createNotFoundException('The user already has feedbackcycles, can\'t delete');
             }
 
-            $em->remove($entity);
-            $em->flush();
+
         }
 
         return $this->redirect($this->generateUrl('user'));

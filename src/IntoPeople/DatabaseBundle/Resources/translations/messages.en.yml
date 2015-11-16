@@ -170,6 +170,7 @@ corequality.index.title: Core Qualities
 corequality.language: corequality.language
 corequality.new.title: __corequality.new.title
 corequality.show.title: __corequality.show.title
+dashboard.hr.table.title: Forms
 dashboard.charttitle: Chart
 dashboard.clearsearch: Clear
 dashboard.cycletitle: Options
@@ -307,25 +308,38 @@ user.datelastpromotion: user.datelastpromotion
 user.edit.title: __user.edit.title
 user.email: user.email
 user.enabled: user.enabled
-user.firstname: user.firstname
-user.hiredate: user.hiredate
+user.firstname: First name
+user.hiredate: Hire date
+user.index.title3: Users
 user.index.title2: Upload
 user.index.title: Users
 user.jobtitle: user.jobtitle
 user.language: user.language
-user.lastname: user.lastname
+user.lastname: Last name
 user.photo.file: user.photo.file
 user.photo: user.photo
-user.profile.firstname: user.profile.firstname
-user.profile.language: user.profile.language
-user.profile.lastname: user.profile.lastname
-user.profile.newpassword.first: user.profile.newpassword.first
-user.profile.newpassword.second: user.profile.newpassword.second
-user.profile.oldpassword: user.profile.oldpassword
-user.profile.oldpasswordwrong: user.profile.oldpasswordwrong
-user.profile.title: __user.profile.title
-user.roles: user.roles
-user.show.title: __user.show.title
+
+user.profile.firstname: Firstname
+user.profile.language: Language
+user.profile.lastname: Lastname
+user.profile.newpassword.first: New password
+user.profile.newpassword.second: Confirm new password
+user.profile.oldpassword: Old password
+user.profile.oldpasswordwrong: Old password wrong
+user.profile.title: Profile
+user.profile.email: E-mail
+user.profile.jobtitle: Job title
+user.profile.team: Team
+user.profile.supervisor: Supervisor
+user.profile.hiredate: Hire date
+
+user.profile.information: Information
+user.profile.personalchange: Edit information
+user.profile.passwordchange: Change password
+
+
+user.roles: Roles
+user.show.title: User
 user.status: Status
 user.supervisor: Supervisor
 user.team: Team
