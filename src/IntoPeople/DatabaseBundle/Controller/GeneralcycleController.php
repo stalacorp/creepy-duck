@@ -150,6 +150,7 @@ class GeneralcycleController extends Controller
                     $developmentneeds = new Developmentneeds();
 
                     $cdp = new Cdp();
+                    $cdp->setSupervisor($user->getSupervisor());
                     $cdp->setDevelopmentneeds($developmentneeds);
                     $cdp->setFormstatus($available);
                     $cdp->setTemplateversion($templateversion);
@@ -157,6 +158,7 @@ class GeneralcycleController extends Controller
                     $feedbackcycle->setCdp($cdp);
 
                     $midyear = new Midyear();
+                    $midyear->setSupervisor($user->getSupervisor());
                     $midyear->setDevelopmentneeds($developmentneeds);
                     $midyear->setFormstatus($unavailable);
                     $midyear->setTemplateversion($templateversion);
@@ -164,6 +166,7 @@ class GeneralcycleController extends Controller
                     $feedbackcycle->setMidyear($midyear);
 
                     $endyear = new Endyear();
+                    $endyear->setSupervisor($user->getSupervisor());
                     $endyear->setDevelopmentneeds($developmentneeds);
                     $endyear->setFormstatus($unavailable);
                     $endyear->setTemplateversion($templateversion);

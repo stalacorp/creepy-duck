@@ -73,6 +73,14 @@ into_people_database_organization:
 into_people_database_language:
     resource: "@IntoPeopleDatabaseBundle/Resources/config/routing/language.yml"
     prefix:   /language
+
 cronjob:
     path:     /cronjob/{token}
     defaults: { _controller: IntoPeopleDatabaseBundle:Cronjob:cronjob }
+
+into_people_database_profile_show:
+    path: /profile
+    #defaults: { _controller: "FOSUserBundle:Profile:show" }
+    defaults: { _controller: "IntoPeopleDatabaseBundle:User:profile" }
+    #methods: "GET"
+

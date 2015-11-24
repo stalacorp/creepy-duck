@@ -143,7 +143,7 @@ cdp.tasksucces5: cdp.tasksucces5
 cdptemplate.edit.title: Edit CDP Template
 cdptemplate.feedback: cdptemplate.feedback
 cdptemplate.index.title: CDP Template
-cdptemplate.language: cdptemplate.language
+cdptemplate.language: Language
 cdptemplate.mainTitle: cdptemplate.mainTitle
 cdptemplate.new.title: __cdptemplate.new.title
 cdptemplate.question1: cdptemplate.question1
@@ -164,12 +164,12 @@ cdptemplate.title3: cdptemplate.title3
 cdptemplate.title3Description: cdptemplate.title3Description
 cdptemplate.title4: cdptemplate.title4
 cdptemplate.title5: cdptemplate.title5
-corequality.coreQuality: corequality.coreQuality
-corequality.edit.title: __corequality.edit.title
+corequality.coreQuality: Core qualitiy
+corequality.edit.title: Edit
 corequality.index.title: Core Qualities
-corequality.language: corequality.language
-corequality.new.title: __corequality.new.title
-corequality.show.title: __corequality.show.title
+corequality.language: Language
+corequality.new.title: New
+corequality.show.title: Show
 dashboard.hr.table.title: Forms
 dashboard.charttitle: Chart
 dashboard.clearsearch: Clear
@@ -318,6 +318,7 @@ user.language: user.language
 user.lastname: Last name
 user.photo.file: user.photo.file
 user.photo: user.photo
+user.button.create: Create new user
 
 user.profile.firstname: Firstname
 user.profile.language: Language

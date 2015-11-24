@@ -33,15 +33,15 @@ class LoadCdptemplate extends AbstractFixture implements OrderedFixtureInterface
         $cdptemplate->setTitle2Description("Complete at least three, no more than five items for both strengths and development needs. ");
 
         $cdptemplate->setTable2Col1("Talents");
-        $cdptemplate->setTable2Col2("Challenges");
-        $cdptemplate->setTable2Col3("Pitfall");
+        $cdptemplate->setTable2Col2("Pitfall");
+        $cdptemplate->setTable2Col3("Challenges");
         $cdptemplate->setTable2Col4("How");
         $cdptemplate->setTable2Col5("Success");
         $cdptemplate->setTable2Col6("Needs");
 
         $cdptemplate->setTable2Col1Descr("What are you good at?");
-        $cdptemplate->setTable2Col2Descr("So what is your challenge?");
-        $cdptemplate->setTable2Col3Descr("What is my pitfall?");
+        $cdptemplate->setTable2Col2Descr("What is my pitfall?");
+        $cdptemplate->setTable2Col3Descr("So what is your challenge?");
         $cdptemplate->setTable2Col4Descr("How are you going to take on this challenge?");
         $cdptemplate->setTable2Col5Descr("How will you know if you succeeded?");
         $cdptemplate->setTable2Col6Descr("What do you need to complete your challenge?");
