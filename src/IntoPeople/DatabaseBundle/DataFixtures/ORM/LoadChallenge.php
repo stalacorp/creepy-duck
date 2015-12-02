@@ -1,6 +1,6 @@
 <?php
 
-// src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadPitfall.php
+// src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadChallenge.php
 
 namespace IntoPeople\DatabaseBundle\DataFixtures\ORM;
 
@@ -8,10 +8,10 @@ use Doctrine\Common\Persistence\ObjectManager;
 use IntoPeople\DatabaseBundle\Entity\Cdptemplate;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
-use IntoPeople\DatabaseBundle\Entity\Pitfall;
+use IntoPeople\DatabaseBundle\Entity\Challenge;
 
 
-class LoadPitfall extends AbstractFixture implements OrderedFixtureInterface
+class LoadChallenge extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * {@inheritDoc}
@@ -29,8 +29,8 @@ class LoadPitfall extends AbstractFixture implements OrderedFixtureInterface
 
         foreach ($array as $pitfall) {
 
-            $core = new Pitfall();
-            $core->setPitfall($pitfall);
+            $core = new Challenge();
+            $core->setChallenge($pitfall);
             $core->setLanguage($english);
             $core->setIsStandard(true);
 
@@ -46,8 +46,8 @@ class LoadPitfall extends AbstractFixture implements OrderedFixtureInterface
 
         foreach ($kernkwaliteiten as $kwaliteit) {
 
-            $core = new Pitfall();
-            $core->setPitfall($kwaliteit);
+            $core = new Challenge();
+            $core->setChallenge($kwaliteit);
             $core->setLanguage($nederlands);
             $core->setIsStandard(true);
 
@@ -63,6 +63,6 @@ class LoadPitfall extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 11;
+        return 12;
     }
 }

@@ -5,38 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ffa20809-ee1b-4efe-b10c-cdd44237fa18" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Challenge.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadPitfall.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Pitfall.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Cdp.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Cdp.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Form/CdpType.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Form/CdpType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Cdphistory.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Cdphistory.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Cdptemplate.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Cdptemplate.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Corequality.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Corequality.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Cyclestatus.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Cyclestatus.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Developmentneeds.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Developmentneeds.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Endyear.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Endyear.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Endyearhistory.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Endyearhistory.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Endyeartemplate.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Endyeartemplate.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Feedbackcycle.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Feedbackcycle.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Formstatus.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Formstatus.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Generalcycle.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Generalcycle.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Generalcyclestatus.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Generalcyclestatus.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Jobtitle.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Jobtitle.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Language.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Language.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Mailtype.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Mailtype.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Midyear.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Midyear.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Midyearhistory.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Midyearhistory.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Midyeartemplate.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Midyeartemplate.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Organization.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Organization.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Organizationstatus.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Organizationstatus.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Systemmail.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Systemmail.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Templateversion.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Templateversion.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Text.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Text.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Upload.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Upload.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/User.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Userstatus.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Userstatus.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdp/new.html.twig" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdp/new.html.twig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadChallenge.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadPitfall.php" afterPath="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadPitfall.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="test.iws" />
@@ -59,51 +29,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Cdp.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Cdp.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-94.15385">
-              <caret line="374" column="6" selection-start-line="374" selection-start-column="6" selection-end-line="374" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CdpType.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Form/CdpType.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-41.192307">
-              <caret line="68" column="29" selection-start-line="68" selection-start-column="29" selection-end-line="68" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdp/new.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.26923">
-              <caret line="184" column="25" selection-start-line="184" selection-start-column="25" selection-end-line="184" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoadCorequality.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadCorequality.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.6923077">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoadPitfall.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LoadPitfall.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadPitfall.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.4668821">
-              <caret line="57" column="26" selection-start-line="57" selection-start-column="26" selection-end-line="57" selection-end-column="26" />
+            <state vertical-scroll-proportion="-18.576923">
+              <caret line="65" column="17" selection-start-line="65" selection-start-column="17" selection-end-line="65" selection-end-column="17" />
               <folding>
                 <element signature="e#129#175#0#PHP" expanded="true" />
               </folding>
@@ -111,34 +41,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Corequality.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Corequality.php">
+      <file leaf-file-name="LoadChallenge.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadChallenge.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.9230769">
-              <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Pitfall.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Pitfall.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-171.3077">
-              <caret line="262" column="26" selection-start-line="262" selection-start-column="26" selection-end-line="262" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.39579967">
+              <caret line="51" column="39" selection-start-line="51" selection-start-column="39" selection-end-line="51" selection-end-column="39" />
               <folding>
-                <marker date="1449070099983" expanded="true" signature="231:7765" placeholder="{...}" />
+                <element signature="e#131#177#0#PHP" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Challenge.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Challenge.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-67.34615">
-              <caret line="262" column="0" selection-start-line="262" selection-start-column="0" selection-end-line="262" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -202,6 +112,7 @@
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Pitfall.php" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Entity/Challenge.php" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Cdp/new.html.twig" />
+        <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadChallenge.php" />
         <option value="$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadPitfall.php" />
       </list>
     </option>
@@ -840,12 +751,6 @@
       <option name="number" value="Default" />
       <updated>1440251429022</updated>
     </task>
-    <task id="LOCAL-00007" summary="Templates">
-      <created>1440519990610</created>
-      <option name="number" value="00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1440519990610</updated>
-    </task>
     <task id="LOCAL-00008" summary="Template + cycle fix">
       <created>1440522351648</created>
       <option name="number" value="00008" />
@@ -1134,7 +1039,13 @@
       <option name="project" value="LOCAL" />
       <updated>1448393380766</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="Merge remote-tracking branch 'origin/admin' into adminsection&#10;&#10;Conflicts:&#10;&#9;src/IntoPeople/DatabaseBundle/Controller/MyCdpController.php&#10;&#9;src/IntoPeople/DatabaseBundle/Resources/views/Cdp/new.html.twig&#10;">
+      <created>1449071417987</created>
+      <option name="number" value="00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1449071417989</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1143,6 +1054,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20885417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32946146" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28933474" sideWeight="0.50208336" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1152,7 +1064,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32946146" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1231,76 +1142,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.bowerrc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bower.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5218094">
-          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Feedbackcycle/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.15347335">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Feedbackcycle/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Upload/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24717286">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="10" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Generalcycle/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.769231">
-          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="67" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Templateversion/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.5384617">
-          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="11" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Corequality/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.576923">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="21" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Resources/views/Organization/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-32.03846">
-          <caret line="49" column="18" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/security.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.65736437">
-          <caret line="68" column="64" selection-start-line="68" selection-start-column="64" selection-end-line="68" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/SupervisorController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="14.473322">
@@ -1365,18 +1206,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadUserData.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47592387">
-          <caret line="55" column="49" selection-start-line="55" selection-start-column="49" selection-end-line="55" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/Controller/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-23.307692">
           <caret line="927" column="105" selection-start-line="927" selection-start-column="105" selection-end-line="927" selection-end-column="105" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1508,22 +1342,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadMidyeartemplate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadCdptemplate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53303474">
-          <caret line="43" column="71" selection-start-line="43" selection-start-column="71" selection-end-line="43" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/RollerworksMultiUserBundle/views/UserBundle/Resetting/reset_content.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.68659127">
@@ -1561,7 +1379,7 @@
         <state vertical-scroll-proportion="-171.3077">
           <caret line="262" column="26" selection-start-line="262" selection-start-column="26" selection-end-line="262" selection-end-column="26" />
           <folding>
-            <marker date="1449070099983" expanded="true" signature="231:7765" placeholder="{...}" />
+            <marker date="1449070099983" expanded="true" signature="-1:-1" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -1598,9 +1416,105 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadCdptemplate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="58.576923">
+          <caret line="43" column="71" selection-start-line="43" selection-start-column="71" selection-end-line="43" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadCorequality.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.6923077">
+        <state vertical-scroll-proportion="21.307692">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadEndyeartemplate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="37.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadFormstatus.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="18.038462">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadGeneralcyclestatus.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="8.230769">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadLanguage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="13.461538">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadMidyeartemplate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="35.03846">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadOrganizationData.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="4.9615383">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadOrganizationstatus.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.6538463">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadSystemmail.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="133.11539">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadTemplateversion.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="4.3076925">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadUserData.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.8846154">
+          <caret line="55" column="49" selection-start-line="55" selection-start-column="49" selection-end-line="55" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadUserstatusData.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.48303714">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -1608,10 +1522,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadPitfall.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.4668821">
-          <caret line="57" column="26" selection-start-line="57" selection-start-column="26" selection-end-line="57" selection-end-column="26" />
+        <state vertical-scroll-proportion="-18.576923">
+          <caret line="65" column="17" selection-start-line="65" selection-start-column="17" selection-end-line="65" selection-end-column="17" />
           <folding>
             <element signature="e#129#175#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IntoPeople/DatabaseBundle/DataFixtures/ORM/LoadChallenge.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39579967">
+          <caret line="51" column="39" selection-start-line="51" selection-start-column="39" selection-end-line="51" selection-end-column="39" />
+          <folding>
+            <element signature="e#131#177#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
