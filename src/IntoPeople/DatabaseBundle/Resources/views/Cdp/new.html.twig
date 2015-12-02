@@ -139,7 +139,10 @@
 
                     <td>
 
-                        <p></p>
+                        <p class="pitfallrequired"><button type="button" data-id="1" class="btn buttonquality {% if entity.pitfall1 != null %}{{ 'btn-success' }}{% else %} {{ 'btn-primary' }}{% endif %}"
+                                                           data-toggle="modal" data-target="#pitfallsModal">
+                                {% if entity.pitfall1 != null %}{{ entity.pitfall1.pitfall }}{% else %}{{ 'cdp.button.pickpitfalls' | trans }}{% endif %}
+                            </button>{{ form_widget(form.pitfall1) }}<span class="alert-error"></span></p>
 
                         <p>{{ form_widget(form.pitfallWhy1,{ 'attr': {'rows': '4'} }) }}</p>
 
@@ -147,7 +150,10 @@
 
                     <td>
 
-                        <p>{{ form_widget(form.challenge1) }}</p>
+                        <p class="challengerequired"><button type="button" data-id="1" class="btn buttonquality {% if entity.challenge1 != null %}{{ 'btn-success' }}{% else %} {{ 'btn-primary' }}{% endif %}"
+                                                           data-toggle="modal" data-target="#challengesModal">
+                                {% if entity.challenge1 != null %}{{ entity.challenge1.challenge }}{% else %}{{ 'cdp.button.pickchallenges' | trans }}{% endif %}
+                            </button>{{ form_widget(form.challenge1) }}<span class="alert-error"></span></p>
 
                         <p>{{ form_widget(form.challengeWhy1) }}</p>
 
@@ -161,7 +167,7 @@
 
                 <tr>
                     <td>
-                        <p class="qualityrequired"><button type="button" data-id="2"  class="btn buttonquality {% if entity.coreQuality2 != null %}{{ 'btn-success' }}{% else %} {{ 'btn-primary' }}{% endif %}"
+                        <p class="qualityrequired"><button type="button" data-id="2"class="btn buttonquality {% if entity.coreQuality2 != null %}{{ 'btn-success' }}{% else %} {{ 'btn-primary' }}{% endif %}"
                                                            data-toggle="modal" data-target="#corequalitiesModal">
                                 {% if entity.coreQuality2 != null %}{{ entity.coreQuality2.coreQuality }}{% else %}{{ 'cdp.button.pickcorequalities' | trans }}{% endif %}
                             </button>{{ form_widget(form.coreQuality2) }}<span class="alert-error"></span></p>
@@ -170,7 +176,10 @@
                     </td>
                     <td>
 
-                        <p></p>
+                        <p class="pitfallrequired"><button type="button" data-id="2" class="btn buttonquality {% if entity.pitfall2 != null %}{{ 'btn-success' }}{% else %} {{ 'btn-primary' }}{% endif %}"
+                                                           data-toggle="modal" data-target="#pitfallsModal">
+                                {% if entity.pitfall2 != null %}{{ entity.pitfall2.pitfall }}{% else %}{{ 'cdp.button.pickpitfalls' | trans }}{% endif %}
+                            </button>{{ form_widget(form.pitfall2) }}<span class="alert-error"></span></p>
 
                         <p>{{ form_widget(form.pitfallWhy2,{ 'attr': {'rows': '4'} }) }}</p>
 
@@ -178,7 +187,10 @@
 
                     <td>
 
-                        <p>{{ form_widget(form.challenge2) }}</p>
+                        <p class="challengerequired"><button type="button" data-id="2" class="btn buttonquality {% if entity.challenge2 != null %}{{ 'btn-success' }}{% else %} {{ 'btn-primary' }}{% endif %}"
+                                                             data-toggle="modal" data-target="#challengesModal">
+                                {% if entity.challenge2 != null %}{{ entity.challenge2.challenge }}{% else %}{{ 'cdp.button.pickchallenges' | trans }}{% endif %}
+                            </button>{{ form_widget(form.challenge2) }}<span class="alert-error"></span></p>
 
                         <p>{{ form_widget(form.challengeWhy2) }}</p>
 
@@ -191,7 +203,7 @@
 
                 <tr>
                     <td>
-                        <p class="qualityrequired"><button type="button" data-id="3"  class="btn buttonquality {% if entity.coreQuality3 != null %}{{ 'btn-success' }}{% else %} {{ 'btn-primary' }}{% endif %}"
+                        <p class="qualityrequired"><button type="button" data-id="3" class="btn buttonquality {% if entity.coreQuality3 != null %}{{ 'btn-success' }}{% else %} {{ 'btn-primary' }}{% endif %}"
                                                            data-toggle="modal" data-target="#corequalitiesModal">
                                 {% if entity.coreQuality3 != null %}{{ entity.coreQuality3.coreQuality }}{% else %}{{ 'cdp.button.pickcorequalities' | trans }}{% endif %}
                             </button>{{ form_widget(form.coreQuality3) }}<span class="alert-error"></span></p>
@@ -200,7 +212,10 @@
                     </td>
                     <td>
 
-                        <p></p>
+                        <p class="pitfallrequired"><button type="button" data-id="3" class="btn buttonquality {% if entity.pitfall3 != null %}{{ 'btn-success' }}{% else %} {{ 'btn-primary' }}{% endif %}"
+                                                           data-toggle="modal" data-target="#pitfallsModal">
+                                {% if entity.pitfall1 != null %}{{ entity.pitfall1.pitfall }}{% else %}{{ 'cdp.button.pickpitfalls' | trans }}{% endif %}
+                            </button>{{ form_widget(form.pitfall1) }}<span class="alert-error"></span></p>
 
                         <p>{{ form_widget(form.pitfallWhy3,{ 'attr': {'rows': '4'} }) }}</p>
 
@@ -208,7 +223,10 @@
 
                     <td>
 
-                        <p>{{ form_widget(form.challenge3) }}</p>
+                        <p class="challengerequired"><button type="button" data-id="3" class="btn buttonquality {% if entity.challenge3 != null %}{{ 'btn-success' }}{% else %} {{ 'btn-primary' }}{% endif %}"
+                                                             data-toggle="modal" data-target="#challengesModal">
+                                {% if entity.challenge3 != null %}{{ entity.challenge3.challenge }}{% else %}{{ 'cdp.button.pickchallenges' | trans }}{% endif %}
+                            </button>{{ form_widget(form.challenge3) }}<span class="alert-error"></span></p>
 
                         <p>{{ form_widget(form.challengeWhy3) }}</p>
 
@@ -233,7 +251,10 @@
                     </td>
                     <td>
 
-                        <p></p>
+                        <p><button type="button" data-id="4" class="btn buttonquality {% if entity.pitfall4 != null %}{{ 'btn-success' }}{% else %} {{ 'btn-primary' }}{% endif %}"
+                                                           data-toggle="modal" data-target="#pitfallsModal">
+                                {% if entity.pitfall4 != null %}{{ entity.pitfall4.pitfall }}{% else %}{{ 'cdp.button.pickpitfalls' | trans }}{% endif %}
+                            </button>{{ form_widget(form.pitfall4) }}<span class="alert-error"></span></p>
 
                         <p>{{ form_widget(form.pitfallWhy4,{ 'attr': {'rows': '4'} }) }}</p>
 
@@ -241,7 +262,10 @@
 
                     <td>
 
-                        <p>{{ form_widget(form.challenge4) }}</p>
+                        <p><button type="button" data-id="4" class="btn buttonquality {% if entity.challenge4 != null %}{{ 'btn-success' }}{% else %} {{ 'btn-primary' }}{% endif %}"
+                                                             data-toggle="modal" data-target="#challengesModal">
+                                {% if entity.challenge4 != null %}{{ entity.challenge4.challenge }}{% else %}{{ 'cdp.button.pickchallenges' | trans }}{% endif %}
+                            </button>{{ form_widget(form.challenge4) }}<span class="alert-error"></span></p>
 
                         <p>{{ form_widget(form.challengeWhy4) }}</p>
 
@@ -266,7 +290,10 @@
                     </td>
                     <td>
 
-                        <p></p>
+                        <p><button type="button" data-id="5" class="btn buttonquality {% if entity.pitfall5 != null %}{{ 'btn-success' }}{% else %} {{ 'btn-primary' }}{% endif %}"
+                                                           data-toggle="modal" data-target="#pitfallsModal">
+                                {% if entity.pitfall5 != null %}{{ entity.pitfall5.pitfall }}{% else %}{{ 'cdp.button.pickpitfalls' | trans }}{% endif %}
+                            </button>{{ form_widget(form.pitfall5) }}<span class="alert-error"></span></p>
 
                         <p>{{ form_widget(form.pitfallWhy5,{ 'attr': {'rows': '4'} }) }}</p>
 
@@ -274,7 +301,10 @@
 
                     <td>
 
-                        <p>{{ form_widget(form.challenge5) }}</p>
+                        <p><button type="button" data-id="5" class="btn buttonquality {% if entity.challenge5 != null %}{{ 'btn-success' }}{% else %} {{ 'btn-primary' }}{% endif %}"
+                                                             data-toggle="modal" data-target="#challengesModal">
+                                {% if entity.challenge5 != null %}{{ entity.challenge5.challenge }}{% else %}{{ 'cdp.button.pickchallenges' | trans }}{% endif %}
+                            </button>{{ form_widget(form.challenge5) }}<span class="alert-error"></span></p>
 
                         <p>{{ form_widget(form.challengeWhy5) }}</p>
 
@@ -606,7 +636,6 @@
                     <h4 class="modal-title" id="myModalLabel">{{ 'cdp.corequalitiesmodal.title' }}</h4>
                 </div>
                 <div class="modal-body">
-                    <p class="bg-danger" id="qualityerror"></p>
 
                     <div class="table-responsive">
                         {% set teller = 0 %}
@@ -633,12 +662,86 @@
 
                 </div>
 
+            </div>
+        </div>
+    </div>
 
-                {#<div class="modal-footer">#}
-                    {#<button type="button" class="btn btn-default"#}
-                            {#data-dismiss="modal">{{ 'modal.cancel' | trans }}</button>#}
-                    {#<button type="button" class="btn btn-default" id="corequalityok">{{ 'modal.ok' | trans }}</button>#}
-                {#</div>#}
+    <!-- Modal -->
+    <div class="modal fade" id="challengesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ 'cdp.challengesmodal.title' }}</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="table-responsive">
+                        {% set teller = 0 %}
+                        <table class="table borderless" id="challengesmodaltable">
+                            <tr>
+                                {% for challenge in challenges %}
+                                <td>
+                                    <button class="btn challengeoption btn-default btn-block">{{ challenge.challenge }}</button>
+                                </td>
+                                {% if teller % 5 == 4 %}
+                            </tr>
+                            <tr>
+                                {% endif %}
+                                {% set teller = (teller + 1) %}
+                                {% endfor %}
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="form-group text-center">
+                        <input type="text" id="customchallenge"/>
+                        <button id="customchallengebutton"
+                                class="btn btn-primary">{{ 'cdp.corequalitiesmodal.addcustom' }}</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="pitfallsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ 'cdp.pitfallsmodal.title' }}</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="table-responsive">
+                        {% set teller = 0 %}
+                        <table class="table borderless" id="pitfallsmodaltable">
+                            <tr>
+                                {% for pitfall in pitfalls %}
+                                <td>
+                                    <button class="btn pitfalloption btn-default btn-block">{{ pitfall.pitfall }}</button>
+                                </td>
+                                {% if teller % 5 == 4 %}
+                            </tr>
+                            <tr>
+                                {% endif %}
+                                {% set teller = (teller + 1) %}
+                                {% endfor %}
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="form-group text-center">
+                        <input type="text" id="custompitfall"/>
+                        <button id="custompitfallbutton"
+                                class="btn btn-primary">{{ 'cdp.corequalitiesmodal.addcustom' }}</button>
+                    </div>
+
+                </div>
+
             </div>
         </div>
     </div>
@@ -654,7 +757,7 @@
     <script>
         var count = 0;
         var clicked = '';
-        var clickedquality;
+        var clickedquality;        
         $(function () {
 
             $("form").submit(function (e) {
@@ -668,6 +771,30 @@
                                 $(button).removeClass('btn-primary');
                                 $(button).addClass('btn-danger');
                                 okteller++;
+                        }
+                        teller++;
+
+                    });
+
+                    teller = 1;
+                    $('.challengerequired').each(function () {
+                        var button = $(this).find('button');
+                        if ($('#intopeople_databasebundle_cdp_challenge' + teller).val() === '') {
+                            $(button).removeClass('btn-primary');
+                            $(button).addClass('btn-danger');
+                            okteller++;
+                        }
+                        teller++;
+
+                    });
+
+                    teller = 1;
+                    $('.pitfallrequired').each(function () {
+                        var button = $(this).find('button');
+                        if ($('#intopeople_databasebundle_cdp_pitfall' + teller).val() === '') {
+                            $(button).removeClass('btn-primary');
+                            $(button).addClass('btn-danger');
+                            okteller++;
                         }
                         teller++;
 
@@ -699,6 +826,26 @@
 
             });
 
+            $(document).on('click', '.pitfalloption', function () {
+                $('#pitfallsModal').modal('hide');
+                $(clickedquality).html($(this).text());
+                $(clickedquality).removeClass('btn-primary');
+                $(clickedquality).removeClass('btn-danger');
+                $(clickedquality).addClass('btn-success');
+                $('#intopeople_databasebundle_cdp_pitfall' + $(clickedquality).data('id')).val($(this).text());
+
+            });
+
+            $(document).on('click', '.challengeoption', function () {
+                $('#challengesModal').modal('hide');
+                $(clickedquality).html($(this).text());
+                $(clickedquality).removeClass('btn-primary');
+                $(clickedquality).removeClass('btn-danger');
+                $(clickedquality).addClass('btn-success');
+                $('#intopeople_databasebundle_cdp_challenge' + $(clickedquality).data('id')).val($(this).text());
+
+            });
+
             $(document).on('click', '.buttonquality', function () {
                 clickedquality = $(this);
             });
@@ -714,6 +861,30 @@
                     $(clickedquality).removeClass('btn-danger');
                     $(clickedquality).addClass('btn-success');
                     $('#intopeople_databasebundle_cdp_coreQuality' + $(clickedquality).data('id')).val(text);
+                }
+            });
+
+            $(document).on('click', '#custompitfallbutton', function () {
+                var text = $('#custompitfall').val();
+                if (text != '') {
+                    $('#pitfallsModal').modal('hide');
+                    $(clickedquality).html(text);
+                    $(clickedquality).removeClass('btn-primary');
+                    $(clickedquality).removeClass('btn-danger');
+                    $(clickedquality).addClass('btn-success');
+                    $('#intopeople_databasebundle_cdp_pitfall' + $(clickedquality).data('id')).val(text);
+                }
+            });
+
+            $(document).on('click', '#customchallengebutton', function () {
+                var text = $('#customchallenge').val();
+                if (text != '') {
+                    $('#challengesModal').modal('hide');
+                    $(clickedquality).html(text);
+                    $(clickedquality).removeClass('btn-primary');
+                    $(clickedquality).removeClass('btn-danger');
+                    $(clickedquality).addClass('btn-success');
+                    $('#intopeople_databasebundle_cdp_challenge' + $(clickedquality).data('id')).val(text);
                 }
             });
 

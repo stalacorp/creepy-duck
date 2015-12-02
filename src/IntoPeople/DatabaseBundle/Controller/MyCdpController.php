@@ -50,6 +50,8 @@ class MyCdpController extends Controller
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('IntoPeopleDatabaseBundle:Cdp')->find($id);
         $corequalities = $em->getRepository('IntoPeopleDatabaseBundle:Corequality')->findByLanguage($user->getLanguage());
+        $pitfalls = $em->getRepository('IntoPeopleDatabaseBundle:Pitfall')->findByLanguage($user->getLanguage());
+        $challenges = $em->getRepository('IntoPeopleDatabaseBundle:Challenge')->findByLanguage($user->getLanguage());
         $user = $this->getUser();
         if (! $entity) {
             throw $this->createNotFoundException('Unable to find Cdp entity.');
@@ -78,7 +80,9 @@ class MyCdpController extends Controller
                 'template' => $template,
                 'entity' => $entity,
                 'form' => $form->createView(),
-                'corequalities' => $corequalities
+                'corequalities' => $corequalities,
+                'pitfalls' => $pitfalls,
+                'challenges' => $challenges
             ));
         }
         
@@ -197,7 +201,77 @@ class MyCdpController extends Controller
                 $entity->setCoreQuality5($corequalities[4]);
             }
 
+            $pitfalls = array();
 
+            array_push($pitfalls, $form['pitfall1']->getData());
+            array_push($pitfalls, $form['pitfall2']->getData());
+            array_push($pitfalls, $form['pitfall3']->getData());
+            array_push($pitfalls, $form['pitfall4']->getData());
+            array_push($pitfalls, $form['pitfall5']->getData());
+            $teller = 0;
+
+            foreach ($pitfalls as $pitfall){
+                if ($pitfall != '') {
+                    $pitfallx = $em->getRepository('IntoPeopleDatabaseBundle:Pitfall')->findOneBypitfall($pitfall);
+                    if ($pitfallx == null) {
+                        $newpitfall = new Pitfall();
+                        $newpitfall->setPitfall($pitfall);
+                        $newpitfall->setIsStandard(false);
+                        $em->persist($newpitfall);
+                        $pitfalls[$teller] = $newpitfall;
+
+                    } else {
+                        $pitfalls[$teller] = $pitfallx;
+                    }
+                }
+                $teller++;
+            }
+
+            $entity->setPitfall1($pitfalls[0]);
+            $entity->setPitfall2($pitfalls[1]);
+            $entity->setPitfall3($pitfalls[2]);
+            if ($pitfalls[3] != ''){
+                $entity->setPitfall4($pitfalls[3]);
+            }
+            if ($pitfalls[4] != ''){
+                $entity->setPitfall5($pitfalls[4]);
+            }
+
+            $challenges = array();
+
+            array_push($challenges, $form['challenge1']->getData());
+            array_push($challenges, $form['challenge2']->getData());
+            array_push($challenges, $form['challenge3']->getData());
+            array_push($challenges, $form['challenge4']->getData());
+            array_push($challenges, $form['challenge5']->getData());
+            $teller = 0;
+
+            foreach ($challenges as $challenge){
+                if ($challenge != '') {
+                    $challengex = $em->getRepository('IntoPeopleDatabaseBundle:Challenge')->findOneBychallenge($challenge);
+                    if ($challengex == null) {
+                        $newchallenge = new Challenge();
+                        $newchallenge->setChallenge($challenge);
+                        $newchallenge->setIsStandard(false);
+                        $em->persist($newchallenge);
+                        $challenges[$teller] = $newchallenge;
+
+                    } else {
+                        $challenges[$teller] = $challengex;
+                    }
+                }
+                $teller++;
+            }
+
+            $entity->setChallenge1($challenges[0]);
+            $entity->setChallenge2($challenges[1]);
+            $entity->setChallenge3($challenges[2]);
+            if ($challenges[3] != ''){
+                $entity->setChallenge4($challenges[3]);
+            }
+            if ($challenges[4] != ''){
+                $entity->setChallenge5($challenges[4]);
+            }
                            
             $em->flush();
 
@@ -211,6 +285,8 @@ class MyCdpController extends Controller
         $user = $this->getUser();
 
         $corequalities = $em->getRepository('IntoPeopleDatabaseBundle:Corequality')->findByLanguage($user->getLanguage());
+        $pitfalls = $em->getRepository('IntoPeopleDatabaseBundle:Pitfall')->findByLanguage($user->getLanguage());
+        $challenges = $em->getRepository('IntoPeopleDatabaseBundle:Challenge')->findByLanguage($user->getLanguage());
 
         $repository = $this->getDoctrine()->getRepository('IntoPeopleDatabaseBundle:Cdptemplate');
 
@@ -223,6 +299,8 @@ class MyCdpController extends Controller
 
         return $this->render('IntoPeopleDatabaseBundle:Cdp:new.html.twig', array(
             'corequalities' => $corequalities,
+            'pitfalls' => $pitfalls,
+            'challenges' => $challenges,
             'template' => $template,
             'entity' => $entity,
             'form' => $form->createView()

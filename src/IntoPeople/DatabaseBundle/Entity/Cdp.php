@@ -305,7 +305,7 @@ class Cdp
      *
      * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Pitfall", inversedBy="pitfall1")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Challenge1Id", referencedColumnName="Id")
+     *   @ORM\JoinColumn(name="Pitfall1Id", referencedColumnName="Id")
      * })
      */
     private $pitfall1;
@@ -315,7 +315,7 @@ class Cdp
      *
      * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Pitfall", inversedBy="pitfall2")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Challenge2Id", referencedColumnName="Id")
+     *   @ORM\JoinColumn(name="Pitfall2Id", referencedColumnName="Id")
      * })
      */
     private $pitfall2;
@@ -325,7 +325,7 @@ class Cdp
      *
      * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Pitfall", inversedBy="pitfall3")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Challenge3Id", referencedColumnName="Id")
+     *   @ORM\JoinColumn(name="Pitfall3Id", referencedColumnName="Id")
      * })
      */
     private $pitfall3;
@@ -335,7 +335,7 @@ class Cdp
      *
      * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Pitfall", inversedBy="pitfall4")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Challenge4Id", referencedColumnName="Id")
+     *   @ORM\JoinColumn(name="Pitfall4Id", referencedColumnName="Id")
      * })
      */
     private $pitfall4;
@@ -345,7 +345,7 @@ class Cdp
      *
      * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Pitfall", inversedBy="pitfall5")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Challenge5Id", referencedColumnName="Id")
+     *   @ORM\JoinColumn(name="Pitfall5Id", referencedColumnName="Id")
      * })
      */
     private $pitfall5;
@@ -2984,10 +2984,10 @@ class Cdp
     /**
      * Set challenge1
      *
-     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $challenge1
+     * @param \IntoPeople\DatabaseBundle\Entity\Challenge $challenge1
      * @return Cdp
      */
-    public function setChallenge1(\IntoPeople\DatabaseBundle\Entity\Corequality $challenge1 = null)
+    public function setChallenge1(\IntoPeople\DatabaseBundle\Entity\Challenge $challenge1 = null)
     {
         $this->challenge1 = $challenge1;
 
@@ -2997,7 +2997,7 @@ class Cdp
     /**
      * Get challenge1
      *
-     * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
+     * @return \IntoPeople\DatabaseBundle\Entity\Challenge 
      */
     public function getChallenge1()
     {
@@ -3007,10 +3007,10 @@ class Cdp
     /**
      * Set challenge2
      *
-     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $challenge2
+     * @param \IntoPeople\DatabaseBundle\Entity\Challenge $challenge2
      * @return Cdp
      */
-    public function setChallenge2(\IntoPeople\DatabaseBundle\Entity\Corequality $challenge2 = null)
+    public function setChallenge2(\IntoPeople\DatabaseBundle\Entity\Challenge $challenge2 = null)
     {
         $this->challenge2 = $challenge2;
 
@@ -3020,7 +3020,7 @@ class Cdp
     /**
      * Get challenge2
      *
-     * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
+     * @return \IntoPeople\DatabaseBundle\Entity\Challenge 
      */
     public function getChallenge2()
     {
@@ -3030,10 +3030,10 @@ class Cdp
     /**
      * Set challenge3
      *
-     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $challenge3
+     * @param \IntoPeople\DatabaseBundle\Entity\Challenge $challenge3
      * @return Cdp
      */
-    public function setChallenge3(\IntoPeople\DatabaseBundle\Entity\Corequality $challenge3 = null)
+    public function setChallenge3(\IntoPeople\DatabaseBundle\Entity\Challenge $challenge3 = null)
     {
         $this->challenge3 = $challenge3;
 
@@ -3043,7 +3043,7 @@ class Cdp
     /**
      * Get challenge3
      *
-     * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
+     * @return \IntoPeople\DatabaseBundle\Entity\Challenge 
      */
     public function getChallenge3()
     {
@@ -3053,10 +3053,10 @@ class Cdp
     /**
      * Set challenge4
      *
-     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $challenge4
+     * @param \IntoPeople\DatabaseBundle\Entity\Challenge $challenge4
      * @return Cdp
      */
-    public function setChallenge4(\IntoPeople\DatabaseBundle\Entity\Corequality $challenge4 = null)
+    public function setChallenge4(\IntoPeople\DatabaseBundle\Entity\Challenge $challenge4 = null)
     {
         $this->challenge4 = $challenge4;
 
@@ -3066,7 +3066,7 @@ class Cdp
     /**
      * Get challenge4
      *
-     * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
+     * @return \IntoPeople\DatabaseBundle\Entity\Challenge 
      */
     public function getChallenge4()
     {
@@ -3076,10 +3076,10 @@ class Cdp
     /**
      * Set challenge5
      *
-     * @param \IntoPeople\DatabaseBundle\Entity\Corequality $challenge5
+     * @param \IntoPeople\DatabaseBundle\Entity\Challenge $challenge5
      * @return Cdp
      */
-    public function setChallenge5(\IntoPeople\DatabaseBundle\Entity\Corequality $challenge5 = null)
+    public function setChallenge5(\IntoPeople\DatabaseBundle\Entity\Challenge $challenge5 = null)
     {
         $this->challenge5 = $challenge5;
 
@@ -3089,7 +3089,7 @@ class Cdp
     /**
      * Get challenge5
      *
-     * @return \IntoPeople\DatabaseBundle\Entity\Corequality 
+     * @return \IntoPeople\DatabaseBundle\Entity\Challenge 
      */
     public function getChallenge5()
     {
@@ -3099,10 +3099,10 @@ class Cdp
     /**
      * Set pitfall1
      *
-     * @param string $pitfall1
+     * @param \IntoPeople\DatabaseBundle\Entity\Pitfall $pitfall1
      * @return Cdp
      */
-    public function setPitfall1($pitfall1)
+    public function setPitfall1(\IntoPeople\DatabaseBundle\Entity\Pitfall $pitfall1 = null)
     {
         $this->pitfall1 = $pitfall1;
 
@@ -3112,7 +3112,7 @@ class Cdp
     /**
      * Get pitfall1
      *
-     * @return string 
+     * @return \IntoPeople\DatabaseBundle\Entity\Pitfall
      */
     public function getPitfall1()
     {
@@ -3122,10 +3122,10 @@ class Cdp
     /**
      * Set pitfall2
      *
-     * @param string $pitfall2
+     * @param \IntoPeople\DatabaseBundle\Entity\Pitfall $pitfall2
      * @return Cdp
      */
-    public function setPitfall2($pitfall2)
+    public function setPitfall2(\IntoPeople\DatabaseBundle\Entity\Pitfall $pitfall2 = null)
     {
         $this->pitfall2 = $pitfall2;
 
@@ -3135,7 +3135,7 @@ class Cdp
     /**
      * Get pitfall2
      *
-     * @return string 
+     * @return \IntoPeople\DatabaseBundle\Entity\Pitfall
      */
     public function getPitfall2()
     {
@@ -3145,10 +3145,10 @@ class Cdp
     /**
      * Set pitfall3
      *
-     * @param string $pitfall3
+     * @param \IntoPeople\DatabaseBundle\Entity\Pitfall $pitfall3
      * @return Cdp
      */
-    public function setPitfall3($pitfall3)
+    public function setPitfall3(\IntoPeople\DatabaseBundle\Entity\Pitfall $pitfall3 = null)
     {
         $this->pitfall3 = $pitfall3;
 
@@ -3158,7 +3158,7 @@ class Cdp
     /**
      * Get pitfall3
      *
-     * @return string 
+     * @return \IntoPeople\DatabaseBundle\Entity\Pitfall
      */
     public function getPitfall3()
     {
@@ -3168,10 +3168,10 @@ class Cdp
     /**
      * Set pitfall4
      *
-     * @param string $pitfall4
+     * @param \IntoPeople\DatabaseBundle\Entity\Pitfall $pitfall4
      * @return Cdp
      */
-    public function setPitfall4($pitfall4)
+    public function setPitfall4(\IntoPeople\DatabaseBundle\Entity\Pitfall $pitfall4 = null)
     {
         $this->pitfall4 = $pitfall4;
 
@@ -3181,7 +3181,7 @@ class Cdp
     /**
      * Get pitfall4
      *
-     * @return string 
+     * @return \IntoPeople\DatabaseBundle\Entity\Pitfall
      */
     public function getPitfall4()
     {
@@ -3191,10 +3191,10 @@ class Cdp
     /**
      * Set pitfall5
      *
-     * @param string $pitfall5
+     * @param \IntoPeople\DatabaseBundle\Entity\Pitfall $pitfall5
      * @return Cdp
      */
-    public function setPitfall5($pitfall5)
+    public function setPitfall5(\IntoPeople\DatabaseBundle\Entity\Pitfall $pitfall5 = null)
     {
         $this->pitfall5 = $pitfall5;
 
@@ -3204,7 +3204,7 @@ class Cdp
     /**
      * Get pitfall5
      *
-     * @return string 
+     * @return \IntoPeople\DatabaseBundle\Entity\Pitfall
      */
     public function getPitfall5()
     {

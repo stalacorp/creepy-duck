@@ -350,4 +350,9 @@ class Pitfall
     {
         return $this->pitfalls5;
     }
+
+    public function __toString()
+    {
+        return $this->getPitfall();
+    }
 }

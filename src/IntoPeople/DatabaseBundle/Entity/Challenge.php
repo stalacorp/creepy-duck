@@ -349,4 +349,9 @@ class Challenge
     {
         return $this->challenges5;
     }
+
+    public function __toString()
+    {
+        return $this->getChallenge();
+    }
 }

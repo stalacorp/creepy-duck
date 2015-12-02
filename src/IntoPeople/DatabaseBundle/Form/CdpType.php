@@ -36,6 +36,48 @@ class CdpType extends AbstractType
             $corequality5 = $entity->getCoreQuality5()->getCoreQuality();
         }
 
+        $challenge1 = '';
+        if ($entity->getChallenge1() != null){
+            $challenge1 = $entity->getChallenge1()->getChallenge();
+        }
+        $challenge2 = '';
+        if ($entity->getChallenge2() != null){
+            $challenge2 = $entity->getChallenge2()->getChallenge();
+        }
+        $challenge3 = '';
+        if ($entity->getChallenge3() != null){
+            $challenge3 = $entity->getChallenge3()->getChallenge();
+        }
+        $challenge4 = '';
+        if ($entity->getChallenge4() != null){
+            $challenge4 = $entity->getChallenge4()->getChallenge();
+        }
+        $challenge5 = '';
+        if ($entity->getChallenge5() != null){
+            $challenge5 = $entity->getChallenge5()->getChallenge();
+        }
+
+        $pitfall1 = '';
+        if ($entity->getPitfall1() != null){
+            $pitfall1 = $entity->getPitfall1()->getPitfall();
+        }
+        $pitfall2 = '';
+        if ($entity->getPitfall2() != null){
+            $pitfall2 = $entity->getPitfall2()->getPitfall();
+        }
+        $pitfall3 = '';
+        if ($entity->getPitfall3() != null){
+            $pitfall3 = $entity->getPitfall3()->getPitfall();
+        }
+        $pitfall4 = '';
+        if ($entity->getPitfall4() != null){
+            $pitfall4 = $entity->getPitfall4()->getPitfall();
+        }
+        $pitfall5 = '';
+        if ($entity->getPitfall5() != null){
+            $pitfall5 = $entity->getPitfall5()->getPitfall();
+        }
+
         $builder
             ->add('coreQuality1', 'hidden', array('mapped' => false, 'data' => $corequality1))
             ->add('coreQuality2', 'hidden', array('mapped' => false, 'data' => $corequality2))
@@ -47,11 +89,11 @@ class CdpType extends AbstractType
             ->add('coreQuality3Why')
             ->add('coreQuality4Why')
             ->add('coreQuality5Why')
-            ->add('challenge1')
-            ->add('challenge2')
-            ->add('challenge3')
-            ->add('challenge4')
-            ->add('challenge5')
+            ->add('challenge1', 'hidden', array('mapped' => false, 'data' => $challenge1))
+            ->add('challenge2', 'hidden', array('mapped' => false, 'data' => $challenge2))
+            ->add('challenge3', 'hidden', array('mapped' => false, 'data' => $challenge3))
+            ->add('challenge4', 'hidden', array('mapped' => false, 'data' => $challenge4))
+            ->add('challenge5', 'hidden', array('mapped' => false, 'data' => $challenge5))
             ->add('challengeWhy1')
             ->add('challengeWhy2')
             ->add('challengeWhy3')
@@ -62,6 +104,11 @@ class CdpType extends AbstractType
             ->add('challengeHow3')
             ->add('challengeHow4')
             ->add('challengeHow5')
+            ->add('pitfall1', 'hidden', array('mapped' => false, 'data' => $pitfall1))
+            ->add('pitfall2', 'hidden', array('mapped' => false, 'data' => $pitfall2))
+            ->add('pitfall3', 'hidden', array('mapped' => false, 'data' => $pitfall3))
+            ->add('pitfall4', 'hidden', array('mapped' => false, 'data' => $pitfall4))
+            ->add('pitfall5', 'hidden', array('mapped' => false, 'data' => $pitfall5))
             ->add('pitfallWhy1')
             ->add('pitfallWhy2')
             ->add('pitfallWhy3')
