@@ -96,59 +96,6 @@ class Corequality
         $this->corequalities5 = new ArrayCollection();
     }
 
-    /**
-     * @ORM\OneToMany(targetEntity="IntoPeople\DatabaseBundle\Entity\Cdp", cascade={"persist"}, mappedBy="challenge1")
-     */
-    protected $challenges1;
-
-    public function __construct6()
-    {
-        $this->challenges1 = new ArrayCollection();
-    }
-
-    /**
-     * @ORM\OneToMany(targetEntity="IntoPeople\DatabaseBundle\Entity\Cdp", cascade={"persist"}, mappedBy="challenge2")
-     */
-    protected $challenges2;
-
-    public function __construct7()
-    {
-        $this->challenges2 = new ArrayCollection();
-    }
-
-    /**
-     * @ORM\OneToMany(targetEntity="IntoPeople\DatabaseBundle\Entity\Cdp", cascade={"persist"}, mappedBy="challenge3")
-     */
-    protected $challenges3;
-
-    public function __construct8()
-    {
-        $this->challenges3 = new ArrayCollection();
-    }
-
-    /**
-     * @ORM\OneToMany(targetEntity="IntoPeople\DatabaseBundle\Entity\Cdp", cascade={"persist"}, mappedBy="challenge4")
-     */
-    protected $challenges4;
-
-    public function __construct9()
-    {
-        $this->challenges4 = new ArrayCollection();
-    }
-
-    /**
-     * @ORM\OneToMany(targetEntity="IntoPeople\DatabaseBundle\Entity\Cdp", cascade={"persist"}, mappedBy="challenge5")
-     */
-    protected $challenges5;
-
-    public function __construct10()
-    {
-        $this->challenges5 = new ArrayCollection();
-    }
-
-
-
-
 
     public function __toString()
     {

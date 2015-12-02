@@ -216,9 +216,9 @@ class Cdp
     private $coreQuality5Why;
 
     /**
-     * @var \IntoPeople\DatabaseBundle\Entity\Corequality
+     * @var \IntoPeople\DatabaseBundle\Entity\Challenge
      *
-     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Corequality", inversedBy="challenge1")
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Challenge", inversedBy="challenge1")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Challenge1Id", referencedColumnName="Id")
      * })
@@ -226,9 +226,9 @@ class Cdp
     private $challenge1;
 
     /**
-     * @var \IntoPeople\DatabaseBundle\Entity\Corequality
+     * @var \IntoPeople\DatabaseBundle\Entity\Challenge
      *
-     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Corequality", inversedBy="challenge2")
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Challenge", inversedBy="challenge2")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Challenge2Id", referencedColumnName="Id")
      * })
@@ -236,9 +236,9 @@ class Cdp
     private $challenge2;
 
     /**
-     * @var \IntoPeople\DatabaseBundle\Entity\Corequality
+     * @var \IntoPeople\DatabaseBundle\Entity\Challenge
      *
-     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Corequality", inversedBy="challenge3")
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Challenge", inversedBy="challenge3")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Challenge3Id", referencedColumnName="Id")
      * })
@@ -246,9 +246,9 @@ class Cdp
     private $challenge3;
 
     /**
-     * @var \IntoPeople\DatabaseBundle\Entity\Corequality
+     * @var \IntoPeople\DatabaseBundle\Entity\Challenge
      *
-     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Corequality", inversedBy="challenge4")
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Challenge", inversedBy="challenge4")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Challenge4Id", referencedColumnName="Id")
      * })
@@ -256,9 +256,9 @@ class Cdp
     private $challenge4;
 
     /**
-     * @var \IntoPeople\DatabaseBundle\Entity\Corequality
+     * @var \IntoPeople\DatabaseBundle\Entity\Challenge
      *
-     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Corequality", inversedBy="challenge5")
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Challenge", inversedBy="challenge5")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Challenge5Id", referencedColumnName="Id")
      * })
@@ -301,39 +301,89 @@ class Cdp
     private $challengeWhy5;
 
     /**
-     * @var string
+     * @var \IntoPeople\DatabaseBundle\Entity\Pitfall
      *
-     * @ORM\Column(name="Pitfall1", type="text", length=65535, nullable=true)
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Pitfall", inversedBy="pitfall1")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Challenge1Id", referencedColumnName="Id")
+     * })
      */
     private $pitfall1;
 
     /**
-     * @var string
+     * @var \IntoPeople\DatabaseBundle\Entity\Pitfall
      *
-     * @ORM\Column(name="Pitfall2", type="text", length=65535, nullable=true)
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Pitfall", inversedBy="pitfall2")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Challenge2Id", referencedColumnName="Id")
+     * })
      */
     private $pitfall2;
 
     /**
-     * @var string
+     * @var \IntoPeople\DatabaseBundle\Entity\Pitfall
      *
-     * @ORM\Column(name="Pitfall3", type="text", length=65535, nullable=true)
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Pitfall", inversedBy="pitfall3")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Challenge3Id", referencedColumnName="Id")
+     * })
      */
     private $pitfall3;
 
     /**
-     * @var string
+     * @var \IntoPeople\DatabaseBundle\Entity\Pitfall
      *
-     * @ORM\Column(name="Pitfall4", type="text", length=65535, nullable=true)
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Pitfall", inversedBy="pitfall4")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Challenge4Id", referencedColumnName="Id")
+     * })
      */
     private $pitfall4;
 
     /**
-     * @var string
+     * @var \IntoPeople\DatabaseBundle\Entity\Pitfall
      *
-     * @ORM\Column(name="Pitfall5", type="text", length=65535, nullable=true)
+     * @ORM\ManyToOne(targetEntity="IntoPeople\DatabaseBundle\Entity\Pitfall", inversedBy="pitfall5")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Challenge5Id", referencedColumnName="Id")
+     * })
      */
     private $pitfall5;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="PitfallWhy1", type="text", length=65535, nullable=true)
+     */
+    private $pitfallWhy1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="PitfallWhy2", type="text", length=65535, nullable=true)
+     */
+    private $pitfallWhy2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="PitfallWhy3", type="text", length=65535, nullable=true)
+     */
+    private $pitfallWhy3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="PitfallWhy4", type="text", length=65535, nullable=true)
+     */
+    private $pitfallWhy4;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="PitfallWhy5", type="text", length=65535, nullable=true)
+     */
+    private $pitfallWhy5;
 
     /**
      * @var string
@@ -3205,5 +3255,120 @@ class Cdp
     public function getJobtitle()
     {
         return $this->jobtitle;
+    }
+
+    /**
+     * Set pitfallWhy1
+     *
+     * @param string $pitfallWhy1
+     * @return Cdp
+     */
+    public function setPitfallWhy1($pitfallWhy1)
+    {
+        $this->pitfallWhy1 = $pitfallWhy1;
+
+        return $this;
+    }
+
+    /**
+     * Get pitfallWhy1
+     *
+     * @return string 
+     */
+    public function getPitfallWhy1()
+    {
+        return $this->pitfallWhy1;
+    }
+
+    /**
+     * Set pitfallWhy2
+     *
+     * @param string $pitfallWhy2
+     * @return Cdp
+     */
+    public function setPitfallWhy2($pitfallWhy2)
+    {
+        $this->pitfallWhy2 = $pitfallWhy2;
+
+        return $this;
+    }
+
+    /**
+     * Get pitfallWhy2
+     *
+     * @return string 
+     */
+    public function getPitfallWhy2()
+    {
+        return $this->pitfallWhy2;
+    }
+
+    /**
+     * Set pitfallWhy3
+     *
+     * @param string $pitfallWhy3
+     * @return Cdp
+     */
+    public function setPitfallWhy3($pitfallWhy3)
+    {
+        $this->pitfallWhy3 = $pitfallWhy3;
+
+        return $this;
+    }
+
+    /**
+     * Get pitfallWhy3
+     *
+     * @return string 
+     */
+    public function getPitfallWhy3()
+    {
+        return $this->pitfallWhy3;
+    }
+
+    /**
+     * Set pitfallWhy4
+     *
+     * @param string $pitfallWhy4
+     * @return Cdp
+     */
+    public function setPitfallWhy4($pitfallWhy4)
+    {
+        $this->pitfallWhy4 = $pitfallWhy4;
+
+        return $this;
+    }
+
+    /**
+     * Get pitfallWhy4
+     *
+     * @return string 
+     */
+    public function getPitfallWhy4()
+    {
+        return $this->pitfallWhy4;
+    }
+
+    /**
+     * Set pitfallWhy5
+     *
+     * @param string $pitfallWhy5
+     * @return Cdp
+     */
+    public function setPitfallWhy5($pitfallWhy5)
+    {
+        $this->pitfallWhy5 = $pitfallWhy5;
+
+        return $this;
+    }
+
+    /**
+     * Get pitfallWhy5
+     *
+     * @return string 
+     */
+    public function getPitfallWhy5()
+    {
+        return $this->pitfallWhy5;
     }
 }
